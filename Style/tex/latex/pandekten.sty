@@ -1,0 +1,78 @@
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{pandekten}[2022/04/27 v1.0 Pandekten macros package]%
+
+% Smaller margins looks better
+\RequirePackage[a5paper, margin=1.5cm, footskip=.75cm]{geometry}
+
+% Important commands like \includegraphics
+\RequirePackage{graphicx}
+
+% Allows defining color
+\RequirePackage{xcolor}
+
+% Useful math fonts
+\RequirePackage{amsfonts}
+
+% Useful math symbols, e.g. \rtimes
+\RequirePackage{amssymb}
+
+% Plotting
+\RequirePackage{tikz}
+\usetikzlibrary{cd}
+
+% Useful shorthands, e.g. \dv
+\RequirePackage{physics}
+
+% For ref across files
+\RequirePackage{xr-hyper}
+
+% For hyperref
+\RequirePackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!80!black,
+  urlcolor=blue!80!black,
+  citecolor=blue!80!black,
+}
+
+% Add prefix to ref
+\RequirePackage{cleveref}
+
+% Beautiful boxes
+\RequirePackage[many]{tcolorbox}
+
+\newtcbtheorem[number within=section]{definition}{Definition}%
+{breakable,colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{def}
+\crefname{tcb@cnt@definition}{definition}{definitions}
+\newtcbtheorem[number within=section]{example}{Example}%
+{breakable,colback=yellow!10!white,
+colframe=yellow!10!orange,fonttitle=\bfseries}{ex}
+\crefname{tcb@cnt@example}{example}{examples}
+\newtcbtheorem[number within=section]{theorem}{Theorem}%
+{breakable,colback=blue!10!white,
+colframe=blue!30!black,fonttitle=\bfseries}{thm}
+\crefname{tcb@cnt@theorem}{theorem}{theorems}
+
+\newtcolorbox{warning}{colback=red!5!white,
+colframe=red!75!black,fonttitle=\bfseries,
+title={Warning},sharp corners}
+
+% For Feynman slash
+\RequirePackage{slashed}
+
+% For arrows e.g. \xlongrightarrow
+\RequirePackage{extarrows}
+
+% For enumerate and itemize with smaller margins
+\RequirePackage{enumitem}
+\setlist{nosep, leftmargin=*}
+
+% For more bb fonts
+\RequirePackage{bbm}
+
+% For tools e.g. \DeclarePairedDelimiterX
+\RequirePackage{mathtools}
+\DeclarePairedDelimiterX\Set[2]{\lbrace}{\rbrace}%
+ { #1 \,\delimsize| \,\mathopen{} #2 }
+
+\endinput

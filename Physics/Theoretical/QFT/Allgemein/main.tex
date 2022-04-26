@@ -1,0 +1,179 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\externaldocument[Int-]{../../../../Mathematics/Calculus/Integrals/main}
+\externaldocument[Repr-]{../../../../Mathematics/Algebra/Representation/Allgemein/main}
+
+\begin{document}
+
+\maketitle
+
+\section{Functional Integral}
+
+\subsection{Definitions}
+
+\begin{definition}{Functional Integral}{functional_integral}
+    Input:
+    \begin{itemize}[nosep]
+        \item $M$ is the spacetime.
+        \item $F[\varphi,\cdots]$ is a functional, where the nature of $\varphi$ is unknown.
+    \end{itemize}
+    The functional integral is defined formally by
+    \begin{align*}
+        \int \mathcal{D}{\varphi}\, F[\varphi,\cdots] = \qty(\prod_{x\in M}\int \dd{\varphi(x)}) F[\varphi,\cdots].
+    \end{align*}
+\end{definition}
+
+Functional integrals are not well-defined mathematically.
+However, in many cases we are entitled to ignore some constant factors and obtain physical results.
+
+We write only one $\int$ when consecutive integrations are carried out, i.e.
+\[ \int \mathcal{D}\varphi_1 \cdots \int \mathcal{D}\varphi_n \rightarrow \int \mathcal{D}\varphi_1 \cdots \mathcal{D}\varphi_n. \]
+
+Sometimes we may abuse the notation.
+For example, we may write $\mathcal{D}\vb*{m}$ for $\mathcal{D}m_1\mathcal{D}m_2\mathcal{D}m_3$,
+and $\mathcal{D}{\overline{\eta}} \mathcal{D}{\eta}$ for $\mathcal{D}\overline{\eta}_1 \mathcal{D}{\eta}_1 \cdots \mathcal{D}\overline{\eta}_r \mathcal{D}{\eta}_r$ if
+\[ \eta = \begin{pmatrix} \eta_1 & \cdots & \eta_r \end{pmatrix}^T. \]
+
+\begin{definition}{Generating Functional}{generating_functional}
+    Input:
+    \begin{itemize}[nosep]
+        \item $M = \mathbb{R}^{d}$ is the spacetime.
+        \item $S[\varphi_1, \cdots, \varphi_m, \overline{\psi}_1,\psi_1,\cdots,\overline{\psi}_n,\psi_n]$ is the action, where
+        \begin{itemize}[nosep]
+            \item $\varphi_i: M \rightarrow \mathbb{R}$ for $i = 1,\cdots,m$.
+            \item $\psi_i: M \rightarrow$ $\mathbb{C}$ or Grassmann numbers for $i = 1,\cdots, n$.
+        \end{itemize}
+        \item $J_i: M \rightarrow \mathbb{R}$ for $i = 1,\cdots,m$.
+        \item $\eta_i: M \rightarrow$ $\mathbb{C}$ or Grassmann numbers for $i = 1,\cdots, n$, with codomain identical to $\psi_i$ for $S$.
+    \end{itemize}
+    The generating functional is given by
+    \begin{align*}
+        &\phantom{{}={}} Z[J_1, \cdots, J_m, \overline{\eta}_1,\eta_1,\cdots,\overline{\eta}_n,\eta_n] \\
+        &= \int \mathcal{D}\varphi_1 \cdots \mathcal{D}\varphi_m \mathcal{D} \overline{\psi}_1 \mathcal{D}\psi_1 \cdots \mathcal{D}\overline{\psi}_n \mathcal{D}\psi_n \\
+        &\phantom{{}={}\int} \exp\Bigg\{i\bigg[S[\varphi_1, \cdots, \varphi_m, \overline{\psi}_1,\psi_1,\cdots,\overline{\psi}_n,\psi_n] {}+{} \\
+        &\phantom{{}={}\int }\int_M \dd{^d x} \qty(\sum_{i=1}^mJ_i(x)\varphi_i(x) + \sum_{i=1}^n \qty(\overline{\eta}_i(x)\psi_i(x) + \overline{\psi}_i(x)\eta(x))) \bigg]\Bigg\}.
+    \end{align*}
+\end{definition}
+
+The generating functional may be regarded as the Fourier transform of $e^{iS}$.
+
+\subsection{Evaluating Functional Integrals}
+
+Some tricks are useful for evaluating functional integrals.
+
+\paragraph*{Gaussian Integrals}
+Rigorous result may be found in \cref{Int-thm:real_gaussian_integral} and \cref{Int-thm:complex_gaussian_integral}.
+Here we state their unrigorous generalizations.
+
+\begin{theorem}{Real Gaussian Functional Integral}{real_gaussian_functional_integral}
+Let $A$ be an invertible symmetric operator acting on $\varphi: M\rightarrow \mathbb{R}$.
+Then for any $J: M\rightarrow \mathbb{R}$,
+\begin{gather*}
+    \int \mathcal{D}\varphi\, \exp[-\frac{1}{2}\int \dd{^d x} \varphi(x) A\varphi(x) + i \int \dd{^d x} J(x)\varphi(x)] \\
+    = \frac{(2\pi)^{(\dim A)/2}}{\sqrt{\det A}} \exp{-\frac{1}{2}\int \dd{^d x} J(x) A^{-1}J(x)}.
+\end{gather*}
+\end{theorem}
+
+\begin{theorem}{Complex Gaussian Functional Integral}{complex_gaussian_functional_integral}
+Let $A$ be an invertible symmetric operator acting on $\psi: M\rightarrow \mathbb{C}$ or grassmann numbers.
+Then for any $\eta$ from $M$ to the codomain of $\psi$,
+\begin{gather*}
+    \int \mathcal{D}\overline{\psi}\mathcal{D}\psi\, \exp[-\int \dd{^d x} \overline{\psi}(x) A\psi(x) + i \int \dd{^d x} \qty(\overline{\eta}(x)\varphi(x) + \overline{\varphi}(x)\eta(x))] \\
+    = \frac{\pi^{\dim A}}{\det A} \exp{-\int \dd{^d x} \overline{\eta}(x) A^{-1}\eta(x)}.
+\end{gather*}
+\end{theorem}
+
+In most cases, $A^{-1}$ is just some convolution with the Green's function of $A$, i.e.
+\[ A^{-1}\eta(x) = \int \dd{^d x} G(x;y) \eta(y). \]
+
+\paragraph*{Fourier Transform}
+Using Fourier transform we write $\eta(x)$ in terms of $\tilde{\eta}(p)$, and therefore obtain a simpler form of $A$ (hence $A^{-1}$ and $\det A$).
+
+\begin{example}{Generating Functional for the Dirac Field}{generating_functional_for_the_dirac_field}
+    Let
+    \[ S[\overline{\psi},\psi] = \int \dd{^4 x} \overline{\psi}(i\slashed{\partial} - m)\psi. \]
+    The generating functional is given by
+    \begin{align*}
+        Z[\overline{\eta}, \eta] &= \int \mathcal{D}\overline{\psi} \mathcal{D}\psi \\
+        &\phantom{{}={}} \exp{i\int \dd{^4 x} \overline{\psi}(i\slashed{\partial} - m)\psi + i \int \dd{^4 x} \qty(\overline{\eta}(x)\varphi(x) + \overline{\varphi}(x)\eta(x))} \\
+        &\xlongequal{\text{\cref{thm:complex_gaussian_functional_integral}}} \frac{\pi^\infty}{\det [-i(i\slashed{\partial} - m)]} \exp[-\int \dd{^4 x} \overline{\eta}(x) \frac{i}{i\slashed{\partial} - m} \eta(x)] \\ 
+        &\propto \exp\qty[-\int \dd{^4 x} \dd{^4 y} \overline{\eta}(x) S_F(x-y) \eta(y)].
+    \end{align*}
+\end{example}
+
+\begin{example}{Partition Function of Gaussian Model}{partition_function_of_gaussian_model}
+    Let the partition function be given by
+    \begin{align*}
+        Z &= \int \mathcal{D}\vb*{m} \\
+        &\phantom{{}={}}\exp{-\int \dd{^d x} \frac{1}{2}\qty[t{\vb*{m}}^2 + K(\grad \vb*{m})^2 + L(\grad^2 \vb*{m})^2] + \int \dd{^d x} \vb*{h} \cdot \vb*{m}}.
+    \end{align*}
+    where $\vb*{h}$ is a constant, and $\vb*{h}(x), \vb*{m}(x) \in \mathbb{R}^n$.
+    Since the system is microscopically a lattice, we abuse the notation and use summation and integration interchangeably, i.e.
+    \begin{align*}
+        \tilde{\vb*{m}}(q) &= \int \dd{^d x} e^{iq\cdot x} \vb*{m}(x) \approx \frac{V}{N} \sum_{x} \vb*{m}(x) e^{iq\cdot x}, \\
+        \vb*{m}(x) &= \frac{1}{(2\pi)^d}\int \dd{^d q} e^{-iq\cdot x} \tilde{\vb*{m}}(q) \approx \frac{1}{V} \sum_{q} \tilde{\vb*{m}}(q) e^{-iq\cdot x},
+    \end{align*}
+    where the number of points of $x$ and $q$ are both $N$.
+    \par
+    Now we apply \cref{thm:real_gaussian_functional_integral} with $A = t - K\grad^2 + L \grad^2 \cdot \grad^2$ and $iJ(x) = \vb*{h}(x)$. We find
+    \begin{align*}
+        Z &= \frac{(2\pi)^{nN/2}}{\sqrt{\det (t - K\grad^2 + L \grad^2 \cdot \grad^2)}} \\
+        &\phantom{{}={}}\exp{\frac{1}{2} \int \dd{^d x} \vb*{h}(x) \frac{1}{t - K\grad^2 + L \grad^2 \cdot \grad^2} \vb*{h}(x)} \\
+        &= \prod_{\vb{q}} \qty(\frac{2\pi}{t + Kq^2 + Lq^4})^{n/2} \exp[\frac{Vh^2}{2t}].
+    \end{align*}
+\end{example}
+
+\section{Wightman Axioms}
+
+\subsection{Minkowski Spacetime}
+
+This section is basically copied from Huzihiro Araki \cite{Araki_Huzihiro2009-07-05}.
+Similar formulation may be found from Gerald Folland \cite{Gerald_B_Folland2008-08-26}.
+It's better if we could phrase it in terms of superalgebra \cite{Pierre_Deligne1999-06}.
+
+\begin{definition}{Wightman Axioms}{wightman_axioms}
+    A Wightman QFT is the following collection of data: \cite{Araki_Huzihiro2009-07-05}
+    \begin{itemize}
+        \item A Hilbert space $\mathcal{H}$ and a dense subspace $\mathcal{D}$ thereof.
+        \item Operator-valued distributions
+        \[ \phi_i, \phi_i^\dagger: \mathcal{S} \rightarrow \operatorname{End}(\mathcal{D}), \]
+        for $i = 1,\cdots, n$, where $\mathcal{S}$ is the set of $C^\infty$-functions with compact support, and $\phi_i^\dagger(f) = \phi_i(f)^\dagger$.
+        \item A \hyperref[Repr-def:unitary_representation]{unitary representation} $\tilde{U}: P^{\uparrow}_+\rightarrow \operatorname{Aut}(\mathcal{H})$, where $P$ is the Poincar\'e group, such that
+        \begin{itemize}
+            \item $\mathcal{D}$ is a invariant subspace of $U$;
+            \item $U$ acts on operators by conjugation, i.e.
+            \[ U(a, A) \phi_j(f) U(a, A)^\dagger = \sum_k S(A^{-1})_{jk} \phi_k(f_{(a, A)}), \]
+            where $a\in \mathbb{R}^4$ and $\Lambda\in \operatorname{SL}(2,\mathbb{C})$, where
+            \[ f_{(a,A)}(x) = f(\Lambda(A)^{-1}(x-a)). \]
+        \end{itemize}
+        \item If the support of $f$ and $g$ are space-like separated, then for any $\Phi \in \mathcal{D}$,
+        \[ [\phi_j(f), \phi_k(g)]_\pm \Phi = 0, \]
+        where $\pm$ depends on $j$ and $k$. The same identity holds if we replace $\phi_j$ by $\phi_j^\dagger$ or $\phi_k$ by $\phi_k^\dagger$, or both.
+        \item There exists $\Omega \in \mathcal{D}$ such that
+        \begin{itemize}
+            \item $\Omega$ is $U$-invariant.
+            \item The set of all vectors obtained by acting an arbitrary polynomial of $\phi_1,\cdots,\phi_n$ is dense in $\mathcal{H}$.
+        \end{itemize}
+        \item The spectrum of the translation group $U(a,\mathbbm{1})$ is contained in
+        \[ \overline{V}_m = \Set*{p\in \mathbb{R}^4}{p^2 \ge m^2, p^0 > 0}. \]
+    \end{itemize}
+\end{definition}
+
+\section{Miscellany}
+
+\subsection{Grassmann Numbers}
+
+Integrals of Grassmann numbers, i.e. Berezin integrals, are related to supermanifolds.
+See \href{ref/Losev-Berezin-Integral.pdf}{Losev} for a physicist-friendly introduction.
+See also \href{https://math.stackexchange.com/questions/1449312/geometric-meaning-of-berezin-integration}{Geometric meaning of Berezin integration},
+as well as this page on \href{https://ncatlab.org/nlab/show/Berezin+integral}{Berezin integral}.
+
+\bibliographystyle{plain}
+\bibliography{main}
+
+\end{document}

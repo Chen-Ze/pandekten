@@ -1,0 +1,28 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Integrals}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Collection}
+
+\begin{theorem}{Real Gaussian Integral}{real_gaussian_integral}
+    Let $A$ be an invertible complex $n\times n$ matrix such that $A=A^T$,
+    and $\Re A$ is positive semidefinite.
+    Then for any $y\in \mathbb{R}^n$,
+    \[ \int e^{-x^T A x / 2} e^{iy\cdot x} \dd{^n x} = \frac{(2\pi)^{n/2}}{\sqrt{\det A}} e^{-y^T A^{-1} y/2}. \]
+\end{theorem}
+
+\begin{theorem}{Complex Gaussian Integral}{complex_gaussian_integral}
+    Let $A$ be an invertible complex $n\times n$ matrix such that $A=A^T$,
+    and $\Re A$ is positive semidefinite.
+    Then for any $w\in \mathbb{C}^n$,
+    \[ \int e^{-z^\dagger A z} e^{i(w^\dagger z + z^\dagger w)} \dd{^{2n} z} = \frac{\pi^n}{\det A} e^{-w^\dagger A^{-1} w}. \]
+\end{theorem}
+
+\end{document}

@@ -1,0 +1,129 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Universals}
+
+\begin{definition}{Universal from an Object to a Functor}{universal_from_an_object_to_a_functor}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ and $\mathbf{D}$ are categories.
+        \item $F$ is a functor from $\mathbf{C}$ to $\mathbf{D}$.
+        \item $B$ is an object of $\mathbf{D}$.
+    \end{itemize}
+    A universal from $B$ to $F$ is a pair $(U,u)$ where
+    \begin{itemize}
+        \item $U$ is an object of $\mathbf{C}$, and
+        \item $u$ is a morphism from $B$ to $FU$
+    \end{itemize}
+    such that if $A$ is an object of $\mathbb{C}$,
+    and $g$ is any morphism from $B$ to $FA$,
+    then there exists a unique morphism $\tilde{g}$ of $U$ into $A$
+    such that the following diagram is commutative.
+    \begin{center}
+        \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
+            B \arrow[r, "u"] \arrow[rd, "\forall g"'{name=q2}] & FU \arrow[d, "F(\exists! \tilde{g})"{name=q3}] \\
+            & |[alias=q1]| F(\forall A)
+        \end{tikzcd}
+    \end{center}
+\end{definition}
+
+\begin{definition}{Universal from a Functor to an Object}{universal_from_a_functor_to_an_object}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ and $\mathbf{D}$ are categories.
+        \item $G$ is a functor from $\mathbf{D}$ to $\mathbf{C}$.
+        \item $A$ is an object of $\mathbf{C}$.
+    \end{itemize}
+    A universal from $G$ to $A$ is a pair $(V,v)$ where
+    \begin{itemize}
+        \item $V$ is an object of $\mathbf{D}$, and
+        \item $u$ is a morphism from $GV$ to $A$
+    \end{itemize}
+    such that if $B$ is an object of $\mathbf{D}$,
+    and $g$ is any morphism from $GB$ to $A$,
+    then there exists a unique morphism $\tilde{g}$ of $B$ into $V$
+    such that the following diagram is commutative.
+    \begin{center}
+        \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
+            A & GV \arrow[l, "u"'] \\
+            & |[alias=q1]|G(\forall B) \arrow[u, "G(\exists!\tilde{g})"'{name=q3}] \arrow[ul, "\forall g"{name=q2}]
+        \end{tikzcd}
+    \end{center}
+\end{definition}
+
+\begin{example}{Field of Fractions as a Universal}{fields_of_fractions_as_a_universal}
+    Let $\mathbf{Dom}$ denote the category of commutative domains.
+    Let $D$ be an object of $\mathbf{D}$.
+    The field of fractions $\operatorname{Frac}(D)$ is the universal object from $D$ to the injection functor of $\mathbf{Field}$ into $\mathbf{Dom}$.
+\end{example}
+
+\begin{example}{Polynomial over a Ring as a Universal}{polynomial_over_a_ring_as_a_universal}
+    Let $K$ be a commutative ring, and $K$-$\mathbf{comalg}$ be the category of commutative algebras over $K$.
+    A polynomial ring $K[X_1,\cdots,X_n]$ over $K$ is the universal object from $\qty{x_1,\cdots,x_n}$ to the forgetful functor from $K$-$\mathbf{comalg}$ to $\mathbf{Set}$.
+    The universal map $u$ is given by $x_i \mapsto X_i$.
+\end{example}
+
+\begin{example}{Coproduct as a Universal}{coproduct_as_a_universal}
+    Let $I$ be a set of indices.
+    $A_\alpha$ is an object of a category $\mathbf{C}$ for all $\alpha \in I$.
+    The coproduct $\displaystyle \coprod_{\alpha\in I} A_\alpha$ is the universal object from $\alpha \mapsto A_\alpha$ to the diagonal functor from $\mathbf{C}$ to $\mathbf{C}^I$.
+\end{example}
+
+\begin{example}{Product as a Universal}{product_as_a_universal}
+    Let $I$ be a set of indices.
+    $A_\alpha$ is an object of a category $\mathbf{C}$ for all $\alpha \in I$.
+    The product $\displaystyle \prod_{\alpha\in I} A_\alpha$ is the universal object from the diagonal functor from $\mathbf{C}$ to $\mathbf{C}^I$ to $\alpha \mapsto A_\alpha$.
+\end{example}
+
+\begin{example}{Quotient Ring as a Universal}{quotient_ring_as_a_universal}
+    Let $R$ be a commutative ring and $I$ be an ideal thereof.
+    Let $\mathbf{C}$ be a subcategory of $R$-$\mathbf{comalg}$ where $IA = 0$ for all $A$ an object of $\mathbf{C}$.
+    The quotient ring $R/I$ is the universal object from $R$ to the injection functor from $\mathbf{C}$ to $\mathbf{Ring}$ (commutative ring).
+    For a generalization of quotient, see \href{https://uwseminars.com/archive/ly-UPQ/}{this seminar}.
+\end{example}
+
+\section{Adjoints}
+
+\begin{definition}{Left Adjoint, Right Adjoint, Adjugant, and Adjunction}{adjoint}
+    Data:
+    \begin{itemize}
+        \item $F$ a functor from $\mathbf{C}$ to $\mathbf{D}$.
+        \item $G$ a functor from $\mathbf{D}$ to $\mathbf{C}$.
+    \end{itemize}
+    $F$ is called a right adjoint of $G$ and $G$ a left adjoint of $F$ if
+    \begin{itemize}
+        \item for every $(B,A)$ where $B$ is an object of $\mathbf{D}$ and $A$ is an object of $\mathbf{C}$,
+        we have a bijective map $\eta_{B,A}: \operatorname{Hom}_{\mathbf{C}}(GB,A) \rightarrow \operatorname{Hom}_{\mathbf{D}}(B,FA)$ such that
+        \item for every $B$, $A \mapsto \eta_{B,A}$ is a natural isomorphism of $\operatorname{Hom}_{\mathbf{C}}(GB, -)$ to $\operatorname{Hom}_{\mathbf{D}}(B, F-)$, and
+        \item for every $A$, $B \mapsto \eta_{B,A}$ is a natural isomorphism of $\operatorname{Hom}_{\mathbf{C}}(G-, A)$ to $\operatorname{Hom}_{\mathbf{D}}(-, FA)$.
+    \end{itemize}
+    The map $\eta: (B,A) \mapsto \eta_{B,A}$ is called an adjugant from $G$ to $F$.
+    The triple $(F,G,\eta)$ is an adjunction.
+\end{definition}
+
+\begin{example}{Semidirect Product as an Adjoint}{semidirect_product_as_an_adjoint}
+    This example is copied from \href{https://math.stackexchange.com/questions/284315/universal-property-of-n-rtimes-k}{Universal property of $N\rtimes K$}.
+    See \href{https://ncatlab.org/nlab/show/semidirect+product+group#as_a_left_adjoint}{semidirect product group} for more fancy words.
+    \par
+    The category $\mathbf{GrpAction}$ is defined by the following.
+    \begin{itemize}
+        \item Objects: $(G, \Gamma, \rho)$ where $G$ and $\Gamma$ are groups and $\rho: G\rightarrow \operatorname{Aut}(\Gamma)$.
+        \item Morphism: $(G,\Gamma,\rho) \rightarrow (G',\Gamma',\rho')$ are $G$-equivariant pairs of morphisms $f: G\rightarrow G'$ and $h: \Gamma\rightarrow \Gamma'$,
+        i.e. such that $h(\rho(g)(\gamma)) = \rho'(f(g))(h(\gamma))$ for all $g\in G$ and $\gamma\in \Gamma$.
+    \end{itemize}
+    The forgetful functor $U: \mathbf{Arr}(\mathbf{Grp}) \rightarrow \mathbf{GrpAction}$ is defined by the following.
+    \begin{itemize}
+        \item An object $f: G\rightarrow \Gamma$ is sent to $(G,\Gamma,\rho)$ where $\rho$ is given by $\rho(g)(\gamma) = f(g)\gamma f(g^{-1})$.
+    \end{itemize}
+    Now the left adjoint of $U$ maps $(G,\Gamma,\rho)$ to the inclusion $(G,\Gamma,\rho)\xhookrightarrow{} \Gamma \rtimes_\rho G$.
+\end{example}
+
+\end{document}
