@@ -1,0 +1,11 @@
+\documentclass{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+\begin{document}
+\feynmandiagram [small, horizontal=a to b] {
+    a -- b[dot],
+    b -- c,
+    b -- d
+}; 
+\end{document}

@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Curvature}
+
+\begin{definition}{Algebraic Curvature Tensor, Curvature-like Tensor}{curvature_like_tensor}
+    Let $V$ be a linear space. A tensor $R\in \mathscr{T}^0_4(V)$ is curvature-like (or an algebraic curvature tensor) if for any $x,y,z,w\in V$,
+    the following identities hold:
+    \begin{gather}
+        \label{eq:curvature_like_antisymmetry} R(x, y, z, w) = -R(y, x, z, w) = -R(x, y, w, z); \\
+        \label{eq:curvature_like_symmetry} R(x, y, z, w) = R(z, w, x, y); \\
+        \label{eq:curvature_like_jacobi} R(x, y, z, w) + R(y, z, x, w) + R(z, x, y, w) = 0;
+    \end{gather}
+    Curvature-like tensors over $V$ are denoted $\operatorname{Curv}(V)$.
+\end{definition}
+
+\begin{proposition}{Pair Symmetry of Curvature-like Tensors}{pair_symmetry_of_curvature_like_tensors}
+    In \cref{def:curvature_like_tensor},
+    \cref{eq:curvature_like_antisymmetry} and \cref{eq:curvature_like_jacobi} implies \cref{eq:curvature_like_symmetry}.
+\end{proposition}
+
+\begin{definition}{Kulkarni-Nomizu Product}{kulkarni_nomizu_product}
+    $\owedge: \operatorname{Sym}^2(V) \times \operatorname{Sym}^2(V) \rightarrow \operatorname{Curv}(V)$ is defined by 
+    \begin{align*}
+        T\owedge S(x_1,x_2,x_3,x_4) &= T(x_1,x_3)S(x_2,x_4) + S(x_2,x_4)T(x_1,x_3) \\
+        &{\phantom{{}={}}} - T(x_1,x_4)S(x_2,x_3) - S(x_2,x_3)T(x_1,x_4).
+    \end{align*}
+\end{definition}
+
+\begin{proposition}{Properties of Kulkarni-Nomizu Product}{properties_of_kulkarni_nomizu_product}
+    \begin{itemize}
+        \item Commutativity: $T\owedge S = S\owedge T$.
+    \end{itemize}
+\end{proposition}
+
+\subsection{Affine Connections}
+
+\subsection{Curvature Tensors}
+
+\begin{definition}{Riemann Curvature Tensor}{riemann_curvature_tensor}
+    Let $(M,g)$ be a pseudo-Riemannian manifold.
+\end{definition}
+
+\begin{definition}{Ricci Tensor}{ricci_tensor}
+    Let $(M,g)$ be a pseudo-Riemannian manifold.
+\end{definition}
+
+\begin{definition}{Ricci Scalar}{ricci_scalar}
+    Let $(M,g)$ be a pseudo-Riemannian manifold.
+\end{definition}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

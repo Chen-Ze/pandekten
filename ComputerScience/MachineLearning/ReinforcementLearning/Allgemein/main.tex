@@ -1,0 +1,160 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section*{Notation}
+
+Let $\mathcal{S}$ be a set.
+$\Delta(\mathcal{S})$ denote the space of probability distributions over $\mathcal{S}$.
+
+\section{Markov Decision Process}
+
+\begin{definition}{Discounted Markov Decision Process, Discounted MDP}{discounted_markov_decision_process}
+    A discounted Markov decision process $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$ is specified by the following.
+    \begin{itemize}
+        \item A countable set $\mathcal{S}$, the state space.
+        \item A finite set $\mathcal{A}$, the action space.
+        \item A transition function $P: \mathcal{S} \times \mathcal{A} \rightarrow \Delta(\mathcal{S})$.
+        \item A reward function $r: \mathcal{S} \times \mathcal{A} \rightarrow [0,1]$.
+        \item A discount factor $\gamma\in [0,1)$.
+        \item An initial state distribution $\mu\in \Delta(\mathcal{S})$.
+    \end{itemize}
+\end{definition}
+
+We use $P_{s,a}$ to denote $P(\cdot | s, a)$.
+$P$, $Q$ and $r$ are regarded as vectors whenever convenient.
+
+\begin{definition}{Trajectory}{trajectory}
+    For a discounted MDP $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$, a trajectory is a sequence of the form
+    \[ \tau = (s_0,a_0,r_0,\cdots,s_t,a_t,r_t) \]
+    where $s_i\in \mathcal{S}$, $a_i\in \mathcal{A}$, and $r_i = r(s_i,a_i)$.
+\end{definition}
+
+\begin{definition}{Policy, Stationary Policy, Deterministic Stationary Policy}{policy}
+    Let $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$ be a discounted MDP, $\mathcal{H}$ be the set of all possible trajectories thereof.
+    A policy of $M$ is a mapping
+    \[ \pi: \mathcal{H} \rightarrow \Delta(\mathcal{A}). \]
+    \par
+    A stationary policy is a mapping
+    \[ \pi: \mathcal{S} \rightarrow \Delta(\mathcal{A}). \]
+    \par
+    A deterministic stationary policy is a mapping
+    \[ \pi: \mathcal{S} \rightarrow \mathcal{A}. \]
+\end{definition}
+
+Stationary policies and deterministic policies may be regarded as special cases of policies in an obvious manner.
+
+\begin{definition}{Value Function}{value_function}
+    Input:
+    \begin{itemize}
+        \item $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$ is a discounted MDP.
+        \item $\pi$ is a policy of $M$.
+        \item $s_0\in \mathcal{S}$.
+    \end{itemize}
+    The value function is defined by
+    \[ V^\pi_M(s) = \operatorname{E}\SqDelim*{\sum_{t=0}^\infty \gamma^t r(s_t,a_t)}{a_i\sim \pi(\cdot|s_0,\cdots, s_i), s_{i+1}\sim P(\cdot|s_i,a_i)}. \]
+\end{definition}
+
+\begin{definition}{Action-Value Function}{action_value_function}
+    Input:
+    \begin{itemize}
+        \item $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$ is a discounted MDP.
+        \item $\pi$ is a policy of $M$.
+        \item $s_0\in \mathcal{S}$.
+        \item $a_0\in \mathcal{A}$
+    \end{itemize}
+    The action-value function is defined by
+    \[ Q^\pi_M(s,a) = \operatorname{E}\SqDelim*{\sum_{t=0}^\infty \gamma^t r(s_t,a_t)}{a_i\sim \pi(\cdot|s_0,\cdots, s_i), s_{i+1}\sim P(\cdot|s_i,a_i)}. \]
+\end{definition}
+
+\begin{definition}{State-Action Transition Matrix}{state_action_transition_matrix}
+    Input:
+    \begin{itemize}
+        \item $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$ is a discounted MDP.
+        \item $\pi$ is a policy of $M$.
+    \end{itemize}
+    The state-action transition matrix is defined by
+    \[ P^\pi_{(s,a),(s',a')} = P(s'|s,a)\pi(a'|s'). \]
+\end{definition}
+
+\begin{lemma}{Bellman Consistency Equations}{bellman_consistency_equations}
+    Input:
+    \begin{itemize}
+        \item $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$ is a discounted MDP.
+        \item $\pi$ is a stationary policy of $M$.
+        \item $V$ and $Q$ are the value function and action-value function, respectively.
+    \end{itemize}
+    The following consistency equations are satisfied.
+    \begin{align*}
+        V^\pi_M(s) &= \operatorname{E}_{a\sim \pi(\cdot|s)}[Q^\pi_M(s,a)], \\
+        Q^\pi_M(s,a) &= r(s,a) + \gamma \operatorname{E}_{s'\sim P(\cdot|s,a)}[V^\pi_M(s')].
+    \end{align*}
+\end{lemma}
+
+\begin{corollary}{Solution to Bellman Consistency Equations}{solution_to_bellman_consistency_equations}
+    Input:
+    \begin{itemize}
+        \item $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$ is a discounted MDP.
+        \item $\pi$ is a stationary policy of $M$.
+        \item $P^\pi$ is the state-action transition matrix.
+        \item $Q$ is the action-value function.
+    \end{itemize}
+    $Q^\pi$ is given by
+    \[ Q^\pi_M = (\mathbbm{1} - \gamma P^\pi)^{-1}r, \]
+    where $Q^\pi_M$, $P^\pi$ and $r$ are regarded as matrices (or vectors).
+\end{corollary}
+
+\begin{definition}{Optimal Value Function}{optimal_value_function}
+    Input:
+    \begin{itemize}
+        \item $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$ is a discounted MDP.
+        \item $\Pi$ is the set of all policies of $M$.
+        \item $V$ and $Q$ are the value function and action-value function, respectively.
+    \end{itemize}
+    The optimal value function and optimal action-value function are given by
+    \begin{align*}
+        V_M^{\star}(s) &= \sup_{\pi\in\Pi} V^\pi_M(s), \\
+        Q_M^{\star}(s,a) &= \sup_{\pi\in\Pi} Q^\pi_M(s,a).
+    \end{align*}
+\end{definition}
+
+\begin{theorem}{Optimal Deterministic Stationary Policy}{optimal_deterministic_stationary_policy}
+    Input:
+    \begin{itemize}
+        \item $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$ is a discounted MDP.
+        \item $V$ and $Q$ are the value function and action-value function, respectively.
+        \item $V^\star$ and $Q^\star$ are the optimal value function and action-value function, respectively.
+    \end{itemize}
+    There exists a deterministic stationary policy $\pi$ of $M$ such that for all $s\in\mathcal{S}$ and $a\in\mathcal{A}$,
+    \begin{align*}
+        V^\pi_M(s) &= V^\star_M(s), \\
+        Q^\pi_M(s,a) &= Q^\star_M(s,a),
+    \end{align*}
+    where $\pi$ is given by
+    \[ \pi(s) \in \argmax_{a\in\mathcal{A}} \operatorname{E}\SqDelim*{r(s,a) + \gamma V^\star(s_1)}{s_1\sim P(\cdot|s,a)}. \]
+\end{theorem}
+
+\begin{theorem}{Bellman Optimality Equations}{bellman_optimality_equations}
+    Input:
+    \begin{itemize}
+        \item $M=(\mathcal{S}, \mathcal{A}, P, r, \gamma, \mu)$ is a discounted MDP.
+        \item $Q: \mathcal{S}\times \mathcal{A} \rightarrow \mathbb{R}$ is an arbitrary function.
+        \item $Q^\star$ is the optimal action-value function.
+    \end{itemize}
+    Then $Q=Q^\star_M$ if and only if
+    \[ Q(s,a) = r(s,a) + \gamma \operatorname{E}_{s'\sim P(\cdot|s,a)}\qty[\max_{a'\in \mathcal{A}} Q(s',a')]. \]
+    Moreover, $Q^\star_M = Q^\pi_M$ where $Q^\pi_M$ is the action-value function of the policy $\pi$ of $M$ for
+    \[ \pi(s) \in \argmax_{a\in\mathcal{A}} Q^{\star}(s,a). \]
+\end{theorem}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

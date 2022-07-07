@@ -1,0 +1,14 @@
+\documentclass{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+\usepackage{amsmath}
+
+\begin{document}
+\feynmandiagram [small, layered layout, horizontal=e2 to e1] {
+    e1 --[fermion,edge label=$p$] v1[dot],
+    v1 --[fermion] v2[dot],
+    v2 --[fermion,edge label=$p$] e2,
+    v1 --[boson,half right,edge label'={$\operatorname{M}(\mu), \operatorname{PV}(\Lambda)$}] v2,
+};
+\end{document}

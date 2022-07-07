@@ -1,0 +1,16 @@
+\documentclass{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+\usepackage{amsmath}
+
+\begin{document}
+\feynmandiagram [small, horizontal=v2 to e2] {
+    e1 --[fermion,edge label=$u(p)$] v1[dot],
+    v1 --[fermion] v2[dot],
+    e2[particle=$\mu$] --[boson,momentum=$q$] v2,
+    v2 --[fermion] v3[dot],
+    v3 --[fermion,edge label=$\overline{u}(p')$] e3,
+    v1 --[boson,quarter left,edge label=$\operatorname{PV}(\Lambda)$] v3,
+}; 
+\end{document}

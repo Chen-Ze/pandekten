@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Conformal Geometry}
+\author{Ch\=an Taku}
+
+\externaldocument[Riemannian-]{../Allgemein/main}
+
+\begin{document}
+
+\maketitle
+
+\section{Conformal Transformations}
+
+\begin{definition}{Conformal Transformation}{conformal_transformation}
+    Let $(M,g)$ be a pseudo-Riemannian manifold.
+    A diffeomorphism $f: M\rightarrow M$ is called a conformal transformation if
+    \[ f^* g_{f(p)} = e^{2\sigma} g_p \]
+    for all $p\in M$ where $\sigma$ is a scalar field on $M$.
+\end{definition}
+
+\begin{definition}{Conformally Related Metrics}{conformally_related_metrics}
+    Let $g$ and $\overline{g}$ be two metrics on a smooth manifold $M$, such that $(M,g)$ and $(M,\overline{g})$ are pseudo-Riemannian.
+    $g$ and $\overline{g}$ are conformally related if
+    $\overline{g}_p = e^{2\sigma(p)} g_p$
+    for all $p\in M$, where $\sigma$ is a scalar field on $M$.
+\end{definition}
+
+\begin{definition}{Conformally Flat Manifold}{conformally_flat_manifold}
+    Let $(M,g)$ be a pseudo-Riemannian manifold.
+    If for every $p\in M$, there is a neighborhood $U$ of $p$ and a smooth function $\sigma$ on $U$ such that the Riemann curvature vanishes for $(U, e^{2\sigma} g)$,
+    then $(M,g)$ is conformally flat.
+\end{definition}
+
+\section{Weyl Tensor}
+
+\begin{definition}{Weyl Tensor}{weyl_tensor}
+    Let $(M,g)$ be an $n$-dimensional pseudo-Riemannian manifold,
+    and $R$, $\operatorname{Ric}$, and $\operatorname{Scal}$ be the Riemann tensor, Ricci tensor, and Ricci scalar thereof respectively.
+    The Weyl tensor $C\in \operatorname{Curv}(M)$ of $(M,g)$ is given by
+    \[ C = R - \frac{1}{n-2}\qty(\operatorname{Ric} - \frac{\operatorname{Scal}}{n}g) \owedge g - \frac{\operatorname{Scal}}{2n(n-1)} g\owedge g, \]
+    where $\operatorname{Curv}(M)$ denotes the \hyperref[Riemannian-def:curvature_like_tensor]{curvature-like tensor} field over $M$,
+    and $\owedge$ denotes the \hyperref[Riemannian-def:kulkarni_nomizu_product]{Kulkarni-Nomizu Product}.
+\end{definition}
+
+\begin{proposition}{Properties of Weyl Tensor}{properties_of_weyl_tensor}
+    Let $C$ be the Weyl tensor of an $n$-dimensional pseudo-Riemannian manifold $(M,g)$.
+    \begin{itemize}
+        \item $C$ is an \hyperref[Riemannian-def:curvature_like_tensor]{curvature-like tensor} field. 
+        \item $C$ is traceless, i.e. $\tr_g C(u, \cdot, v, \cdot) = 0$. Therefore, $C$ is completely traceless.
+        \item If $\dim M \le 3$, then $C = 0$.
+    \end{itemize}
+\end{proposition}
+
+\begin{theorem}{Ricci Decomposition}{ricci_decomposition}
+    \[ R = C + \frac{1}{n-2}\qty(\operatorname{Ric} - \frac{\operatorname{Scal}}{n}g) \owedge g + \frac{\operatorname{Scal}}{2n(n-1)} g\owedge g. \]
+\end{theorem}
+
+\begin{theorem}{Weyl Tensor is Conformally Invariant}{weyl_tensor_is_conformally_invariant}
+    Let $(M,g)$ and $(M,\overline{g})$ be pseudo-Riemannian manifolds such that $g$ and $\overline{g}$ are conformally related.
+    Let $C$ and $\overline{C}$ be the Weyl tensors on $(M,g)$ and $(M,\overline{g})$ respectively.
+    Then $C = \overline{C}$.
+\end{theorem}
+
+\begin{theorem}{Weyl Tensor on Conformally Flat Manifolds}{weyl_tensor_on_conformally_flat_manifolds}
+    Let $(M,g)$ be a pseudo-Riemannian manifold and $\dim M \ge 4$. Then
+    \begin{center}
+        $(M,g)$ is conformally flat $\Leftrightarrow$ $C = 0$ on $M$.
+    \end{center}
+\end{theorem}
+
+\begin{theorem}{Two-Dimension is Conformally Flat}{two_dimension_is_conformally_flat}
+    Let $(M,g)$ be a pseudo-Riemannian manifold and $\dim M = 2$. Then $(M,g)$ is conformally flat.
+\end{theorem}
+
+However, a three-dimensional pseudo-Riemannian manifold is flat if and only if its \href{https://en.wikipedia.org/wiki/Cotton_tensor}{Cotton tensor} vanishes.
+
+\end{document}

@@ -1,0 +1,45 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Lie Algebra}
+
+\begin{definition}{Adjoint Representation}{adjoint_representation}
+    Input:
+    \begin{itemize}
+        \item $G$ is a Lie group.
+        $\Phi_g \in \operatorname{Aut}(G)$ be the conjutation $\Phi_g(h) = ghg^{-1}$.
+        \item $\mathfrak{g}$ is the Lie algebra of $G$.
+        $\operatorname{Ad}_g$ denotes the derivative of $\Phi_g$ at origin, i.e.
+        \[ \operatorname{Ad}_g = \dd_e \Phi_g: \mathfrak{g} \rightarrow \mathfrak{g}. \]
+    \end{itemize}
+    The adjoint representation of $G$
+    \[ \operatorname{Ad}: G \rightarrow \operatorname{Aut}(\mathfrak{g}) \]
+    is given by
+    \[ \operatorname{Ad}(g) = \operatorname{Ad}_g. \]
+\end{definition}
+
+\begin{definition}{Fundamental Vector Field}{fundamental_vector_field}
+    Input:
+    \begin{itemize}
+        \item $G$ is a Lie group.
+        \item $\mathfrak{g}$ is the Lie algebra of $G$.
+        \item $M$ is a smooth manifold.
+        \item $A: G\times M \rightarrow M$ is a smooth action.
+        $A_p: G\rightarrow M$ is defined by $A_p(g) = A(g, p)$.
+    \end{itemize}
+    The fundamental vector field for $X\in \mathfrak{g}$ is
+    \[ X^\sharp_p = \dd_e A_p(X). \]
+\end{definition}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

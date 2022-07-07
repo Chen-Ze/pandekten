@@ -7,14 +7,31 @@
 % Important commands like \includegraphics
 \RequirePackage{graphicx}
 
+% \includepdf
+\RequirePackage{pdfpages}
+
+% Vertically centering images
+\RequirePackage[export]{adjustbox}
+
 % Allows defining color
 \RequirePackage{xcolor}
 
 % Useful math fonts
 \RequirePackage{amsfonts}
 
+% For \mathscr
+\RequirePackage{mathrsfs}
+
 % Useful math symbols, e.g. \rtimes
 \RequirePackage{amssymb}
+
+% Feynman slash
+\RequirePackage{slashed}
+
+% More fancy symbols, e.g. \owedge
+\RequirePackage{stmaryrd}
+% Suppress warning, see https://tex.stackexchange.com/questions/106714/stmaryrd-and-boldsymbol-avoid-warnings
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
 
 % Plotting
 \RequirePackage{tikz}
@@ -22,6 +39,7 @@
 
 % Useful shorthands, e.g. \dv
 \RequirePackage{physics}
+\RequirePackage{mismath}
 
 % For ref across files
 \RequirePackage{xr-hyper}
@@ -38,6 +56,10 @@
 % Add prefix to ref
 \RequirePackage{cleveref}
 
+% Proof environment
+
+\RequirePackage{amsthm}
+
 % Beautiful boxes
 \RequirePackage[many]{tcolorbox}
 
@@ -48,17 +70,59 @@
 {breakable,colback=yellow!10!white,
 colframe=yellow!10!orange,fonttitle=\bfseries}{ex}
 \crefname{tcb@cnt@example}{example}{examples}
+\newtcbtheorem[number within=section]{counterexample}{Counterexample}%
+{breakable,colback=yellow!10!white,
+colframe=yellow!10!red,fonttitle=\bfseries}{ce}
+\crefname{tcb@cnt@counterexample}{counterexample}{counterexamples}
 \newtcbtheorem[number within=section]{theorem}{Theorem}%
 {breakable,colback=blue!10!white,
 colframe=blue!30!black,fonttitle=\bfseries}{thm}
 \crefname{tcb@cnt@theorem}{theorem}{theorems}
+\newtcbtheorem[number within=section]{proposition}{Proposition}%
+{breakable,colback=blue!10!white,
+colframe=blue!60!black,fonttitle=\bfseries}{pro}
+\crefname{tcb@cnt@proposition}{proposition}{propositions}%
+\newtcbtheorem[number within=section]{lemma}{Lemma}%
+{breakable,colback=blue!10!white,
+colframe=blue!50!black,fonttitle=\bfseries}{lem}
+\crefname{tcb@cnt@lemma}{lemma}{lemmas}%
+\newtcbtheorem[number within=section]{corollary}{Corollary}%
+{breakable,colback=blue!10!white,
+colframe=blue!40!black,fonttitle=\bfseries}{col}
+\crefname{tcb@cnt@corollary}{corollary}{corollaries}%
 
 \newtcolorbox{warning}{colback=red!5!white,
 colframe=red!75!black,fonttitle=\bfseries,
 title={Warning},sharp corners}
 
+\newtcbox{\badge}[1][red]{
+  on line, 
+  arc=2pt,
+  colback=#1!50!black,
+  colframe=#1!50!black,
+  fontupper=\color{white}\sffamily,
+  boxrule=1pt, 
+  boxsep=0pt,
+  left=6pt,
+  right=6pt,
+  top=2pt,
+  bottom=2pt
+}
+
+% Long table
+\RequirePackage{longtable}
+
+% Better rules
+\RequirePackage{booktabs}
+
 % For Feynman slash
 \RequirePackage{slashed}
+
+% For diagbox in tables
+\RequirePackage{diagbox}
+
+% Strikethrough
+\RequirePackage[normalem]{ulem}
 
 % For arrows e.g. \xlongrightarrow
 \RequirePackage{extarrows}
@@ -74,5 +138,31 @@ title={Warning},sharp corners}
 \RequirePackage{mathtools}
 \DeclarePairedDelimiterX\Set[2]{\lbrace}{\rbrace}%
  { #1 \,\delimsize| \,\mathopen{} #2 }
+\DeclarePairedDelimiterX\SqDelim[2]{\lbrack}{\rbrack}%
+ { #1 \,\delimsize| \,\mathopen{} #2 }
+
+% For mixture of super/sub indices
+\RequirePackage{tensor}
+
+% Typing IPA
+
+\RequirePackage[tone,extra]{tipa}
+% Remove warning, see https://tex.stackexchange.com/questions/464082/xelatex-font-shape-t3-lmr-m-n-undefinedfont-using-t3-cmr-m-n-insteadfont
+\RequirePackage{ifxetex}
+\ifxetex
+  \RequirePackage{substitutefont}
+  \substitutefont{T3}{\rmdefault}{cmr}
+\fi
+
+% Operators
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+
+% Miscellaneous Packages
+
+% Lorem ipsum
+\RequirePackage{lipsum}
 
 \endinput

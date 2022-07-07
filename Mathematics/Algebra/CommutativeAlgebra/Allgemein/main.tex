@@ -1,0 +1,503 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Commutative Rings}
+
+The following definitions may also be rewritten in terms of monoid objects.
+
+\begin{definition}{Commutative Ring}{commutative_ring}
+    A commutative ring $(R,+,\cdot)$ is a ring $(R,+,\cdot)$ where the monoid $(R,\cdot)$ is abelian.
+\end{definition}
+
+In the following context, we denote $(R,+,\cdot)$ by simply $R$.
+
+\begin{definition}{Category of Commutative Ring}{category_of_commutative_ring}
+    The category of commutative rings, denoted $\mathbf{ComRing}$,
+    is the full subcategory of $\mathbf{Ring}$ whose objects are all commutative rings.
+\end{definition}
+
+\begin{definition}{Subring of a Commutative Ring}{subring}
+    A subring $S$ of a ring $R$ is a subobject of $R$ in $\mathbf{ComRing}$.
+\end{definition}
+
+\begin{definition}{Commutative Algebra over a Commutative Ring}{commutative_algebra_over_a_commutative_ring}
+    Let $R$ be a commutative ring.
+    A commutative algebra over $R$ is a tuple $(S,\varphi)$ where $S$ is a commutative ring and $\varphi: R\rightarrow S$ is a homomorphism.
+\end{definition}
+
+In the following context, we denote $(S,\varphi)$ by simply $S$.
+
+\begin{definition}{Polynomial Ring \badge{UMP}}{polynomial_ring}
+    Let $R$ be a commutative ring.
+    The polynomial ring with $n$ indeterminates over $R$ is a tuple $(P,\qty{p_1,\cdots,p_n})$ where $\qty{p_1,\cdots,p_n}\subset P$ and $R\xrightarrow{\iota} P$ is an $R$-algebra,
+    such that for any tuple $(R',\qty{r'_1,\cdots,r'_n})$ where $\qty{r'_1,\cdots,r'_n}\subset R'$ and $R\xrightarrow{\varphi} R'$ is an $R$-algebra, there exists a unique $P\xrightarrow{f} R'$ such that $f(p_i) = r'_i$ for all $i$ and that the following diagram commutes.
+    \begin{center}
+        \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
+            R \arrow[r, "\iota"] \arrow[rd, "\forall \varphi"'{name=q2}] & P \arrow[d, "\exists! \tilde{f}"{name=q3}] & p_1 \arrow[d,"f"] & \cdots & p_n \arrow[d,"f"] \\
+            & |[alias=q1]| \forall R' & r'_1 & \cdots & r'_n
+        \end{tikzcd}
+    \end{center}
+    The tuple $(P,\qty{X_1,\cdots,X_n})$ is denoted by $R[X_1,\cdots,X_n]$.
+\end{definition}
+
+In the following context, we refer to $P$ by $R[X_1,\cdots,X_n]$.
+
+\begin{proposition}{Existence of Polynomial Ring}{existence_of_polynomial_ring}
+    Let $R$ be a commutative ring.
+    The polynomial ring $R[X_1,\cdots,X_n]$ with $n$ indeterminates over $R$ exists and is unique up to isomorphism.
+\end{proposition}
+
+\begin{example}{Polynomial Vanishing Everywhere}{polynomial_vanishing_everywhere}
+    $X^7-X\in \mathbb{Z}_7[X]$ evaluates to $0$ for all $X\in \mathbb{Z}_7$.
+\end{example}
+
+\begin{definition}{Formal Power Series}{formal_power_series}
+    Let $R$ be a commutative ring.
+    $R\llbracket X \rrbracket$ denotes the formal power series over $R$.
+\end{definition}
+
+\begin{definition}{Formal Laurent Series}{formal_laurent_series}
+    Let $R$ be a commutative ring.
+    $R\llparenthesis X \rrparenthesis$ denotes the formal Laurent series over $R$, i.e. formal sums of the form
+    \[ \sum_{i=-m}^\infty a_i X^i. \]
+\end{definition}
+
+\begin{definition}{Zero Divisor}{zero_divisor}
+    A zero divisor $z\in R$ of a commutative ring $R$ is an element $r\in R$ such that there exists $x\in R$, $x\neq 0$, and $zx=0$.
+\end{definition}
+
+\begin{definition}{Unit of Commutative Ring}{unit_of_commutative_ring}
+    A unit $u$ of a commutative ring $R$ is an element $u\in R$ such that there exists $x\in R$ and $ux=1$.
+\end{definition}
+
+\begin{definition}{Idempotent}{idempotent}
+    Input:
+    \begin{itemize}
+        \item $R$ and $R'$ are commutative rings.
+        \item $\varphi: R\rightarrow R'$ is a homomorphism.
+    \end{itemize}
+    Then
+    \begin{itemize}
+        \item $e\in R$ is an idempotent if $e^2 = 1$;
+        \item $e'=1-e$ is also an idempotent and is called the complementary idempotent of $e$;
+        \item the set of all idempotents of $R$ is denoted by $\operatorname{Idem}(R)$;
+        \item $\operatorname{Idem}(\varphi): \operatorname{Idem}(R) \rightarrow \operatorname{Idem}(R')$ is the restriction of $\varphi$.
+    \end{itemize}
+\end{definition}
+
+\subsection{Integral Domains}
+
+\begin{definition}{Integral Domain}{integral_domain}
+    An integral domain is a nonzero commutative ring $R$ where $0$ is the only zero divisor.
+\end{definition}
+
+\begin{definition}{Field of Fraction \badge{UMP}}{field_of_fraction}
+    Let $R$ be an integral domain.
+    The field of fraction $\operatorname{Frac}(R)$ of $R$ is a field which is also an $R$-algebra $R\xrightarrow{\iota} \operatorname{Frac}(R)$ such that for any $R$-algebra $R\xrightarrow{\varphi} R'$, there exists a unique $\operatorname{Frac}(R) \xrightarrow{f} R'$ such that the following diagram commutes.
+    \begin{center}
+        \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
+            R \arrow[r, "\iota"] \arrow[rd, "\forall \varphi"'{name=q2}] & \operatorname{Frac}(R) \arrow[d, "\exists! \tilde{f}"{name=q3}] \\
+            & |[alias=q1]| \forall R'
+        \end{tikzcd}
+    \end{center}
+\end{definition}
+
+\begin{proposition}{Existence of Field of Fraction}{existence_of_field_of_fraction}
+    Let $R$ be a commutative ring.
+    The field of fraction $\operatorname{Frac}(R)$ exists and is unique up to isomorphism.
+\end{proposition}
+
+\begin{definition}{Prime Element}{prime_element}
+    Let $R$ be a commutative ring.
+    A prime element $p$ of $R$ is an element such that
+    \begin{itemize}
+        \item $p$ is not a unit of $R$, and
+        \item $p \mid xy$ implies $p \mid x$ or $p \mid y$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Irreducible Element}{irreducible_element}
+    An irreducible element $p\in R$ of an integral domain $R$ is an element such that
+    \begin{itemize}
+        \item $p\neq 0$ and $p$ is not a unit of $R$, and
+        \item if $a,b\in R$ and $p=ab$, then either $a$ or $b$ is a unit of $R$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Unique Factorization Domain}{unique_factorization_domain}
+    A unique factorization domain is an integral domain $R$ where
+    \begin{itemize}
+        \item for each $x\in R$, there exists irreducible elements $p_1,\cdots,p_s\in R$ such that
+        \[ x = p_1\cdots p_s, \]
+        and
+        \item if $p_1,\cdots,p_s,q_1,\cdots,q_t\in R$ are irreducible elements and
+        \[ p_1\cdots p_s = q_1 \cdots q_t, \]
+        then $s = t$ and for each $1\le i \le s$, there exists a unit $u\in R$ such that
+        \[ p_i = u_i q_i. \]
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Euclidean Domain}{euclidean_domain}
+    An Euclidean domain $R$ is an integral domain with a degree function $d: R\backslash \qty{0} \rightarrow \mathbb{N}_0$ such that
+    \begin{itemize}
+        \item if $a,b,c\in R$ and $b = ac$ then $d(a) \le d(b)$, and
+        \item if $a,b\in R$ and $b\neq 0$, then there exists $q,r\in R$ such that
+        \[ a = bq + r \]
+        such that either $r=0$ or $d(r) < d(b)$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Primitive Polynomial}{primitive_polynomial}
+    A polynomial $p$ over an integral domain $R$ is primitive if that $a\in R$ divides all coefficient of $p$ implies $a$ is a unit of $R$.
+\end{definition}
+
+\begin{theorem}{Every Euclidean Domain is a UFD}{every_euclidean_domain_is_a_ufd}
+    Every Euclidean domain is a UFD.
+\end{theorem}
+
+\begin{proposition}{Zero Divisor Polynomial}{zero_divisor_polynomial}
+    Let $R$ be a commutative ring.
+    If $f$ is a zero divisor in $R[X]$, then there exists $c\in R$ such that $cf = 0$.
+\end{proposition}
+The following proof is from \href{https://math.stackexchange.com/questions/83121/zero-divisor-in-rx/83171#83171}{Zero divisor in $R[X]$}.
+\begin{proof}
+    Let $g = b_0 + b_1 X + \cdots + b_m X^m$ be the polynomial of least degree such that $fg = 0$.
+    Let $a_k$ be the coefficient of highest degree such that $a_k g \neq 0$.
+    Then $a_k b_m = 0$ and therefore $\deg a_k g < \deg g$ but $f a_k g = 0$.
+\end{proof}
+
+\begin{lemma}{Gauss's Lemma}{gauss_lemma}
+    \begin{itemize}
+        \item Primitive polynomials are closed under multiplication.
+        \item A nonconstant polynomial $p\in R[X]$ is irreducible if and only if it is irreducible in $\operatorname{Frac}(R)[X]$ and primitive in $R[X]$.
+    \end{itemize}
+\end{lemma}
+
+\begin{theorem}{Polynomial Ring over UFD is UFD}{polynomial_ring_over_ufd_is_ufd}
+    A polynomial ring over a UFD is a UFD.
+\end{theorem}
+
+\section{Ideals}
+
+\begin{definition}{Maximal Ideal}{maximal_ideal}
+    Let $R$ be a commutative ring and $I\subset R$ be an ideal.
+    $I$ is a maximal ideal if
+    \begin{itemize}
+        \item $I$ is proper, and
+        \item there is no proper ideal $J$ such that $I\subsetneq J$.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{Ideal of Field}{ideal_of_field}
+    A commutative ring $R$ is a field if and only if $\langle 0 \rangle$ is a maximal ideal.
+\end{proposition}
+
+\begin{corollary}{Quotient by Maximal Ideal}{quotient_by_maximal_ideal}
+    Let $R$ be a commutative ring, and $I\subset R$ be an ideal.
+    $I$ is a maximal ideal if and only if $R/I$ is a field.
+\end{corollary}
+
+\begin{theorem}{Proper Ideal is Contained in a Maximal Ideal}{proper_ideal_is_contained_in_a_maximal_ideal}
+    Every proper ideal $I$ of a commutative ring $R$ is contained in a maximal ideal thereof.
+\end{theorem}
+
+\begin{corollary}{Unit Belongs to No Maximal Ideal}{unit_belongs_to_no_maximal_ideal}
+    Let $R$ be a commutative ring.
+    $x\in R$ is a unit if and only if $x$ belongs to no maximal ideal.
+\end{corollary}
+
+\begin{counterexample}{Non-Finitely Generated Subideal}{non_finitely_generated_subideal}
+    See \href{https://math.stackexchange.com/questions/1206194/finitely-generated-ideal-containing-non-finitely-generated-ideal}{Finitely generated ideal containing non finitely generated ideal}.
+    An example of a commutative ring $R$ containing proper ideals $I\subsetneq J \subsetneq R$ with $J$ finitely generated but with $I$ not finitely generated was given by
+    \begin{itemize}
+        \item $R = F[X_1,X_2,\cdots]$ where $F$ is a field,
+        \item $J = \langle X_1 \rangle$, and
+        \item $I = \langle X_1 X_2, X_1 X_3, X_1 X_4,\cdots \rangle$.
+    \end{itemize}
+\end{counterexample}
+
+\subsection{Prime Ideals}
+
+\begin{definition}{Prime Ideal}{prime_ideal}
+    A prime ideal $I$ of a commutative ring $R$ is an ideal such that 
+    \begin{itemize}
+        \item $1\notin I$ and
+        \item $xy \in I$ where $x,y\in R$ implies $x\in I$ or $y\in I$.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{Prime Ideal Under Homomorphism}{prime_ideal_under_homomorphism}
+    Let $R$ and $R'$ be commutative rings, and $\varphi: R\rightarrow R'$ be a homomorphism.
+    \begin{itemize}
+        \item If $I'\subset R'$ is a prime ideal, then $\varphi^{-1}(I')$ is a prime ideal of $R$.
+        \item If $\varphi$ is surjective and $I\subset R$ is a prime ideal, then $\varphi(I)$ is a prime ideal of $R'$.
+    \end{itemize}
+\end{proposition}
+
+\begin{corollary}{Quotient by Prime Ideal}{quotient_by_prime_ideal}
+    Let $R$ be a commutative ring, and $P\subset R$ be an ideal.
+    $P$ is prime if and only if $R/P$ is a integral domain.
+\end{corollary}
+
+\begin{corollary}{Maximal Ideal is Prime}{maximal_ideal_is_prime}
+    Every maximal ideal is a prime ideal.
+\end{corollary}
+
+\subsection{Radicals}
+
+\begin{definition}{Jacobson Radical}{jacobson_radical}
+    Let $R$ be a commutative ring.
+    Its Jacobson radical $\operatorname{rad}(R)$ is defined to be the intersection of all its maximal ideals.
+\end{definition}
+
+\begin{proposition}{Jacobson Radical Addition Preserves Units}{jacobson_radical_addition_preserves_units}
+    Let $R$ be a commutative ring.
+    $x\in R$ and $u$ is a unit of $R$.
+    \begin{itemize}
+        \item $x\in\operatorname{rad}(R)$ if and only if $u - xy$ is a unit for all $y\in R$.
+        \item In particular, the sum of an element of $\operatorname{rad}(R)$ and a unit is a unit.
+    \end{itemize}
+\end{proposition}
+
+\begin{proposition}{Quotient by Jacobson Radical is Injective on Idempotents}{quotient_by_jacobson_radical_is_injective_on_idempotents}
+    Input:
+    \begin{itemize}
+        \item $R$ is a commutative ring.
+        \item $I\subset \operatorname{rad}(R)$ is an ideal.
+        \item $\kappa: R\rightarrow R/I$ is the quotient map.
+    \end{itemize}
+    Then $\operatorname{Idem}(\kappa)$ is injective.
+\end{proposition}
+
+\begin{definition}{Local Ring, Semilocal Ring}{local_ring}
+    A commutative ring $A$ is called local if it has exactly one maximal ideal, and semilocal if it has at least one and at most finitely many.
+\end{definition}
+
+\begin{lemma}{Nonunit Criterion}{nonunit_criterion}
+    Let $A$ be a ring.
+    $N$ be the set of nonunits.
+    Then
+    \begin{itemize}
+        \item $A$ is local if and only if $N$ is an ideal; and
+        \item if so, then $N$ is the maximal ideal.
+    \end{itemize}
+\end{lemma}
+
+\begin{proposition}{Complementary of Multiplicative Contains Maximal Prime}{complementary_of_multiplicative_contains_maximal_prime}
+    Input:
+    \begin{itemize}
+        \item $R$ is a commutative ring.
+        \item $I\subset R$ is an ideal.
+        \item $S$ is a multiplicative subset such that $S\cap I = \varnothing$.
+    \end{itemize}
+    Then
+    \[ \mathcal{S} = \Set*{\text{ideals } J}{J\supset I \text{ and } J\cap S = \varnothing} \]
+    has a maximal element $P$, and every such $P$ is prime.
+\end{proposition}
+
+\begin{lemma}{Prime Avoidance}{prime_avoidance}
+    Input:
+    \begin{itemize}
+        \item $R$ is a commutative ring.
+        \item $A$ is a subset of $R$ closed under addition and multiplication.
+        \item $P_1,\cdots,P_n$ are ideals of $R$ where $P_3,\cdots,P_n$ are prime.
+    \end{itemize}
+    If $A\not\subset P_i$ for all $i$, then $A\not\subset \cup_i P_i$.
+\end{lemma}
+
+\begin{definition}{Radical}{radical}
+    Let $R$ be a commutative ring and $A$ be a subset thereof.
+    The radical of $A$ is defined by
+    \[ \sqrt{A} = \Set*{x\in R}{x^n\in A \text{ for some } n\ge 1}. \]
+\end{definition}
+
+\begin{definition}{Nilradical, Reduced Ring}{nilradical}
+    Let $R$ be a commutative ring.
+    $\operatorname{nil}(R) = \sqrt{\langle 0 \rangle}$ is called the nilradical.
+    An element $x\in R$ is called nilpotent if $x\in \operatorname{nil}(R)$.
+    $R$ is called reduced if $\operatorname{nil}(R) = \langle 0 \rangle$.
+\end{definition}
+
+\begin{proposition}{Properties of Radical}{properties_of_radical}
+    Let $R$ be a commutative ring and $A$ be a subset thereof.
+    \begin{itemize}
+        \item $\sqrt{\sqrt{A}} = \sqrt{A}$.
+        \item $\sqrt{A} = A$ if $A$ in an intersection of prime ideals.
+        \item $\operatorname{nil}(R) \in \operatorname{rad}(R)$.
+    \end{itemize}
+\end{proposition}
+
+\begin{theorem}{Scheinnullstellensatz}{scheinnullstellensatz}
+    Let $R$ be a commutative ring and $I\subset R$ be an ideal. Then
+    \[ \sqrt{I} = \bigcap_{P\supset I} P, \]
+    where $P$ runs through all the prime ideals containing $I$.
+    The empty intersection is equal to $R$.
+\end{theorem}
+
+\section{Integral Domains}
+
+\subsection{Unique Factorization Domains}
+
+\begin{theorem}{Irreducible Equals Prime in UFD}{irreducible_equals_prime_in_ufd}
+    The irreducible elements of a UFD are exactly the prime elements.
+\end{theorem}
+
+\subsection{Principal Ideal Domains}
+
+\begin{definition}{Principal Ideal Domain}{principal_ideal_domain}
+    A integral domain $R$ is called a principal ideal domain if every ideal is principal.
+\end{definition}
+
+\begin{theorem}{Every PID is a UFD}{every_pid_is_a_ufd}
+    Every PID is a UFD.
+\end{theorem}
+
+\begin{proposition}{Irreducible Generates Maximal in PID}{irreducible_generates_maximal_in_pid}
+    If $p\in R$ is an irreducible element of a PID $R$, then $\langle p \rangle$ is a maximal ideal.
+\end{proposition}
+
+\begin{theorem}{Ideals of Polynomial over PID}{ideals_of_polynomial_over_pid}
+    Input:
+    \begin{itemize}
+        \item $R$ is a PID.
+        \item $P = R[X]$.
+        \item $I$ is a prime ideal of $P$.
+    \end{itemize}
+    The following statements hold.
+    \begin{itemize}
+        \item $I = \langle 0 \rangle$, or $I = \langle f \rangle$ with $f$ prime, or $I$ is maximal.
+        \item If $I$ is maximal, then either
+        \begin{itemize}
+            \item $I = \langle f \rangle$ with $f$ prime, or
+            \item $I = \langle p, g \rangle$ with $p\in R$ prime and $g\in P$ with image $g'\in (R/\langle p \rangle)[X]$ prime.
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\section{Modules}
+
+\begin{definition}{Annihilator}{annihilator}
+    Let $M$ be a $R$-module where $R$ is a commutative ring.
+    The annihilator of $m\in M$ is defined by
+    \[ \operatorname{Ann}(m) = \Set*{x\in R}{xm = 0}. \]
+    The annihilator of $M$ is defined by
+    \[ \operatorname{Ann}(M) = \Set*{x\in R}{\forall m\in M, xm = 0}. \]
+\end{definition}
+
+$\operatorname{Ann}(m)$ and $\operatorname{Ann}(M)$ are ideals.
+
+\begin{definition}{Faithful Module}{faithful_module}
+    Let $M$ be a $R$-module where $R$ is a commutative ring.
+    $M$ is faithful if $\operatorname{Ann}(M) = \langle 0 \rangle$.
+\end{definition}
+
+\begin{definition}{Cokernel \badge{UMP}}{cokernel}
+    Let $R$ be a commutative ring.
+    $M$ and $N$ are $R$-modules.
+    $\alpha: M\rightarrow N$ is a homomorphism.
+    The cokernel of $\alpha$ is defined by
+    \[ \operatorname{Coker}(\alpha) = N/\operatorname{Im}(\alpha). \]
+\end{definition}
+
+\begin{proposition}{UMP of Cokernel}{ump_of_cokernel}
+    Input:
+    \begin{itemize}
+        \item $R$ is a commutative ring.
+        \item $M$ and $N$ are $R$-modules.
+        \item $\alpha: M\rightarrow N$ is a homomorphism.
+    \end{itemize}
+    Then $\kappa: N \rightarrow \operatorname{Coker}(\alpha)$ satifies the following UMP:
+    \begin{itemize}
+        \item $\kappa \alpha = 0$, and
+        \item for any $\beta: N\rightarrow P$ with $\beta \alpha = 0$, there is a unique homomorphism $\gamma: \operatorname{Coker}(\alpha) \rightarrow P$ such that $\gamma \kappa = \beta$, i.e. the following diagram commutes.
+    \end{itemize}
+    \begin{center}
+        \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
+            M \arrow[r, "\alpha"] \arrow[rd] & N \arrow[d, "\forall \beta"'{name=q2}] \arrow[r, "\kappa"] & \operatorname{Coker}(\alpha) \arrow[dl, "\exists! \gamma"'{name=q3}, labels=below right] \\
+            & |[alias=q1]| \forall P
+        \end{tikzcd}
+    \end{center}
+\end{proposition}
+
+\section*{Miscellany}
+
+The following chain of inclusion holds.
+\begin{center}
+    rngs \\
+    $\cup$ \\
+    rings \\
+    $\cup$  \\
+    commutative rings  \\
+    $\cup$  \\
+    integral domains \\
+    $\cup$  \\
+    integrally closed domains \\
+    $\cup$  \\
+    GCD domains \\
+    $\cup$  \\
+    unique factorization domains \\
+    $\cup$  \\
+    principal ideal domains \\
+    $\cup$  \\
+    Euclidean domains \\
+    $\cup$  \\
+    fields \\
+    $\cup$  \\
+    algebraically closed fields \\
+\end{center}
+
+\subsection*{Tests}
+
+\paragraph*{Idempotent}
+\begin{itemize}
+    \item $e_1$ and $e_2$ are complementary idempotent $\Leftrightarrow$ $e_1+e_2=1$ and $e_1 e_2 = 0$.
+\end{itemize}
+
+\paragraph*{Unit}
+\begin{itemize}
+    \item $u$ is a unit $\Leftrightarrow$ $u$ not in any maximal ideal.
+\end{itemize}
+
+\paragraph*{Maximal Ideal}
+\begin{itemize}
+    \item $M$ is maximal $\Leftrightarrow$ $R/M$ is a field.
+    \item $M$ is maximal $\Leftrightarrow$ $\langle x \rangle + M = R$ for any $x\notin M$.
+    \item In PID, $p$ is irreducible $\Leftrightarrow$ $p$ is prime $\Leftrightarrow$ $\langle p \rangle$ is maximal.
+    \item In PID, $P$ is maximal $\Leftrightarrow$ $P$ is prime and nonzero.
+\end{itemize}
+
+\paragraph*{Prime Ideal}
+\begin{itemize}
+    \item $P$ is prime $\Leftrightarrow$ $R/P$ is a domain.
+    \item $M$ is maximal $\Rightarrow$ $M$ is prime.
+\end{itemize}
+
+\paragraph*{Irreducible Element}
+\begin{itemize}
+    \item $p$ is prime $\Rightarrow$ $p$ is irreducible.
+    \item In GCD domain, $p$ is irreducible $\Leftrightarrow$ $p$ is prime.
+\end{itemize}
+
+\paragraph*{Prime Element}
+\begin{itemize}
+    \item In GCD domain, $p$ is irreducible $\Leftrightarrow$ $p$ is prime.
+    \item In PID, $p$ is prime $\Leftrightarrow$ $\langle p \rangle$ is prime.
+\end{itemize}
+
+\paragraph*{Local Ring}
+\begin{itemize}
+    \item $A$ is local $\Leftrightarrow$ nonunits of $A$ consists an ideal.
+\end{itemize}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

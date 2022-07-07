@@ -1,0 +1,206 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Fiber Bundle}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Smooth Fiber Bundles}
+
+Fiber bundles may be defined more generally (see \href{https://ncatlab.org/nlab/show/fiber+bundle}{fiber bundle}).
+Here we focus only on smooth fiber bundles.
+
+\begin{definition}{Smooth Fiber Bundle, Fiber, Total Space, Base Space, Projection Map, Local Trivialization}{smooth_fiber_bundle}
+    A smooth fiber bundle is a tuple $(E,B,\pi,F)$ such that
+    \begin{itemize}
+        \item $E$ is a smooth manifold, the total space;
+        \item $B$ is a smooth manifold, the base space;
+        \item $E$ is a smooth manifold, the fiber;
+        \item $\pi: E\rightarrow B$ is a smooth surjection onto $B$, the projection map;
+        \item For any $x\in B$, there is a neighborhood $U$ of $x$ and a diffeomorphism
+        \[ \varphi: \pi^{-1}(U) \rightarrow U \times F \]
+        such that the following diagram commutes.
+        \begin{center}
+            \begin{tikzcd}
+                \pi^{-1}(U) \arrow[r,"\varphi"] \arrow[d,"\pi"] & U\times F \arrow[ld, "\operatorname{proj}_1"] \\
+                U
+            \end{tikzcd}
+        \end{center}
+    \end{itemize}
+    The set of all $\qty{(U_i,\varphi_i)}$ is called a local trivialization of the bundle.
+\end{definition}
+
+A fiber bundle is often denoted
+\[ F \xlongrightarrow{} E \xlongrightarrow{\pi} B. \]
+
+\begin{definition}{$G$-Bundle, $G$-Atlas, Structure Group, Transition Function}{structure_group}
+    Let $(F,E,\pi,B)$ be a smooth bundle and $G$ be a Lie group.
+    $G$ acts smoothly, freely and transitively (i.e. regularly) on $F$ on the right.
+    \begin{itemize}
+        \item A $G$-atlas for $(E,B,\pi,F)$ is a set of local trivialization $\qty{(U_i,\varphi_i)}$ such that
+        for any pair of $(U_i,\varphi_i)$, $(U_j,\varphi_j)$, the function
+        \[ \varphi_i \varphi_j^{-1}: (U_i \cap U_j)\times F \rightarrow (U_i \cap U_j)\times F \]
+        is given by
+        \[ \varphi_i \varphi_j^{-1}(x, \xi) = (x, t_{ij}\xi) \]
+        where $t_{ij}: (U_i\cap U_j) \rightarrow G$ is called a transition function.
+        \item Two $G$-atlases are equivalent if their union is again an $G$-atlas.
+        \item A $G$-bundle is a fiber bundle with an equivalence class of $G$-atlases.
+        \item The group $G$ is called the structure group of the bundle.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{Properties of Transition Function}{properties_of_transition_function}
+    The transition functions of a $G$-atlas satisfies the following properties.
+    \begin{itemize}
+        \item $t_{ii}(x) = 1$.
+        \item $t_{ij}(x) = t_{ji}(x)^{-1}$.
+        \item $t_{ik}(x) = t_{ij}(x) t_{jk}(x)$ if $U_i \cap U_j \cap U_k$ is nonempty.
+    \end{itemize}
+\end{proposition}
+
+\begin{example}{Frame Bundle}{frame_bundle}
+    Let $M$ be a $m$-dimensional smooth manifold.
+    $L_p M$ is the set of frames at $p\in M$,
+    i.e. an ordered basis of $T_p M$,
+    or equivalently an isomorphism $f: \mathbb{R}^m \rightarrow T_p M$.
+    The set of all frames at $p$ is denoted $L_p M$.
+    
+    The frame bundle of $M$ is given by
+    \[ LM = \coprod_{x\in M} L_p M. \]
+    $LM$ is made into a principal bundle by the following.
+    \begin{itemize}
+        \item Each point in $LM$ is a pair $(p, f)$ where $p\in M$ and $f\in L_p M$.
+        \item Projection: $\pi(p,f) = p$.
+        \item Group action: an element $g\in \operatorname{GL}(m,\mathbb{R})$ acts on $L_p M$ by
+        $g(p) = p \circ g$.
+        \item Let $\qty{(U_i,\varphi_i)}$ be a local trivialization of $TM$ such that for each $p\in M$ one has a linear isomorphism
+        \[ \varphi_{i,p}: T_p M \rightarrow \mathbb{R}^m. \]
+        Now the local trivialization $\psi_{i}: \pi^{-1}(U_i)\rightarrow U_i \times \operatorname{GL}(m,\mathbb{R})$ of $LM$ may be given by
+        \[ \psi_i(x,f) = (x,\varphi_{i,p} \circ f). \]
+    \end{itemize}
+\end{example}
+
+\begin{definition}{Associated Vector Bundle}{associated_vector_bundle}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\rho: G\rightarrow \operatorname{Aut}(V)$ is a representation of $G$.
+        \item The equivalence relation $\sim$ is defined on $P\times V$ by $(p,v)\sim (p',v')$ if there exists $g\in G$ such that $(p',v') = (pg, \rho(g^{-1})v)$.
+    \end{itemize}
+    The associated vector bundle $E$ of $P$ is given by
+    \[ P\times_\rho V = (P\times V)/\sim \]
+    and the projection map by
+    \[ \pi_E([p, v]) = \pi(p) \]
+    where $[p,v]$ denotes the equivalence class that contains $(p,v)$.
+\end{definition}
+
+\section{Ehresmann Connection}
+
+\begin{definition}{Vertical Bundle}{vertical_bundle}
+    Let $E \xlongrightarrow{\pi} M$ be a smooth bundle.
+    The vertical bundle is defined by
+    \[ V = \ker(\dd{\pi}: TE \rightarrow TM). \]
+\end{definition}
+
+\begin{definition}{Ehresmann Connection, Horizontal Bundle}{ehresmann_connection}
+    Input:
+    \begin{itemize}
+        \item $E \xlongrightarrow{\pi} M$ is a smooth bundle.
+        \item $V$ is the vertical bundle of $E$.
+    \end{itemize}
+    An Ehresmann connection is a smooth subbundle $H$ of $TE$, the horizontal bundle, such that for each $e\in E$,
+    \[ T_eE = H_e \oplus V_e. \]
+\end{definition}
+
+\subsection{Horizontal Lift and Parallel Transport}
+
+\begin{definition}{Horizontal Lift}{horizontal_lift}
+    Input:
+    \begin{itemize}
+        \item $E\xlongrightarrow{\pi} M$ is smooth bundle.
+        \item $\gamma: [0,1] \rightarrow M$ is a curve in $M$.
+        \item $H$ be the horizontal bundle of an Ehresmann connection of $E$.
+    \end{itemize}
+    A curve $\tilde{\gamma}: [0,1] \rightarrow P$ is a horizontal lift of $\gamma$ if
+    \begin{itemize}
+        \item $\pi\circ \tilde{\gamma} = \gamma$; and
+        \item the tangent vector to $\tilde{\gamma}$ at any $t\in [0,1]$ belongs to $H_{\tilde{\gamma}(t)}$.
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}{Uniqueness of Horizontal Lift}{uniqueness_of_horizontal_lift}
+    Let $E\xlongrightarrow{\pi} M$ be a smooth bundle,
+    $H$ be the horizontal bundle of an Ehresmann connection thereof,
+    $\gamma: [0,1]\rightarrow M$ be a curve in $M$,
+    and $u_0\in \pi^{-1}(\gamma(0))$.
+    Then there exists a unique horizontal lift $\tilde{\gamma}(t)$ of $\gamma$ in $E$ with respect to $H$ such that $\tilde{\gamma}(0) = u_0$.
+\end{theorem}
+
+\begin{definition}{Parallel Transport}{parallel_transport}
+    Input:
+    \begin{itemize}
+        \item $E\xlongrightarrow{\pi} M$ is smooth bundle.
+        \item $\gamma: [0,1] \rightarrow M$ is a curve in $M$.
+        \item $H$ is the horizontal bundle of an Ehresmann connection of $E$.
+        \item $u_0 \in \pi^{-1}(\gamma(0))$.
+    \end{itemize}
+    Let $\tilde{\gamma}(t)$ be the unique horizontal lift of $\gamma$ in $E$ with respect to $H$ such that $\tilde{\gamma}(0) = u_0$.
+    Then $\tilde{\gamma}(1)$, or more generally, $\tilde{\gamma}(t)$, is called the parallel transport of $u_0$ along $\gamma$.
+\end{definition}
+
+\subsection{Exterior Covariant Derivative}
+
+\begin{definition}{Exterior Covariant Derivative}{exterior_covariant_derivative}
+    Input:
+    \begin{itemize}
+        \item $E\xlongrightarrow{\pi} M$ is smooth bundle.
+        \item $H$ and $V$ are the horizontal and vertical bundle of an Ehresmann connection of $E$, respectively.
+        \item $W$ is a linear space.
+    \end{itemize}
+    The exterior covariant derivative
+    \[ D: \Omega^r(E, W) \rightarrow \Omega^{r+1}(E, W) \]
+    is defined by
+    \[ {D}\phi(X_1,\cdots,X_{r+1}) = \dd{\phi}(X^H_1, \cdots, X^H_{r+1}) \]
+    where $X_i = X^V_{i} + X^H_{i}$ is a decomposition of $X$ such that $X^V_i\in V$ and $X^H_i\in H$.
+\end{definition}
+
+\section{Constructions}
+
+\subsection{Pullback Bundles}
+
+\begin{definition}{Pullback Bundle}{pullback_bundle}
+    Input:
+    \begin{itemize}
+        \item $E\xlongrightarrow{\pi} B$ is a fiber bundle.
+        \item $f: B' \rightarrow B$ is a smooth map.
+    \end{itemize}
+    The pullback bundle $f^* E$ is given by
+    \[ f^*E = \Set*{(b', e)\in B'\times E}{f(b') = \pi(e)} \subset B'\times E, \]
+    and the projection map $\pi': f^*E \rightarrow B'$ by
+    \[ \pi'(b', e) = b'. \]
+    If $(U,\varphi)$ is a local trivialization of E then $(f^{-1}(U),\psi)$ is a local trivialization of $f^* E$ where
+    \[ \psi(b', e) = (b', \operatorname{proj}_2(\varphi(e))). \]
+\end{definition}
+
+The following diagram commutes.
+\begin{center}
+    \begin{tikzcd}
+        f^*E \arrow[r,"\operatorname{proj}_2"] \arrow[d,"\pi'"] & E \arrow[d,"\pi"] \\
+        B' \arrow[r,"f"] & B
+    \end{tikzcd}
+\end{center}
+
+\section*{Miscellany}
+
+Tangent bundles are not necessarily trivial.
+For example, the tangent bundle of $S^2$ is nontrivial.
+Otherwise $TS^2 \cong S^2\times \mathbb{R}^2$, the latter of which admits a nonwhere vanishing section.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

@@ -1,0 +1,446 @@
+\documentclass{article}
+
+\usepackage{xeCJK}
+%\setCJKmainfont{Hiragino Mincho ProN}
+\setCJKmainfont{Songti SC}
+
+\usepackage{ruby}
+\renewcommand\rubysep{0em}
+
+\usepackage{pandekten}
+
+\setlength\LTpre{0em}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Examples}
+
+\subsection{Vowels}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=8cm]{img/VowelTongue.png}
+    \caption{Tongue positions of cardinal vowels. Image from \href{https://en.wikipedia.org/wiki/Cardinal_vowels}{cardinal vowels}.}
+    \label{fig:vowel_tongue}
+\end{figure}
+
+Tongue positions of cardinal vowels are shown as in \cref{fig:vowel_tongue}.
+
+\subsubsection{Front}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=4cm]{img/VowelTongueFront.png}
+    \caption{Tongue positions of cardinal front vowels. Image from \href{https://en.wikipedia.org/wiki/International_Phonetic_Alphabet}{IPA}.}
+    \label{fig:vowel_tongue_front}
+\end{figure}
+
+Tongue positions are shown as in \cref{fig:vowel_tongue_front}.
+
+\begin{example}{Close Front Vowel, \textipa{[i]}/\textipa{[y]}}{close_front_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{七}{ㄑㄧ} & \textipa{[tC\super{h}i\tone{55}]} \\
+        Cantonese & 詩(si\textsuperscript{1}) & \textipa{[si:\tone{55}]} \\
+        English (All) & free & \textipa{[f\*ri:]} \\
+        French & fini & \textipa{[fini]} \\
+        German & Ziel & \textipa{[\t{ts}i:l]} \\
+        Japanese & \ruby{銀}{ぎん} & \textipa{[g\super{j}i\;N]}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{女}{ㄋㄩ\v{}} & \textipa{[ny\tone{214}]} \\
+        Cantonese & 書(syu\textsuperscript{1}) & \textipa{[sy\tone{55}]} \\
+        \sout{English} & & \\
+        French & tu & \textipa{[\|[ty]} \\
+        German & \"uber & \textipa{["y:b5]} \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Near-Close Near-Front Vowel, \textipa{[I]}/\textipa{[Y]}}{near_close_near_front_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        Cantonese & 色(sik\textsuperscript{1}) & \textipa{[sIk\textcorner\tone{55}]} \\
+        English (GA) & bit & \textipa{[b\textlowering{i}t]} \\
+        \sout{French} & & \\
+        German & bitte & \textipa{["\r*{b}\textlowering{I}t@]} \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        \sout{English} & & \\
+        \sout{French} & & \\
+        German & sch\"utzen & \textipa{["S\textlowering{Y}\t{ts}\s{n}]} \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Close-Mid Front Vowel, \textipa{[e]}/\textipa{[\o]}}{close_mid_front_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \color{lightgray}\ruby{悲}{ㄅㄟ} & \color{lightgray}\textipa{[pe\textsubarch{I}\tone{55}]} \\
+        Cantonese & \color{lightgray}悲(bei\textsuperscript{1}) & \color{lightgray}\textipa{[pe\textsubarch{i}\tone{55}]} \\
+        English (GA) & \color{lightgray}may & \color{lightgray}\textipa{[meI]} \\
+        French & beaut\'e & \textipa{[bo\|[te]} \\
+        German & Seele & \textipa{["ze:l@]} \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        \sout{English} & & \\
+        French & peu & \textipa{[p\o]} \\
+        German & sch\"on & \textipa{[S\o{}:n]} \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Mid Front Vowel, \textipa{[\textlowering{e}]}/\textipa{[\textlowering{\o}]}}{mid_front_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        Teochew & 啞(\^{e}\textsuperscript{2}) & \textipa{[\textlowering{e}\tone{52}]} \\
+        English (RP) & let & \textipa{[l\textlowering{e}t]} \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        Japanese & え & \textipa{[\textlowering{e}]}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        \sout{English} & & \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Open-Mid Front Vowel, \textipa{[E]}/\textipa{[\oe]}}{open_mid_front_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{天}{ㄊㄧㄢ} & \textipa{[t\super{h}\textsubarch{i}En\tone{55}]} \\
+        Cantonese & 些(se\textsuperscript{1}) & \textipa{[sE:\tone{55}]} \\
+        English (GA, RP) & bed & \textipa{[bEd]} \\
+        French & b\^ete & \textipa{[bE\|[t]} \\
+        German & Bett & \textipa{[\r*{b}Et]} \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        Cantonese & 長(cheung\textsuperscript{4}) & \textipa{[\t{tS}\super{h}\|x{\oe}:N\tone{21}]} \\
+        \sout{English} & & \\
+        French & jeune & \textipa{[Z\oe n]} \\
+        German & H\"olle & \textipa{["h\oe{}l@]} \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Near-Open Front Vowel, \textipa{[\ae]}}{near_open_front_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        English (GA) & cat & \textipa{[k\super{h}\ae{}t]} \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Open Front Vowel, \textipa{[a]}/\textipa{[\OE]}}{open_front_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{安}{ㄢ} & \textipa{[\textraiseglotstop{}an\tone{55}]} \\
+        Cantonese & 家(gaa\textsuperscript{1}) & \textipa{[ka:\tone{55}]} \\
+        English (RP) & hat & \textipa{[hat]} \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        \sout{English} & & \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+The pronunciation of 安 is due to allophone before \textipa{[n]}.
+The `aa' in Cantonese may either be \textipa{[a]} or \textipa{[\"{a}]}.
+
+\subsubsection{Central}
+
+\begin{example}{Close Central Vowel, \textipa{[1]}/\textipa{[0]}}{close_central_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        Teochew & 豬(de\textsuperscript{1}) & \textipa{[t1\tone{33}]} \\
+        \sout{English} & & \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} \\
+        English & goose & \textipa{[g0s]} \\
+        \sout{French} \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+In Teochew, 豬 may be \textipa{[t1\tone{33}]} or \textipa{[tW\tone{33}]}.
+
+\begin{example}{Close-Mid Central Vowel, \textipa{[9]}/\textipa{[8]}}{close_mid_central_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        \sout{English} & & \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        Cantonese & 出(ceot\textsuperscript{1}) & \textipa{[\t{tS}\super{h}8t\textcorner\tone{55}]} \\
+        \sout{English} & & \\
+        French & je & \textipa{[Z8]} \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Mid Central Vowel, \textipa{[@]}}{mid_central_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{根}{ㄍㄣ} & \textipa{[k@n\tone{55}]} \\
+        \sout{Cantonese} & & \\
+        English (Most) & Christina & \textipa{[k\*rIs"ti:n@]} \\
+        French & je & \textipa{[Z@]} \\
+        German & Beschlag & \textipa{[\r*{b}@"Sl\"{a}:k]} \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+`Je' in French may be \textipa{[Z8]} or \textipa{[Z@]}.
+
+\begin{example}{Open-Mid Central Vowel, \textipa{[3]}/\textipa{[\textcloseepsilon]}}{open_mid_central_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        English (RP) & bird & \textipa{[b3:d]} \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        \sout{English} & & \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Near-Open Central Vowel, \textipa{[5]}}{near_open_central_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        Cantonese & 心(sam\textsuperscript{1}) & \textipa{[s\textraising{5}m\tone{55}]} \\
+        English (RP) & nut & \textipa{[n5Pt]} \\
+        \sout{French} & & \\
+        German & Oder & \textipa{["o:d5]} \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Open Central Vowel, \textipa{[\"a]}}{open_central_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{塌}{ㄊㄚ} & \textipa{[t\super{h}\"a\tone{55}]} \\
+        Cantonese & 家(gaa\textsuperscript{1}) & \textipa{[k\"a:\tone{55}]} \\
+        \sout{English} & & \\
+        \sout{French} & & \\
+        German & Katze & \textipa{["k\super{h}\"a\t{ts}@]} \\
+        Japanese & \ruby{蚊}{か} & \textipa{[k\"a]}
+    \end{longtable}
+\end{example}
+
+In German, Katze may be \textipa{["k\super{h}\"a\t{ts}@]} or \textipa{["k\super{h}a\t{ts}@]}.
+The `aa' in Cantonese may either be \textipa{[a]} or \textipa{[\"{a}]}.
+
+\subsubsection{Back}
+
+\begin{example}{Close Back Vowel, \textipa{[W]}/\textipa{[u]}}{close_back_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        Teochew & 豬(de\textsuperscript{1}) & \textipa{[tW\tone{33}]} \\
+        \sout{English} & & \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        Japanese & \ruby{空}{くう} & \textipa{[k\|+{W}\super{B}:]}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{突}{ㄊㄨ} & \textipa{[t\super{h}u\tone{55}]} \\
+        Cantonese & 夫(fu\textsuperscript{1}) & \textipa{[fu:\tone{55}]} \\
+        English (GA) & boot & \textipa{[b\|+u:t]} \\
+        French & o\`u & \textipa{[u]} \\
+        German & Fu\ss & \textipa{[fu:s]} \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+In Teochew, 豬 may be \textipa{[t1\tone{33}]} or \textipa{[tW\tone{33}]}.
+
+\begin{example}{Near-Close Near-Back Vowel, \textipa{[U]}}{near_close_near_back_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{红}{ㄏㄨㄥ\'{}} & \textipa{[xUN\tone{35}]} \\
+        Cantonese & 福(fuk\textsuperscript{1}) & \textipa{[fUk\textcorner\tone{55}]} \\
+        English (GA) & hook & \textipa{[h\textlowering{U}k]} \\
+        \sout{French} \\
+        German & Stunde & \textipa{["StUnd@]} \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Close-Mid Back Vowel, \textipa{[7]}/\textipa{[o]}}{close_mid_back_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{喝}{ㄏㄜ} & \textipa{[x7\tone{55}]} \\
+        \sout{Cantonese} & & \\
+        \sout{English} \\
+        \sout{French} \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        Cantonese & \color{lightgray}好(hou\textsuperscript{2}) & \color{lightgray}\textipa{[ho\textsubarch{u}\tone{35}]} \\
+        English (RP) & caught & \textipa{[k\super{h}o:t]} \\
+        French & r\'{e}seau & \textipa{[Kezo]} \\
+        German & oder & \textipa{["o:d5]} \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Mid Back Vowel, \textipa{[\textlowering{7}]}/\textipa{[\textlowering{o}]}}{mid_back_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        \sout{English} \\
+        \sout{French} \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{我}{ㄨㄛ\v{}} & \textipa{[w\textlowering{o}\tone{214}]} \\
+        \sout{Cantonese} \\
+        Teochew & 蠔(o\textsuperscript{5}) & \textipa{[\textlowering{o}\tone{55}]} \\
+        \sout{English} & & \\
+        \sout{French} \\
+        \sout{German} \\
+        Japanese & \ruby{子}{こ} & \textipa{[k\textlowering{o}]}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Mid-Open Back Vowel, \textipa{[2]}/\textipa{[O]}}{mid_open_back_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        English (GA) & gut & \textipa{[g2t]} \\
+        \sout{French} \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        Cantonese & 我(ngo\textsuperscript{5}) & \textipa{[NO:\tone{13}]} \\
+        English & thought & \textipa{[TO:t]} \\
+        French & sort & \textipa{[sOK]} \\
+        German & voll & \textipa{[fOl]} \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\begin{example}{Open Back Vowel, \textipa{[A]}/\textipa{[6]}}{open_back_vowel}
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        Chinese (Mandarin) & \ruby{棒}{ㄅㄤ\`{}} & \textipa{[pAN\tone{51}]} \\
+        \sout{Cantonese} & & \\
+        English (GA) & hot & \textipa{[hAt]} \\
+        French & sans & \textipa{[s\~{A}]} \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+    \tcblower
+    \begin{longtable}{p{4cm}p{2cm}p{2cm}}
+        \sout{Chinese (Mandarin)} \\
+        \sout{Cantonese} & & \\
+        English (GA) & thought & \textipa{[T6t]} \\
+        \sout{French} & & \\
+        \sout{German} & & \\
+        \sout{Japanese}
+    \end{longtable}
+\end{example}
+
+\subsection{Tones}
+
+\subsubsection{Non-Dipping}
+
+In Mandarin and Teochew, tones may change in compounds and it's therefore vital to point out the exact word where the tone lies.
+Single characters stands for their own pronunciation in the following.
+`M' stands for Mandarin, `C' for Cantonese and `T' for Teochew.
+
+\setlength\LTpre{15pt}
+\begin{longtable}{|c|ccccc|}
+    \hline
+    \diagbox{I}{II} & \tone{1} & \tone{2} & \tone{3} & \tone{4} & \tone{5} \\
+    \hline
+    & & & & & \\
+    \tone{1} & & & & & \\
+    & (T\textsuperscript{7})份 & & & & \\
+    \hline
+    & (M\textsuperscript{3})马\color{lightgray}达 & & & & \\
+    \tone{2} & (C\textsuperscript{4})时 & (C\textsuperscript{6})是 & (C\textsuperscript{5})市 & & (C\textsuperscript{2})史 \\
+    & & (T\textsuperscript{4}) 佛\color{lightgray}祖 & & & \\
+    \hline
+    & & & & & (M\textsuperscript{2})拔 \\
+    \tone{3} & & & (C\textsuperscript{3})试 & & \\
+    & & & (T\textsuperscript{1})分/市 & & (T\textsuperscript{6})是 \\
+    \hline
+    & & & & & \\
+    \tone{4} & & & & & \\
+    & & & & (T\textsuperscript{8}) 佛 & \\
+    \hline
+    & \multicolumn{2}{c}{(M\textsuperscript{4})爸} & & & (M\textsuperscript{1})巴 \\
+    \tone{5} & & & & & (C\textsuperscript{1})思 \\
+    & & (T\textsuperscript{2}) 粉 & & & (T\textsuperscript{5}) {\color{lightgray}汕}头 \\
+    \hline
+\end{longtable}
+
+\subsubsection{Dipping}
+
+\section*{Miscellany}
+
+The chart in the last page is from \href{https://en.wikipedia.org/wiki/International_Phonetic_Alphabet#/media/File:Extended_IPA_chart_2005.png}{wikipedia}.
+
+\includepdf{img/IPA2005.pdf}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

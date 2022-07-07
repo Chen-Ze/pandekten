@@ -1,0 +1,31 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Miscellany}
+
+\begin{theorem}{Shannon-Hartley Theorem}{shannon_hartley_theorem}
+    Input:
+    \begin{itemize}
+        \item $B$ is the bandwidth of the channel in hertz (passband bandwidth in case of a bandpass signal).
+        \item $S$ is the average received signal power over the bandwidth.
+        \item $N$ is the average power of the noise and interference over the bandwidth, measured in watts.
+    \end{itemize}
+    The channel capacity in bits per second, a theoretical upper bound on the net bit rate, is given by
+    \[ C = B \log_2\qty(1+\frac{S}{N}). \]
+\end{theorem}
+
+See \href{https://en.wikipedia.org/wiki/Shannon%E2%80%93Hartley_theorem}{Shannon-Hartley theorem} for more information.
+That's why \href{https://electronics.stackexchange.com/questions/272658/why-does-more-bandwidth-guarantee-high-bit-rate}{bit rate and bandwidth are sometimes used interchangeably}.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

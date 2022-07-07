@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Linear Algebra}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Linear Equation Solver}
+
+\begin{theorem}{Conjugate Gradient Method}{conjugate_gradient_method}
+Input:
+\begin{itemize}
+    \item A $n\times n$ positive-definite symmetric real matrix $\vb{A}$.
+    \item A $n$-dimensional vector $\vb{b}$.
+    \item A real number $\epsilon > 0$.
+\end{itemize}
+Output:
+\begin{itemize}
+    \item A $n$-dimensional vector $\vb{x}$ such that
+    \[ \abs{\vb{A}\vb{x} - \vb{b}} < \epsilon. \]
+\end{itemize}
+Algorithm:
+\begin{itemize}
+    \item Initialize with $\vb{p_0} = \vb{r_0} = \vb{b}$ and $k = 0$.
+    \item Repeat:
+    \begin{itemize}
+        \item $\displaystyle \alpha_k = \frac{\vb{r}_k^\intercal \vb{r}_k}{\vb{p}_k^\intercal \vb{A} \vb{p}_k}$.
+        \item $\displaystyle \vb{x}_{k+1} = \vb{x}_k + \alpha_k \vb{p}_k$.
+        \item $\displaystyle \vb{r}_{k+1} = \vb{r}_k - \alpha_k \vb{A}\vb{p}_k$.
+        \item Break if $\abs{\vb{r}_{k+1}} < \epsilon$.
+        \item $\displaystyle \beta_k = \frac{\vb{r}^\intercal_{k+1}\vb{r}_{k+1}}{\vb{r}^\intercal_{k}\vb{r}_{k}}$.
+        \item $\displaystyle \vb{p}_{k+1} = \vb{r}_k + \beta \vb{p}_k$.
+        \item $k=k+1$.
+    \end{itemize}
+    \item Return $\vb{x}_{k+1}$.
+\end{itemize}
+\end{theorem}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

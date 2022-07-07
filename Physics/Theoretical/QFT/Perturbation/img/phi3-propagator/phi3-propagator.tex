@@ -1,0 +1,11 @@
+\documentclass{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+\begin{document}
+
+\feynmandiagram [small, horizontal=a to b] {
+    a[dot] --[fermion, edge label=$\omega$, edge label'=\phantom{$\omega$}] b[dot],
+};
+
+\end{document}

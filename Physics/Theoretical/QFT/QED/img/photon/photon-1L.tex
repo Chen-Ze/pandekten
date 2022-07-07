@@ -1,0 +1,14 @@
+\documentclass{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+\usepackage{amsmath}
+
+\begin{document}
+\feynmandiagram [small, layered layout, horizontal=e1 to e2] {
+    e1[particle=$\mu$] --[boson,edge label'=$q$] v1[dot],
+    v1 --[fermion,half left] v2[dot],
+    v2 --[boson,edge label'=$q$] e2[particle=$\nu$],
+    v2 --[fermion,half left] v1,
+};
+\end{document}

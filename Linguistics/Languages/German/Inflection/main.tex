@@ -1,0 +1,89 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Inflection}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Nouns}
+
+\begin{theorem}{Declension of Nouns}{declension_of_nouns}
+    Let \texttt{N} be a regular noun.
+    \texttt{NS}, \texttt{GS} and \texttt{NP} are the nominative singular, genitive singular and nominative plural of \texttt{N}, respectively.
+    Then the declension of \texttt{N} is given by the following table.
+    \begin{longtable}{lll}
+        \toprule
+        Case & Singular & Plural \\
+        \midrule
+        Nominative & \texttt{NS} & \texttt{NP} \\
+        Genitive & \texttt{GS} & \texttt{NP} \\
+        Dative & Depends & \texttt{NP + 'n'} if \texttt{NP[-1]} not \texttt{/n|s/} \\
+        & & \texttt{NP} otherwise \\
+        Accusative & Depends & \texttt{NP} \\
+        \bottomrule
+    \end{longtable}
+    The declension of singular cases are given by \cref{thm:strong_declension} and \cref{thm:weak_declension}, depending on \texttt{N}.
+\end{theorem}
+
+\begin{theorem}{Strong Declension}{strong_declension}
+    Let \texttt{N} be a regular strong noun.
+    \texttt{NS} and \texttt{GS} are the nominative singular and genitive singular of \texttt{N}, respectively.
+    Then the singular declension of \texttt{N} is given by the following table.
+    \begin{longtable}{ll}
+        \toprule
+        Case & Singular  \\
+        \midrule
+        Nominative & \texttt{NS} \\
+        Genitive & \texttt{GS} \\
+        Dative & \texttt{NS + 'e'} in fixed expressions if \texttt{N} is m. or n. \\
+        & \texttt{NS} otherwise \\
+        Accusative & \texttt{NS} \\
+        \bottomrule
+    \end{longtable}
+\end{theorem}
+
+\begin{example}{Dativ-e}{dativ_e}
+    \begin{itemize}
+        \item \textit{im Stande sein} (to be able);
+        \item \textit{nach Hause} (adv., home).
+    \end{itemize}
+\end{example}
+
+\begin{theorem}{Weak Declension}{weak_declension}
+    Let \texttt{N} be a regular weak noun.
+    \texttt{NS} and \texttt{GS} are the nominative singular and genitive singular of \texttt{N}, respectively.
+    Then the singular declension of \texttt{N} is given by the following table.
+    \begin{longtable}{ll}
+        \toprule
+        Case & Singular  \\
+        \midrule
+        Nominative & \texttt{NS} \\
+        Genitive & \texttt{GS} \\
+        Dative & \texttt{GS}, minus the final \texttt{'-s'} if there is \\
+        Accusative & \texttt{GS}, minus the final \texttt{'-s'} if there is \\
+        \bottomrule
+    \end{longtable}
+\end{theorem}
+
+\begin{proposition}{Criteria of Weak Declension}{criteria_of_weak_declension}
+    The following nouns are likely to be weak nouns.
+    \begin{itemize}
+        \item Masculine nouns that end with unstressed \texttt{'e'}.
+        \item Many nouns that represent professions or nationalities of people.
+        \item Latin or Greek words ending with \href{https://www.germanveryeasy.com/m/noun-declension}{\texttt{'-at'}, \texttt{'-ant'}, \texttt{'-ent'}, or \texttt{'-ist'}}.
+    \end{itemize}
+    Weak nouns that \href{https://www.vistawide.com/german/grammar/german_nouns03.htm}{do not refer to people or animals} have genitive singular ending in \texttt{'-ns'}.
+\end{proposition}
+
+\subsection{Genders}
+
+Criteria for genders may be found in \href{https://germanwithlaura.com/noun-gender/}{German Noun Gender: Your Essential Guide}.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

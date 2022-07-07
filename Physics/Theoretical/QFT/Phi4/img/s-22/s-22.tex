@@ -1,0 +1,17 @@
+\documentclass{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+\usepackage{amsmath}
+
+\begin{document}
+\feynmandiagram [small, horizontal=e3 to e4] {
+    v2[dot] --[fermion,edge label=$p_3$] e3,
+    v2 --[fermion,edge label'=$p_4$] e4,
+    e1 --[fermion,edge label=$p_1$] v1[dot],
+    e2 --[fermion,edge label'=$p_2$] v1,
+    v1 --[fermion,half left] v2,
+    v1 --[fermion,half right] v2,
+};
+
+\end{document}

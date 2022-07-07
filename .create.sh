@@ -52,6 +52,9 @@ function create() {
     echo "Writing .tex file"
     cat .template.tex | sed "s/TITLE/$title/g" >> "$1/main.tex"
 
+    echo "Preparing .bib file"
+    touch "$1/main.bib"
+
     relativePath=$(getRelativePath ./Style "$1")
     echo "Relative path from target directory to Style: \"$relativePath\""
 
@@ -60,6 +63,8 @@ function create() {
 
     echo "Linking .texmf"
     ln -s $relativePath .texmf
+
+    code main.tex
 }
 
 create $1

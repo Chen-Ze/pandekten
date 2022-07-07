@@ -1,0 +1,320 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Connections on Fiber Bundles}
+\author{Ch\=an Taku}
+
+\externaldocument[Lie-]{../../LieGroups/Allgemein/main}
+\externaldocument[Fib-]{../Allgemein/main}
+
+\begin{document}
+
+\maketitle
+
+\section{Connections on Principal Bundles}
+
+There is a more abstract definition.
+See \href{https://ncatlab.org/nlab/show/connection+on+a+bundle}{connection on a bundle}.
+For now we use the following concrete definition.
+
+\begin{definition}{Connection on Principal Bundle, Connection 1-Form}{connection_on_principal_bundle}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\mathfrak{g}$ is the Lie algebra of $G$.
+        \item $R_g: P\rightarrow P$ is the right action by $g\in G$.
+    \end{itemize}
+    A principal $G$-connection on $P$ is a
+    differential 1-form on $P$
+    with values in the Lie algebra $\mathfrak{g}$ of $G$
+    which is $G$-equivariant
+    and reproduces the Lie algebra generators of the \hyperref[Lie-def:fundamental_vector_field]{fundamental vector fields} on $P$.
+    \par
+    In other words, it's an element $\omega\in \Omega^1(P,\mathfrak{g}) \cong C^\infty(P, T^*P \otimes \mathfrak{g})$ such that
+    \begin{itemize}
+        \item $\operatorname{Ad}_g(R^*_g \omega) = \omega$ for any $g\in G$.
+        \item For $\xi\in\mathfrak{g}$, $\omega(\xi^\sharp) = \xi$ identically on $P$,
+        where $\xi^\sharp$ denotes the \hyperref[Lie-def:fundamental_vector_field]{fundamental vector field} of $\xi$ over $P$.
+    \end{itemize}
+    $\omega$ is called the connection 1-form.
+\end{definition}
+
+\begin{proposition}{Connection 1-Form to Ehresmann Connection}{connection_1_form_to_ehresmann_connection}
+    Let $\omega$ be a connection 1-form on a principle $G$-bundle $P\xlongrightarrow{\pi} M$.
+    $\omega$ defines a \hyperref[Fib-def:ehresmann_connection]{Ehresmann connection} by the horizontal space
+    \[ H_e = \ker \omega_e. \]
+\end{proposition}
+
+An Ehresmann connection does not necessarily defines a connection 1-form.
+\begin{proposition}{Ehresmann Connection to Connection 1-Form}{ehresmann_connection_to_connection_1_form}
+    Let $H$ a the horizontal space of an Ehresmann connection on a principle $G$-bundle $P\xlongrightarrow{\pi} M$.
+    $H$ defines a connection 1-form (hence connection on a principal bundle) if and only if for any $p\in P$ and $g\in G$,
+    \[ H_{pg} = R_{g*} H_p, \]
+    where $R_g$ is the action of $G$ on $P$ on the right.
+    If this is the case, the vertical space is $\Set*{\xi^\sharp}{\xi\in\mathfrak{g}}$,
+    and the connection 1-form is defined by
+    \[ \omega(\xi^\sharp_p \oplus h_p) = \xi, \]
+    where $h_p\in H_p$.
+\end{proposition}
+
+\subsection{Local Connection Form}
+
+\begin{definition}{Local Connection Form}{local_connection_form}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\omega$ is a connection 1-form on $P$.
+        \item $U\subset M$ is an open set of $M$.
+        \item $\sigma: U \rightarrow \pi^{-1}(U)$ is a local section.
+    \end{itemize}
+    The local connection form is given by
+    \[ \mathcal{A} = \sigma^* \omega \in \Omega^1(U, \mathfrak{g}), \]
+    where $\mathfrak{g}$ is the Lie algebra of $G$.
+\end{definition}
+
+The above construction may be done in an reversed direction.
+
+\begin{theorem}{Connection 1-Form from Local Connection}{connection_1_form_from_local_connection}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\mathfrak{g}$ is the Lie algebra of $G$.
+        \item $U\subset M$ is an open set of $M$.
+        \item $\sigma: U \rightarrow \pi^{-1}(U)$ is a local section of $P$ over $U$.
+        \item $\mathcal{A} \in \Omega^1(U, \mathfrak{g})$.
+    \end{itemize}
+    There exists a connection 1-form $\omega$ over $P\vert_U \xlongrightarrow{\pi} U$ such that
+    \[ \mathcal{A} = \sigma^* \omega, \]
+    which is given by
+    \[ {\omega}\vert_p = \operatorname{Ad}_{g^{-1}(p)}(\pi^* \mathcal{A}) + {\dd{(g^{-1}(p) g)}}\vert_p, \]
+    where $g: P\vert_U \rightarrow G$ is given by
+    \[ p = \sigma_i(\pi(p))g(p). \]
+\end{theorem}
+
+This approach, however, contructs $\omega$ only for part of the fiber bundle.
+To construct a connection 1-form for the whole fiber bundle, it's vital that the 1-forms constructed in such way match up on the intersection of different patches.
+
+\begin{theorem}{Compatibility of Local Connection}{compatibility_of_local_connection}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\omega$ is a connection 1-form on $P$.
+        \item $(U_i,\varphi_i)$ and $(U_j,\varphi_j)$ are intersecting two charts of $P$, and $t_{ij}$ is the transition function thereof.
+        \item $\mathcal{A}_i$ and $\mathcal{A}_j$ are local connection forms of $\omega$ on $U_i$ and $U_j$, with respect to sections $\sigma_i(x) = \varphi^{-1}_i(x, e)$ and $\sigma_j(x) = \varphi^{-1}_j(x, e)$, respectively.
+    \end{itemize}
+    Then $\mathcal{A}_i$ and $\mathcal{A}_j$ satisfy the following compatibility relation on $U_i \cap U_j$:
+    \[ \mathcal{A}_j\vert_x = \operatorname{Ad}_{t^{-1}_{ij}(x)}(\mathcal{A}_i\vert_x) + \dd{(t_{ij}^{-1}(x)t_{ij})}\vert_x. \]
+\end{theorem}
+
+\section{Curvature on Principal Bundles}
+
+\begin{definition}{Curvature 2-Form}{curvature_2_form}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\mathfrak{g}$ is the Lie algebra of $G$.
+        \item $\omega$ is a connection 1-form on $P$.
+    \end{itemize}
+    The curvature 2-form is defined by
+    \[ \Omega = D\omega \in \Omega^2(P, \mathfrak{g}), \]
+    where $D$ is the covariant derivative with respect to the Ehresmann connection associated with $\omega$.
+\end{definition}
+
+\begin{theorem}{Cartan's Structure Equation}{cartans_structure_equation}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\omega$ is a connection 1-form on $P$.
+    \end{itemize}
+    The curvature 2-form associated with $\omega$ is given by
+    \[ \Omega(X, Y) = \dd{\omega}(X, Y) + [\omega(X), \omega(Y)]. \]
+\end{theorem}
+
+\begin{theorem}{Bianchi Identity}{bianchi_identity}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\omega$ is a connection 1-form on $P$ and $D$ is the covariant derivative with respect to the Ehresmann connection associated with $\omega$.
+        \item $\Omega$ is the curvature 2-form on $P$ of $\omega$.
+    \end{itemize}
+    Then
+    \[ D\Omega = 0. \]
+\end{theorem}
+
+With \cref{pro:connection_1_form_to_ehresmann_connection} we prove the following.
+\begin{proposition}{Geometric Meaning of Curvature}{geometric_meaning_of_curvature}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\omega$ is a connection 1-form on $P$ and $D$ is the covariant derivative with respect to the Ehresmann connection associated with $\omega$.
+        \item $\Omega$ is the curvature 2-form on $P$ of $\omega$.
+        \item $H$ is the horizontal bundle of the Ehresmann connection associated with $\omega$.
+        \item $X$ and $Y$ are horizontal vector fields.
+    \end{itemize}
+    Then
+    \[ \Omega(X, Y) = -\omega([X, Y]). \]
+\end{proposition}
+With this proposition we find that the Lie bracket of two horizontal vector fields are not necessarily horizontal, and the curvature tensor is the (minus) vertical part thereof.
+
+\subsection{Local Curvature Form}
+
+\begin{definition}{Local Curvature Form}{local_curvature_form}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\Omega$ is a curvature 2-form on $P$.
+        \item $U\subset M$ is an open set of $M$.
+        \item $\sigma: U \rightarrow \pi^{-1}(U)$ is a local section.
+    \end{itemize}
+    The local curvature form is given by
+    \[ \mathcal{F} = \sigma^* \Omega \in \Omega^2(U, \mathfrak{g}), \]
+    where $\mathfrak{g}$ is the Lie algebra of $G$.
+\end{definition}
+
+\begin{theorem}{Compatibility of Local Curvature}{compatibility_of_local_curvature}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $\Omega$ is a curvature 2-form on $P$.
+        \item $(U_i,\varphi_i)$ and $(U_j,\varphi_j)$ are intersecting two charts of $P$, and $t_{ij}$ is the transition function thereof.
+        \item $\mathcal{F}_i$ and $\mathcal{F}_j$ are local curvature forms of $\Omega$ on $U_i$ and $U_j$, with respect to sections $\sigma_i(x) = \varphi^{-1}_i(x, e)$ and $\sigma_j(x) = \varphi^{-1}_j(x, e)$, respectively.
+    \end{itemize}
+    Then $\mathcal{F}_i$ and $\mathcal{F}_j$ satisfy the following compatibility relation on $U_i \cap U_j$:
+    \[ \mathcal{F}_j\vert_x = \operatorname{Ad}_{t^{-1}_{ij}(x)}(\mathcal{F}_i\vert_x). \]
+\end{theorem}
+
+\begin{theorem}{Cartan's Structure Equation (Local)}{cartans_structure_equation_local}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $U\subset M$ is an open set of $M$.
+        \item $\sigma: U \rightarrow \pi^{-1}(U)$ is a local section.
+        \item $\mathcal{A}$ is the local connection of a connection 1-form $\omega$ with respect to $\sigma$.
+    \end{itemize}
+    The local curvature 2-form of $D\omega$ with respect to $\sigma$ is given by
+    \[ \mathcal{F}(X, Y) = \dd{\mathcal{A}}(X, Y) + [\mathcal{A}(X), \mathcal{A}(Y)]. \]
+\end{theorem}
+
+\section{Connections on Associated Vector Bundles}
+
+\begin{definition}{Covariant Derivative on Associated Vector Bundle}{covariant_derivative_on_associated_vector_bundle}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $E$ is an associated vector bundle of $P$ with respect to a representation $\rho: G\rightarrow \operatorname{Aut}(V)$.
+        \item $H$ is the horizontal bundle of some principal connection of $P$.
+        \item $s: M \rightarrow E$ is a section of $E$.
+        \item $X$ is a vector field on $M$.
+    \end{itemize}
+    Let $\eta: P \rightarrow V$ be the map such that $s(\pi(p)) = [(p, \eta(p))]$ for any $p\in P$.
+    The covariant derivative of $s$ along $X$ is given by
+    \[ (\nabla_X s)\vert_{\pi(p)} = [(p, H_{X,p}[\eta])], \]
+    where $H_{X,p} \in H_p$ is the horizontal vector such that $\pi_*(H_{X,p}) = X\vert_{\pi(p)}$.
+\end{definition}
+
+It's easy to show that the covariant derivative defined above is linear both in $X$ and $s$, and satisfies the Leibniz's rule.
+\begin{proposition}{Properties of Covariant Derivative}{properties_of_covariant_derivative}
+    Let $\nabla$ be the covariant derivative on some associated vector bundle $E$.
+    \begin{align*}
+        \nabla_X(a_1 s_1 + a_2 s_2) &= a_1 \nabla_X s_1 + a_2 \nabla_X s_2; \\
+        \nabla_{(f_1 X_1 + f_2 X_2)} s &= f_1 \nabla_{X_1} s + f_2\nabla_{X_2} s_2; \\
+        \nabla_{X} (fs) &= X[f]s + f\nabla_{X} s.
+    \end{align*}
+\end{proposition}
+
+\subsection{Local Expression for Covariant Derivative}
+
+In the definition above, $\eta$ satisfies
+\[ \eta(pg) = \rho(g^{-1})\eta(p). \]
+It's useful to note how fundamental vector fields act on $\eta$,
+\begin{align}
+    \xi^\sharp[\eta]\vert_p &= \dd_e{(g\mapsto (\eta\circ R_g(p)))}[\xi] \notag \\
+    &= \dd_e{(g\mapsto \rho(g)^{-1})}[\xi] \eta(p) \notag \\
+    \label{eq:fundamental_vector_field_on_associated_vector_field} &= -\dd{\rho}[\xi] \eta(p).
+\end{align}
+Moreover, to give the local expression for covariant derivative we need a local expression for $H_{X,p}$.
+Let $p = \sigma(x)$ be a section and $H_X = H_{X, \sigma(x)}$.
+With $\omega(H_{X,p}) = 0$ we find
+\[ H_{X} = \sigma_* X + \xi^\sharp_X \]
+where
+\[ \xi_X = -\mathcal{A}[X]. \]
+
+\begin{proposition}{Local Expression for Covariant Derivative}{local_expression_for_covariant_derivative}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $E$ is an associated vector bundle of $P$ with respect to a representation $\rho: G\rightarrow \operatorname{Aut}(V)$.
+        \item $H$ is the horizontal bundle of some principal connection $\omega$ of $P$.
+        \item $\nabla$ is the covariant derivative defined by $H$.
+        \item $U\subset M$ is an open set of $M$.
+        \item $\sigma: U \rightarrow \pi^{-1}(U)$ is a local section.
+        \item $\mathcal{A}$ is the local connection form of $\omega$ with respect to $\sigma$.
+        \item $s: M \rightarrow E$ is a section of $E$.
+        \item $X$ is a vector field on $M$.
+    \end{itemize}
+    Let $\eta_0: M \rightarrow V$ be the map such that $s(x) = [(\sigma(x), \eta_0(x))]$ for any $x\in M$.
+    Then the covariant derivative admits the following expression.
+    \[ (\nabla_X s)\vert_{x} = [(\sigma(x), X[\eta_0]\vert_x + \dd{\rho}[\mathcal{A}[X]\vert_x]\eta_0(x))]. \]
+\end{proposition}
+
+\section{Curvature on Associated Vector Bundles}
+
+With \cref{pro:geometric_meaning_of_curvature} and \cref{eq:fundamental_vector_field_on_associated_vector_field} we find the following.
+
+\begin{proposition}{Curvature on Associated Vector Bundle}{curvature_on_associated_vector_bundle}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal bundle.
+        \item $E$ is an associated vector bundle of $P$ with respect to a representation $\rho: G\rightarrow \operatorname{Aut}(V)$.
+        \item $H$ is the horizontal bundle of some principal connection of $P$.
+        \item $\nabla$ is the covariant derivative on $E$ with respect to $H$.
+        \item $s: M \rightarrow E$ is a section of $E$.
+        \item $X$ and $Y$ are a vector fields on $M$.
+    \end{itemize}
+    Let $\eta: P \rightarrow V$ be the map such that $s(\pi(p)) = [(p, \eta(p))]$ for any $p\in P$. Then
+    \begin{gather*}
+        (\nabla_X \nabla_Y - \nabla_Y \nabla_X - \nabla_{[X,Y]})s\vert_{\pi(p)}
+        = [(p, \dd{\rho}[\Omega(H_{X,p}, H_{Y,p})]\eta(p))],
+    \end{gather*}
+    where $H_{X,p} \in H_p$ and $H_{Y,p} \in H_p$ are the horizontal vectors such that $\pi_*(H_{X,p}) = X\vert_{\pi(p)}$ and $\pi_*(H_{Y,p}) = Y\vert_{\pi(p)}$, respectively.
+\end{proposition}
+With the equation above it is obvious that the right-hand side $(\nabla_X \nabla_Y - \nabla_Y \nabla_X - \nabla_{[X,Y]})$ is $C^\infty(M, K)$-linear ($K$ is the field over which $V$ is defined) despite the appearance of derivative operators.
+
+\subsection{Local Expression for Curvature}
+
+\begin{proposition}{Local Expression for Curvature}{local_expression_for_curvature}
+    Input:
+    \begin{itemize}
+        \item $P\xlongrightarrow{\pi} M$ is a principal $G$-bundle over $M$.
+        \item $E$ is an associated vector bundle of $P$ with respect to a representation $\rho: G\rightarrow \operatorname{Aut}(V)$.
+        \item $H$ is the horizontal bundle of some principal connection $\omega$ of $P$.
+        \item $\nabla$ is the covariant derivative defined by $H$.
+        \item $U\subset M$ is an open set of $M$.
+        \item $\sigma: U \rightarrow \pi^{-1}(U)$ is a local section.
+        \item $\mathcal{F}$ is the local curvature form of $\omega$ with respect to $\sigma$.
+        \item $s: M \rightarrow E$ is a section of $E$.
+        \item $X$ and $Y$ are vector fields on $M$.
+    \end{itemize}
+    Let $\eta_0: M \rightarrow V$ be the map such that $s(x) = [(\sigma(x), \eta_0(x))]$ for any $x\in M$.
+    Then the curvature admits the following expression.
+    \[ (\nabla_X \nabla_Y - \nabla_Y \nabla_X - \nabla_{[X,Y]})s\vert_x = [(p, \dd{\rho}[\mathcal{F}(X, Y)\vert_x]\eta_0(x))]. \]
+\end{proposition}
+
+\subsection{Remark: Bianchi Identity in Riemannian Geometry}
+
+Let $X,Y,Z$ denote horizontal vector fields.
+With \cref{thm:bianchi_identity} and $\omega(H) = 0$, we find
+\begin{align*}
+    0 = \dd{\Omega}(X,Y,Z) &= X[\Omega(Y,Z)] + Y[\Omega(Z,X)] + Z[\Omega(X,Y)] \\
+    &\phantom{{}={}} {} - \Omega([Y,Z],X) - \Omega([Z,X],Y) - \Omega([X,Y],Z).
+\end{align*}
+Applying this to \cref{pro:curvature_on_associated_vector_bundle} and with Leibniz's rule, and noticing that
+\[ R([X,Y],Z) + \text{cycle} = R(\nabla_X Y, Z) + R(Z, \nabla_Y X) + \text{cycle} \]
+in torsion-free cases, we obtain the Bianchi identity in Riemannian geometry:
+\[ (\nabla_X R)(Y,Z) + (\nabla_Y R)(Z,X) + (\nabla_Z R)(X,Y) = 0. \]
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}
