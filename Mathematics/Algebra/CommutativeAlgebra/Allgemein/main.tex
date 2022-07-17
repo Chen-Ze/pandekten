@@ -427,6 +427,30 @@ $\operatorname{Ann}(m)$ and $\operatorname{Ann}(M)$ are ideals.
     \end{center}
 \end{proposition}
 
+\begin{theorem}{Free Submodule over PID}{free_submodule_over_pid}
+    Input:
+    \begin{itemize}
+        \item $R$ is a PID.
+        \item $E$ is a free $R$-module.
+        \item $\Set*{e_\lambda}{\lambda\in\Lambda}$ is a free basis.
+        \item $F$ is a submodule of $E$.
+    \end{itemize}
+    Then
+    \begin{itemize}
+        \item $F$ is free, and
+        \item $F$ has a basis indexed by a subset of $\Lambda$.
+    \end{itemize}
+\end{theorem}
+
+\begin{counterexample}{Module Product Scaled by Ideal}{module_product_scaled_by_ideal}
+    Let $\Set*{M_\lambda}{\lambda\in\Lambda}$ be modules over $R$ and $I\subset R$ be an ideal thereof.
+    Although
+    \[ I\qty(\prod_\lambda M_\lambda) \subset \prod_\lambda \qty(I M_\lambda) \]
+    always holds, the reverse
+    \[ I\qty(\prod_\lambda M_\lambda) \supset \prod_\lambda \qty(I M_\lambda) \in \]
+    may fail unless $I$ is finitely generated.
+\end{counterexample}
+
 \section*{Miscellany}
 
 The following chain of inclusion holds.
