@@ -62,6 +62,52 @@ and $\mathcal{D}{\overline{\eta}} \mathcal{D}{\eta}$ for $\mathcal{D}\overline{\
 
 The generating functional may be regarded as the Fourier transform of $e^{iS}$.
 
+\begin{definition}{Expectation Value via Generating Functional}{expectation_value_via_generating_functional}
+    Input:
+    \begin{itemize}[nosep]
+        \item $M = \mathbb{R}^{d}$ is the spacetime.
+        \item $S[\varphi_1, \cdots, \varphi_m, \overline{\psi}_1,\psi_1,\cdots,\overline{\psi}_n,\psi_n]$ is the action, where
+        \begin{itemize}[nosep]
+            \item $\varphi_i: M \rightarrow \mathbb{R}$ for $i = 1,\cdots,m$.
+            \item $\psi_i: M \rightarrow$ $\mathbb{C}$ or Grassmann numbers for $i = 1,\cdots, n$.
+        \end{itemize}
+        \item $J_i: M \rightarrow \mathbb{R}$ for $i = 1,\cdots,m$.
+        \item $\eta_i: M \rightarrow$ $\mathbb{C}$ or Grassmann numbers for $i = 1,\cdots, n$, with codomain identical to $\psi_i$ for $S$.
+        \item $C[\varphi_1, \cdots, \varphi_m, \overline{\psi}_1,\psi_1,\cdots,\overline{\psi}_n,\psi_n]$ is any functional.
+    \end{itemize}
+    The expectation value of $C$ is given by
+    \begin{align*}
+        \langle C \rangle &= \int \mathcal{D}\varphi_1 \cdots \mathcal{D}\varphi_m \mathcal{D} \overline{\psi}_1 \mathcal{D}\psi_1 \cdots \mathcal{D}\overline{\psi}_n \mathcal{D}\psi_n \\
+        &\phantom{{}={}\int} C[\varphi_1, \cdots, \varphi_m, \overline{\psi}_1,\psi_1,\cdots,\overline{\psi}_n,\psi_n] \\
+        &\phantom{{}={}\int} \exp\Bigg\{iS[\varphi_1, \cdots, \varphi_m, \overline{\psi}_1,\psi_1,\cdots,\overline{\psi}_n,\psi_n] \Bigg\}.
+    \end{align*}
+    The expectation value of $C$ under nonzero source is given by
+    \begin{align*}
+        &{\phantom{{}={}}} \langle C \rangle_{J_1,\cdots,J_m,\eta_1,\cdots,\eta_n} \\
+        &= \int \mathcal{D}\varphi_1 \cdots \mathcal{D}\varphi_m \mathcal{D} \overline{\psi}_1 \mathcal{D}\psi_1 \cdots \mathcal{D}\overline{\psi}_n \mathcal{D}\psi_n \\
+        &\phantom{{}={}\int} C[\varphi_1, \cdots, \varphi_m, \overline{\psi}_1,\psi_1,\cdots,\overline{\psi}_n,\psi_n] \\
+        &\phantom{{}={}\int} \exp\Bigg\{i\bigg[S[\varphi_1, \cdots, \varphi_m, \overline{\psi}_1,\psi_1,\cdots,\overline{\psi}_n,\psi_n] {}+{} \\
+        &\phantom{{}={}\int }\int_M \dd{^d x} \qty(\sum_{i=1}^mJ_i(x)\varphi_i(x) + \sum_{i=1}^n \qty(\overline{\eta}_i(x)\psi_i(x) + \overline{\psi}_i(x)\eta(x))) \bigg]\Bigg\}.
+    \end{align*}
+\end{definition}
+
+\begin{definition}{Connected Correlation}{connected_correlation}
+    Input:
+    \begin{itemize}[nosep]
+        \item $M = \mathbb{R}^{d}$ is the spacetime.
+        \item $S[\varphi_1, \cdots, \varphi_m, \overline{\psi}_1,\psi_1,\cdots,\overline{\psi}_n,\psi_n]$ is the action, where
+        \begin{itemize}[nosep]
+            \item $\varphi_i: M \rightarrow \mathbb{R}$ for $i = 1,\cdots,m$.
+            \item $\psi_i: M \rightarrow$ $\mathbb{C}$ or Grassmann numbers for $i = 1,\cdots, n$.
+        \end{itemize}
+        \item $C_i[\varphi_1, \cdots, \varphi_m, \overline{\psi}_1,\psi_1,\cdots,\overline{\psi}_n,\psi_n]$ is any functional for $1\le i \le N$.
+        \item $\langle \cdots \rangle$ is an expectation value via generating functional for a zero or nonzero source.
+    \end{itemize}
+    The connected correlation is defined by
+    \[ \langle C_1, \cdots, C_N \rangle_{\mathrm{c}} = \kappa(C_1,\cdots,C_N) \]
+    where $\kappa$ is the \href{https://en.wikipedia.org/wiki/Cumulant#Joint_cumulants}{joint cumulant}, and the expected value $\operatorname{E}({\cdots})$ thereof is given by the expectation value via generating functional $\langle {\cdots} \rangle$.
+\end{definition}
+
 \subsection{Evaluating Functional Integrals}
 
 Some tricks are useful for evaluating functional integrals.

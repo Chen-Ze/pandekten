@@ -1,0 +1,187 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Symmetry}
+\author{Ch\=an Taku}
+
+\externaldocument[All-]{../Allgemein/main}
+
+\begin{document}
+
+\maketitle
+
+\section{Quantum Effective Action of Scalar Field}
+
+\begin{warning}
+    Rewrite this section for multiple scalar fields.
+\end{warning}
+
+\subsection{Quantum Effective Action as Legendre Transformation}
+
+\begin{definition}{Free Energy}{free_energy}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{L}$ is an Lagrangian for a single real scalar field $\phi: \mathbb{R}^d \rightarrow \mathbb{R}$.
+    \end{itemize}
+    Define the action
+    \[ S[\phi] = \int \dd{^d x} \mathcal{L}(x)[\phi]. \]
+    The free energy $E$ is defined by
+    \[ e^{-i E[J]} = Z[J], \]
+    where $J:\mathbb{R}^d \rightarrow \mathbb{R}$ and $Z$ is the generating functional for $S$.
+\end{definition}
+
+\begin{definition}{Classical Field}{classical_field}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{L}$ is an Lagrangian for a single real scalar field $\phi: \mathbb{R}^d \rightarrow \mathbb{R}$.
+    \end{itemize}
+    For each $J_0: \mathbb{R}^d \rightarrow \mathbb{R}$, the classical field $\phi_{\mathrm{cl}}[J_0]: \mathbb{R}^d \rightarrow \mathbb{R}$ is given by
+    \[ \phi_{\mathrm{cl}}(x)[J_0] = -\eval{\frac{\delta E[J]}{\delta J(x)}}_{J=J_0}, \]
+    where $E$ is the free energy for $\mathcal{L}$.
+\end{definition}
+
+\begin{definition}{Source}{source}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{L}$ is an Lagrangian for a single real scalar field $\phi: \mathbb{R}^d \rightarrow \mathbb{R}$.
+    \end{itemize}
+    For each $\phi_0: \mathbb{R}^d \rightarrow \mathbb{R}$, the source $J_{\mathrm{src}}[\phi_0]: \mathbb{R}^d \rightarrow \mathbb{R}$ is the solution to
+    \[ \phi_{\mathrm{cl}}[J_{\mathrm{src}}[\phi_0]] = \phi_0, \]
+    where $\phi_{\mathrm{cl}}$ is the classical field for $\mathcal{L}$.
+\end{definition}
+
+The solution $J_{\mathrm{src}}$ may not be unique, but let's pretend it is.
+
+\begin{definition}{Quantum Effective Action}{quantum_effective_action}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{L}$ is an Lagrangian for a single real scalar field $\phi: \mathbb{R}^d \rightarrow \mathbb{R}$.
+    \end{itemize}
+    For each $\phi_0: \mathbb{R}^d \rightarrow \mathbb{R}$, the quantum effective action $\Gamma[\phi_0]$ is given by
+    \[ \Gamma[\phi_0] = -E[J_{\mathrm{src}}[\phi_0]] - \int \dd{^d y} J(y) \phi_{0}(y), \]
+    where $E$ and $J_{\mathrm{src}}$ are the free energy and source for $\mathcal{L}$, respestively.
+\end{definition}
+
+\begin{theorem}{Quantum Effective Action is Gibbs}{quantum_effective_action_is_gibbs}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{L}$ is an Lagrangian for a single real scalar field $\phi: \mathbb{R}^d \rightarrow \mathbb{R}$.
+    \end{itemize}
+    For each $\phi_0: \mathbb{R}^d \rightarrow \mathbb{R}$,
+    \[ \eval{\frac{\delta \Gamma[\phi]}{\delta \phi(x)}}_{\phi = \phi_0} = -J_{\mathrm{src}}(x)[\phi_0], \]
+    where $\Gamma$ and $J_{\mathrm{src}}$ are the free energy and source for $\mathcal{L}$, respestively.
+\end{theorem}
+
+\begin{corollary}{Ground State Minimizes Quantum Effective Action}{ground_state_minimizes_quantum_effective_action}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{L}$ is an Lagrangian for a single real scalar field $\phi: \mathbb{R}^d \rightarrow \mathbb{R}$.
+    \end{itemize}
+    Define the action
+    \[ S[\phi] = \int \dd{^d x} \mathcal{L}(x)[\phi]. \]
+    Then
+    \[ \eval{\frac{\delta \Gamma[\phi]}{\delta \phi}}_{\phi = \phi_0} = 0, \]
+    where
+    \[ \phi_0(x) = \langle C(x) \rangle, \]
+    where $\Gamma$ is the quantum effective action for $\mathcal{L}$, $\langle \cdots \rangle$ is the expectation value via generating functional for $S$, and $C(x)[\phi] = \phi(x)$.
+\end{corollary}
+
+\subsection{Computation of Effective Action}
+
+\begin{theorem}{Computation of Effective Action}{computation_of_effective_action}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{L}$ is an Lagrangian for a single real scalar field $\phi: \mathbb{R}^d \rightarrow \mathbb{R}$.
+        \item $\mathcal{L}$ is decomposed into
+        \[ \mathcal{L} = \mathcal{L}_1 + \delta \mathcal{L}. \]
+    \end{itemize}
+    Then the quantum effective action for $\mathcal{L}$ is given by
+    \begin{align*}
+        \Gamma[\phi_{0}] &= \int \dd{^d x} \mathcal{L}_1[\phi_{0}] + \frac{i}{2} \log \det \qty[\eval{-\frac{\delta^2 \mathcal{L}_1[\phi]}{\delta \phi \delta \phi}}_{\phi=\phi_0}] \\
+        &{\phantom{{}={}}} - i\cdot(\text{connected diagrams}) + \int \dd{^d x} \delta\mathcal{L}[\phi_{0}],
+    \end{align*}
+    where
+    \begin{itemize}
+        \item $\displaystyle \eval{\frac{\delta^2 \mathcal{L}_1[\phi]}{\delta \phi \delta \phi}}_{\phi=\phi_0}$ stands for the operator
+        \[ \eval{\frac{\delta^2 \mathcal{L}_1[\phi]}{\delta \phi \delta \phi}}_{\phi=\phi_0}(\phi_1)(y) = \int \dd{^d x} \eval{\frac{\delta^2 \mathcal{L}_1[\phi]}{\delta \phi(y) \delta \phi(x)}}_{\phi=\phi_0}(\phi_1)(y); \]
+        \item the $(\text{connected diagrams})$ consists of bubble diagrams where the coupling constants are of the order of the coefficients of $\delta \mathcal{L}$.
+    \end{itemize}
+\end{theorem}
+
+Although the decomposition of $\mathcal{L}$ is arbitrary, usually $\delta \mathcal{L}$ consists of the counter terms, so that the contribution from connected diagrams are of higher order.
+
+\begin{example}{Linear Sigma Model}{linear_sigma_model}
+    Let
+    \[ \mathcal{L}_1[\phi] = \sum_{1\le i \le N} \frac{1}{2}\qty(\partial_\mu \phi^i)^2 + \sum_{1\le i \le N} \frac{1}{2} \mu^2 \qty(\phi^i)^2 - \frac{\lambda}{4}\qty[\sum_{1\le i \le N} \qty(\phi^i)^2]^2, \]
+    and
+    \[ \delta\mathcal{L}[\phi] = \sum_{1\le i \le N} \frac{1}{2}\delta_Z \qty(\partial_\mu \phi^i)^2 - \sum_{1\le i \le N} \frac{1}{2}\delta_\mu\qty(\phi^i)^2 - \frac{\delta_\lambda}{4}\qty[\sum_{1\le i \le N} \qty(\phi^i)^2]^2, \]
+    where $\phi$ is short for the components $\qty{\phi^i}$. The total Lagrangian is given by
+    \[ \mathcal{L} = \mathcal{L}_1 + \delta \mathcal{L}. \]
+    The bilinear operator is given by
+    \begin{align*}
+        \frac{\delta^2 \mathcal{L}}{\delta \phi^i(x) \delta \phi^j (y)} &= -\partial^2 \qty(\delta^{ij}\delta(x-y)) + \mu^2 \delta^{ij} \delta(x-y) \\
+        &{\phantom{{}={}}} - \lambda\qty[\delta^{ij} \sum_{1\le k \le N} \qty(\phi^k_0)^2 + 2\phi_0^i(x)\phi_0^j(y)\delta(x-y)].
+    \end{align*}
+    For spacetime of volume $VT$, and for const
+    \[ \phi_0 = (0,\cdots,0,\phi_N), \]
+    the quantum effective action is given by
+    \[ \Gamma[\phi_0] = VT V_{\mathrm{eff}}(\phi_N) \]
+    where $V_{\mathrm{eff}}$ is the effective potential given by
+    \begin{align*}
+        V_{\mathrm{eff}}(\phi_N) &= -\frac{1}{2} \mu^2 \phi^2_N + \frac{\lambda}{4} \phi^2_N \\
+        &{\phantom{{}={}}} -\frac{1}{2} \frac{\Gamma(-d/2)}{(4\pi)^{d/2}}\qty[(N-1)(\lambda \phi^2_N - \mu^2)^{d/2} + (3\lambda \phi^2_N - \mu^2)^{d/2}] \\
+        &{\phantom{{}={}}} + \frac{1}{2}\delta_\mu \phi^2_N + \frac{1}{4} \delta_\lambda \phi^4_N.
+    \end{align*}
+    Parameters $\delta_\mu$ and $\delta_\lambda$ may be adjusted to accomodate renormalization conditions.
+\end{example}
+
+\subsection{Generating Functionals for Correlation Functions}
+
+\begin{theorem}{Free Energy Generates Connected Correlation}{free_energy_generates_connected_correlation}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{L}$ is an Lagrangian for a single real scalar field $\phi: \mathbb{R}^d \rightarrow \mathbb{R}$.
+        \item $J_0: \mathbb{R}^{d} \rightarrow \mathbb{R}$.
+    \end{itemize}
+    The functional derivates of the free energy $E$ for $\mathcal{L}$ are the connected correlations, i.e.
+    \[ \eval{\frac{\delta^n E[J]}{\delta J(x_1) \cdots \delta J(x_n)}}_{J=J_0} = (i)^{n+1} \langle C(x_1), \cdots, C(x_n) \rangle_{J_0,\mathrm{c}}, \]
+    where $\langle {\cdots} \rangle_{J_0,\mathrm{c}}$ is the connected correlation defined by \cref{All-def:connected_correlation} for $\mathcal{L}$ under source $J$, and
+    \[ C(x)[\phi] = \phi(x). \]
+\end{theorem}
+
+\begin{theorem}{Quantum Effective Action Generates Inverse Propagator}{quantum_effective_action_generates_inverse_propagator}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{L}$ is an Lagrangian for a single real scalar field $\phi: \mathbb{R}^d \rightarrow \mathbb{R}$.
+        \item $\phi_0: \mathbb{R}^{d} \rightarrow \mathbb{R}$.
+    \end{itemize}
+    The second functional derivative of the quantum effective action $\Gamma$ is given by
+    \[ \eval{\frac{\delta^2 \Gamma[\phi]}{\delta \phi(x) \delta \phi(y)}}_{\phi = \phi_0} = iD^{-1}_{J_{\mathrm{src}}[\phi_0]}(x, y), \]
+    where $J_{\mathrm{src}}$ is the source for $\mathcal{L}$, $D^{-1}(x,y)$ denotes the inverse such that
+    \[ F[\phi](x) = \int \dd{^d y} D(x, y)\phi(y) \]
+    and
+    \[ G[\phi](x) = \int \dd{^d y} D^{-1}(x, y)\phi(y) \]
+    are inversion of each other,
+    and
+    \[ D_J(x,y) = \langle C(x) C(y) \rangle_{J,\mathrm{c}}, \]
+    where $\langle {\cdots} \rangle_{J_0,\mathrm{c}}$ is the connected correlation defined by \cref{All-def:connected_correlation} for $\mathcal{L}$ under source $J$, and
+    \[ C(x)[\phi] = \phi(x). \]
+\end{theorem}
+
+Although $D^{-1}(x,y)$ is not the numerical inverse of $D(x,y)$, in the momentum space we have
+\[ \tilde{D}^{-1}(p) = \frac{1}{\tilde{D}(p)}. \]
+\par
+We state here the following result, and we are currently unable to accomodate it in our current formulation.
+\[ \eval{\frac{\delta \Gamma[\phi]}{\delta\phi(x_1)\cdots \delta\phi(x_n)}}_{\phi=\phi_{\mathrm{cl}[0]}} = -i\langle \phi(x_1) \cdots \phi(x_n) \rangle_{\mathrm{1PI}}. \]
+
+\begin{example}{Gibbs Free Energy as Quantum Effective Action}{gibbs_free_energy_as_gibbs_free_energy}
+    Let $G[M]$ denote the Gibbs free energy for configuration $M$.
+    From \cref{thm:quantum_effective_action_generates_inverse_propagator} we find
+    \[ \eval{\frac{\delta^2 G[M]}{\delta M(x) \delta M(y)}}_{M=\langle M \rangle} = \langle M(x) M(y) \rangle - \langle M \rangle^2. \]
+\end{example}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

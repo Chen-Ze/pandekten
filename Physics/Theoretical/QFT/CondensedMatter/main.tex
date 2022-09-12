@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Condensed Matter}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Green's Function and Matsubara Function}
+
+\begin{example}{Josephson Contact}{josephson_contact}
+    Let the action be given by
+    \[ S[\theta] = \int_0^\beta \dd{\tau} \qty{ \frac{C}{2}\qty(\pdv{\theta_i}{\tau})^2 - J \sum_{\langle i,j \rangle} \cos(\theta_i - \theta_j) }, \]
+    where
+    \[ \theta: [0,\beta] \times \mathbb{Z}^d \rightarrow \mathbb{R} \]
+    is the field on a cubic lattice. To the lowest order we have
+    \[ S[\theta] = \int_0^\beta \dd{\tau} \qty{ \frac{C}{2}\qty(\pdv{\theta_i}{\tau})^2 + \frac{J}{2} \sum_{\langle i,j \rangle} (\theta_i - \theta_j)^2 }. \]
+    The Matsubara function is given by
+    \[ \mathcal{G}(\omega_n, \vb{k}) = \frac{1}{C(\omega_n^2 + \omega_{\vb{k}}^2)}, \]
+    where the dispersion is given by
+    \[ \omega_{\vb{k}} = \sqrt{\frac{2J}{C} \sum_{i=1}^d \qty(1 - \cos (k_l a))}, \]
+    where $a$ is the lattice constant.
+    A factor of $2$ is dropped in the Matsubara function since $\theta$ is a real scalar field.
+    The correlation function is given by
+    \[ \mathcal{G}(\tau, \vb{r}) = \frac{a^d}{\beta} \sum_{\omega_n} \int \frac{\dd{^d \vb{k}}}{(2\pi)^d} \frac{1}{C(\omega_n^2 + \omega_{\vb{k}}^2)} \cdot e^{i \omega_n \tau + i \vb{k} \cdot \vb{r}}, \]
+    where $\omega_n$ is the Matsubara frequency given by
+    \[ \omega_n = \frac{2\pi n}{\beta}, \]
+    where $n\in \mathbb{Z}$.
+    Putting $\tau = 0^+$ we find
+    \[ \langle \theta_i \theta_j \rangle - \langle \theta_i \rangle \langle \theta_j \rangle = \frac{a^d}{C} \int \frac{\dd{^d \vb{k}}}{(2\pi)^d} \frac{1}{\omega_{\vb{k}}}\qty[n_{\mathrm{B}}(\omega_{\vb{k}}) + \frac{1}{2}] e^{i\vb{k}\cdot \vb{r_{ij}}}, \]
+    where
+    \[ n_{\mathrm{B}}(E) = \frac{1}{e^{\beta E} - 1}. \]
+    The expression may be simplified in higher dimensions in different limits of $T$, and with $\omega_{\vb{k}} \sim \abs{\vb{k}}$.
+    \begin{itemize}
+        \item Zero temperature:
+        \[ \langle \theta_i \theta_j \rangle - \langle \theta_i \rangle \langle \theta_j \rangle \sim \int \dd{^d \vb{k}} \frac{e^{i \vb{k}\cdot \vb{r}_{ij}}}{\abs{\vb{k}}}. \]
+        \item Finite temperature:
+        \[ \langle \theta_i \theta_j \rangle - \langle \theta_i \rangle \langle \theta_j \rangle \sim \int \dd{^d \vb{k}} \frac{T\cdot e^{i \vb{k}\cdot \vb{r}_{ij}}}{\abs{\vb{k}}^2}. \]
+    \end{itemize}
+    To obtain the correlation function of the spins, we expand the $\cos$ using the cumulant up to $\kappa_2$ and find
+    \[ \langle \cos(\theta_i - \theta_j) \rangle \sim \exp\qty[-\frac{1}{2}\langle \qty(\theta_i - \theta_j)^2 \rangle], \]
+    whence the decay law.
+    In particular, at $d=2$ the correlation follows the power law
+    \[ \langle \cos(\theta_i - \theta_j) \rangle \sim \abs{\vb{r}_{ij}}^{-\eta T}. \]
+\end{example}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

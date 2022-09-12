@@ -1,0 +1,36 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{QuantumAlgorithm}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Deutsch Algorithm}
+
+Let $\mathcal{H} = \mathbb{C}^2$, and $f: \mathcal{H} \rightarrow \qty{0,1}$.
+Let $G: \mathcal{H}\otimes \mathbb{C}^2 \rightarrow \mathcal{H}\otimes \mathbb{C}^2 $ be the gate such that
+\[ \begin{pmatrix}
+    \ket{x} \\ \ket{y}
+\end{pmatrix} \xrightarrow{G} \begin{pmatrix}
+    \ket{x} \\
+    \ket{y \oplus f(x)}
+\end{pmatrix} \]
+for $\ket{y} = \ket{0}$ or $\ket{1}$.
+For the input
+\[ \ket{x} = \frac{1}{\sqrt{2}} \qty(\ket{0} + \ket{1}), \]
+and
+\[ \ket{y} = \frac{1}{\sqrt{2}} \qty(\ket{0} - \ket{1}), \]
+the output is given by
+\[ \frac{1}{2} \begin{cases}
+    \qty(\ket{0} + \ket{1})\qty(\ket{0} - \ket{1}),\quad \text{if } f(0) = f(1), \\
+    \qty(\ket{0} - \ket{1})\qty(\ket{0} - \ket{1}),\quad \text{if } f(0) \neq f(1).
+\end{cases} \]
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

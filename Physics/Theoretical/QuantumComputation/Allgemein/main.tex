@@ -1,0 +1,57 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Quantum Mechanics}
+
+\subsection{Coherence}
+
+\begin{definition}{Coherence Time}{coherence_time}
+    The coherence time is given by
+    \[ \tau \sim \frac{\hbar}{\Delta E} \]
+    where $\Delta E$ is the uncertainty or fluctuation of energy.
+\end{definition}
+
+\section{Universal Gates}
+
+\begin{theorem}{Decomposition of Unitary Operations}{decomposition_of_unitary_operations}
+    Let $U \in \operatorname{U}\qty(\qty(\mathbb{C}^2)^{\otimes N})$.
+    Then $U$ may be decomposed as
+    \[ U = U_n \cdots U_1 \]
+    where each $U_i$ is either a 1-bit gate or 2-bit gate,
+    where a 1-bit gate $V$ is a unitary operator of the of the form
+    \[ V = \sum_\mu c_\mu \sigma_0^{\otimes N_1} \otimes \sigma_\mu \otimes \sigma_0^{\otimes N-N_1-1}, \]
+    and a 2-bit gate $V$ is a unitary operator of the form
+    \[ V = \sum_{\mu,\nu} c_{\mu\nu} \sigma_0^{\otimes N_1} \otimes \sigma_{\mu} \otimes \sigma_0^{\otimes N_2} \otimes \sigma_{\nu} \otimes \sigma_0^{\otimes N - N_1 - N_2 - 2}. \]
+\end{theorem}
+
+\begin{theorem}{Hadamard Gate}{hadamard_gate}
+    The Hadamard gate acts on $\mathbb{C}^2$ as the matrix
+    \[ H = \begin{pmatrix}
+        1 & 1 \\ 1 & -1
+    \end{pmatrix}. \]
+\end{theorem}
+
+\begin{theorem}{T-Gate}{t-gate}
+    The T-gate acts on $\mathbb{C}^2$ as the matrix
+    \[ H = \begin{pmatrix}
+        1 & \\ & e^{i\pi/4}
+    \end{pmatrix}. \]
+\end{theorem}
+
+\begin{theorem}{CNOT-Gate}{cnot-gate}
+    The CNOT-gate acts on $\mathbb{C}^2 \otimes \mathbb{C}^2$ as
+    \[ \ket{0}\bra{0} \otimes \sigma_0 + \ket{1}\bra{1} \otimes \sigma_1. \]
+\end{theorem}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

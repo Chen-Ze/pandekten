@@ -39,6 +39,33 @@
     \[ X^\sharp_p = \dd_e A_p(X). \]
 \end{definition}
 
+\section{Haar Measure}
+
+\begin{definition}{Left (Right) Invariant Measure}{left_right_invariant_measure}
+    Let $G$ be an $n$-dimensional Lie group, and $\Omega$ be a volume form on $G$.
+    $\Omega$ is called a left (right) invariant measure if
+    \[ L_g^* \Omega = \Omega \quad (R_g^* \Omega = \Omega) \]
+    for all $g\in G$.
+\end{definition}
+
+\begin{theorem}{Construction of Left (Right) Invariant Measure}{constrcution_of_left_right_invariant_measure}
+    Let $G$ be an $n$-dimensional Lie group.
+    Define $\omega^\alpha(g_0)\in \Omega^1(G)$ for all $g_0\in G$ by
+    \[ \eval{\dd_g(g_0^{-1}g)}_{g = g_0} = \sum_{\alpha} X_\alpha \omega^\alpha(g_0) \quad \qty(\eval{\dd_g(g g_0^{-1})}_{g = g_0} = \sum_{\alpha} X_\alpha \omega^\alpha(g_0)), \]
+    where $\Set*{X^\alpha}{\alpha}$ is a basis of the Lie algebra of $G$.
+    Then
+    \[ \Omega = \bigwedge_{\alpha} \omega^\alpha \]
+    is an left (right) invariant measure on $G$.
+\end{theorem}
+
+In particular, we may let $\xi: U\subset G \rightarrow \mathbb{R}^n$ be a chart.
+Then
+\[ \eval{\Omega}_U = \xi^*(\rho), \]
+where
+\[ \rho = (\det A) \dd \xi^1 \wedge \cdots \wedge \dd \xi^n \]
+and the $n\times n$ matrix $A$ is given by
+\[ \eval{\omega^\alpha}_U(g) = \xi^*\qty(\sum_{i=1}^n A^\alpha_i(\xi(g)) \dd{\xi^i}). \]
+
 % \bibliographystyle{plain}
 % \bibliography{main}
 

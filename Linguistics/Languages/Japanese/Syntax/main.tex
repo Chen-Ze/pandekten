@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\usepackage{xeCJK}
+\setCJKmainfont{Hiragino Mincho ProN}
+
+\usepackage{ruby}
+\renewcommand\rubysep{0em}
+
+\usepackage{pandekten}
+
+\title{Syntax}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Clauses}
+
+\subsection{Content Clause}
+
+\begin{definition}{こと-Clause}{koto_clause}
+    A こと-clause is a \href{https://en.wikipedia.org/wiki/Content_clause}{content clause}, possibly a \href{https://en.wikipedia.org/wiki/Non-finite_clause}{non-finite clause}, of the form
+    \begin{center}
+        \texttt{clause + こと,}
+    \end{center}
+    where \texttt{clause} ends with the 終止形 of plain form.
+\end{definition}
+
+\begin{definition}{の-Clause}{no_clause}
+    A の-clause is a \href{https://en.wikipedia.org/wiki/Content_clause}{content clause}, possibly a \href{https://en.wikipedia.org/wiki/Non-finite_clause}{non-finite clause}, of the form
+    \begin{center}
+        \texttt{clause + の,}
+    \end{center}
+    where \texttt{clause} ends with the 終止形 of plain form.
+\end{definition}
+
+\begin{proposition}{こと-Only Cases}{koto_only_cases}
+    の-clause should not be used in the following case.
+    \begin{itemize}
+        \item Used as argument of a predicate that is \href{https://www.wasabi-jpn.com/japanese-grammar/nominalizers-koto-and-no/}{related to communication or internal thoughts}.
+    \end{itemize}
+\end{proposition}
+
+\begin{example}{こと-Only Cases}{koto_only_cases}
+    \begin{itemize}
+        \item 先生に学校を休む{\color{cyan}こと}を伝える.
+        \item 世界が平和である{\color{cyan}こと}を願います.
+    \end{itemize}
+\end{example}
+
+\begin{counterexample}{のだ-Clauses}{noda_clauses}
+    の-clause before だ or です implies that it is an \href{https://japanese.stackexchange.com/questions/5398/what-is-the-meaning-of-%EF%BD%9E%E3%82%93%E3%81%A7%E3%81%99-%EF%BD%9E%E3%81%AE%E3%81%A0-etc}{explanation to some previous context}.
+    \begin{itemize}
+        \item 今日は出かけられない. 宿題がたくさんある{\color{cyan}の}です.
+    \end{itemize}
+\end{counterexample}
+
+\begin{proposition}{の-Only Cases}{no_only_cases}
+    こと-clause should not be used in the following case.
+    \begin{itemize}
+        \item Used as argument of a predicate that is \href{https://www.wasabi-jpn.com/japanese-grammar/nominalizers-koto-and-no/}{a perception verb}, e.g. 見る and 聞く.
+        \item Used as argument of a predicate that is \href{https://www.wasabi-jpn.com/japanese-grammar/nominalizers-koto-and-no/}{\ruby{止}{と}める or \ruby{止}{や}める}.
+        \item Used as argument of a predicate that is \href{https://www.wasabi-jpn.com/japanese-grammar/nominalizers-koto-and-no/}{an action which should be done while observing people's situations}, e.g. 手伝う and 待つ.
+    \end{itemize}
+\end{proposition}
+
+\begin{example}{の-Only Cases}{no_only_cases}
+    \begin{itemize}
+        \item お父さんが話す{\color{cyan}の}を聞く.
+        \item 子供が走る{\color{cyan}の}を見る.
+        \item タバコを吸う{\color{cyan}の}を止める.
+        \item 日本語を勉強する{\color{cyan}の}を手伝う.
+    \end{itemize}
+\end{example}
+
+\subsection{Relative Clause}
+
+\begin{counterexample}{Ambiguous Relative Clause}{ambiguous_relative_clause}
+    See \href{https://en.wikipedia.org/wiki/Relative_clause#Japanese}{Relative Clause}.
+    \begin{center}
+        僕が記事を書いたレストラン
+    \end{center}
+    may refer to
+    \begin{itemize}
+        \item a restaurant about which I wrote an article; or
+        \item a restaurant in which I wrote an article.
+    \end{itemize}
+\end{counterexample}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}
