@@ -1,0 +1,73 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+
+\section{Miscellany}
+
+\subsection{Homeomorphism and Diffeomorphism}
+
+\begin{theorem}{Homeomorphic Manifold Admits Diffeomorphism}{homeomorphic_manifold_admits_diffeomorphism}
+    Let $M$ be a smooth manifold, $N$ be a topological space and $f:M\rightarrow N$ be a homeomorphism.
+    Then there is a smooth structure on $N$ such that $f$ becomes a diffeomorphism.
+\end{theorem}
+
+A proof may be found in \href{https://math.stackexchange.com/questions/762585/are-homeomorphic-differentiable-manifolds-actually-diffeomorphic}{Are homeomorphic differentiable manifolds actually diffeomorphic?}
+Diffeomorphism depends on the smooth structure on both manifolds.
+Therefore, homeomorphic manifolds are not necessarily diffeomorphic.
+
+\subsection{Visualization of Manifolds}
+
+\subsubsection{Visualization of Spheres}
+
+\begin{example}{Visualization of $S^3$}{visualization_of_s_3}
+    $S^3$ may be identified with
+    \[ \Set{(z^1,z^2)}{\abs{z^1}^2 + \abs{z^2}^2 = 1} \]
+    and therefore be parameterized by
+    \begin{align*}
+        z^1 &= \cos \frac{\phi}{2} e^{i\xi_1}, \\
+        z^2 &= \sin \frac{\phi}{2} e^{i\xi_2},
+    \end{align*}
+    where
+    \[ 0 \le \frac{\phi}{2} \le \frac{\pi}{2}. \]
+    The parameterization is visualized as the following.
+    \begin{enumerate}
+        \item $\phi/2 = 0$ is a circle in the plane $z=0$ in $\mathbb{R}^3 \cup \qty{\infty}$.
+        \item $\phi/2 = \pi/4$ is a torus that encircles the above circle.
+        The torus grows larger as $\phi$ increases.
+        \item $\phi/2 = \pi/2$ is the largest torus which is identified with the line through infinity $\Set*{(0,0,z)}{z\in\mathbb{R}}\cup\qty{\infty}$.
+    \end{enumerate}
+    $\phi$ stands for the radius of the torus, and $(\xi_1,\xi_2)$ for the latitude and longitude of a torus.
+\end{example}
+
+\begin{example}{$S^3$ as a Principal $\operatorname{U}(1)$-bundle over $S^2$}{s_3_as_a_principal_u_1_bundle_over_s_2}
+    Let $(z^1,z^2)$ be the parameterization given as in \cref{ex:visualization_of_s_3}.
+    The right action of $g\in\operatorname{U}(1)$ on $S^3$ is given by
+    \[ (z^1,z^2) g = (z^1 g, z^2 g). \]
+    The quotient $S^3/\sim$ with respect to this action is $S^2$.
+    Let $\mathcal{P}: S^3\rightarrow S^2$ be this projection, then $S^3 \xrightarrow{\mathcal{P}} S^2$ is a principal $\operatorname{U}(1)$-bundle.
+\end{example}
+
+\subsubsection{Visualization of Groups}
+
+\begin{example}{Visualization of $\operatorname{SU}(2)$}{visualization_of_su_2}
+    The following manifolds are homeomorphic.
+    \begin{enumerate}
+        \item $\operatorname{SU}(2)$.
+        \item $\Set*{x\in \mathbb{H}}{\norm{x} = 1}$.
+        \item $S^3$.
+    \end{enumerate}
+\end{example}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

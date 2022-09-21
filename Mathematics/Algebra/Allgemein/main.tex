@@ -1,0 +1,162 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Group}
+
+\subsection{Quotient Group}
+
+\begin{counterexample}{Isomorphic Subgroup Yielding Different Quotient}{isomorphic_subgroups_yielding_different_quotients}
+    Let $G$ be a group and $H,K\vartriangleleft G$.
+    $H\cong K$ does not imply $G/H \cong G/K$.
+    For \href{https://math.stackexchange.com/questions/40763/isomorphic-quotient-groups/}{example}, take
+    \[ G = \mathbb{Z}_2 \times \mathbb{Z}_4 \]
+    and $H = \mathbb{Z}_2 \times \qty{\overline{0}}$, $K = \qty{\overline{0}} \times \qty{\overline{0}, \overline{2}}$.
+\end{counterexample}
+
+Therefore, it is important to clarify which subgroup $H$ of $G$ is being referred to in $G/H$.
+\par
+However, if there is an automorphism $\varphi$ of $G$ such that $\varphi{H} = K$, then \href{https://math.stackexchange.com/questions/40881/isomorphic-quotients-by-isomorphic-normal-subgroups}{the quotients are isomorphic}.
+
+\subsection{Polar Decomposition}
+
+\begin{theorem}{Symmetric Unitary Matrix}{symmetric_unitary_matrix}
+    Let $U\in \operatorname{U}(n)$. Then \href{https://mathoverflow.net/questions/93774/symmetric-unitary-matrices}{there exists} $R\in\operatorname{SO}(n)$ and a real symmetric matrix $S$ such that 
+    \[ U = R e^{iS}. \]
+\end{theorem}
+
+\section{Miscellany}
+
+\subsection{Quaternion and Symplectic Group}
+
+\begin{definition}{Algebra of Quaternions, Imaginary Part, Conjugate, Norm}{algebra_of_quaternions}
+    The algebra of quaternions $\mathbb{H}$ is an algebra over $\mathbb{R}$ with basis
+    \[ \qty{\mathbf{1} = \sigma_0, \mathbf{i} = i \sigma_1, \mathbf{j} = i \sigma_2, \mathbf{k} = i \sigma_3}. \]
+    The imaginary part of quaternions is defined by
+    \[ \Im(x^0 \mathbf{1} + x^1 \mathbf{i} + x^2 \mathbf{j} + x^3 \mathbf{k}) =  x^1 \mathbf{i} + x^2 \mathbf{j} + x^3 \mathbf{k}. \]
+    The conjugate is defined by
+    \[ \overline{x^0 \mathbf{1} + x^1 \mathbf{i} + x^2 \mathbf{j} + x^3 \mathbf{k}} =  x^0\mathbf{1} - x^1 \mathbf{i} - x^2 \mathbf{j} - x^3 \mathbf{k}. \]
+    The norm is defined by
+    \[ \norm{x^0 \mathbf{1} + x^1 \mathbf{i} + x^2 \mathbf{j} + x^3 \mathbf{k}} = (x^1)^2 + (x^2)^2 + (x^3)^2 + (x^4)^2. \]
+\end{definition}
+
+\begin{theorem}{Properties of Quaternions}{properties_of_quaternions}
+    The following properties holds if $x,y\in\mathbb{H}$.
+    \begin{enumerate}
+        \item $\overline{x\cdot y} = \overline{y}\cdot \overline{x}$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Properties of Imaginary Quaternions}{properties_of_imaginary_quaternions}
+    The following properties holds if $x,y\in\Im\mathbb{H}$.
+    \begin{enumerate}
+        \item $\overline{xy} = yx$.
+        \item $xy - yx = \Im(xy)$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Inverse of Quaternion}{inverse_of_quaternion}
+    Let $x\in\mathbb{H}$. Then
+    \[ y = \frac{\overline{x}}{\norm{x}^2} \]
+    satisfies
+    \[ x y = y x = 1. \]
+\end{theorem}
+
+\begin{theorem}{Quaternion is a Division Ring}{quaternion_is_a_division_ring}
+    $\mathbb{H}$ is a division ring.
+\end{theorem}
+
+\begin{definition}{Free Quaternion Module, Inner Product}{free-quaternion-module}
+    Let $n$ be an integer.
+    The free quaternion module $\mathbb{H}^n$ is the free right module over $\mathbb{H}$ defined by
+    \[ \mathbb{H}^n = \Set*{(\xi^1,\cdots,\xi^n)}{\xi^1,\cdots,\xi^n\in\mathbb{H}}. \]
+    The module is equipped with the inner product defined by
+    \[ \langle \xi,\zeta \rangle = \sum_{i=1}^n \overline{\xi^i}\zeta^i. \]
+\end{definition}
+
+\begin{proposition}{Properties of Quaternion Inner Product}{properties_of_quaternion_inner_product}
+    The inner product of any free quaternion module $\mathbb{H}^n$ satisfies the following properties.
+    \begin{align*}
+        \langle \xi_1 + \xi_2, \zeta \rangle &= \langle \xi_1,\zeta \rangle + \langle \xi_2,\zeta \rangle. \\
+        \langle \xi, \zeta_1+\zeta_2 \rangle &= \langle \xi,\zeta_1 \rangle + \langle \xi,\zeta_2 \rangle. \\
+        \langle \xi, \zeta a \rangle &= \langle \xi,\zeta \rangle a. \\
+        \langle \xi a, \zeta \rangle &= \overline{a} \langle \xi,\zeta \rangle. \\
+        \langle \xi, \zeta \rangle &= \overline{\langle \zeta,\xi \rangle}.
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{$\mathbf{j}$ as Conjugation}{j_as_conjugation}
+    Let $\varphi: \mathbb{C} \rightarrow \mathbb{H}$ be defined by (for $x,y\in\mathbb{R}$)
+    \[ \varphi(x+iy) = x\mathbf{1} + y\mathbf{i}. \]
+    Then
+    \[ \varphi(z)\mathbf{j} = \mathbf{j}\varphi(\overline{z}). \]
+\end{proposition}
+
+\begin{theorem}{Quaternion Matrices as Complex Matrices}{quaternion_matrices_as_complex_matrices}
+    Let $\varphi: M_{n\times n}(\mathbb{C}) \rightarrow M_{n\times n}(\mathbb{H})$ be defined by (for $X,Y\in M_{n\times n}(\mathbb{R})$)
+    \[ \varphi(X+iY) = X\mathbf{1} + Y\mathbf{i}. \]
+    Then each $P\in M_{n\times n}(\mathbb{H})$ may be written as
+    \[ P = \varphi(A) + \varphi(B)\mathbf{j}, \]
+    for some unique $X,Y\in M_{n\times n}(\mathbb{C})$.
+    Let $\phi: M_{n\times n}(\mathbb{H}) \rightarrow M_{n\times n}(\mathbb{C})$ be defined by
+    \[ \phi\qty(\varphi(A) + \varphi(B)\mathbf{j}) = \begin{pmatrix}
+        A & B \\ -\overline{B} & \overline{A}
+    \end{pmatrix}. \]
+    Then
+    \begin{enumerate}
+        \item $\phi$ is a isomorphism of algebras, and
+        \item $\phi(P^\dagger) = \phi(P)^\dagger$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}{General Linear Group over $\mathbb{H}$}{general_linear_group_over_H}
+    $\operatorname{GL}(n,\mathbb{H})$ is the subset of $M_{n\times n}(\mathbb{H})$, such that $A\in \operatorname{GL}(n,\mathbb{H})$ if and only if
+    \[ (\xi^1,\cdots,\xi^n) \rightarrow \sum_{i=1}^n A_{ij} \xi^j \]
+    defines an isomorphism of the right module $\mathbb{H}^n$.
+\end{definition}
+
+\begin{definition}{Special Linear Group over $\mathbb{H}$}{special_linear_group_over_H}
+    Let $\phi: M_{n\times n}(\mathbb{H}) \rightarrow M_{n\times n}(\mathbb{C})$ be defined as in \cref{thm:quaternion_matrices_as_complex_matrices}.
+    The special linear group over $\mathbb{H}$ is defined by
+    \[ \operatorname{SL}(n,\mathbb{H}) = \Set*{A\in\operatorname{GL}(n,\mathbb{H})}{\det \varphi(A) = 1}. \]
+\end{definition}
+
+\begin{definition}{Compact Symplectic Group}{compact_symplectic_group}
+    For each integer $n\ge 1$, the compact symplectic group of order $n$, denoted by $\operatorname{Sp}(n)$, is the group of all automorphisms that preserve inner product, i.e.
+    \[ \operatorname{Sp}(n) = \Set*{A\in\operatorname{Aut}(\mathbb{H}^n)}{\forall \xi,\zeta\in\mathbb{H}^n, \langle A(\xi), A(\zeta) \rangle = \langle \xi,\zeta \rangle}. \]
+\end{definition}
+
+\begin{theorem}{Equivalent Definitions of Compact Symplectic Group}{equivalent_definitions_of_symplectic_group}
+    The groups defined as following are all isomorphic to each other.
+    \begin{enumerate}
+        \item $\operatorname{Sp}(n)$.
+        \item Norm-preserving automorphisms of $\mathbb{H}^n$, i.e.
+        \[ \operatorname{Sp}(n) = \Set*{A\in\operatorname{Aut}(\mathbb{H}^n)}{\forall \xi\in\mathbb{H}^n, \langle A(\xi), A(\xi) \rangle = \langle \xi,\xi \rangle}. \]
+        \item The subgroup $\Set*{A\in \operatorname{GL}(n,\mathbb{H})}{A^\dagger A = \mathbbm{1}}$.
+        \item The subgroup of $\operatorname{Aut}(\mathbb{H}^n)$ that carries one orthonormal basis to another.
+        \item The subgroup of $\Set*{A\in \operatorname{SU}(2n)}{A^T J A = J}$, where
+        \[ J = \begin{pmatrix}
+            & \mathbbm{1} \\ -\mathbbm{1}
+        \end{pmatrix}. \]
+    \end{enumerate}
+\end{theorem}
+
+For the equivalence between preservation of norm and unitarity, see \href{https://math.stackexchange.com/questions/3313702/does-preservation-of-induced-norm-imply-unitarity}{Does Preservation of induced Norm imply Unitarity?}
+
+\subsection{Classical Groups}
+
+\subsubsection{\texorpdfstring{$\operatorname{SU}(2)$ and $\operatorname{SO}(3)$}{SU(2) and SO(3)}}
+
+\subsubsection{\texorpdfstring{$\operatorname{SL}(2,\mathbb{C})$ and $\operatorname{SO}^+(1,3)$}{SL(2) and SO+(1,3)}}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

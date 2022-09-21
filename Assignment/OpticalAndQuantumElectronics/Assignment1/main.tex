@@ -1,0 +1,148 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 1}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1}%
+\minusbaseline%
+\begin{align*}
+    \pdv{\rho}{t} &= -\epsilon_0 \div \pdv{\vb{E}}{t} = \div\qty(\frac{1}{\mu_0}\curl \vb{B} - \vb{J}) = -\div\vb{J}.
+\end{align*}
+
+\prule
+\plabel{2 (a)}%
+With
+\[ v = \frac{1}{\sqrt{\epsilon_0 \mu_0}} \]
+the equation is rewritten as
+\[ \qty(\pdv{}{x} + \frac{1}{v}\pdv{}{t})\qty(\pdv{}{x} - \frac{1}{v}\pdv{}{t}) E = \pdv{}{\epsilon}\pdv{}{\eta}E = 0. \]
+Integrating twice we get
+\begin{align*}
+    E &= f_1(\epsilon) + f_2(\eta) = f_1(x - vt) + f_2(x + vt).
+\end{align*}
+
+\plabel{(b)}%
+\minusbaseline%
+\[ v = \frac{1}{\sqrt{\epsilon_0 \mu_0}}. \]
+
+\plabel{(c)}%
+The conditions in terms of $f_1$ and $f_2$ are
+\begin{align*}
+    F(x) &= f_1(x) + f_2(x), \\
+    G(x) &= -v f'_1(x) + v f'_2(x) \\
+    \Rightarrow \int_0^x \dd{x'} G(x') &= -v (f_1(x) - f_1(0)) + v (f_2(x) - f_2(0)).
+\end{align*}
+Therefore,
+\begin{align*}
+    f_1(x) &= \frac{1}{2}\qty[F(x) + vf_1(0) - vf_2(0) - \int_0^x \dd{x'} G(x')], \\
+    f_2(x) &= \frac{1}{2}\qty[F(x) - vf_1(0) + vf_2(0) + \int_0^x \dd{x'} G(x')].
+\end{align*}
+
+\plabel{(d)}%
+$E = A \cos(x - vt)$ and $E = A \delta(x-vt)$.
+
+\prule
+
+\plabel{3 (a)}%
+With $v = \omega / k$,
+\[ \grad^2 U - \frac{1}{v^2} \pdv[2]{U}{t} = - k^2 U - \frac{-\omega^2}{v^2} U = 0. \]
+
+\plabel{(b)}%
+\minusbaseline%
+\[ \frac{\omega}{k} = \dv{\omega}{k} = v = \frac{1}{\sqrt{\epsilon_0 \mu_0}}. \]
+In vacuum, $v_{\mathrm{p}} = v_{\mathrm{g}}$.
+
+\plabel{(c.i)}%
+The divergences give
+\begin{align*}
+    \div \vb{E} &= i\vb{k}\cdot\vb{E} = 0 \Rightarrow \vb{k}\cdot \hat{\vb{e}} = 0, \\
+    \div \vb{B} &= i\vb{k}\cdot\vb{B} = 0 \Rightarrow \vb{k}\cdot \hat{\vb{b}} = 0.
+\end{align*}
+
+\plabel{(c.ii)}%
+The curls give
+\begin{align}
+    \label{eq:curlE} \curl\vb{E} &= i\vb{k}\times\vb{E} = -\pdv{\vb{B}}{t} = i\omega\vb{B} \Rightarrow i\vb{k}\times\hat{\vb{e}} E_0 = ick\hat{\vb{b}} B_0, \\
+    \label{eq:curlB} \curl\vb{B} &= i\vb{k}\times \vb{E} = \mu_0\epsilon_0\partial_t E = -i\omega\epsilon_0\mu_0 \vb{E}\Rightarrow ic\vb{k}\times \hat{\vb{b}}B_0 = -ik\hat{\vb{e}}E_0.
+\end{align}
+$\text{\Cref{eq:curlE}} \cdot \hat{\vb{b}}$ and $\text{\cref{eq:curlB}} \cdot \hat{\vb{e}}$ yield
+\begin{align*}
+    (\hat{\vb{e}}\times \hat{\vb{b}})\cdot\hat{\vb{k}} E_0 &= cB_0, \\
+    (\hat{\vb{e}}\times \hat{\vb{b}})\cdot\hat{\vb{k}} cB_0 &= E_0,
+\end{align*}
+which requires either
+\[ (\hat{\vb{e}}\times \hat{\vb{b}})\cdot\hat{\vb{k}} = 1,\quad E_0 = cB_0, \]
+or
+\[ (\hat{\vb{e}}\times \hat{\vb{b}})\cdot\hat{\vb{k}} = -1,\quad E_0 = -cB_0. \]
+In the first case, we find
+\[ \hat{\vb{b}} = \hat{\vb{k}} \times \hat{\vb{e}}. \]
+
+\prule
+
+\plabel{4 (a)}%
+For the first equation,
+\begin{align*}
+    \div \vb{E} &= \frac{\rho}{\epsilon_0}, \\
+    &\Downarrow \\
+    \grad \div \vb{E} &= \frac{1}{\epsilon_0}\grad\rho, \\
+    &\Downarrow \\
+    \curl\curl\vb{E} + \grad^2 \vb{E} &= \frac{1}{\epsilon_0}\grad\rho, \\
+    &\Downarrow \\
+    \grad^2 \vb{E} - \pdv{}{t}\curl \vb{B} &= \frac{1}{\epsilon_0}\grad\rho, \\
+    &\Downarrow \\
+    \grad^2 \vb{E} - \mu_0\pdv{}{t}\vb{J} - \frac{1}{c^2}\pdv[2]{\vb{E}}{t} &= \frac{1}{\epsilon_0}\grad\rho.
+\end{align*}
+For the second equation,
+\begin{align*}
+    \div \vb{B} &= 0, \\
+    &\Downarrow \\
+    \grad \div \vb{B} &= 0, \\
+    &\Downarrow \\
+    \curl\curl\vb{B} + \grad^2 \vb{B} &= 0, \\
+    &\Downarrow \\
+    \grad^2 \vb{B} + \mu_0\curl\vb{J} + \frac{1}{c^2}\pdv{}{t} \curl \vb{E} &= 0, \\
+    &\Downarrow \\
+    \grad^2 \vb{B} + \mu_0\curl\vb{J} - \frac{1}{c^2}\pdv[2]{\vb{B}}{t} &= 0.
+\end{align*}
+
+\plabel{(b)}%
+\minusbaseline%
+\[ c = \frac{1}{\sqrt{\epsilon_0\mu_0}}. \]
+
+\plabel{(c)}%
+Applying Fourier transform we find
+\[ \qty(-\vb{k}^2 + \frac{\omega^2}{c^2}) \tilde{\vb{E}}(\omega',\vb{k}) = \mu_0 J_0 (2\pi)^3 \delta^{(2)}(k_y,k_z)\frac{\delta(\omega'-\omega) + \delta(\omega'+\omega)}{2} \hat{\vb{z}}, \]
+which may be solved to yield
+\[ \vb{E}(t,\vb{x}) = \frac{1}{2} \mu_0 c J_0 \hat{\vb{z}} \frac{1}{\omega} \sin(\frac{\abs{x}\omega}{c}) \cos(\omega t). \]
+
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

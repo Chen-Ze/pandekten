@@ -37,6 +37,12 @@ In the following context, we denote $(S,\varphi)$ by simply $S$.
 
 \begin{definition}{Polynomial Ring \badge{UMP}}{polynomial_ring}
     Let $R$ be a commutative ring.
+    $R[X_1,\cdots,X_n]$ denotes the polynomials with $n$ indeterminates over $R$, i.e. formal sums
+    \[ \Set*{\sum_{i\in \qty{0,1,\cdots,m}^n} a_{i_1,\cdots,i_n}X_1^{i_1}\cdots X_n^{i_n}}{m\in \mathbb{N}, a: \qty{0,1,\cdots,m}^n \rightarrow R}. \]
+\end{definition}
+
+\begin{proposition}{UMP of Polynomial Ring}{ump_of_polynomial_ring}
+    Let $R$ be a commutative ring.
     The polynomial ring with $n$ indeterminates over $R$ is a tuple $(P,\qty{p_1,\cdots,p_n})$ where $\qty{p_1,\cdots,p_n}\subset P$ and $R\xrightarrow{\iota} P$ is an $R$-algebra,
     such that for any tuple $(R',\qty{r'_1,\cdots,r'_n})$ where $\qty{r'_1,\cdots,r'_n}\subset R'$ and $R\xrightarrow{\varphi} R'$ is an $R$-algebra, there exists a unique $P\xrightarrow{f} R'$ such that $f(p_i) = r'_i$ for all $i$ and that the following diagram commutes.
     \begin{center}
@@ -46,13 +52,6 @@ In the following context, we denote $(S,\varphi)$ by simply $S$.
         \end{tikzcd}
     \end{center}
     The tuple $(P,\qty{X_1,\cdots,X_n})$ is denoted by $R[X_1,\cdots,X_n]$.
-\end{definition}
-
-In the following context, we refer to $P$ by $R[X_1,\cdots,X_n]$.
-
-\begin{proposition}{Existence of Polynomial Ring}{existence_of_polynomial_ring}
-    Let $R$ be a commutative ring.
-    The polynomial ring $R[X_1,\cdots,X_n]$ with $n$ indeterminates over $R$ exists and is unique up to isomorphism.
 \end{proposition}
 
 \begin{example}{Polynomial Vanishing Everywhere}{polynomial_vanishing_everywhere}
@@ -66,8 +65,8 @@ In the following context, we refer to $P$ by $R[X_1,\cdots,X_n]$.
 
 \begin{definition}{Formal Laurent Series}{formal_laurent_series}
     Let $R$ be a commutative ring.
-    $R\llparenthesis X \rrparenthesis$ denotes the formal Laurent series over $R$, i.e. formal sums of the form
-    \[ \sum_{i=-m}^\infty a_i X^i. \]
+    $R\llparenthesis X \rrparenthesis$ denotes the formal Laurent series over $R$, i.e. formal sums
+    \[ \Set*{\sum_{i=-m}^\infty a_i X^i}{a:\qty{-m,-m+1,\cdots}\rightarrow R}. \]
 \end{definition}
 
 \begin{definition}{Zero Divisor}{zero_divisor}
@@ -101,6 +100,17 @@ In the following context, we refer to $P$ by $R[X_1,\cdots,X_n]$.
 
 \begin{definition}{Field of Fraction \badge{UMP}}{field_of_fraction}
     Let $R$ be an integral domain.
+    The field of fraction $\operatorname{Frac}(R)$ of $R$ consists of equivalence classes of the form $a/b$ where $a,b\in R$ where $a/b = \Set*{(c,d)\in R}{ad=bc}$.
+    The addition is given by
+    \[ \frac{n}{d} + \frac{m}{b} = \frac{nb + md}{db}, \]
+    the multiplication is given by
+    \[ \frac{n}{d}\cdot \frac{m}{b} = \frac{nm}{db} \]
+    and the inverse is given by
+    \[ \frac{d}{n}\cdot \frac{n}{d} = 1. \]
+\end{definition}
+
+\begin{proposition}{UMP of Field of Fraction}{ump_of_field_of_fraction}
+    Let $R$ be an integral domain.
     The field of fraction $\operatorname{Frac}(R)$ of $R$ is a field which is also an $R$-algebra $R\xrightarrow{\iota} \operatorname{Frac}(R)$ such that for any $R$-algebra $R\xrightarrow{\varphi} R'$, there exists a unique $\operatorname{Frac}(R) \xrightarrow{f} R'$ such that the following diagram commutes.
     \begin{center}
         \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
@@ -108,11 +118,6 @@ In the following context, we refer to $P$ by $R[X_1,\cdots,X_n]$.
             & |[alias=q1]| \forall R'
         \end{tikzcd}
     \end{center}
-\end{definition}
-
-\begin{proposition}{Existence of Field of Fraction}{existence_of_field_of_fraction}
-    Let $R$ be a commutative ring.
-    The field of fraction $\operatorname{Frac}(R)$ exists and is unique up to isomorphism.
 \end{proposition}
 
 \begin{definition}{Prime Element}{prime_element}
@@ -447,7 +452,7 @@ $\operatorname{Ann}(m)$ and $\operatorname{Ann}(M)$ are ideals.
     Although
     \[ I\qty(\prod_\lambda M_\lambda) \subset \prod_\lambda \qty(I M_\lambda) \]
     always holds, the reverse
-    \[ I\qty(\prod_\lambda M_\lambda) \supset \prod_\lambda \qty(I M_\lambda) \in \]
+    \[ I\qty(\prod_\lambda M_\lambda) \supset \prod_\lambda \qty(I M_\lambda) \]
     may fail unless $I$ is finitely generated.
 \end{counterexample}
 

@@ -1,0 +1,154 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 1}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a.i)}%
+Neither.
+The relation does not contain $\qty(u,u)$ and $(v,v)$.
+
+\plabel{(a.ii)}%
+Equivalence relation.
+The relation yields $\pi = \qty{\qty{u,v},\qty{x},\qty{y},\qty{z}}$.
+
+\plabel{(a.iii)}%
+Similarity relation.
+The relation is reflexive and symmetric.
+However, $(x,y)$ and $(y,z)$ are in the relation but not $(x,z)$.
+
+\plabel{(b.i)}%
+$\qty{\qty{x,y,z},\qty{u},\qty{v}}$.
+
+\plabel{(b.ii)}%
+$\qty{\qty{x,y,z},\qty{u,v}}$.
+
+\plabel{(b.iii)}%
+$\qty{\qty{x,y,z},\qty{u,v}}$.
+
+\plabel{(c)}%
+$\mathcal{E}_1 \land \mathcal{E}_2 = \qty{\qty{x},\qty{y},\qty{z},\qty{u},\qty{v}}$, $\mathcal{E}_1 \lor \mathcal{E}_2 = \qty{\qty{x,y,z,u,v}}$.
+
+\prule
+
+\plabel{2 (a)}%
+Let $H=(V,E)$.
+Let $\mathcal{E}$ denotes the equivalence relation corresponding to the partition.
+Then the iteration of single linkage clustering is equivalent\footnote{Except that $\min E$ may be already contained in $\mathcal{E}$ and the partition doesn't change at such step.} to
+\begin{align*}
+    \mathcal{E} &\leftarrow \overline{\mathcal{E}\cup\qty{\min E}}, \\
+    E &\leftarrow \Set*{e\in E}{e>\min E}.
+\end{align*}
+The iteration stops when
+\[ d(\min E) > r. \]
+The final parition $\pi$ is given by the connected components of $H=(V,E')$ where
+\[ E' = \Set*{e\in E}{d(e) \le r}, \]
+and may therefore be obtained using DFS, or any disjoint-set data structure.
+
+\plabel{(b)}%
+A counter should be initialized to $m$ before the iteration starts.
+Then, at each iteration of $m$, the counter is
+\begin{enumerate}
+    \item decreased by one if $\min E\notin \mathcal{E}$, i.e. if the endpoints of $\min E$ belong to different clusters, which may be determined quickly using disjoint-set data structures; or
+    \item intact otherwise.
+\end{enumerate}
+The loop stops when the counter becomes less than $k$.
+
+\prule
+
+\plabel{3 (a)}%
+We assume that the orthogonal projection is with respect to the inner product defined by
+\[ \langle A,B \rangle = \tr(A^\intercal B). \]
+Therefore, the projection is given by
+\[ \frac{\langle uv^\intercal, A \rangle}{\norm{uv^\intercal}^2} uv^\intercal = \frac{u^\intercal A v}{\norm{u}^2\norm{v}^2}uv^\intercal. \]
+
+\plabel{(b)}%
+Let
+\begin{align*}
+    U &= \begin{pmatrix}
+        u_1 & \cdots & u_n
+    \end{pmatrix}, \\
+    \Lambda &= \operatorname{diag}(\lambda_1,\cdots,\lambda_n), \\
+    V &= \begin{pmatrix}
+        v_1 & \cdots & v_n
+    \end{pmatrix}.
+\end{align*}
+Then $A = U\Lambda V^\intercal$ and therefore
+\begin{align*}
+    \norm{A} &= \sqrt{\tr(A^\intercal A)} \\
+    &= \sqrt{\tr(V\Lambda U^\intercal U\Lambda V^\intercal)} \\
+    &= \sqrt{\tr{\Lambda {\cancel{U^\intercal U}}\Lambda {\cancel{V^\intercal V}}}} \\
+    &= \norm{\lambda}.
+\end{align*}
+
+\prule
+
+\plabel{4 (a)}%
+Assuming $A\cap B = \varnothing$.
+\begin{equation}
+    \label{eq:mu_ab}
+    \mu_{A\cup B} = \frac{\abs{A} \mu_A + \abs{B}\mu_B}{\abs{A} + \abs{B}} = t \mu_A + (1-t) \mu_B
+\end{equation}
+and therefore $\mu_{A\cup B}$ lies on the line segment joining $\mu_A$ and $\mu_B$.
+\Cref{eq:mu_ab} may not hold if $A\cap B \neq \varnothing$.
+
+\plabel{(b.a)}%
+\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}%
+\begin{align*}
+    \Delta(A\cup B, C) &= \min\Set*{d(x,c)}{x\in A\cup B, c\in C} \\
+    &= \min\qty(\Set*{d(a,c)}{a\in A, c\in C} \cup \Set*{d(b,c)}{x\in B, c\in C}) \\
+    &= \min\qty{\min\Set*{d(a,c)}{a\in A, c\in C}, \min\Set*{d(b,c)}{x\in B, c\in C}} \\
+    &= \min\qty{\Delta(A,C), \Delta(B,C)}.
+\end{align*}
+
+\plabel{(b.b)}%
+\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}%
+\begin{align*}
+    \Delta(A\cup B, C) &= \max\Set*{d(x,c)}{x\in A\cup B, c\in C} \\
+    &= \max\qty(\Set*{d(a,c)}{a\in A, c\in C} \cup \Set*{d(b,c)}{x\in B, c\in C}) \\
+    &= \max\qty{\max\Set*{d(a,c)}{a\in A, c\in C}, \max\Set*{d(b,c)}{x\in B, c\in C}} \\
+    &= \max\qty{\Delta(A,C), \Delta(B,C)}.
+\end{align*}
+
+\plabel{(b.c)}%
+We assume that $A\cap B = \varnothing$.
+\begin{align*}
+    \Delta(A\cup B, C) &= \frac{1}{\abs{A\cup B}\abs{C}} \sum_{(x,c)\in (A\cup B)\times C} d(x,c) \\
+    &= \frac{1}{\abs{A\cup B}\abs{C}} \qty(\sum_{(a,c)\in A\times C} d(a,c) + \sum_{(b,c)\in B\times C} d(b,c)) \\
+    &= \frac{1}{(\abs{A}+\abs{B})\abs{C}} \qty(\abs{A}\abs{C} \Delta(A,C) + \abs{B}\abs{C} \Delta(B,C)) \\
+    &= \frac{\abs{A}}{\abs{A} + \abs{B}} \Delta(A,C) + \frac{\abs{B}}{\abs{A} + \abs{B}} \Delta(B,C).
+\end{align*}
+Therefore,
+\begin{align*}
+    \alpha &= \frac{\abs{A}}{\abs{A} + \abs{B}}, \\
+    \beta &= \frac{\abs{B}}{\abs{A} + \abs{B}}.
+\end{align*}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

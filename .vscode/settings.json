@@ -39,4 +39,17 @@
             ],
         },
     ],
+    "files.exclude": {
+        "**/*.aux": true,
+        "**/.texmf": true,
+        "**/*.fdb_latexmk": true,
+        "**/*.fls": true,
+        "**/*.out": true,
+        "**/*.synctex.gz": true,
+        "**/*.xdv": true,
+        "**/*.bbl": true,
+        "**/*.blg": true,
+        "**/*.log": true,
+        "**/main.pdf": true,
+    }
 }

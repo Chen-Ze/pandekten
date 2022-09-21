@@ -1,0 +1,143 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 2}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\plabel{1}%
+The equation of motion is given by
+\begin{align*}
+    &\phantom{{}={}} \pdv{}{t}\pdv{\mathcal{L}}{(\partial_t\psi)} + \div \pdv{\mathcal{L}}{(\grad \psi)} - \pdv{\mathcal{L}}{\psi} = i\pdv{\psi^*}{t} - \frac{1}{2m}\grad^2\psi^* = 0,
+\end{align*}
+i.e. the Schr\"odinger equation
+\[ i\pdv{\psi}{t} = -\frac{1}{2m}\grad^2 \psi. \]
+The infinitesimal transformation
+\begin{align*}
+    \psi &\rightarrow \psi + i\alpha\psi, \\
+    \psi^* &\rightarrow \psi^* - i\alpha\psi^*
+\end{align*}
+gives rise to the charge and current
+\begin{align*}
+    Q &= -\pdv{\mathcal{L}}{(\partial_t \psi)}\frac{\Delta \psi}{\alpha} - \pdv{\mathcal{L}}{(\partial_t \psi^*)}\frac{\Delta \psi^*}{\alpha} = \abs{\psi}^2, \\
+    \vb{j} &= -\pdv{\mathcal{L}}{(\grad \psi)}\frac{\Delta \psi}{\alpha} - \pdv{\mathcal{L}}{(\grad \psi^*)}\frac{\Delta \psi^*}{\alpha} = -\frac{i}{2m}\qty[(\grad\psi)\psi^* - (\grad \psi^*)\psi],
+\end{align*}
+i.e. the probability current.
+The conjugate momentum is given by
+\[ \pi = \pdv{\mathcal{L}}{(\partial_t \psi)} = i\psi^*. \]
+The Hamiltonian is given by
+\[ H = \int \dd{^3 \vb{x}} \qty(\pi \partial_0\psi - \mathcal{L}) = \int\dd{^3\vb{x}} \frac{1}{2m}\abs{\grad\psi}^2. \]
+$\psi^\dagger(\vb{x})$ creates a particle at $\vb{x}$.
+Therefore, in parallel with $[a,a^\dagger] = 1$, we write
+\[ \qty[\psi(\vb{x}),\psi^\dagger(\vb{y})] = \delta^{(3)}(\vb{x} - \vb{y}). \]
+Substituting the Fourier transform of $\psi$ into the commutator we find
+\begin{align*}
+    [a_{\vb{p}},a_{\vb{q}}^\dagger] &= \int \dd{^3\vb{x}} \int \dd{^3\vb{y}} e^{-i\vb{p}\cdot \vb{x} + i\vb{q}\cdot\vb{y}}\qty[\psi(\vb{x}),\psi^\dagger(\vb{y})] \\
+    &= \int \dd{^3\vb{x}} \int \dd{^3\vb{y}} e^{-i\vb{p}\cdot \vb{x} + i\vb{q}\cdot\vb{y}}\delta^{(3)}(\vb{x} - \vb{y}) \\
+    &= (2\pi)^3\delta^{(3)}(\vb{p} - \vb{q}).
+\end{align*}
+The Hamiltonian is given by
+\begin{align*}
+    H &= \int \dd{^3\vb{p}} \frac{\vb{p}^2}{2m} \tilde{\psi}^\dagger(\vb{k})\tilde{\psi}^\dagger(\vb{k}) = \int \dd{^3\vb{p}} \frac{\vb{p}^2}{2m} a_{\vb{p}}^\dagger a_{\vb{p}}.
+\end{align*}
+It's clear that each particle of momentum $\vb{p}$ contributes $\vb{p}^2/2m$ to the energy.
+In the nonrelativistic case, the scale of energy is too low to create an antiparticle, and therefore there is only one set of operators.
+{\color{red}Discuss the physical properties of the $n$ particle states,
+and compare them with the usual description of $n$ particle states in quantum mechanics.}
+
+\prule
+
+\plabel{2 (a)}%
+We have
+\[ \phi = \frac{1}{2m}(a + a^\dagger). \]
+The time evolution of $a^\dagger$ is given by $a^\dagger(t) = e^{imt} a^\dagger$.
+Therefore,
+\[ \phi(t) = \frac{1}{2m}\qty(e^{-imt} a + e^{imt} a^\dagger). \]
+The correlators are given by
+\begin{align*}
+    \ev{\phi(t)\phi(0)}{0} &= \frac{1}{2m} e^{-imt}, \\
+    \ev{\phi(0)\phi(t)}{0} &= \frac{1}{2m} e^{imt}.
+\end{align*}
+The Green's functions are given by
+\begin{align*}
+    G_{\mathrm{R}}(t) &= -\frac{i}{m}\sin(mt) \Theta(t), \\
+    G_{\mathrm{A}}(t) &= \frac{i}{m}\sin(mt) \Theta(-t), \\
+    G_{\mathrm{F}}(t) &= \frac{1}{2m} e^{-imt}\Theta(t) + \frac{1}{2m} e^{imt} \Theta(-t).
+\end{align*}
+
+\plabel{(b)}
+Differentiate twice we find
+\begin{align*}
+    \dv[2]{G_{\mathrm{R}}(t)}{t} + m^2 G_{\mathrm{R}}(t) &= -i(\delta(t) - m \sin(mt)\Theta(t)) + m^2 G_{\mathrm{R}}(t) = -i\delta(t), \\
+    \dv[2]{G_{\mathrm{A}}(t)}{t} + m^2 G_{\mathrm{A}}(t) &= -i(\delta(t) - m \sin(mt)\Theta(t)) + m^2 G_{\mathrm{A}}(t) = -i\delta(t), \\
+    \dv[2]{G_{\mathrm{F}}(t)}{t} + m^2 G_{\mathrm{F}}(t) &= -i\delta(t) - \frac{m}{2}\qty(e^{-imt}\Theta(t) + e^{imt}\Theta(-t)) + m^2 G_{\mathrm{F}}(t) \\ &= -i\delta(t).
+\end{align*}
+The differences are given by
+\begin{align*}
+    G_{\mathrm{R}}(t) - G_{\mathrm{A}}(t) &= -\frac{i}{m}\sin(mt), \\
+    2G_{\mathrm{F}}(t) - \qty(G_{\mathrm{R}}(t) + G_{\mathrm{A}}(t)) &= \frac{\cos(mt)}{m},
+\end{align*}
+which are solutions to the homogenous equation.
+{\color{red}They can be distinguished by their behavior as $t\rightarrow\pm\infty$.}
+
+\plabel{(c)}%
+The equation is transformed into
+\[ (-\omega^2 + m^2) \tilde{G}(\omega) = -i. \]
+Therefore,
+\begin{align*}
+    \tilde{G}(\omega) &= \frac{i}{\omega^2 - m^2}, \\
+    G(t) &= \int_{-\infty}^\infty \frac{\dd{\omega}}{2\pi} \tilde{G}(\omega) e^{-i\omega t},
+\end{align*}
+and the path should be completed below the $\Re \omega = 0$ axis for $t>0$ and above for $t<0$.
+The residues are given by
+\begin{align*}
+    \operatorname{Res}_{m} &= -\frac{e^{-imt}}{2m}, \\
+    \operatorname{Res}_{-m} &= \frac{e^{imt}}{2m}.
+\end{align*}
+Now the Green's functions are evaluated using the residue theorem.
+\begin{align*}
+    G_{\mathrm{R}}(t) &= \begin{cases}
+        -\operatorname{Res}_m-\operatorname{Res}_{-m}, & \text{if } t>0, \\
+        0, & \text{if } t<0
+    \end{cases} = -\frac{i}{m}\sin(mt) \Theta(t), \\
+    G_{\mathrm{R}}(t) &= \begin{cases}
+        0, & \text{if } t>0, \\
+        \operatorname{Res}_m + \operatorname{Res}_{-m}, & \text{if } t<0
+    \end{cases} = \frac{i}{m}\sin(mt) \Theta(-t), \\
+    G_{\mathrm{F}}(t) &= \begin{cases}
+        -\operatorname{Res}_{m}, & \text{if } t>0, \\
+        \operatorname{Res}_{-m}, & \text{if } t<0
+    \end{cases} = \frac{e^{-imt}}{2m} \Theta(t) + \frac{e^{imt}}{2m} \Theta(-t).
+\end{align*}
+{\color{red}Draw the path and write down $\tilde{G}$ with $\epsilon$.}
+
+\plabel{(d)}%
+The transform $t \rightarrow e^{-i\theta}t$ is equivalent to a counterclockwise rotation of the countour since
+
+\end{document}

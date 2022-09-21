@@ -51,6 +51,69 @@
     \[ \ket{0}\bra{0} \otimes \sigma_0 + \ket{1}\bra{1} \otimes \sigma_1. \]
 \end{theorem}
 
+\section{Atomic}
+
+\subsection{Spin-Orbit Interaction}
+
+When both orbital and spin angular momentum exist, product of irreducible representations of both is not irreducible, and we have to label each irreducible representation by $(\hat{S}^2, \hat{L}^2, (\hat{S} + \hat{L})^2)$.
+The dimension of the vector space is $2J+1$ for each irreducible representation.
+The split within each $(S,L)$ for different $J$ is proportional to the spin-orbit coupling.
+
+\subsection{Hyperfine Interaction}
+
+After taking the hyperfine interaction into account, the rotation $\operatorname{SO}(3)\times \operatorname{SO}(3)$ on electron and nuclear separately is reduced to a single $\operatorname{SO}(3)$ acting simutaneously on both. Therefore, each $(2J+1) \times (2I+1)$ space decomposed to spaces labelled by
+\[ F = \abs{J-I}, \cdots, \abs{J+I}. \]
+
+\subsection{Coupling to External Magnetic Field}
+
+\subsubsection{Small Magnetic Field}
+
+For extremely small (i.e. less than hyperfine interaction) magnetic field, the energy shift for each energy level in a $(2F+1)$ space is given by
+\[ \Delta E = g_{F,J,I} \mu_{\mathrm{B}} B \cdot F_z, \]
+where $g_{F,J,I}$ is the Land\'e factor.
+
+\subsubsection{Large Magnetic Field}
+
+In such case we have to lift first the degeneration of each $(2J+1)$ space, by
+\[ \Delta E = g_J \mu_{\mathrm{B}} B_z J_z, \]
+after which we include the first order perturbation
+\begin{align*}
+    \Delta E' &= A\langle \vb{I}\cdot \vb{J} \rangle \\ 
+    &= A I_z J_z.
+\end{align*}
+
+\subsubsection{Comparable Case}
+
+Join the lines without crossing.
+
+\subsubsection{Selection Rules}
+
+For hyperfine interaction, the selection rules are given by
+\begin{align*}
+    \Delta J &= \qty{0,\pm 1}, \\
+    \Delta F &= \qty{0,\pm 1}, \\
+    \Delta F_z &= \qty{0,\pm 1},
+\end{align*}
+and $F_z = 0\rightarrow 0$ is forbidden if $\Delta F = 0$.
+
+\section{Manipulating Q-Bit}
+
+\subsection{Electron in Magnetic Field}
+
+The evolution of a spin in magnetic field is given by
+\[ \ket{\chi(t)} = e^{-iHt/\hbar} \ket{\chi(0)}. \]
+For a static magnetic field, the rotation is around the fixed axis along $\vb{B}$.
+To rotate the spin from $\ket{+}$ to $\ket{-}$, an AC magnetic field is required.
+\begin{align*}
+    H &= \frac{1}{2}g\mu_{\mathrm{B}}\qty[ B_z \sigma_z + B(\sigma_x \cos\omega t + \sigma_y \sin\omega t) ] \\
+    &= \begin{pmatrix}
+        \omega_{\mathrm{L}}/2 & \Omega e^{-i\omega t} \\
+        \Omega e^{i\omega t} & -\omega_{\mathrm{L}}/2
+    \end{pmatrix},
+\end{align*}
+where
+\[ \omega_{\mathrm{L}} = g \mu_{\mathrm{B}} B_z,\quad \Omega = \frac{1}{2} g \mu_{\mathrm{B}} B. \]
+
 % \bibliographystyle{plain}
 % \bibliography{main}
 

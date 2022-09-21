@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Phonon}
+
+\subsection{Acoustic Phonon}
+
+Let the Hamiltonian be given by
+\[ H = \sum_{n\in \mathbb{Z}_N} \frac{p_n^2}{2M} + \frac{K}{2}(u_{n+1} - u_n)^2. \]
+The commutation relations are given by
+\[ [u_m, p_n] = \delta_{m,n},\quad [u_m, u_n] = [p_m, p_n] = 0. \]
+With Fourier transform and $x_n = a_0 n$, we find
+\begin{align*}
+    \tilde{u}_k &= \frac{1}{\sqrt{N}} \sum_{n\in \mathbb{Z}_N} u_n e^{-ikx_n}, \\
+    u_n &= \frac{1}{\sqrt{N}} \sum_k \tilde{u}_k e^{ikx_n}. 
+\end{align*}
+and
+\begin{align*}
+    \tilde{p}_k &= \frac{1}{\sqrt{N}} \sum_{n\in \mathbb{Z}_N} p_n e^{-ikx_n}, \\
+    p_n &= \frac{1}{\sqrt{N}} \sum_k \tilde{p}_k e^{ikx_n}. 
+\end{align*}
+Then we could diagonalize the Hamiltoninan
+\[ H = \sum_k \qty[\frac{\tilde{p}_k \tilde{p}_{-k}}{2M} + \frac{M \omega_k^2}{2}\tilde{u}_k \tilde{u}_{-k}], \]
+where
+\[ \omega_k = 2\sqrt{\frac{K}{M}} \abs{\sin\qty(\frac{q a_0}{2})}. \]
+By defining the creation and annihilation operators by
+\[ a_k = \sqrt{\frac{M\omega_k}{2\hbar}} \tilde{u}_k + i \frac{\tilde{p}_k}{\sqrt{2\hbar M\omega_k}}, \]
+the Hamiltonian may be second-quantized as
+\[ H_{\mathrm{tot}} = \frac{\qty(\sum_n p_n)^2}{2MN} + \sum_{k\neq 0} \hbar \omega_k\qty(a^\dagger_k a_k + \frac{1}{2}). \]
+Dropping the vacuum energy we find
+\[ H_{\mathrm{ph}} = \sum_{k\neq 0} \hbar \omega_k a^\dagger_k a_k. \]
+Now we define
+\[ \ket{n} = \prod_k \frac{(a^\dagger_k)^{n_k}}{\sqrt{n_k!}}\ket{0}. \]
+In the Heisenberg picture we have
+\begin{align*}
+    e^{iHt/\hbar} a_k e^{-iHt/\hbar} &= a_k e^{-i\omega_k t}, \\
+    e^{iHt/\hbar} a^\dagger_k e^{-iHt/\hbar} &= a^\dagger_k e^{i\omega_k t}.
+\end{align*}
+
+\subsection{Optical Phonon}
+
+Let the Hamiltonian be given by
+\[ \sum_{n\in\mathbb{Z}_N} \qty(\frac{p_{(1)n}^2 + p_{(2)n}^2}{2M} + \frac{K_1}{2}\qty(u_{(1)n+1} - u_{(2)n})^2 + \frac{K_2}{2}\qty(u_{(2)n} - u_{(1)n})^2). \]
+With the same Fourier transform done above, we have
+\[ H = \sum_k \qty(\frac{\tilde{p}^\intercal_k \tilde{p}_{-k}}{2M} + \frac{M}{2} \tilde{u}^\intercal_k Q_k \tilde{u}_{-k}), \]
+where
+\[ Q_{k} = \begin{pmatrix}
+    (K_1 + K_2)/M & -K_1 e^{ika_0}/M - K_2/M \\ \mathrm{h.c.} & (K_1 + K_2) / M
+\end{pmatrix}. \]
+The eigenvalues are given by
+\[ \omega_{\pm,k} = \qty(\frac{K_1 + K_2 \pm \sqrt{K_1^2 + K_2^2 + 2K_1K_2 \cos k a_0}}{M})^{1/2}. \]
+
+\subsection{Anharmonic Interaction}
+
+A term of the form $(u_{n+1} - u_n)^3$ gives rise to a term
+\[ a_{p} a_{q} a^\dagger_{p+q} + \mathrm{h.c.} \]
+in the second-quantized Hamiltonian.
+
+\subsection{Continuum Limit}
+
+\subsubsection{1-D Continuum}
+
+The Hamiltonian
+\[ H = \sum_{n\in \mathbb{Z}_N} \qty[\frac{p_n^2}{2M} + \frac{K}{2}(u_{n+1} - u_n)^2] \]
+reduces to
+\[ H = \int_0^L \qty[\frac{p(x)^2}{2\lambda} + \frac{K_{\mathrm{el}}}{2}(\partial_x u)^2] \dd{x} \]
+in the contiuum limit, where
+\[ L = Na_0, \quad \lambda = \frac{M}{a_0},\quad K_{\mathrm{el}} = Ka_0. \]
+A Fourier transform
+\[ \tilde{u}_k = \frac{1}{\sqrt{L}}\int_0^L u(x) e^{-ikx}\dd{x} \Leftrightarrow u_k = \frac{1}{\sqrt{L}} \sum_{k=2\pi m/L} \tilde{u}_k e^{ikx} \]
+and similarly for $p$ yields
+\[ H = \sum_k \qty(\frac{\tilde{p}_k \tilde{p}_{-k}}{2\lambda} + \frac{\lambda\omega_k^2}{2}\tilde{u}_k \tilde{u}_{-k}), \]
+where
+\[ \omega_k = v_{\mathrm{S}}\abs{k},\quad v_{\mathrm{S}} = \sqrt{\frac{K_{\mathrm{el}}}{\lambda}}. \]
+
+\subsubsection{3-D Continuum}
+
+
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

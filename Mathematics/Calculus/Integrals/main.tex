@@ -9,17 +9,41 @@
 
 \maketitle
 
+\section{Fourier Transform}
+
+\begin{definition}{Fourier Transform, Inverse Fourier Transform}{fourer_transform}
+    The Fourier transform is given by
+    \[ \mathcal{F}[f](k) = \int \dd{^d x} f(x) e^{-ik\cdot x}. \]
+    The inverse Fourier transform is given by
+    \[ \mathcal{F}^{-1}[\tilde{f}](x) = \frac{1}{(2\pi)^d} \int \dd{^d k} \tilde{f}(k) e^{ik\cdot x}. \]
+\end{definition}
+
+\begin{theorem}{Fourier Transform of Radial Function}{fourier_transform_of_radial_function}
+    If $f: \mathbb{R}^d \rightarrow \mathbb{R}$ has the form $f(x) = F(\abs{x})$, then its Fourier transform $\tilde{f}(k) = \hat{F}(\abs{k})$, \href{https://www.math.arizona.edu/~faris/methodsweb/hankel.pdf}{where}
+    \[ s^{\frac{d-2}{2}} \hat{F}(s) = (2\pi)^{\frac{d}{2}} \int_0^\infty J_{\frac{d-2}{2}}(sr) r^{\frac{d-2}{2}} F(r) r \dd{r}. \]
+\end{theorem}
+
+\begin{theorem}{Fourier Transform of Power}{fourier_transform_of_power}
+    Let $f:\mathbb{R}^d \rightarrow \mathbb{R}$ be given by
+    \[ f(x) = \frac{1}{\abs{x}^\alpha}, \]
+    where $1 < \alpha < d$.
+    Then its Fourier transform \href{https://www.math.arizona.edu/~faris/methodsweb/hankel.pdf}{is given by}
+    \[ \mathcal{F}[f](k) = \frac{C_\alpha}{\abs{k}^{d-\alpha}}, \]
+    where
+    \[ C_\alpha = (2\pi)^{\frac{d}{2}} \frac{2^{\frac{d-\alpha}{2}}\Gamma\qty(\frac{d-\alpha}{2})}{2^{\frac{\alpha}{2}}\Gamma\qty(\frac{\alpha}{2})}. \]
+\end{theorem}
+
 \section{Collection}
 
 \begin{theorem}{Real Gaussian Integral}{real_gaussian_integral}
-    Let $A$ be an invertible complex $n\times n$ matrix such that $A=A^T$,
+    Let $A$ be an invertible complex $n\times n$ matrix such that $A=A^\intercal$,
     and $\Re A$ is positive semidefinite.
     Then for any $y\in \mathbb{R}^n$,
-    \[ \int e^{-x^T A x / 2} e^{iy\cdot x} \dd{^n x} = \frac{(2\pi)^{n/2}}{\sqrt{\det A}} e^{-y^T A^{-1} y/2}. \]
+    \[ \int e^{-x^\intercal A x / 2} e^{iy\cdot x} \dd{^n x} = \frac{(2\pi)^{n/2}}{\sqrt{\det A}} e^{-y^\intercal A^{-1} y/2}. \]
 \end{theorem}
 
 \begin{theorem}{Complex Gaussian Integral}{complex_gaussian_integral}
-    Let $A$ be an invertible complex $n\times n$ matrix such that $A=A^T$,
+    Let $A$ be an invertible complex $n\times n$ matrix such that $A=A^\intercal$,
     and $\Re A$ is positive semidefinite.
     Then for any $w\in \mathbb{C}^n$,
     \[ \int e^{-z^\dagger A z} e^{i(w^\dagger z + z^\dagger w)} \dd{^{2n} z} = \frac{\pi^n}{\det A} e^{-w^\dagger A^{-1} w}. \]

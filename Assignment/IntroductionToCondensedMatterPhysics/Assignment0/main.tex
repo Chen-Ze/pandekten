@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 0}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1}%
+$[x,p]f = -i\hbar x \partial_x f + i\hbar \partial_x (xf) = i\hbar f$.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

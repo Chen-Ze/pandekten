@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Quantization}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Scalar Field}
+
+\begin{definition}{Real Klein-Gordon Equation}{real_klein_gordon_equation}
+    The real Klein-Gordon equation in $\mathbb{R}^d$ of mass $m$ for unknown $\phi:\mathbb{R}^{d} \rightarrow \mathbb{R}$ is given by
+    \[ \qty(\partial^2 + m^2) \phi = 0. \]
+\end{definition}
+
+\begin{theorem}{Solution to Real Klein-Gordon Equation}{solution_to_real_klein_gordon_equation}
+    For any
+    \[ \alpha: \mathbb{R}^{d-1} \rightarrow \mathbb{C}, \]
+    the following is a solution to the real Klein gordon solution in $\mathbb{R}^d$ of mass $m$.
+    \[ \phi(t,\vb{x}) = \frac{1}{(2\pi)^{d-1}} \int \dd{^{d-1} \vb{p}} \qty(\alpha_{\vb{p}} e^{i(\vb{p}\cdot \vb{x} - \omega_{\vb{p}} t)} + \alpha^*_{\vb{p}} e^{-i(\vb{p}\cdot \vb{x} - \omega_{\vb{p}} t)}), \]
+    where
+    \[ \omega_{\vb{p}} = \sqrt{\vb{p}^2 + m^2}. \]
+\end{theorem}
+
+\section{Spinor Field}
+
+It may seem weird that Dirac spinor is the $\frac{1}{2}\oplus \frac{1}{2}$ reducible representation of $\operatorname{SO}^+(1,3)$ but the Hamiltonian mixes up these two invariant spaces.
+However, $\operatorname{SO}^+(1,3)$ is not the symmetry group of the Hamiltonian.
+Additional symmetries (e.g. parity) connects these two spaces and therefore the reducible representation of $\operatorname{SU}(2)$ gives rise to a irreducible representation of the whole symmetry group.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

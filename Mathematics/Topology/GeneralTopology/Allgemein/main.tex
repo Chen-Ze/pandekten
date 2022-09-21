@@ -1,0 +1,196 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Topological Space}
+
+\subsection{Definitions and Properties}
+
+\begin{definition}{Topological Space, Topology}{topological_space}
+    Data:
+    \begin{enumerate}
+        \item $X$ is a set.
+        \item $\mathcal{T}$ is a subset of the power set of $X$.
+    \end{enumerate}
+    Then $(X,\mathcal{T})$ is called a topological space if $\mathcal{T}$ is a topology for $X$, i.e. if all of the following hold.
+    \begin{enumerate}
+        \item $\varnothing \in \mathcal{T}$ and $X\in\mathcal{T}$.
+        \item If $\mathcal{S}\subset \mathcal{T}$ (finite or infinite), then
+        \[ \bigcup_{S\in\mathcal{S}} S \in \mathcal{T}. \]
+        \item If $\mathcal{S}\subset \mathcal{T}$ is finite, then
+        \[ \bigcap_{S\in\mathcal{S}} S \in \mathcal{T}. \]
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}{Continuous Map}{continous_map}
+    Let $f:X\rightarrow Y$ be a map between two topological spaces.
+    $f$ is called a continuous map if $f^{-1}(V)$ is open in $X$ whenever $V$ is open in $Y$.
+\end{definition}
+
+\begin{definition}{Category of Topological Spaces \badge{\Cat}, Homeomorphism, Homeomorphic Topological Spaces}{category_of_topological_spaces}
+    The category $\mathbf{Top}$ of topological spaces is the category with
+    \begin{itemize}
+        \item all topological spaces as object, and
+        \item continuous maps between them as morphisms.
+    \end{itemize}
+    Isomorphisms in $\mathbf{Top}$ are called homeomorphisms.
+    Isomorphic objects in $\mathbf{Top}$ are called homeomorphic topological spaces.
+\end{definition}
+
+\begin{definition}{Closure}{closure}
+    Input:
+    \begin{enumerate}
+        \item $(X,\mathcal{T})$ is a topological space.
+        \item $A\subset X$.
+    \end{enumerate}
+    Then the closure of $A$ is defined by
+    \[ \overline{A} = \bigcap_{S\in\mathcal{A}} S, \]
+    where
+    \[ \mathcal{A} = \Set*{S}{A\subset S\in \mathcal{T}}. \]
+\end{definition}
+
+\begin{theorem}{Equivalent Definitions of Continuous Map}{equivalent_definitions_of_continuous_map}
+    Let $X$ and $Y$ be a topological spaces, and $f:X\rightarrow Y$ be a map between them.
+    The following conditions are all equivalent to $f$ being continuous.
+    \begin{enumerate}
+        \item $f^{-1}(V)$ is open in $X$ whenever $V$ is open in $Y$.
+        \item $f(\overline{A}) \subset \overline{f(A)}$ for any $A\subset X$.
+        \item $f^{-1}(C)$ is closed in $X$ whenever $C$ is closed in $Y$.
+        \item For each $x\in X$ and each neighborhood $V\supset f(x)$, there is a neighborhood $U\ni x$ such that $f(U) \in V$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}{Relative Topology}{relative_topology}
+    Input:
+    \begin{enumerate}
+        \item $(X,\mathcal{T})$ is a topological space.
+        \item $X'\subset X$.
+    \end{enumerate}
+    The relative topology $\mathcal{T}'$ for $X'$ is given by
+    \[ \mathcal{T}' = \Set*{X'\cap S}{S\in\mathcal{T}}. \]
+\end{definition}
+
+\begin{lemma}{The Gluing Lemma}{the_gluing_lemma}
+    Input:
+    \begin{enumerate}
+        \item $X$ and $Y$ are topological spaces.
+        \item $X = A_1 \cup A_2$, where $A_1$ and $A_2$ are either both open or both closed.
+        \item $f_1:A_1 \rightarrow Y$ and $f_2:A_2\rightarrow Y$ are continuous.
+        \item $\eval{f_1}_{A_1\cap A_2} = \eval{f_2}_{A_1\cap A_2}$.
+    \end{enumerate}
+    Then the map defined by
+    \[ f(x) = \begin{cases}
+        f_1(x), & \text{if } x\in A_1, \\
+        f_2(x), & \text{if } x\in A_2
+    \end{cases} \]
+    is continous.
+\end{lemma}
+
+\subsubsection{Separation Axiom}
+
+\begin{definition}{Hausdorff Space, $\mathrm{T}_2$ Space}{hausdorff_space}
+    A topological space $(X,\mathcal{T})$ is called a Hausdorff space if for all $x,y\in X$ such that $x\neq y$, there exists $U,V$ such that $x\in U \in \mathcal{T}$, $y\in V\in \mathcal{T}$, and $U\cap V = \varnothing$.
+\end{definition}
+
+\begin{definition}{Regular Space}{regular_space}
+    A topological space $(X,\mathcal{T})$ is called a regular space if for each $x\in X$ and closed set $B\subset X$ such that $x\notin B$, there exists $U,V$ such that $x\in U \in \mathcal{T}$, $B\subset V\in \mathcal{T}$, and $U\cap V = \varnothing$.
+\end{definition}
+
+\begin{definition}{Normal Space}{normal_space}
+    A topological space $(X,\mathcal{T})$ is called a regular space if for all closed sets $A,B\subset X$ such that $A\cap B = \varnothing$, there exists $U,V$ such that $A\subset U \in \mathcal{T}$, $B\subset V\in \mathcal{T}$, and $U\cap V = \varnothing$.
+\end{definition}
+
+\subsection{Topological Manifold}
+
+\begin{definition}{Chart}{chart}
+    Input:
+    \begin{enumerate}
+        \item $(X,\mathcal{T})$ is a topological space.
+    \end{enumerate}
+    An $n$-dimensional chart on $X$ is a pair $(U,\varphi)$ where $U\in\mathcal{T}$ and
+    \[ \varphi: U \rightarrow \mathbb{R}^n \]
+    is a homeomorphism.
+    An $n$-dimensional chart at $x\in X$ is an $n$-dimensional chart $(U,\varphi)$ where $U\supset x$.
+\end{definition}
+
+\begin{definition}{Manifold, Overlap Function}{manifold}
+    Input:
+    \begin{enumerate}
+        \item $(X,\mathcal{T})$ is a topological space.
+    \end{enumerate}
+    $X$ is an $n$-dimensional manifold if there is an $n$ such that for each $x\in X$ there is an $n$-dimensional chart at $x$.
+    Let $(U_1,\varphi_1)$ and $(U_2,\varphi_2)$ be two charts of $X$.
+    The overlap function for them is given by $\varphi_2^{-1}\circ \varphi_1$.
+\end{definition}
+
+\begin{example}{$S^n$}{s_n}
+    The $n$-dimensional sphere $S^n$ is defined by
+    \[ S^n = \Set*{(x^1,\cdots,x^{n+1})}{(x^1)^2 + \cdots + (x^{n+1})^2 = 1}. \]
+    Let $S = (0,\cdots,0,-1) \in S^n$ and $N = (0,\cdots,0,1) \in S^n$.
+    Define $U_{\mathrm{N}} = S^n \setminus \qty{S}$ and $U_{\mathrm{S}} = S^n \setminus \qty{\mathrm{N}}$.
+    The charts $\varphi_{\mathrm{S}}: U_{\mathrm{S}} \rightarrow \mathbb{R}^n$ and $\varphi_{\mathrm{N}}: U_{\mathrm{N}}\rightarrow \mathbb{R}^n$ are given by
+    \begin{align*}
+        \varphi_{\mathrm{S}}(x^1,\cdots,x^{n+1}) &= \qty(\frac{x^1}{1-x^{n+1}},\cdots, \frac{x^n}{1-x^{n+1}}), \\
+        \varphi_{\mathrm{N}}(x^1,\cdots,x^{n+1}) &= \qty(\frac{x^1}{1+x^{n+1}},\cdots, \frac{x^n}{1+x^{n+1}}).
+    \end{align*}
+    The inverses are given by
+    \begin{align*}
+        \varphi^{-1}_{\mathrm{S}}(y) &= \frac{1}{1+\norm{y}^2}\qty(2y^1,\cdots,2y^n,\norm{y}^2 - 1), \\
+        \varphi^{-1}_{\mathrm{N}}(y) &= \frac{1}{1+\norm{y}^2}\qty(2y^1,\cdots,2y^n,1-\norm{y}^2).
+    \end{align*}
+    The overlap is given by
+    \[ \varphi_{\mathrm{S}}\circ \varphi^{-1}_{\mathrm{N}}(y) = \frac{y}{\norm{y}^2}. \]
+    In particular, for the case of $S^1$, $S^2$, and $S^3$, the codomain of $\varphi$ may be regarded as $\mathbb{R}$, $\mathbb{C}$, and $\mathbb{H}$, respectively, while the overlap is given by
+    \[ y\rightarrow \overline{y}^{-1}. \]
+\end{example}
+
+\subsection{Quotient Space}
+
+\begin{definition}{Quotient Space, Quotient Topology, Quotient Map, Fibre \badge{UMP}}{quotient_space}
+    Input:
+    \begin{enumerate}
+        \item $(X,\mathcal{T})$ is a topological space.
+        \item $Y$ is a set.
+        \item $\mathcal{Q}:X\rightarrow Y$ is a surjective map.
+    \end{enumerate}
+    The quotient topology on $Y$ is defined by
+    \[ \mathcal{S} = \Set*{S\subset Y}{\mathcal{Q}^{-1}(S) \in \mathcal{T}}. \]
+    The topological space $(Y,\mathcal{S})$ is called the quotient space.
+    $\mathcal{Q}$ is called the quotient map. The fibre of $\mathcal{Q}$ over $y\in Y$ is given by $\mathcal{Q}^{-1}(y)$.
+\end{definition}
+
+\begin{lemma}{Continuous Function from Quotient Pulls Back}{continuous_function_from_quotient_pulls_back}
+    Input:
+    \begin{enumerate}
+        \item $X\xrightarrow{\mathcal{Q}} Y$ is a quotient space.
+        \item $Z$ is any topological space.
+    \end{enumerate}
+    Then $g:Y\rightarrow Z$ is continuous if and only if $g\circ \mathcal{Q}: X\rightarrow Z$ is continous.
+\end{lemma}
+
+\begin{lemma}{UMP of Quotient Space}{ump_of_quotient_space}
+    Input:
+    \begin{enumerate}
+        \item $X\xrightarrow{\mathcal{Q}} Y$ is a quotient space.
+    \end{enumerate}
+    Let $f:X\rightarrow Z$ be any continous function that is constant over each fibre of $\mathcal{Q}$.
+    Then there exists a unique continuous function $\overline{f}:Y\rightarrow Z$ such that $\overline{f}\circ\mathcal{Q} = f$.
+    \begin{center}
+        \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
+            X \arrow[r, "\mathcal{Q}"] \arrow[rd, "\forall f"'{name=q2}] & Y \arrow[d, "\exists! \overline{f}"{name=q3}] \\
+            & |[alias=q1]| \forall Z
+        \end{tikzcd}
+    \end{center}
+\end{lemma}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

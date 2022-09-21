@@ -28,6 +28,9 @@
 % Feynman slash
 \RequirePackage{slashed}
 
+% Cancel to
+\RequirePackage{cancel}
+
 % More fancy symbols, e.g. \owedge
 \RequirePackage{stmaryrd}
 % Suppress warning, see https://tex.stackexchange.com/questions/106714/stmaryrd-and-boldsymbol-avoid-warnings
@@ -36,10 +39,21 @@
 % Plotting
 \RequirePackage{tikz}
 \usetikzlibrary{cd}
+\usetikzlibrary{calc}
+\RequirePackage{pgfplots}
+
+% Symbols like Cat
+\RequirePackage{tikzsymbols}
 
 % Useful shorthands, e.g. \dv
 \RequirePackage{physics}
 \RequirePackage{mismath}
+
+% SI units
+\RequirePackage[per-mode = symbol]{siunitx}
+
+% Chemical formula
+\RequirePackage{mhchem}
 
 % For ref across files
 \RequirePackage{xr-hyper}
@@ -164,5 +178,8 @@ title={Warning},sharp corners}
 
 % Lorem ipsum
 \RequirePackage{lipsum}
+
+% Allow display break
+\allowdisplaybreaks
 
 \endinput
