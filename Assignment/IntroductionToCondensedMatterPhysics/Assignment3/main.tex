@@ -1,0 +1,511 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 3}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (1)}%
+Let $\psi_{n,j} = \varphi_{k,j}$ where $\displaystyle k = \frac{\pi n }{(N+1) a_0}$.
+For each $j$, $\psi_j = \begin{pmatrix}
+  \psi_{1,j} & \cdots & \psi_{N,j}
+\end{pmatrix}^\intercal$ is the eigenvector of the following real-symmetric matrix
+\[ \mathcal{H} = -t \begin{pmatrix}
+    & 1 &   &   &   &   \\
+  1 &   & 1 &   &   &   \\
+    & 1 &   & \ddots &   &   \\
+    &   &  \ddots &   & 1 &   \\
+    &   &   & 1 &   & 1 \\
+    &   &   &   & 1 &   
+\end{pmatrix}, \]
+since
+\[ \sin \qty(\frac{\pi (n+1) j}{N+1}) + \sin \qty(\frac{\pi (n-1)j}{N+1}) = 2 \cos\qty(\frac{\pi j}{N+1}) \sin \qty(\frac{\pi n j}{N+1}). \]
+The eigenvalues
+\[ E_j = -2t \cos(\frac{\pi j}{N+1}) \]
+are different.
+Therefore, $\Set*{\psi_j}{1\le j\le N}$ is a set of orthonormal vectors.
+For all $j$, $\psi_j$ is normalized since
+\begin{align*}
+  \sum_{1\le n\le N} \abs{\psi_{n,j}}^2 &= \frac{2}{N+1} \sum_{1\le n \le N} \frac{1 - \cos(2\pi n j/(N+1))}{2} \\
+  &= \frac{1}{N+1} \qty(N + 1 - \Re \sum_{0\le n \le N}  \exp(\frac{2\pi i n j}{N+1})) \\
+  &= 1.
+\end{align*}
+
+\plabel{(2)}%
+\begingroup\minusbaseline%
+\begin{align*}
+  &\phantom{{}={}}\qty{\begin{pmatrix}
+    d^\dagger_0 \\ \vdots \\ d^\dagger_{\pi N / ((N+1)a_0)}
+  \end{pmatrix}, \begin{pmatrix}
+    d_0 & \cdots & d_{\pi N / ((N+1)a_0)}
+  \end{pmatrix}} \\
+  &= \begin{pmatrix}
+    \psi_{1,1} & \cdots & \psi_{1,n} \\
+    \vdots & \ddots & \vdots \\
+    \psi_{n,1} & \cdots & \psi_{n,n}
+  \end{pmatrix} \qty{\begin{pmatrix}
+    c^\dagger_1 \\ \vdots \\ c^\dagger_n
+  \end{pmatrix}, \begin{pmatrix}
+    c_1 & \cdots & c_n
+  \end{pmatrix}} \begin{pmatrix}
+    \psi_{1,1} & \cdots & \psi_{1,n} \\
+    \vdots & \ddots & \vdots \\
+    \psi_{n,1} & \cdots & \psi_{n,n}
+  \end{pmatrix}^\intercal \\
+  &= \begin{pmatrix}
+    \psi_{1,1} & \cdots & \psi_{1,n} \\
+    \vdots & \ddots & \vdots \\
+    \psi_{n,1} & \cdots & \psi_{n,n}
+  \end{pmatrix} \mathbbm{1}_{n\times n} \begin{pmatrix}
+    \psi_{1,1} & \cdots & \psi_{1,n} \\
+    \vdots & \ddots & \vdots \\
+    \psi_{n,1} & \cdots & \psi_{n,n}
+  \end{pmatrix}^\intercal \\
+  &= \mathbbm{1}_{n\times n}.
+\end{align*}
+\endgroup
+
+\plabel{(3)}%
+$H$ may be diagonalized as
+\begin{align*}
+  H &= \begin{pmatrix}
+    c^\dagger_1 & \cdots & c^\dagger_N
+  \end{pmatrix} \mathcal{H} \begin{pmatrix}
+    c_1 \\ \vdots \\ c_N
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+    d^\dagger_1 & \cdots & d^\dagger_{\pi N / ((N+1)a_0)}
+  \end{pmatrix} \begin{pmatrix}
+    \psi_{1,1} & \cdots & \psi_{1,n} \\
+    \vdots & \ddots & \vdots \\
+    \psi_{n,1} & \cdots & \psi_{n,n}
+  \end{pmatrix} \mathcal{H} \\
+  &\phantom{{}={}} \cdot \begin{pmatrix}
+    \psi_{1,1} & \cdots & \psi_{1,n} \\
+    \vdots & \ddots & \vdots \\
+    \psi_{n,1} & \cdots & \psi_{n,n}
+  \end{pmatrix}^\intercal \begin{pmatrix}
+    d_1 \\ \vdots \\ d_{\pi N / ((N+1)a_0)}
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+    d^\dagger_1 & \cdots & d^\dagger_{\pi N / ((N+1)a_0)}
+  \end{pmatrix} \begin{pmatrix}
+    E_1 & & \\
+    & \ddots & \\
+    & & E_N
+  \end{pmatrix} \begin{pmatrix}
+    d_1 \\ \vdots \\ d_{\pi N / ((N+1)a_0)}
+  \end{pmatrix} \\
+  &= \sum_k d^\dagger_k E(k) d_k
+\end{align*}
+where
+\[ E(k) = -2 t \cos (k a_0). \]
+The dispersion relation have the same form as in the periodic case.
+However, the range of $k$ is different.
+In the current case, $0\le k < \pi/a$.
+
+\prule
+
+\plabel{2 (1)}%
+The inverse transform is given by
+\[ c^\dagger_{j,\alpha} = \frac{1}{\sqrt{N}} \sum_k e^{-i k x_{j,\alpha}} c^\dagger_{k,\alpha}. \]
+Therefore,
+\begin{align*}
+  H &= -\sum_k t_1 \qty(e^{-i k d_0} c^\dagger_{k,B} c^{\vphantom{\dagger}}_{k,A} + e^{i k d_0} c^\dagger_{k,A} c^{\vphantom{\dagger}}_{k,B}) \\
+  &\phantom{{}={}} - \sum_k t_2 \qty(e^{-i k (a_0 - d_0)} c^\dagger_{k,A} c^{\vphantom{\dagger}}_{k,B} + e^{i k (a_0 - d_0)} c^\dagger_{k,B} c^{\vphantom{\dagger}}_{k,A}) \\
+  &\phantom{{}={}} + \sum_k \gamma\qty(c^\dagger_{k,A} c^{\vphantom{\dagger}}_{k,A} - c^\dagger_{k,B} c^{\vphantom{\dagger}}_{k,B}), \\
+  \mathcal{H}(k) &= \begin{pmatrix}
+    \gamma & -t_1 e^{i k d_0} - t_2 e^{-i k (a_0 - d_0)} \\
+    -t_1 e^{-i k d_0} - t_2 e^{i k (a_0 - d_0)} & -\gamma
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+    1 & \\ & -e^{-i k d_0}
+  \end{pmatrix} \begin{pmatrix}
+    \gamma & t_1 + t_2 e^{-i k a_0} \\
+    t_1 + t_2 e^{i k a_0} & -\gamma
+  \end{pmatrix} \begin{pmatrix}
+    1 & \\ & -e^{i k d_0}
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+    1 & \\ & -e^{-i k d_0}
+  \end{pmatrix} \qty((t_1 + t_2 \cos(k a_0))\sigma_x + t_2 \sin(k a_0) \sigma_y + \gamma \sigma_z) \begin{pmatrix}
+    1 & \\ & -e^{i k d_0}
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+    1 & \\ & -e^{-i k d_0}
+  \end{pmatrix} \vb{t}\cdot \vb*{\sigma} \begin{pmatrix}
+    1 & \\ & -e^{i k d_0}
+  \end{pmatrix}.
+\end{align*}
+The geometric meaning of $\vb{t}$ is clear.
+As $k$ goes from $-\pi/a_0$ to $\pi/a_0$, $(t_x,t_y)$ draws a circle of radius $t_2$ around $(t_1,0)$.
+
+\plabel{(2)}%
+The eigensystem is given by
+\begin{align*}
+  E_{1,k} &= -\abs{\vb{t}} = -\sqrt{\gamma^2 + t_1^2 + t_2^2 + 2 t_1 t_2 \cos (k a_0)}, \\
+  u_{1,k} &= \begin{pmatrix}
+    1 & \\ & -e^{-i k d_0}
+  \end{pmatrix} \begin{pmatrix}
+    \sin(\theta/2) \\ -\cos(\theta/2) e^{i\varphi}
+  \end{pmatrix} = \begin{pmatrix}
+    \sin(\theta/2) \\ \cos(\theta/2) e^{i(\varphi - k d_0)}
+  \end{pmatrix}, \\
+  E_{2,k} &= \abs{\vb{t}} = \sqrt{\gamma^2 + t_1^2 + t_2^2 + 2 t_1 t_2 \cos (k a_0)}, \\
+  u_{2,k} &= \begin{pmatrix}
+    1 & \\ & -e^{-i k d_0}
+  \end{pmatrix} \begin{pmatrix}
+    \cos(\theta/2) \\ \sin(\theta/2) e^{i\varphi}
+  \end{pmatrix} = \begin{pmatrix}
+    \cos(\theta/2) \\ -\sin(\theta/2) e^{i(\varphi - k d_0)}
+  \end{pmatrix},
+\end{align*}
+where
+\begin{align*}
+  \cos(\frac{\theta}{2}) &= \sqrt{\frac{1}{2} + \frac{1}{2}\frac{t_z}{\abs{\vb{t}}}} = \sqrt{\frac{1}{2} + \frac{1}{2} \frac{\gamma}{\sqrt{\gamma^2 + t_1^2 + t_2^2 + 2 t_1 t_2 \cos (k a_0)}}}, \\
+  \sin(\frac{\theta}{2}) &= \sqrt{\frac{1}{2} + \frac{1}{2}\frac{t_z}{\abs{\vb{t}}}} = \sqrt{\frac{1}{2} - \frac{1}{2} \frac{\gamma}{\sqrt{\gamma^2 + t_1^2 + t_2^2 + 2 t_1 t_2 \cos (k a_0)}}}, \\
+  e^{i\varphi} &= \frac{t_x + i t_y}{\abs{t_x + i t_y}} = \frac{t_1 + t_2 e^{i k a_0}}{\sqrt{t_1^2 + t_2^2 + 2 t_1 t_2 \cos (k a_0)}}.
+\end{align*}
+
+\plabel{(3)}%
+Since
+\[ \pdv[2]{\abs{\vb{t}}}{k} = - \frac{t_1 t_2 a_0^2}{\sqrt{\gamma^2 + (t_1+t_2)^2}}, \]
+we find the following.
+\begin{itemize}
+  \item $E_{1,k}$ is electron-like, with effective mass
+  \[ m_{\mathrm{e}} = \frac{\sqrt{\gamma^2 + (t_1+t_2)^2}}{2 t_1 t_2 a_0^2}. \]
+  \item $E_{2,k}$ is hole-like, with effective mass
+  \[ m_{\mathrm{h}} = \frac{\sqrt{\gamma^2 + (t_1+t_2)^2}}{2 t_1 t_2 a_0^2}. \]
+\end{itemize}
+
+\prule
+
+\plabel{3 (1)}%
+\begingroup%
+\minusbaseline%
+\begin{align*}
+  \vb{b}_1 &= \frac{2\pi}{3 a_0}\begin{pmatrix}
+    \sqrt{3} \\ -1
+  \end{pmatrix}, \\
+  \vb{b}_2 &= \frac{2\pi}{3 a_0}\begin{pmatrix}
+    0 \\ 2
+  \end{pmatrix}, \\
+  \vb{M} &= \frac{1}{2} \vb{b}_2 = \frac{2\pi}{3a_0} \begin{pmatrix}
+    0 \\ 1
+  \end{pmatrix}, \\
+  \vb{K} &= \frac{2}{3}\qty(\vb{b}_1 + \frac{1}{2} \vb{b}_2) = \frac{4\pi}{3\sqrt{3} a_0} \begin{pmatrix}
+    1 \\ 0
+  \end{pmatrix}.
+\end{align*}
+\endgroup
+
+\plabel{(2)}%
+The creation operators are given by
+\[ c^\dagger_{\vb{R}_\alpha} = \frac{1}{\sqrt{N}} \sum_{\vb{k}} e^{-i\vb{k} \cdot \vb{R}_\alpha} c^\dagger_{\vb{k},\alpha}. \]
+Therefore, the Hamiltonian may be rewritten as
+\begin{align*}
+  H &= -t \sum_{\vb{R}} \qty(c^\dagger_{\vb{R} - \vb{d}_2, A} c^{\vphantom{\dagger}}_{\vb{R} + \vb{d}_3, B} + c^\dagger_{\vb{R} + \vb{d}_3, B} c^{\vphantom{\dagger}}_{\vb{R} - \vb{d}_2, A}) \\
+  &\phantom{{}={}} -t \sum_{\vb{R}} \qty(c^\dagger_{\vb{R} - \vb{d}_2, A} c^{\vphantom{\dagger}}_{\vb{R} + \vb{d}_1, B} + c^\dagger_{\vb{R} + \vb{d}_1, B} c^{\vphantom{\dagger}}_{\vb{R} - \vb{d}_2, A}) \\
+  &\phantom{{}={}} -t \sum_{\vb{R}} \qty(c^\dagger_{\vb{R} - \vb{d}_1, A} c^{\vphantom{\dagger}}_{\vb{R} + \vb{d}_3, B} + c^\dagger_{\vb{R} + \vb{d}_3, B} c^{\vphantom{\dagger}}_{\vb{R} - \vb{d}_1, A}) \\
+  &\phantom{{}={}} + \gamma \sum_{\vb{R}} \qty(c^\dagger_{\vb{R} - \vb{d}_2, A} c^{\vphantom{\dagger}}_{\vb{R} - \vb{d}_2, A} - c^\dagger_{\vb{R} + \vb{d}_3, B} c^{\vphantom{\dagger}}_{\vb{R} + \vb{d}_3, B}) \\
+  &= -t \sum_{\vb{k}}\qty(e^{-i\vb{k}\cdot \vb{d}_1} c^\dagger_{\vb{k},A} c^{\vphantom{\dagger}}_{\vb{k}, B} + e^{i\vb{k}\cdot \vb{d}_1} c^\dagger_{\vb{k},B} c^{\vphantom{\dagger}}_{\vb{k}, A}) \\
+  &\phantom{{}={}} -t \sum_{\vb{k}}\qty(e^{-i\vb{k}\cdot \vb{d}_3} c^\dagger_{\vb{k},A} c^{\vphantom{\dagger}}_{\vb{k}, B} + e^{i\vb{k}\cdot \vb{d}_3} c^\dagger_{\vb{k},B} c^{\vphantom{\dagger}}_{\vb{k}, A}) \\
+  &\phantom{{}={}} -t \sum_{\vb{k}}\qty(e^{-i\vb{k}\cdot \vb{d}_2} c^\dagger_{\vb{k},A} c^{\vphantom{\dagger}}_{\vb{k}, B} + e^{i\vb{k}\cdot \vb{d}_2} c^\dagger_{\vb{k},B} c^{\vphantom{\dagger}}_{\vb{k}, A}) \\
+  &\phantom{{}={}} + \gamma \sum_{\vb{k}} \qty(c^\dagger_{\vb{k},A} c^{\vphantom{\dagger}}_{\vb{k},A} - c^\dagger_{\vb{k}, B} c^{\vphantom{\dagger}}_{\vb{k}, B}).
+\end{align*}
+Therefore,
+\begin{equation*}
+  \mathcal{H}(\vb{k}) = \begin{pmatrix}
+    \gamma & -t\qty(e^{-i\vb{k}\cdot \vb{d}_1} + e^{-i\vb{k}\cdot \vb{d}_2} + e^{-i\vb{k}\cdot \vb{d}_3}) \\
+    -t\qty(e^{i\vb{k}\cdot \vb{d}_1} + e^{i\vb{k}\cdot \vb{d}_2} + e^{i\vb{k}\cdot \vb{d}_3}) & -\gamma
+  \end{pmatrix}.
+\end{equation*}
+
+\plabel{(3)}%
+\begingroup\minusbaseline%
+\begin{align*}
+  & \mathcal{H}(\vb{K} + \vb{k}) = \begin{pmatrix}
+    \gamma & \\ & -\gamma
+  \end{pmatrix} \\
+  &{} + it \begin{pmatrix}
+    & \vb{k}\cdot \vb{d}_1 + e^{2\pi i/3} \vb{k}\cdot \vb{d}_2 + e^{-2\pi i/3} \vb{k} \cdot \vb{d}_3 \\
+    -\vb{k}\cdot \vb{d}_1 - e^{-2\pi i/3} \vb{k}\cdot \vb{d}_2 - e^{2\pi i/3} \vb{k} \cdot \vb{d}_3 &
+  \end{pmatrix} \\
+  &=  \frac{3}{2} t a_0 (k_x \sigma_x - k_y \sigma_y) + \gamma \sigma_z \\
+  &= \qty(v k_x, -v k_y, \gamma) \cdot \vb*{\sigma},
+\end{align*}
+\endgroup
+where
+\[ v = \frac{3t a_0}{2}. \]
+Therefore the eigensystem is given by
+\begin{align*}
+  E_{1,\vb{k}} &= -\sqrt{\gamma^2 + v^2 \abs{\vb{k}}^2}, \\
+  u_{1,\vb{k}} &= \begin{pmatrix}
+    \sin(\theta/2) \\ -\cos(\theta/2) e^{-i\varphi} 
+  \end{pmatrix}, \\
+  E_{2,\vb{k}} &= \sqrt{\gamma^2 + v^2 \abs{\vb{k}}^2}, \\
+  u_{2,\vb{k}} &= \begin{pmatrix}
+    \cos(\theta/2) \\ \sin(\theta/2) e^{-i\varphi}
+  \end{pmatrix},
+\end{align*}
+where
+\begin{align*}
+  \cos(\frac{\theta}{2}) &= \sqrt{\frac{1}{2} + \frac{1}{2} \cdot \frac{\gamma}{\sqrt{\gamma^2 + v^2 \abs{\vb{k}}^2}}}, \\
+  \sin(\frac{\theta}{2}) &= \sqrt{\frac{1}{2} - \frac{1}{2} \cdot \frac{\gamma}{\sqrt{\gamma^2 + v^2 \abs{\vb{k}}^2}}}, \\
+  e^{-i\varphi} &= \frac{k_x - ik_y}{\abs{\vb{k}}.}
+\end{align*}
+
+\plabel{(4)}%
+We use $(k,\varphi)$ for polar coordinates, and $\theta$ for the azimuthal angle on the Bloch sphere.
+Note that (since $vk = \gamma \tan \theta$)
+\[ \dd{\theta} = \cos\theta \sin\theta \frac{\dd{k}}{k}. \]
+We find
+\[ \mathcal{A} = \sin^2\qty(\frac{\theta}{2}) \dd{\varphi}, \]
+and
+\[ \mathcal{F} = \frac{1}{2} \sin\theta \dd{\theta}\wedge \dd{\varphi} = \frac{1}{2} \frac{v^2 \gamma}{\qty(\gamma^2+v^2 k^2)^{3/2}} \dd{k_x} \wedge \dd{k_y}. \]
+
+\plabel{(5)}%
+It's clear that
+\[ \phi_{\vb{K}} = \int \mathcal{F} = \pi \int_{0}^{\pi/2} \sin\theta \dd{\theta} = \pi. \]
+
+\plabel{(6)}%
+\begingroup\minusbaseline%
+\begin{align*}
+  \mathcal{H}(-\vb{K} + \vb{k}) &= \qty(v k_x, v k_y, \gamma) \cdot \vb*{\sigma}.
+\end{align*}
+\endgroup
+
+\plabel{(7)}%
+Note that
+\begin{align*}
+  &\phantom{{}\approx{}} e^{-i(\vb{M} + \vb{k})\cdot \vb{d}_1} + e^{-i(\vb{M} + \vb{k})\cdot \vb{d}_2} + e^{-i(\vb{M} + \vb{k})\cdot \vb{d}_3} \\ &\approx e^{i\pi / 3} - \frac{3}{4} e^{i\pi/3} a_0^2 k_x^2 + \frac{1}{4} e^{i\pi/3} a_0^2 k_y^2 + 2 e^{5i\pi/6} a_0 k_y.
+\end{align*}
+We find
+\begin{align*}
+  & \mathcal{H}(\vb{M} + \vb{k}) = \begin{pmatrix}
+    \gamma & \\ & -\gamma
+  \end{pmatrix} \\
+  &{} - t \begin{pmatrix}
+    & e^{i\pi / 3}\qty(1 - \frac{3}{4} a_0^2 k_x^2 + \frac{1}{4} a_0^2 k_y^2 + 2 i a_0 k_y) \\
+    e^{-i\pi / 3}\qty(1 - \frac{3}{4} a_0^2 k_x^2 + \frac{1}{4} a_0^2 k_y^2 - 2 i a_0 k_y)  &
+  \end{pmatrix},
+\end{align*}
+which has eigenvalues
+\[ E = \pm \sqrt{\gamma^2 + 4a_0^2 k_y^2 + \qty(1 - \frac{3}{4} a_0^2 k_x^2 + \frac{1}{4} a_0^2 k_y^2)^2}. \]
+
+\prule
+
+\plabel{4 (1.a)}%
+Since $f(E)$ decays exponentially as $E\rightarrow +\infty$, the contribution outside the first Brillouin zone could be safely ignored (this applys to holes after we do the substitution of variables below).
+The conservation gives
+\begin{align*}
+  \int_{-\infty}^0 \qty(1 - \frac{1}{\exp(\beta(E - \mu)) + 1}) D_{\mathrm{h}}(E) &= \int_{E_0}^\infty \frac{1}{\exp(\beta(E - \mu)) + 1} D_{\mathrm{e}}(E),
+\end{align*}
+i.e.
+\begin{align*}
+  \int_{0}^\infty \frac{\dd{E} }{\exp(\beta(E + \mu)) + 1} m^{d/2}_{\mathrm{h}} E^{d/2-1} &=
+  \int_{0}^\infty \frac{\dd{E}}{\exp(\beta(E + E_0 - \mu)) + 1} m^{d/2}_{\mathrm{e}} E^{d/2-1}.
+\end{align*}
+Therefore,
+\[ \operatorname{Li}_{d/2}(-e^{-\beta\mu}) \qty(\frac{\beta}{m_{\mathrm{h}}})^{-d/2} = \operatorname{Li}_{d/2}(-e^{-\beta(E_0 - \mu)}) \qty(\frac{\beta}{m_{\mathrm{e}}})^{-d/2}. \]
+To the lowest order we find
+\[ e^{\beta(E_0 - 2\mu)} = \qty(\frac{m_{\mathrm{h}}}{m_{\mathrm{e}}})^{-d/2}, \]
+i.e.
+\[ \mu = \frac{E_0}{2} + \frac{k_{\mathrm{B}}T}{2} \cdot \frac{d}{2} \ln(\frac{m_{\mathrm{h}}}{m_{\mathrm{e}}}). \]
+In particular, for $d=3$ we find
+\[ \mu = \frac{E_0}{2} + \frac{3}{4} k_{\mathrm{B}}T\ln(\frac{m_{\mathrm{h}}}{m_{\mathrm{e}}}). \]
+
+\plabel{(1.b)}%
+At $T\rightarrow 0$ we find $\mu = E_0/2$.
+
+\plabel{(1.c)}%
+The conservation in one unit cell gives
+\begin{align*}
+  \frac{1}{\exp(\beta \mu) + 1} &= \Omega_{\mathrm{uc}} \int_{0}^\infty \dd{E} \frac{1}{\exp(\beta(E + E_0 - \mu)) + 1} D(E) \\
+  &= \frac{2^{d/2-1} S^{d-1} m^{d/2}_{\mathrm{e}}\Omega_{\mathrm{uc}}}{(2\pi\hbar)^d} \int_{0}^\infty \dd{E} \frac{1}{\exp(\beta(E + E_0 - \mu)) + 1} E^{d/2-1} \\
+  &= \frac{2^{d/2-1} S^{d-1} m^{d/2}_{\mathrm{e}}\Omega_{\mathrm{uc}}}{(2\pi\hbar)^d} \cdot \beta^{-d/2} \cdot \Gamma\qty(\frac{d}{2}) \qty(-\operatorname{Li}_{d/2} (-e^{-\beta(E_0 - \mu)})).
+\end{align*}
+Therefore, to the lowest order,
+\begin{align*}
+  \frac{\beta^{d/2} e^{-\beta\mu}}{e^{-\beta(E_0 - \mu)}} = \frac{2^{d/2-1} S^{d-1} m^{d/2}_{\mathrm{e}}\Omega_{\mathrm{uc}}}{(2\pi\hbar)^d} \cdot \Gamma\qty(\frac{d}{2}),
+\end{align*}
+i.e.
+\[ \frac{d}{2}\ln\beta + \beta(E_0 - 2\mu) = \ln(\frac{2^{d/2-1} S^{d-1} m^{d/2}_{\mathrm{e}}\Omega_{\mathrm{uc}}}{(2\pi\hbar)^d} \cdot \Gamma\qty(\frac{d}{2})). \]
+The solution is given by
+\[ \mu = \frac{E_0}{2} - \frac{1}{2} k_{\mathrm{B}}T\ln(\frac{2^{d/2-1} S^{d-1} m^{d/2}_{\mathrm{e}}\Omega_{\mathrm{uc}}}{(2\pi\hbar)^d} \cdot \Gamma\qty(\frac{d}{2}) \cdot (k_{\mathrm{B}} T)^{d/2}). \]
+In particular, for $d=3$ this yields
+\[ \mu = \frac{E_0}{2} - \frac{1}{2}k_{\mathrm{B}}T \ln(\frac{(m_{\mathrm{e}} k_{\mathrm{B}}T)^{3/2}\Omega_{\mathrm{uc}}}{(2\pi\hbar^2)^{3/2}}). \]
+
+\plabel{(1.d)}%
+At $T\rightarrow 0$ we find $\mu = E_0/2$.
+
+\plabel{(2.a)}%
+Since
+\[ \mathcal{H}(\vb{k}) = \frac{\hbar^2 \abs{\vb{k}}^2}{2m} + \frac{\hbar\lambda_{\mathrm{R}}}{2}\qty(k_x \sigma_y - k_y \sigma_x). \]
+We find the eigensystem
+\begin{align*}
+  E_{1,\vb{k}} &= \frac{\hbar^2 \abs{\vb{k}}^2}{2m} - \frac{\hbar \lambda_{\mathrm{R}}}{2}\abs{\vb{k}}, \\
+  u_{1,\vb{k}} &= \frac{\sqrt{2}}{2} \begin{pmatrix}
+    1 \\ -i e^{i\varphi}
+  \end{pmatrix} \\
+  E_{2,\vb{k}} &= \frac{\hbar^2 \abs{\vb{k}}^2}{2m} + \frac{\hbar \lambda_{\mathrm{R}}}{2}\abs{\vb{k}}, \\
+  u_{2,\vb{k}} &= \frac{\sqrt{2}}{2} \begin{pmatrix}
+    1 \\ i e^{i\varphi}
+  \end{pmatrix},
+\end{align*}
+where
+\[ e^{i\varphi} = \frac{k_x + i k_y}{\abs{\vb{k}}}. \]
+The plot is given below.
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[domain=-pi:pi,samples=100,xlabel=$k$,ylabel=$E$]
+            \addplot[color=red] {x^2 + 1 * abs(x)};
+            \addplot[color=blue] {x^2 - 1 * abs(x)};
+            \legend{$E_2$, $E_1$};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\plabel{(2.b)}%
+Since $u_1$ at $\vb{k} = k_x \hat{\vb{x}}$ is the eigenvector of $\sigma_y$ with eigenvalue $-1$,
+\[ \ev{\vb{s}} = -\frac{1}{2}\hat{\vb{y}}. \]
+
+\prule
+
+\plabel{5 (1.a)}%
+The equation of motion gives
+\[ m_{\mathrm{e}} = (-i\omega + \tau_{\mathrm{e}}^{-1}) \vb{v}_{\mathrm{e}} = -e \vb{E}. \]
+Therefore,
+\[ \vb{v}_{\mathrm{e}} = \frac{-e \tau_{\mathrm{e}}}{1-i\omega \tau_{\mathrm{e}}} \vb{E}. \]
+
+\plabel{(1.b)}%
+\begingroup\minusbaseline%
+\[ \sigma(\omega) = \frac{n_{\mathrm{e}} e^2 \tau_{\mathrm{e}}}{1-i\omega \tau_{\mathrm{e}}}. \]
+\endgroup
+
+\plabel{(2.a)}%
+\begingroup\minusbaseline
+\begin{align*}
+  \begin{pmatrix}
+    v_{\mathrm{e}x} \\
+    v_{\mathrm{e}y}
+  \end{pmatrix} &= -\mu_{\mathrm{e}} \begin{pmatrix}
+    E_x + v_{\mathrm{e}y}B \\
+    E_y - v_{\mathrm{e}x}B
+  \end{pmatrix}, \\
+  \begin{pmatrix}
+    v_{\mathrm{h}x} \\
+    v_{\mathrm{h}y}
+  \end{pmatrix} &= \mu_{\mathrm{h}} \begin{pmatrix}
+    E_x + v_{\mathrm{h}y}B \\
+    E_y - v_{\mathrm{h}x}B
+  \end{pmatrix}, \\
+  \begin{pmatrix}
+    j_x \\ j_y
+  \end{pmatrix} &= e \begin{pmatrix}
+    n_{\mathrm{h}} v_{\mathrm{h}x} - n_{\mathrm{e}} v_{\mathrm{e}x} \\
+    n_{\mathrm{h}} v_{\mathrm{h}y} - n_{\mathrm{e}} v_{\mathrm{e}y} \\
+  \end{pmatrix}.
+\end{align*}
+\endgroup
+
+\plabel{(2.b)}%
+We find the solution
+\begin{align*}
+  v_{\mathrm{e}x} &= -\frac{j_x \mu_{\mathrm{e}}}{e n_0(\mu_{\mathrm{e}} + \mu_{\mathrm{h}})}, \\
+  v_{\mathrm{e}y} &= -\frac{j_x \mu_{\mathrm{e}} B \mu_{\mathrm{h}}}{e n_0(\mu_{\mathrm{e}} + \mu_{\mathrm{h}})}, \\
+  v_{\mathrm{h}x} &= \frac{j_x \mu_{\mathrm{h}}}{e n_0(\mu_{\mathrm{e}} + \mu_{\mathrm{h}})}, \\
+  v_{\mathrm{h}y} &= -\frac{j_x \mu_{\mathrm{e}} B \mu_{\mathrm{h}}}{e n_0(\mu_{\mathrm{e}} + \mu_{\mathrm{h}})}, \\
+  E_x &= \frac{1 + \mu_{\mathrm{e}} \mu_{\mathrm{h}} B^2}{e n_0(\mu_{\mathrm{e}} + \mu_{\mathrm{h}})} j_x, \\
+  E_y &= \frac{B(\mu_{\mathrm{h}} - \mu_{\mathrm{e}})}{e n_0(\mu_{\mathrm{h}} + \mu_{\mathrm{e}})} j_x.
+\end{align*}
+Therefore,
+\begin{align*}
+  \rho_{xx} &= \frac{1 + \mu_{\mathrm{e}} \mu_{\mathrm{h}} B^2}{e n_0(\mu_{\mathrm{e}} + \mu_{\mathrm{h}})}, \\
+  \rho_{xy} &= \frac{B(\mu_{\mathrm{h}} - \mu_{\mathrm{e}})}{e n_0(\mu_{\mathrm{h}} + \mu_{\mathrm{e}})}.
+\end{align*}
+
+\prule
+
+\plabel{6 (1)}%
+Note that
+\begin{align*}
+  \int \frac{\dd[d]{\vb{k}}}{(2\pi)^d} \pdv{f_0}{\mu} \qty(E_{\vb{k}} - \mu)^n \frac{k^2}{d} &= \int \dd{\Omega} \int \frac{\dd{k}}{(2\pi)^d} \pdv{f_0}{\mu} \qty(E_{\vb{k}} - \mu)^n \frac{k^2}{d} \cdot k^{d-1} \\
+  &= \int \dd{\Omega} \int \frac{\dd{E}}{(2\pi)^d} \pdv{f_0}{\mu} \frac{1}{d} \cdot \frac{\sqrt{m_{\mathrm{e}}^3 E}}{\hbar^3} \qty(E - \mu)^n \cdot k^{d-1}.
+\end{align*}
+We find
+\begin{align*}
+  F_{11}(E) &= \frac{2e^2 \tau}{d m_{\mathrm{e}}} \qty(\frac{2m_{\mathrm{e}} E}{\hbar^2})^{d/2}, \\
+  F_{12}(E) = F_{21}(E) &= -\frac{2e \tau}{d m_{\mathrm{e}}} \qty(\frac{2 m_{\mathrm{e}} E}{\hbar^2})^{d/2} \cdot (E - \mu), \\
+  F_{22}(E) &= \frac{2\tau}{d m_{\mathrm{e}}} \qty(\frac{2m_{\mathrm{e}} E}{\hbar^2})^{d/2} \cdot (E - \mu)^2.
+\end{align*}
+
+\plabel{(2)}%
+Note that $\partial_\mu f_0$ is an odd function of $(x-\mu)$, and therefore
+\[ \int_{-\infty}^\infty \dd{E} \pdv{f_0}{\mu} \qty(x-\mu)^{2n+1} = 0. \]
+We find
+\begin{align*}
+  &{\phantom{{}={}}} \int_{-\infty}^\infty \dd{E} \pdv{f_0}{\mu} F(E) \\
+  &= \int_{-\infty}^\infty \dd{E} \pdv{}{\mu} \qty(\frac{1}{e^{\beta(E - \mu)} + 1}) \qty(F(\mu) + \sum_{n=1}^\infty \frac{1}{n!} F^{(n)}(\mu) (E - \mu)^n) \\
+  &= \int_{-\infty}^\infty \dd{(\beta E - \beta \mu)} \pdv{}{(\beta \mu)} \qty(\frac{1}{e^{\beta(E - \mu)} + 1}) \qty(F(\mu) + \sum_{n=1}^\infty \frac{1}{n!} F^{(n)}(\mu) \beta^{-n} (\beta E - \beta \mu)^n) \\
+  &= \int_{-\infty}^\infty \dd{x} \qty[-\pdv{}{x}\qty(\frac{1}{e^x + 1})] \qty(F(\mu) + \sum_{n=2,4,\cdots} \frac{1}{n!} (k_{\mathrm{B}}T)^n F^{(n)}(\mu)x^n) \\
+  &= F(\mu) + \sum_{n=1}^\infty A_n (k_{\mathrm{B}} T)^{2n} F^{(2n)}(\mu).
+\end{align*}
+
+\plabel{(3)}%
+Note that the integrand is an even function.
+\begin{align*}
+  A_1 &= \int_{-\infty}^\infty \dd{x} \qty[-\pdv{}{x}\qty(\frac{1}{e^x + 1})]\frac{x^2}{2} \\
+  &= \int_{0}^\infty \dd{x} \qty[-\pdv{}{x}\qty(\frac{1}{e^x + 1})] x^2 \\
+  &= \int_0^\infty \dd{x} \frac{2x}{e^x+1} \\
+  &= \sum_{n=0}^\infty (-1)^n \int_0^\infty \dd{x} 2x \cdot e^{-(n+1) x} \\
+  &= 2 \sum_{n=1}^\infty \frac{(-1)^{n+1}}{n^2} \\
+  &= 2\zeta(2) - 2\times 2\times \frac{1}{4}\zeta(2) \\
+  &= \zeta(2) = \frac{\pi^2}{6}.
+\end{align*}
+
+\plabel{(4)}%
+We find
+\[ L_{11} = \frac{S^{d-1}}{(2\pi)^d} \qty(F_{11}(\mu) + \frac{\pi^2}{6}(k_{\mathrm{B}} T)^2 F''_{11}(\mu)). \]
+Since $F_{12}(\mu) = F_{21}(\mu) = F_{22}(\mu) = 0$, we find
+\begin{align*}
+  L_{12} &= \frac{S^{d-1}}{(2\pi)^d} \frac{\pi^2}{6}(k_{\mathrm{B}}T)^2 F''_{12}(\mu), \\
+  &= -\frac{S^{d-1}}{(2\pi)^d} \frac{\pi^2}{6}(k_{\mathrm{B}}T)^2 \cdot \frac{2}{e} F'_{11}(\mu) \\
+  &= -\frac{\pi^2}{6}(k_{\mathrm{B}}T)^2 \cdot \frac{2}{e} \pdv{L_{11}}{\mu}, \\
+  D_1 &= \frac{\pi^2}{3}k_{\mathrm{B}}^2 \cdot \frac{1}{e}. \\
+  L_{22} &= \frac{S^{d-1}}{(2\pi)^d} \frac{\pi^2}{6}(k_{\mathrm{B}}T)^2 F''_{22}(\mu) \\
+  &= \frac{\pi^2}{6}(k_{\mathrm{B}}T)^2 \cdot \frac{2}{e^2} L_{11}, \\
+  D_2 &= \frac{\pi^2}{3} k_{\mathrm{B}}^2 \cdot \frac{1}{e^2},
+\end{align*}
+where
+\[ S^{d-1} = \int \dd{\Omega}. \]
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

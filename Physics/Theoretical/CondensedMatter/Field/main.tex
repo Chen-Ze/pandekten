@@ -1,0 +1,155 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Field}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Notations, Common Techniques}
+
+Spin operator
+\[ \vb{S}(\vb{r}) = \frac{1}{2}\sum_{\sigma,\sigma'} c^\dagger_\sigma \vb*{\sigma}_{\sigma,\sigma'}c_{\sigma'}(\vb{r}). \]
+Particle number
+\[ n(\vb{r}) = \sum_{\sigma,\sigma'} c^\dagger_\sigma(\vb{r}) \mathbbm{1}_{\sigma,\sigma'} c_{\sigma'}(\vb{r}). \]
+
+\begin{proposition}{Properties of Spin Operator}{properties_of_spin_operator}
+    The spin operator $\vb{S}(\vb{r})$ satisfies the following.
+    \begin{itemize}
+        \item Transformation under $U\in\operatorname{SU}(2)$ is given by
+        \[ U S^a(\vb{r}) U^{-1} = \sum_{b} R(U)^a_b S^a(\vb{r}). \]
+        \item Relation to particle number:
+        \[ \vb{S}(\vb{r})\cdot \vb{S}(\vb{r}) = \frac{3}{4}n(\vb{r}) - \frac{3}{2}n_{\uparrow}(\vb{r})n_{\downarrow}(\vb{r}). \]
+        \item In the momentum space
+        \[ \vb{S}(\vb{k}) = \frac{1}{2} \int \frac{\dd[d]{\vb{q}}}{(2\pi)^d} c^\dagger_\alpha(\vb{q}) \vb*{\sigma}_{\alpha\beta} c_\beta(\vb{q}+\vb{k}). \]
+    \end{itemize}
+\end{proposition}
+
+\paragraph*{How do we accomodate magnetic field}
+In the presence of a magnetic field, the hopping term is given by
+\begin{align*}
+    H_0 &= -t \sum_{\substack{\langle \vb{r},\vb{r}'\rangle \\ \sigma}} \Biggl\{
+        c^\dagger_\sigma(\vb{r}) \exp\qty[ie \int_{\vb{r}}^{\vb{r}'} \dd{\vb{x}}\cdot \vb{A}(\vb{x})] c_\sigma(\vb{r}') \\
+        &\phantom{{}= -t\sum_{\substack{\langle \vb{r},\vb{r}'\rangle \\ \sigma}}\Biggl\{} + c^\dagger_\sigma(\vb{r}') \exp\qty[-ie \int_{\vb{r}}^{\vb{r}'} \dd{\vb{x}}\cdot \vb{A}(\vb{x})] c_\sigma(\vb{r}) \Biggl\}.
+\end{align*}
+
+\paragraph*{Correlation Functions}
+A few common correlation functions are listed here.
+\begin{align*}
+    G_{\sigma\sigma'}(\vb{r},t;\vb{r}',t') &= -i \ev**{T c_\sigma(\vb{r},t) c^\dagger_{\sigma'}(\vb{r}',t')}{\mathrm{GS}}, \\
+    K_{00}(\vb{r},t;\vb{r}',t') &= \ev**{T \hat{n}(\vb{r},t) \hat{n}(\vb{r}',t')}{\mathrm{GS}}, \\
+    K^{aa'}(\vb{r},t;\vb{r}',t') &= \ev**{T S^a(\vb{r},t) S^{a'}(\vb{r}',t')}{\mathrm{GS}},
+\end{align*}
+where
+\[ \hat{n}(\vb{r},t) = n(\vb{r},t) - \ev{n(\vb{r},t)}. \]
+
+\paragraph*{Mean Field Approximation}
+Let $H_{\mathrm{i}}(X)$ be the interaction part of $H$.
+Applying mean field approximation to $H'$ with respect to field $X$ is equivalent to introducing a field $M$ and replacing
+\[ H_{\mathrm{i}}(X) \rightarrow H_{\mathrm{i}}(M) + H'_{\mathrm{i}}(M)(X - M).  \]
+
+\begin{example}{Hubbard Model, Mean Field Approximation}{hubbard_model_mean_field_approximation}
+    The Hubbard Hamiltonian is given by
+    \[ H = -t\sum_{\substack{\vb{r},\vb{r}'\\ \sigma}} \qty[c^\dagger_\sigma(\vb{r}) c_{\sigma}(\vb{r}') + c^\dagger_\sigma(\vb{r}')c_\sigma(\vb{r})] - \frac{2}{3} U \sum_{\vb{r}} \vb{S}(\vb{r}) \cdot \vb{S}(\vb{r}). \]
+    Applying the mean field approximation we find
+    \[ H = \int \frac{\dd[d]{\vb{k}}}{(2\pi)^d} \qty(\sum_\sigma \epsilon(\vb{k}) n_\sigma(\vb{k}) + \frac{3}{8U}\vb{M}^*(\vb{k})\cdot \vb{M}(\vb{k}) + \vb{M}^*(\vb{k})\cdot \vb{S}(\vb{k})). \]
+\end{example}
+
+\paragraph*{Path Integral}
+For boson field we find
+\[ Z = \int \mathcal{D}\Psi^* \mathcal{D}\Psi \exp{i\int \dd{t} \qty[\sum_{\vb{r}} \Psi^* i\partial_t \Psi - H(\Psi^*,\Psi)]}. \]
+Similarly for fermion field we find
+\[ Z = \int \mathcal{D}\overline{\Psi} \mathcal{D}\Psi \exp{i\int \dd{t} \qty[\sum_{\vb{r}} \overline{\Psi} i\partial_t \Psi - H(\overline{\Psi},\Psi)]}. \]
+
+\paragraph*{Wick Rotation, Imaginary Time}
+$t = i\tau$.
+
+\paragraph*{Hubbard-Stratonovich Transformation}
+We may introduce a bosonic field to reduce a quartic interaction to a Yukawa one.
+\[ \int \mathcal{D}\vb{\phi} \exp[-i\qty(\frac{1}{2}\vb{\phi}\cdot \vb{\phi} + \lambda \vb{\phi}\cdot \blacksquare)] = \mathrm{const.} \times \exp[\frac{1}{2}i\lambda^2 (\blacksquare)^2]. \]
+
+\begin{example}{Hubbard Model, Path Integral}{hubbard_model_path_integral}
+    The Lagrangian of the Hubbard model is given by
+    \begin{align*}
+        \mathcal{L}(\vb{r},t) &= \sum_\alpha \overline{\Psi}_\alpha(\vb{r},t) (i\partial_t + \mu) \Psi_\alpha(\vb{r},t) \\
+        &\phantom{{}={}} + t \sum_\alpha \sum_{\langle \vb{r},\vb{r}' \rangle} \qty(\overline{\Psi}_\alpha(\vb{r},t) \Psi_\alpha(\vb{r}',t)+\overline{\Psi}_\alpha(\vb{r}',t) \Psi_\alpha(\vb{r},t)) \\
+        &\phantom{{}={}} +\frac{U}{6} \sum_{\alpha,\beta} \qty(\overline{\Psi}_\alpha(\vb{r},t) \vb*{\sigma}_{\alpha\beta}\Psi(\vb{r},t))^2.
+    \end{align*}
+    Applying the Hubbard-Stratonovich transformation we get
+    \begin{align*}
+        \mathcal{L}(\vb{r},t) &= \sum_\alpha \overline{\Psi}_\alpha(\vb{r},t) (i\partial_t + \mu) \Psi_\alpha(\vb{r},t) \\
+        &\phantom{{}={}} + t \sum_\alpha \sum_{\langle \vb{r},\vb{r}' \rangle} \qty(\overline{\Psi}_\alpha(\vb{r},t) \Psi_\alpha(\vb{r}',t)+\overline{\Psi}_\alpha(\vb{r}',t) \Psi_\alpha(\vb{r},t)) \\
+        &\phantom{{}={}} - \sqrt{\frac{U}{3}} \vb*{\phi}(\vb{r},t) \cdot \sum_{\alpha,\beta}\overline{\Psi}_\alpha(\vb{r},t) \vb*{\sigma}_{\alpha\beta} \Psi_\beta(\vb{r},t) - \frac{1}{2}\vb*{\phi}(\vb{r},t) \cdot \vb*{\phi}(\vb{r},t).
+    \end{align*}
+    Integrating out the fermions, we find
+    \[ Z = \int \mathcal{D}\vb*{\phi} e^{iS_{\mathrm{eff}}(\vb*{\phi})}, \]
+    where
+    \[ S_{\mathrm{eff}}(\vb*{\phi}) = -\int \dd{t} \sum_{\vb{r}} \frac{1}{2}\vb*{\phi}(\vb{r},t)\cdot \vb*{\phi}(\vb{r},t) - i\ln\det\qty(i\partial_t + \mu - \mathcal{M}(\vb*{\phi})), \]
+    and
+    \begin{align*}
+        \bra{\vb{r},t,\alpha} \mathcal{M}(\vb*{\phi})\ket{\vb{r}',t',\beta} &= -\delta_{\alpha\beta}\delta(t-t') t \sum_{1\le j\le d} \qty(\delta_{\vb{r}',\vb{r}+\vb{e}_j} + \delta_{\vb{r}',\vb{r}-\vb{e}_j}) \\
+        &\phantom{{}={}} + \sqrt{\frac{U}{3}}\delta(t-t')\delta_{\vb{r},\vb{r}'}\vb*{\phi}(\vb{r},t)\cdot \vb*{\sigma}_{\alpha\beta}.
+    \end{align*}
+    The stationary condition on $\vb*{\phi}$ gives
+    \begin{align*}
+        \vb*{\phi}(\vb{r},t) &= i\sqrt{\frac{U}{3}} \sum_{\alpha\beta} \vb*{\sigma}_{\beta\alpha} \mel**{\vb{r},t,\alpha}{\frac{1}{i\partial_t + \mu - \mathcal{M}(\vb*{\phi})}}{\vb{r'},t',\beta} \\
+        &= -\sqrt{\frac{U}{3}} \sum_{\alpha\beta} \vb*{\sigma}_{\beta\alpha} G_{\alpha\beta}(\vb{r},t;\vb{r},t;\vb*{\phi}) \\
+        &= -\sqrt{\frac{4U}{3}}\ev{\vb{S}(\vb{r},t)}.
+    \end{align*}
+    In 2-dimensional AFM state,
+    \[ \vb*{\phi}(\vb{r},t) = \abs{\vb*{\phi}}\vb{n} (-1)^{x_1+x_2}, \]
+    and we find the Green's function
+    \[ G(\vb{k},\omega) = \frac{-i}{\omega^2 - \qty(\epsilon^2(\vb{k})+\dfrac{U}{3}\abs{\vb*{\phi}}^2)} \begin{pmatrix}
+        \omega + \epsilon(\vb{k}) & \sqrt{U/3}\abs{\vb*{\phi}}\vb{n}\cdot \vb*{\sigma} \\
+        \sqrt{U/3}\abs{\vb*{\phi}}\vb{n}\cdot \vb*{\sigma} & \omega - \epsilon(\vb{k})
+    \end{pmatrix}. \]
+    The spectrum becomes
+    \[ E(\vb{k}) = \sqrt{\epsilon^2(\vb{k}) + \frac{U}{3}\abs{\vb*{\phi}}^2}. \]
+\end{example}
+
+\paragraph*{Path Integral for Spins}
+The partition function is given by
+\[ Z = \int \mathcal{D} \vb{n} \exp(i S_{\mathrm{M}}(M)[\vb{n}]) \]
+where
+\[ S_{\mathrm{M}}(\vb{n}) = S S_{\mathrm{WZ}[\vb{n}]}[\vb{n}] + \frac{S \delta t}{4}\int_0^T \dd{s} (\partial_s \vb{n}(s))^2 - S \int_0^T \dd{s} H(\vb{n}), \]
+where $S$ is the spin and $H$ is the Hamiltonian, and the Wess-Zumino term $S_{\mathrm{WZ}}[\vb{n}]$ is the area on the sphere enclosed by the trajectory $\vb{n}$.
+
+\paragraph*{Jordan-Schwinger Construction}
+With $[a,a^\dagger] = [b,b^\dagger] = 1$, and that $a$ and $b$ commute, then the angular momentum may be written as
+\begin{align*}
+    J_z &= \frac{1}{2}(a^\dagger a - b^\dagger b), \\
+    J_x + i J_y &= a^\dagger b, \\
+    J_x - i J_y &= b^\dagger a,
+\end{align*}
+and
+\[ \ket{j,m} = \frac{1}{\sqrt{(j+m)! (j-m)!}}(a^\dagger)^{j+m} (b^\dagger)^{j-m}\ket{j,0}. \]
+
+\paragraph*{Majorana Operators}
+Let $a_k$ be fermionic operators.
+Define
+\[ c_{2k-1} = a_k + a_k^\dagger,\quad c_{2k} = \frac{a_k - a_k^\dagger}{i}. \]
+Then we have
+\begin{itemize}
+    \item $c_j$ are Hermitian.
+    \item $c_j$ obey the follow relations:
+    \[ \qty{c_i,c_j} = 2\delta_{ij}. \]
+\end{itemize}
+
+Let $b^x$, $b^y$, $b^z$ and $c$ be a set of Majorana operators from the fermionic operators $c_\uparrow$ and $c_\downarrow$.
+The 4-dimensional Fock space is denoted by $\tilde{\mathcal{M}}$, while the Hilbert space of a spin is the 2-dimensional subspace $\mathcal{M}\subset \tilde{\mathcal{M}}$ defined by
+\[ \mathcal{M} = \Set*{\ket{\xi}}{b^x b^y b^z c\ket{\xi} = \ket{\xi}}. \]
+We can replace on each site
+\begin{align*}
+    \tilde{\sigma}^x &= ib^x c, \\
+    \tilde{\sigma}^y &= ib^y c, \\
+    \tilde{\sigma}^z &= ib^z c.
+\end{align*}
+With such replacement, any spin Hamiltonian $H\qty{\sigma^\alpha_j}$ could be replaced by a fermionic one $\tilde{H}\qty{b^\alpha_j, c_j}$.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

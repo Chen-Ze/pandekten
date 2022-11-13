@@ -1,0 +1,209 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 3}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\plabel{1 (a)}%
+Decompose $\phi(t)$ into
+\[ \phi(t) = \phi^-(t) + \phi^+(t) \]
+where
+\[ \phi^+(t) = \frac{1}{\sqrt{2m}}a^\dagger e^{imt};\quad \phi^-(t) = \frac{1}{\sqrt{2m}} a e^{-imt}. \]
+Then for $t>t'$, we find
+\begin{align*}
+    T \phi(t)\phi(t') &= \phi^+(t)\phi^+(t') + \phi^+(t)\phi^-(t') + \phi^+(t')\phi^-(t) + \phi^-(t)\phi^-(t') \\
+    &\phantom{{}={}} {} + [\phi^-(t),\phi^+(t')] \\
+    &= \normord{\phi(t)\phi(t')} + [\phi^-(t),\phi^+(t')] \\
+    &= \normord{\phi(t)\phi(t')} + \frac{e^{-im(t-t')}}{2m}.
+\end{align*}
+Similarly for $t'>t$ we have
+\[ T \phi(t)\phi(t') = \normord{\phi(t)\phi(t')} + [\phi^-(t'),\phi^+(t)] = \normord{\phi(t)\phi(t')} + \frac{e^{-im(t'-t)}}{2m}. \]
+The vacuum expectation value of normal ordering vanishes.
+Therefore,
+\[ T\phi(t)\phi(t') = \normord{\phi(t)\phi(t')} + \frac{e^{-im\abs{t-t'}}}{2m} = \normord{\phi(t)\phi(t')} + G_{\mathrm{F}}(t-t'), \]
+where
+\[ G_{\mathrm{F}}(t-t') = \frac{e^{-im\abs{t-t'}}}{2m}. \]
+
+\plabel{(b)}%
+It generalizes to
+\begin{align*}
+    &\phantom{{}={}} T(\phi(t_1) \cdots \phi(t_{2n})) \\
+    &= \normord{\phi(t_1) \cdots \phi(t_{2n})} \\
+    &\phantom{{}={}} {} + \sum_{0\le i_1 < j_1 \le 2n} G_{\mathrm{F}}(t_{i_1} - t_{j_1}) \normord{\phi(t_1) \cdots \cancel{\phi(t_{i_1})} \cancel{\phi(t_{j_1})} \cdots \phi(t_{2n})} \\
+    &\phantom{{}={}} {} + \sum_{\substack{0\le i_1 < j_1 \le 2n \\ 0\le i_2 < j_2 \le 2n \\ i_1 < i_2, j_1 \neq j_2}} G_{\mathrm{F}}(t_{i_1} - t_{j_1}) G_{\mathrm{F}}(t_{i_2} - t_{j_2}) \normord{\phi(t_1) \cdots \cancel{\phi(t_{i_1})} \cancel{\phi(t_{j_1})} \cancel{\phi(t_{i_2})} \cancel{\phi(t_{j_2})} \cdots \phi(t_{2n})} \\
+    &\phantom{{}={}} + \cdots \\
+    &\phantom{{}={}} + \sum_{\substack{0\le i_1 < j_1 \le 2n \\ \cdots \\ 0\le i_n < j_n \le 2n \\ i_1 < \cdots < i_n \\ j_1 \neq j_2 \neq \cdots \neq j_n}} G_{\mathrm{F}}(t_{i_1} - t_{j_1}) G_{\mathrm{F}}(t_{i_2} - t_{j_2}) \cdots G_{\mathrm{F}}(t_{i_n} - t_{j_n}).
+\end{align*}
+Since the vacuum expectation value of normal ordering vanishes, we find
+\begin{align*}
+    &\phantom{{}={}} \bra{0} T\phi(t_1) \dots \phi(t_n) \ket{0} \\
+    &= \sum_{\substack{0\le i_1 < j_1 \le 2n \\ \cdots \\ 0\le i_n < j_n \le 2n \\ i_1 < \cdots < i_n \\ j_1 \neq j_2 \neq \cdots \neq j_n}} G_{\mathrm{F}}(t_{i_1} - t_{j_1}) G_{\mathrm{F}}(t_{i_2} - t_{j_2}) \cdots G_{\mathrm{F}}(t_{i_n} - t_{j_n}).
+\end{align*}
+
+\plabel{(c)}%
+The expectation value of normal ordering no longer vanishes for $\ket{1}$.
+Those proportional to $a^\dagger a$ have nonzero contribution.
+Therefore,
+\begin{align*}
+    &\phantom{{}={}} \bra{1} T\phi(t_1) \phi(t_2) \phi(t_3) \phi(t_4)\ket{1} \\
+    &= G_{\mathrm{F}}(t_2 - t_1) \qty(G_{\mathrm{F}}(t_4 - t_3) + \normord{\phi(t_3)\phi(t_4)}) \\
+    &\phantom{{}={}} {} + G_{\mathrm{F}}(t_3 - t_1) \qty(G_{\mathrm{F}}(t_4 - t_2) + \normord{\phi(t_2)\phi(t_4)}) \\
+    &\phantom{{}={}} {} + G_{\mathrm{F}}(t_4 - t_1) \qty(G_{\mathrm{F}}(t_3 - t_2) + \normord{\phi(t_2)\phi(t_3)}).
+\end{align*}
+Note that
+\begin{align*}
+    \bra{1} \normord{\phi(t)\phi(t')} \ket{1} &= \ev**{\frac{a^\dagger a (e^{im(t-t')} + e^{im(t'-t)})}{2m}}{1} = \frac{1}{m} \cos(m(t-t')).
+\end{align*}
+Therefore,
+\begin{align*}
+    &\phantom{{}={}} \bra{1} T\phi(t_1) \phi(t_2) \phi(t_3) \phi(t_4)\ket{1} \\
+    &= G_{\mathrm{F}}(t_2 - t_1) \qty(G_{\mathrm{F}}(t_4 - t_3) + \frac{1}{m} \cos(m(t_4-t_t))) \\
+    &\phantom{{}={}} {} + G_{\mathrm{F}}(t_3 - t_1) \qty(G_{\mathrm{F}}(t_4 - t_2) + \frac{1}{m} \cos(m(t_4-t_2))) \\
+    &\phantom{{}={}} {} + G_{\mathrm{F}}(t_4 - t_1) \qty(G_{\mathrm{F}}(t_3 - t_2) + \frac{1}{m} \cos(m(t_3-t_2))).
+\end{align*}
+
+\prule
+\plabel{2 (a)}%
+The evolution of state is given by
+\begin{align}
+    \notag &\phantom{{}={}} i\dv{}{t} \ket{\psi(t)}_I \\
+    \notag &= -H_0(\phi_S,\pi_S) e^{iH_0(\phi_S,\pi_S) t}\ket{\psi(t)}_S + e^{iH_0(\phi_S,\pi_S) t} H(\phi_S,\pi_S) \ket{\psi(t)}_S \\
+    \notag &= e^{iH_0(\phi_S,\pi_S) t} V(\phi_S,\pi_S,t) e^{-iH_0(\phi_S,\pi_S) t} \ket{\psi(t)}_I \\
+    \label{eq:time_evolution_state} &= V_I(t) \ket{\psi(t)}_I.
+\end{align}
+The evolution of operator is given by
+\begin{align*}
+    &\phantom{{}={}} i\dv{}{t} \mathcal{O}_I(t) \\
+    &= - e^{iH_0(\phi_S,\pi_S) t} H_0(\phi_S,\pi_S) \mathcal{O}(t) e^{-iH_0(\phi_S,\pi_S) t} \\
+    &\phantom{{}={}} {} + e^{iH_0(\phi_S,\pi_S) t} \mathcal{O}(t) H_0(\phi_S,\pi_S) e^{-iH_0(\phi_S,\pi_S) t} \\
+    &\phantom{{}={}} {} + ie^{iH_0(\phi_S,\pi_S) t} \pdv{\mathcal{O}(t)}{t} e^{-iH_0(\phi_S,\pi_S) t} \\
+    &= [\mathcal{O}_I(t), H_0(\phi_I(t),\pi_I(t))] + i\qty(\pdv{\mathcal{O}(t)}{t})_I.
+\end{align*}
+
+\plabel{(b)}%
+To solve \cref{eq:time_evolution_state} with initial condition $\ket{\psi(-\infty)} = \ket{n}$ we assume without loss of generality that $E_n = 0$ and apply the iteration
+\begin{align*}
+    \ket{\psi^{(0)}(t)}_I &\equiv \ket{n}, \\
+    \ket{\psi^{(i+1)}(t)}_I &= \ket{n} -i\int_{-\infty}^t \dd{t'} V_I(t') \ket{\psi^{(i)}(t')}_I
+\end{align*}
+and find
+\begin{align*}
+    \ket{\psi(t)}_I &= \qty(\mathbbm{1} + (-i) \int_{-\infty}^t \dd{t_1} V_I(t_1) + (-i)^2 \int_{-\infty}^t \dd{t_1} \int_{-\infty}^{t_1} \dd{t_2} V_I(t_1) V_I(t_2) + \cdots) \ket{n} \\
+    &= T\qty(\mathbbm{1} + \frac{(-i)}{1!} \int_{-\infty}^t \dd{t_1} V_I(t_1) + \frac{(-i)^2}{2!} \int_{-\infty}^t \dd{t_1} \int_{-\infty}^{t} \dd{t_2} V_I(t_1) V_I(t_2) + \cdots) \ket{n} \\
+    &= T \exp\qty[-i \int_{-\infty}^t \dd{t} V_I(t)] \ket{n}.
+\end{align*}
+Therefore,
+\begin{align*}
+    \bra{n'(t)}\ket{\psi(t)}_I &= \mel**{n'(t)}{T \exp\qty[-i \int_{-\infty}^t \dd{t} V_I(t)]}{n} \\
+    &= e^{i\theta(t)}\mel**{n'}{T \exp\qty[-i \int_{-\infty}^t \dd{t} V_I(t)]}{n}
+\end{align*}
+where $e^{i\theta(t)}$ is some phase factor.
+In the limit $t\rightarrow \infty$ we find
+\begin{align*}
+    \mathcal{P}_{n\rightarrow n'} &= \abs{\mathcal{M}_{n\rightarrow n'}}^2, \\
+    \mathcal{M}_{n\rightarrow n'} &= \mel**{n'}{T \exp\qty[-i \int_{-\infty}^\infty \dd{t} V_I(t)]}{n}.
+\end{align*}
+
+\plabel{(c)}%
+To the lowest order of $f$ we find (setting $E_0 = 0$)
+\begin{align*}
+    \mathcal{M}_{0\rightarrow 0} &= \mel**{0}{\qty[\mathbbm{1} - \int_{-\infty}^{\infty} \int_{-\infty}^{t_1} \dd{t_1} \dd{t_2} f(t_1)\phi e^{-iH_0 t_1}e^{iH_0 t_2} f(t_2)\phi ]}{0} \\
+    &= 1 - \int_{-\infty}^{\infty} \int_{-\infty}^{t_1} \dd{t_1} \dd{t_2} f(t_1) f(t_2) \bra{0} \phi e^{-iH_0 t_1} e^{iH_0 t_2} \phi \ket{0} \\
+    &= 1 - \frac{1}{4m^2} \int_{-\infty}^{\infty} \int_{-\infty}^{t_1} \dd{t_1} \dd{t_2} f(t_1) f(t_2) e^{i\omega(t_2 - t_1)} \\
+    &= 1 - \frac{1}{2} \int_{-\infty}^\infty \int_{-\infty}^\infty \dd{t_1} \dd{t_2} f(t_1) f(t_2) G_{\mathrm{F}}(t_2 - t_1).
+\end{align*}
+
+\plabel{(d)}%
+The number of contractions on $\phi(t_1) \cdots \phi(t_{2n})$ is given by $C_n = \displaystyle \frac{(2n)!}{n! 2^{n}}$.
+Therefore,
+\begin{align*}
+    \mathcal{M}_{0\rightarrow 0} &= \sum_{n=0}^\infty \frac{(-1)^n}{(2n)!} C_n \qty(\int_{\mathbb{R}^{2}} \dd[2]{t} f(t_1) f(t_2) G_{\mathrm{F}}(t_2 - t_1))^n \\
+    &= \sum_{n=0}^\infty \frac{1}{n!} \qty(-\frac{1}{2}\int_{\mathbb{R}^{2}} \dd[2]{t} f(t_1) f(t_2) G_{\mathrm{F}}(t_2 - t_1))^n \\
+    &= \exp\qty[-\frac{1}{2}\int_{\mathbb{R}^{2}} \dd[2]{t} f(t_1) f(t_2) G_{\mathrm{F}}(t_2 - t_1)].
+\end{align*}
+
+\prule
+\plabel{3 (a)}%
+The Matsubara's function
+\[ G(\tau_2 - \tau_1) = G(\tau_2, \tau_1) \]
+has domain $\qty[-\beta,\beta]$.
+If $-\beta < \tau < 0$, then
+\begin{align*}
+    G(\tau+\beta) &= \frac{1}{Z}\tr(e^{-\beta H} e^{\beta H} e^{\tau H} \phi e^{-\tau H} e^{-\beta H} \phi) \\
+    &= \frac{1}{Z}\tr(e^{-\beta H} \phi e^{\tau H} \phi e^{-\tau H}) \\
+    &= \frac{1}{Z} \tr(e^{-\beta H} \phi(0) \phi(\tau)) \\
+    &= G(\tau).
+\end{align*}
+
+\plabel{(b)}%
+If $\tau > 0$, then
+\begin{align*}
+    G^>(\tau) &= \frac{1}{Z} \tr(e^{-\beta H} e^{\tau H} \phi e^{-\tau H} \phi). \\
+    \dv[2]{G^{>}(\tau)}{\tau} &= \frac{1}{Z} \tr(e^{-\beta H} e^{\tau H} [H,[H,\phi]] e^{-\tau H} \phi) = m^2 G^>(\tau).
+\end{align*}
+Similarly for $\tau < 0$ we have
+\[ \dv[2]{G^<(\tau)}{\tau} = m^2 G^<(\tau). \]
+From
+\[ G(\tau) = \Theta(\tau) G^>(\tau) + \Theta(-\tau) G^{<}(\tau) \]
+we find
+\[ G''(\tau) - m^2 G(\tau) = - \delta(\tau)
+. \]
+Define the Matsubara frequencies by
+\[ \omega_n = \frac{2\pi n}{\beta}. \]
+$G$ may be expanded as
+\[ G(\tau) = \sum_{n=-\infty}^\infty G(i\omega_n) e^{-i\omega_n \tau}, \]
+where
+\[ \tilde{G}(i\omega_n) = \frac{1}{\beta (\omega_n^2 + m^2)}. \]
+The summand has the form
+\[ S(n) = \tilde{G}\qty(\frac{2\pi i}{\beta} n) \exp(-\frac{2\pi i \tau}{\beta}n). \]
+The Fourier transform is given by
+\[ s(k) = \int_{-\infty}^\infty \dd{x} \tilde{G}\qty(\frac{2\pi i}{\beta} x) \exp(-\frac{2\pi i (\tau + \beta k)}{\beta}x). \]
+The Poisson summation formula yields
+\begin{align*}
+    G(\tau) &= \sum_{k=-\infty}^\infty \int_{-\infty}^\infty \dd{x} \tilde{G}\qty(\frac{2\pi i}{\beta} x) \exp(-\frac{2\pi i (\tau + \beta k)}{\beta}x) \\
+    &= \frac{1}{2m} \sum_{k=-\infty}^\infty \qty(e^{m(k\beta + \tau)}\Theta\qty(- k - \frac{\tau}{\beta}) + e^{-m(k\beta + \tau)}\Theta\qty(k + \frac{\tau}{\beta})).
+\end{align*}
+For $-\beta < \tau < \beta$, the Matsubara's function is given by
+\begin{align*}
+    G(\tau) &= \Theta(\tau) \cdot \frac{1}{2m}\qty[e^{-m\tau}(N+1) + e^{m\tau}N] \\
+    &\phantom{{}={}} + \Theta(-\tau) \cdot \frac{1}{2m}\qty[e^{-m\tau}N + e^{m\tau}(N+1)],
+\end{align*}
+where
+\[ N = \frac{1}{e^{m\beta} - 1}. \]
+
+\plabel{(c)}%
+With $\tau\rightarrow 0$ we find
+\[ \langle \phi^2 \rangle = \frac{2N+1}{2m} = \frac{1}{2m}\coth (\frac{m\beta}{2}). \]
+At $\beta\rightarrow 0$, we find
+\[ \langle \phi^2 \rangle \approx \frac{1}{\beta m^2}, \]
+which coincides with the equipartition theorem
+\[ \langle \frac{1}{2}m^2 \phi^2 \rangle \approx \frac{1}{2\beta}. \]
+
+\end{document}

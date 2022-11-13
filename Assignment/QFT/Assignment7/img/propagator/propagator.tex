@@ -1,0 +1,29 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+\usepackage{slashed}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{alignat*}{3}
+    \wick{\c1 \Phi(x) \c1 \Phi^\dagger(y)} &= \quad
+    \feynmandiagram [inline=(r2.base), horizontal=r1 to r2] {
+        r1 --[charged scalar, edge label'=$q$] r2[particle=\vphantom{Mg}],
+    }; \ &&= \frac{i}{q^2 - M^2 + i\epsilon}, \\
+    \wick{\c1 \psi(x) \c1 {\overline{\psi}}(y)} &= \quad
+    \feynmandiagram [inline=(c2.base), horizontal=c1 to c2] {
+        c1 --[blue!50!black, fermion, edge label'=$p$] c2[particle=\vphantom{Mg}],
+    }; \ &&= \frac{i(\slashed{p}+m)}{p^2 - m^2 + i\epsilon}, \\
+    \wick{\c1 \chi(x) \c1 {\overline{\chi}}(y)} &= \quad
+    \feynmandiagram [inline=(c2.base), horizontal=c1 to c2] {
+        c1 --[cyan!50!black, fermion, edge label'=$p$] c2[particle=\vphantom{Mg}],
+    }; \ &&= \frac{i(\slashed{p}+m)}{p^2 - m^2 + i\epsilon}, \\
+    &\phantom{{}={}}
+    \feynmandiagram [inline=(c2.base), horizontal=c1 to c2] {
+        c1[particle=$\mu$] --[photon, momentum'=$k$] c2[particle=$\nu$\vphantom{Mg}],
+    }; \ &&= \frac{-i g_{\mu\nu}}{k^2 + i\epsilon}.
+\end{alignat*}
+\end{document}

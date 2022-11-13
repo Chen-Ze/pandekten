@@ -1,0 +1,34 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{equation*}
+    %&{\phantom{=}}\mel**{\vb{p}_1,\cdots,\vb{p}_n}{T\qty{\exp[i\int \dd[4]{x} j(x)\phi_I(x)]}}{0} \\
+    \sum_{m=0}^\infty \frac{1}{(n+2m)!} \binom{n + 2m}{n} \times
+    \qty(\begin{array}{c}
+        \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+            v[dot] --[fermion,edge label=$p_1$] r[particle=\vphantom{Mg}];
+        };
+        \\
+        \vdots
+        \\
+        \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+            v[dot] --[fermion,edge label=$p_n$] r[particle=\vphantom{Mg}];
+        };
+    \end{array}) \times n! \times
+    \qty(
+        \hspace{-1em}\feynmandiagram [small, inline=(s.base), horizontal=r to v] {
+            t[particle=\vphantom{Mg}];
+            v[dot] --[fermion] r[dot];
+            s[particle=\vphantom{Mg}];
+        };
+        \hspace{-1em}
+    )^m \times C_m
+\end{equation*}
+\end{document}

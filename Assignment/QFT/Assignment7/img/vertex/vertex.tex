@@ -1,0 +1,49 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+        c1 --[cyan!50!black, fermion] v [dot];
+        v --[blue!50!black, fermion] c2;
+        r[particle=\vphantom{Mg}] --[charged scalar] v;
+    }; \ &= -ig, \\
+    \feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+        c1 --[blue!50!black, fermion] v [dot];
+        v --[cyan!50!black, fermion] c2;
+        v --[charged scalar] r[particle=\vphantom{Mg}];
+    }; \ &= -ig, \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to r1] {
+        c1 --[charged scalar] v [dot];
+        v --[charged scalar] c2;
+        r1 --[charged scalar] v;
+        v --[charged scalar] r2;
+    }; \quad &= -2i\lambda, \\
+    \feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+        c1 --[blue!50!black,fermion,edge label'=$q$] v [dot];
+        v --[blue!50!black,fermion,edge label'=$q'$] c2;
+        v --[photon] r[particle=$\mu$\vphantom{Mg}];
+    }; \ &= -i e \gamma^\mu, \\
+    \feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+        c1 --[cyan!50!black,fermion,edge label'=$q$] v [dot];
+        v --[cyan!50!black,fermion,edge label'=$q'$] c2;
+        v --[photon] r[particle=$\mu$\vphantom{Mg}];
+    }; \ &= -i(-e)\gamma^\mu, \\
+    \feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+        c1 --[charged scalar,edge label'=$q$] v [dot];
+        v --[charged scalar,edge label'=$q'$] c2;
+        v --[photon] r[particle=$\mu$\vphantom{Mg}];
+    }; \ &= -i(2e)(q+q')^\mu, \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to r1] {
+        c1 --[charged scalar] v [dot];
+        r1[particle=$\mu$\vphantom{Mg}] --[photon] v;
+        v --[charged scalar] c2;
+        v --[photon] r2[particle=$\nu$\vphantom{Mg}];
+    }; \ &= 2i(2e)^2 g^{\mu\nu}.
+\end{align*}
+\end{document}

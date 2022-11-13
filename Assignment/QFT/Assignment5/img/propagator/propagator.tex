@@ -1,0 +1,20 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \wick{\c1 \phi(x) \c1 \phi^\dagger(y)} &= \quad
+    \feynmandiagram [inline=(c2.base), horizontal=c1 to c2] {
+        c1 --[fermion, edge label'=$p$] c2[particle=\vphantom{Mg}],
+    }; \ = \frac{i}{p^2 - M^2 + i\epsilon}, \\
+    \wick{\c1 \chi(x) \c1 \chi(y)} &= \quad
+    \feynmandiagram [inline=(r2.base), horizontal=r1 to r2] {
+        r1 --[charged scalar, edge label'=$q$] r2[particle=\vphantom{Mg}],
+    }; \ = \frac{i}{q^2 - m^2 + i\epsilon}.
+\end{align*}
+\end{document}

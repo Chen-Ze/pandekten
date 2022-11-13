@@ -1,0 +1,167 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 5}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a)}%
+The likelihood is given by
+\[ \ln l(\lambda) = m \ln \lambda - \lambda \sum_{i=1}^m x_i \]
+and the stationary point is given by
+\[ \eval{\dv{}{\lambda} \ln l(\lambda)}_{\lambda=\hat{\lambda}} = \frac{m}{\hat{\lambda}} - \sum_{i=1}^m x_i = 0, \]
+i.e.
+\[ \hat{\lambda} = \frac{m}{\sum_{i=1}^m x_i}. \]
+
+\plabel{(b)}%
+$h(x) = 1$, $t(x) = -x$, $\theta = \lambda$, $A(\theta) = -\ln \theta$.
+
+\plabel{(c)}%
+With $\theta = \lambda$ we find
+\[ \dv{}{\lambda} (-\ln \theta) = -\frac{1}{\lambda} = -\frac{1}{m} \sum_{i=1}^m x_i, \]
+i.e.
+\[ \hat{\lambda} = \frac{m}{\sum_{i=1}^m x_i}. \]
+
+\prule
+
+\plabel{2 (a.i)}%
+\begingroup\minusbaseline
+\[ f_{\Conditional*{X}{Y}}(x;\lambda_i) = \lambda_i e^{-\lambda_i x}.  \]
+\endgroup
+\plabel{(a.ii)}%
+\begingroup\minusbaseline
+\[ r_{i,j}(\theta) = f_{\Conditional*{Y}{X}}\Conditional*{y_i}{x_j;\theta} = \frac{f_Y(y_i;\theta) f_{\Conditional*{X}{Y}}(x_j;\lambda_i)}{f_X(x_j;\theta)} = \frac{p_i \lambda_i e^{-\lambda_i x_j}}{\sum_{k=1}^c p_k \lambda_k e^{-\lambda_k x_j}}. \]
+\endgroup
+\plabel{(b)}%
+\begingroup\minusbaseline
+\[ \dv{}{\lambda_i} f_{\Conditional*{X}{Y}}(x;\lambda_i) = (1 - \lambda_i x) e^{-\lambda_i x}. \]
+\endgroup
+\plabel{(c)}%
+The EM algorithm is given below.
+\begin{enumerate}
+    \item Select an initial point $\theta^0 = (p^0, \lambda^0_1,\cdots,\lambda^0_c)$ and $p^0 \in \Delta^{c-1}$.
+    \item At step $t$ we use $\theta^t$ to compute
+    \[ r_{i,j}(\theta^t) = \frac{p^t_i \lambda^t_i e^{-\lambda^t_i x_j}}{\sum_{k=1}^c p^t_k \lambda^t_k e^{-\lambda^t_k x_j}}. \]
+    \item Update $p$ and $\lambda$ using the following.
+    \begin{enumerate}
+        \item Update $p$:
+        \[ p^{t+1}_i = \frac{1}{m} \sum_{j=1}^m r^t_{i,j}. \]
+        \item Update $\theta$:
+        \[ \theta_i^{t+1} \in \argmax_{\lambda_i} \sum_{j=1}^m r^t_{i,j} \ln(\lambda_i e^{-\lambda_i x_j}), \]
+        i.e. solve the equation
+        \[ \sum_{j=1}^m r^t_{i,j} \qty(\frac{1}{\lambda^{t+1}_i} - x_j) = 0. \]
+        The solution is given by
+        \[ \lambda^{t+1}_i = \frac{\sum_{j=1}^m r^t_{i,j}}{\sum_{j=1}^m r^t_{i,j} x_j}. \]
+    \end{enumerate}
+    \item If a suitable convergence condition is satisfied, stop.
+    Otherwise, return to the second step with $\theta^{t+1}$.
+\end{enumerate}
+
+\prule
+
+\plabel{3 (a.i)}%
+\begingroup\minusbaseline
+\[ f_Y(i;\theta) = p_i. \]
+\endgroup
+
+\plabel{(a.ii)}%
+\begingroup\minusbaseline
+\[ f_{\Conditional*{X}{Y}}(x;q_i) = \prod_{k=1}^n (1-q_i(k))^{1-x(k)} q_i^{x(k)}. \]
+\endgroup
+
+\plabel{(a.iii)}%
+\begingroup\minusbaseline
+\[ f_{XY}(x,i;\theta) = p_i \prod_{k=1}^n (1-q_i(k))^{1-x(k)} q_i^{x(k)}. \]
+\endgroup
+
+\plabel{(a.iv)}%
+\begingroup\minusbaseline
+\[ f_{X}(x;\theta) = \sum_{i=1}^c p_i \prod_{k=1}^n (1-q_i(k))^{1-x(k)} q_i^{x(k)}. \]
+\endgroup
+
+\plabel{(a.v)}%
+\begingroup\minusbaseline
+\[ f_{\Conditional*{Y}{X}}\Conditional*{i}{x;\theta} = \frac{f_Y(i;\theta) f_{\Conditional*{X}{Y}}(x;q_i)}{f_X(x;\theta)} = \frac{p_i \prod_{k=1}^n (1-q_i(k))^{1-x(k)} q_i^{x(k)}}{\sum_{i=1}^c p_i \prod_{k=1}^n (1-q_i(k))^{1-x(k)} q_i^{x(k)}}. \]
+\endgroup
+
+\plabel{(b.i)}%
+\begingroup\minusbaseline
+\[ \mu_X = \sum_{i=1}^c p_i q_i. \]
+\endgroup
+
+\plabel{(b.ii)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \Sigma_X &= \operatorname{E}(X^\intercal X) - \mu^\intercal \mu \\
+    &= \sum_{i=1}^c p_i \operatorname{E}\Conditional*{X^\intercal X}{q_i} - \qty(\sum_{i=1}^c p_i q_i)\qty(\sum_{i=1}^c p_i q_i^\intercal) \\
+    &= \sum_{i=1}^c p_i \qty(q_i q_i^\intercal + \operatorname{diag}(\vb{1} - q_i)q_i )  - \qty(\sum_{i=1}^c p_i q_i)\qty(\sum_{i=1}^c p_i q_i^\intercal) \\
+    &= \sum_{i=1}^c p_i \operatorname{diag}(1-q_i) q_i + \sum_{i=1}^c p_i q_i\qty(q_i^\intercal - \sum_{j=1}^c p_j q_j^\intercal).
+\end{align*}
+\endgroup
+
+\plabel{(c.i)}%
+\begingroup\minusbaseline
+\begin{align*}
+    l_X(\theta) &= \sum_{j=1}^m \ln(\sum_{i=1}^c p_i \prod_{k=1}^n (1-q_i(k))^{1-x_j(k)} q_i^{x_j(k)}.).
+\end{align*}
+\endgroup
+
+\plabel{4 (a)}%
+The marginal likelihood is given by
+\begin{align*}
+    L_X(\theta) &= \prod_{j=1}^m (\sum_{i=1}^c p_i f_{\Conditional*{X}{Y}}(x_j;\theta_j)) \\
+    &= \prod_{j=1}^m (p_1 N(x_i;\mu_1,\sigma_1^2) + p_2 N(x_i;\mu_2,\sigma_2^2)).
+\end{align*}
+
+\plabel{(b)}%
+Since
+\[ p_1 N(x_1;\mu_1,\sigma_1^2) = \frac{p_1}{\sqrt{2\pi}\sigma_1} \exp[-\frac{(x_1-\mu_1)^2}{2\sigma_1^2}], \]
+we have
+\[ \alpha = \frac{p_1}{\sqrt{2\pi}} \exp[-\frac{(x_1-\mu_1)^2}{2\sigma_1^2}]. \]
+In particular, with $\mu_1 = x_1$ we have
+\[ \alpha = \frac{p_1}{\sqrt{2\pi}}. \]
+
+\plabel{(c)}%
+We may let $\sigma_1$ go to zero.
+Every item in $\prod_{j=2}^m$ is bounded below, and therefore $L_X\rightarrow \infty$ since
+\[ \frac{\alpha}{\sigma_1} + p_2 N(x_1;\mu_2,\sigma_2) \rightarrow \infty. \]
+
+\plabel{(d)}%
+The only factor that causes such singularity is the $\sigma_i$ on the denominator.
+For each configuration with $\mu_1 = x_i$ or $\mu_2 = x_i$ for each $1\le i \le m$, $L\rightarrow \infty$ as $\sigma_1\rightarrow \infty$ or $\sigma_2\rightarrow \infty$, respectively.
+Therefore, there are $2m$ singular points.
+
+\plabel{(e)}%
+If the iteration pushes $L_X$ to infinity, then $L_X^{(n+1)} - L_X^{(n)}$ at each step of iteration may be far from zero.
+We may therefore take $\abs{L_X^{(n+1)} - L_X^{(n)}}$ into account in the convergence condition and restrict the maximal number of iteration steps.
+It's also useful to start with different initial condition.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

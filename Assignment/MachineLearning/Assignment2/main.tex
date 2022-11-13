@@ -1,0 +1,169 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 2}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\plabel{1 (a)}%
+Let $\lambda': \qty{1,\cdots,k} \rightarrow \Set*{(i,\abs{\lambda_i})}{i\in \qty{1,\cdots,k}}$ be a bijection such that
+\[ i < j \Rightarrow \operatorname{proj}_2 \lambda'(i) \ge \operatorname{proj}_2 \lambda'(j). \]
+Denote $\operatorname{proj}_2 \lambda'_j$ by $\lambda'(j)$, and $\operatorname{proj}_1 \lambda'_j$ by $\iota(j)$.
+Then $\lambda'_j$ is $\abs{\lambda_i}$ in descending order, and $\iota(j)$ is an index $i$ such that $\abs{\lambda_i} = \lambda'_j$. Let
+\[ u'_j = u_{\iota(j)} \operatorname{sign}(\lambda_{\iota(j)}),\quad v'_j = v_{\iota(j)} \]
+for $j\in\qty{1,\cdots,k}$, and
+\[ U = \begin{pmatrix}
+    u'_1 & \cdots & u'_k
+\end{pmatrix},\quad \Lambda = \operatorname{diag}(\lambda'_1,\cdots,\lambda'_k),\quad V = \begin{pmatrix}
+    v'_1 & \cdots & v'_k
+\end{pmatrix}. \]
+Then a compact SVD of $A$ is given by
+\[ A = U \Lambda V^\intercal. \]
+
+\plabel{(b)}%
+The first $d$ principal components are given by $u'_1,\cdots,u'_d$, the captured variance by $\displaystyle \frac{1}{m} \sum_{i=1}^d \lambda'^2_i$ and the residual variance by $\displaystyle \frac{1}{m} \sum_{i={d+1}}^k \lambda'^2_i$.
+
+\plabel{(c)}%
+The PCA projection to two dimensions is given by
+\[ X' = \begin{pmatrix}
+    u'_1 & u'_2
+\end{pmatrix} \begin{pmatrix}
+    \lambda'_1 & \\ & \lambda'_2
+\end{pmatrix} \begin{pmatrix}
+    v'^\intercal_1 \\ v'^\intercal_2
+\end{pmatrix}. \]
+The captured variance is given by
+\[ \sigma^2_{\parallel} = \lambda'^2_1 + \lambda'^2_2. \]
+The residual variance is given by
+\[ \sigma^2_{\parallel} = \sum_{i=3}^k \lambda'^2_i. \]
+
+\prule
+
+\plabel{2 (a)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    \grad f(x) &= \grad \begin{pmatrix}
+        1 & \cdots & 1
+    \end{pmatrix} \cdot x = \begin{pmatrix}
+        1 & \cdots & 1
+    \end{pmatrix}. \\
+    D f(x) [v] &= \grad f(x) \cdot v = f(v) = v_1 + \cdots + v_n.
+\end{align*}
+\endgroup
+
+\plabel{(b)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    \grad f(x) &= \grad_x \exp(\begin{pmatrix}
+        1 & \cdots & 1
+    \end{pmatrix} \cdot \log(x)) \\
+    &= f(x) \grad_x \qty[\begin{pmatrix}
+        1 & \cdots & 1
+    \end{pmatrix} \cdot \log(x)] \\
+    &= f(x) \grad_{\log(x)}\qty[ \begin{pmatrix}
+        1 & \cdots & 1
+    \end{pmatrix} \cdot \log(x) ] \cdot \grad_x \log(x) \\
+    &= f(x) \cdot \begin{pmatrix}
+        1 & \cdots & 1
+    \end{pmatrix} \cdot \operatorname{diag}\qty(\frac{1}{x_1},\cdots,\frac{1}{x_n}) \\
+    &= f(x) \cdot \begin{pmatrix} \displaystyle \frac{1}{x_1} & \cdots & \displaystyle \frac{1}{x_n} \end{pmatrix}. \\
+    &= \begin{pmatrix}
+        \cancel{x_1} x_2 \cdots x_n & x_1 \cancel{x_2} \cdots x_n & \cdots & x_1 x_2 \cdots \cancel{x_n}
+    \end{pmatrix}. \\
+    Df(x)[v] &= \grad f(x) \cdot v \\
+    &= f(x) \cdot \qty(\frac{v_1}{x_1} + \cdots + \frac{v_n}{x_n}) \\
+    &= v_1 x_2 \cdots x_n + x_1 v_2 \cdots x_n + \cdots + x_1 x_2 \cdots v_n.
+\end{align*}
+\endgroup
+
+\plabel{(c)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \grad f(x) &= \grad_{\sum_j x_j} f(x) \grad_x \qty(\sum_j x_j) \\
+    &= f(x) \cdot \begin{pmatrix}
+        1 & \cdots & 1
+    \end{pmatrix} \\
+    &= e^{\sum_j x_j} \cdot \begin{pmatrix}
+        1 & \cdots & 1
+    \end{pmatrix}. \\
+    D f(x) [v] &= \grad f(x) \cdot v \\
+    &= e^{\sum_j x_j} \sum_j v_j.
+\end{align*}
+\endgroup
+
+\prule
+\plabel{3 (a)}%
+Let
+\[ L = \norm{x-y}^2 + \lambda \norm{Wx}^2. \]
+Note that if $v(x)$ is a column vector,
+\begin{align*}
+    \grad_x v(x)^\intercal v(x) &= \tr(v(x)^\intercal v(x)) \\
+    &= \tr\qty[\qty(\grad_x v(x)^\intercal) \cdot v(x) + v(x)^\intercal \cdot \qty(\grad_x v(x))] \\
+    &= \tr\qty[\qty(\grad_x v(x))^\intercal \cdot v(x) + v(x)^\intercal \cdot \qty(\grad_x v(x))] \\
+    &= \tr\qty{\qty[v(x)^\intercal \cdot \qty(\grad_x v(x))]^\intercal + v(x)^\intercal \cdot \qty(\grad_x v(x))} \\
+    &= 2 v(x)^\intercal \cdot \qty(\grad_x v(x)).
+\end{align*}
+Therefore,
+\begin{align*}
+    \grad_x W &= \grad_x \qty[(x-y)^\intercal (x-y) + \lambda x^\intercal W^\intercal W x] \\
+    &= 2(x-y)^\intercal + 2\lambda x^\intercal W^\intercal W.
+\end{align*}
+
+\plabel{(b)}%
+Let $\grad_x W = 0$ we obtain
+\[ x_i - y_i + 2\lambda x_i w_i^2 = 0. \]
+
+\plabel{(c)}%
+\begingroup\minusbaseline%
+\[ x_i = \frac{y_i}{1 + 2\lambda w_i^2}. \]
+\endgroup
+
+\plabel{(d)}%
+$w_i$ is the penalty of $x_i$ getting large.
+The larger $w_i$ becomes, the smaller $\abs{x_i}$ gets.
+
+\prule
+\plabel{4 (a)}%
+\begingroup\minusbaseline%
+\begin{align}
+    \notag \langle QAR, QBR \rangle &= \tr\qty(R^\intercal A^\intercal Q^\intercal QBR) \\
+    \notag &= \tr\qty(A^\intercal \cancel{Q^\intercal Q}B\cancel{RR^\intercal}) \\
+    \notag &= \tr\qty(A^\intercal B) \\
+    \label{eq:invariance} &= \langle A, B \rangle.
+\end{align}
+\endgroup
+\plabel{(b)}%
+Setting $A=B$ in \cref{eq:invariance} we find
+\[ \notag \langle QAR, QAR \rangle = \notag \langle A, A \rangle \]
+and therefore
+\[ \norm{QAR}_{\mathrm{F}} = \norm{A}_{\mathrm{F}}. \]
+
+\end{document}

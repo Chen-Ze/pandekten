@@ -1,0 +1,181 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 4}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+Let $A$ be an invertible symmetric operator on a real inner-product space $\mathcal{C}$, then for any $J\in \mathcal{C}$, we have
+\begin{gather}
+    \notag \int_{\varphi\in\mathcal{C}} \mathcal{D}\varphi \exp\qty[-\frac{1}{2}\langle \varphi, A\varphi \rangle + i\langle J,\varphi\rangle] \\
+    \label{eq:functional} = \frac{1}{\sqrt{\det(A/2\pi)}} \exp\qty{-\frac{1}{2}\langle J, A^{-1} J\rangle}.
+\end{gather}
+
+\prule
+
+\plabel{1 (a)}%
+With \cref{eq:functional} and that the Green's function that satisfies
+\[ (-\partial^2 - m^2 + i\epsilon) G_{\mathrm{F}}(x-y) = i\delta^{(4)}(x-y) \]
+is given by
+\[ G_{\mathrm{F}}(x-y) = i\int \frac{\dd[4]{p}}{(2\pi)^4} \frac{e^{-ip\cdot(x-y)}}{p^2 - m^2 + i\epsilon}, \]
+we find
+\begin{align*}
+    Z[j] &= \int \mathcal{D}\varphi \exp\qty[i\int\dd[4]{x}\qty(\frac{1}{2}\phi(-\partial^2 - m^2 + i\epsilon)\phi + J\phi)] \\
+    &= \frac{1}{\sqrt{\det(i(\partial^2 + m^2)/2\pi)}} \exp\qty[-\frac{1}{2}\int \dd[4]{x} \int\dd[4]{y} j(x)G_{\mathrm{F}}(x-y) j(y)].
+\end{align*}
+Therefore,
+\begin{align*}
+    \bra{0} Te^{i\int\dd[4]{x} j(x)\phi(x)} \ket{0} = \frac{Z[j]}{Z[0]} = \exp\qty[-\frac{1}{2}\int \dd[4]{x} \int\dd[4]{y} j(x)G_{\mathrm{F}}(x-y) j(y)].
+\end{align*}
+
+\prule
+
+\plabel{2 (a)}%
+With the result of problem 2 (d) from problem set 3 we find
+\begin{align*}
+    P_{0\rightarrow 0} &= \abs{\mathcal{M}_{0\rightarrow 0}}^2 \\
+    &= \exp[-\Re\int_{\mathbb{R}^2} \dd{^2 t} j(t_1)j(t_2) G_{\mathrm{F}}(t_2 - t_1)] \\
+    &= \exp[-\int_{\mathbb{R}^2} \dd{^2 t} j(t_1)j(t_2) \frac{\cos (m(t_1 - t_2))}{2m}].
+\end{align*}
+
+\plabel{2 (b)}%
+Let
+\[ S[\phi,j] = \int_{t_a}^{t_b} L(\dot{\phi},\phi,j,t) \dd{t} = \int_{t_a}^{t_b} \qty(\frac{1}{2}\dot{\phi}(t)^2 - \frac{1}{2}m^2 \phi(t)^2 + j(t)\phi(t)) \dd{t}. \]
+Let $\phi_{\mathrm{cl}}$ be the solution of
+\[ \ddot{\phi} + m^2 \phi = 0 \]
+subjected to the boundary condition
+\[ \phi(t_a) = \phi_a,\quad \phi(t_b) = \phi_b. \]
+Since
+\[ \eval{\frac{\delta S[\phi,0]}{\delta \phi(x)}}_{\phi=\phi_{\mathrm{cl}}} = 0, \]
+we find
+\[ S[\phi_{\mathrm{cl}} + \eta,j] = S[\phi_{\mathrm{cl}},j] + S[\eta,j], \]
+where $\eta$ satisfies
+\[ \eta(t_a) = \eta(t_b) = 0. \]
+The Green's function $G(t,\tau)$ that satisfies
+\[ \dv[2]{G(t,\tau)}{t} + m^2 G(t,\tau) = \delta(t-\tau) \]
+subjected to
+\[ G(0,\tau) = 0,\quad G(T,\tau) = 0 \]
+is given by
+\[ G(t,\tau) = -\frac{\Theta(\tau -t) \sin (m t)  \sin (m (T-\tau ))}{m \sin(mT)}-\frac{\Theta(t-\tau) \sin (m \tau ) \sin (m (T-t))}{m \sin (m T)}. \]
+With \cref{eq:functional} we find
+\begin{align*}
+    \int \mathcal{D}\eta e^{iS[\eta,j]} &= \frac{1}{\det(i(\partial^2 + m^2)/2\pi)} \\
+    &{\phantom{{}={}}} \exp[-\frac{i}{2}\int_{t_a}^{t_b} \dd{t_1} \int_{t_a}^{t_b} \dd{t_2} j(t_1) G(t_1 - t_a,t_2 - t_a) j(t_2)] \\
+    &= \frac{1}{\det(i(\partial^2 + m^2)/2\pi)} \\
+    &\phantom{{}={}} \exp[\frac{-i}{m\sin m T}\int_{t_a}^{t_b} \dd{t_1} \int_{t_a}^{t_1} \dd{t_2} j(t_1) \sin(m(t - t_a))\sin(m(t_b - t)) j(t_2)].
+\end{align*}
+With the classical solution
+\[ \phi_{\mathrm{cl}} = \phi_a\frac{\sin(m(t_b - t))}{\sin (mT)} + \phi_b \frac{\sin(m (t - t_a))}{\sin (mT)} \]
+we find
+\begin{align*}
+    S[\phi_{\mathrm{cl}},j] &= \frac{1}{2}(\dot{\phi}_{\mathrm{cl}}(t_b)\phi_{\mathrm{cl}}(t_b) - \dot{\phi}_{\mathrm{cl}}(t_a)\phi_{\mathrm{cl}}(t_a)) + \int_{t_a}^{t_b} j(t)\phi_{\mathrm{cl}}(t) \dd{t} \\
+    &= \frac{m}{2\sin mT}\qty((\phi_a^2 + \phi_b^2) \cos(m T) - 2\phi_a \phi_b) \\
+    &{\phantom{{}={}}} {} + \int_{t_a}^{t_b} j(t)\qty[\phi_a\frac{\sin(m(t_b - t))}{\sin (mT)} + \phi_b \frac{\sin(m (t - t_a))}{\sin (mT)}]\dd{t}.
+\end{align*}
+Therefore, with
+\begin{align*}
+    S_{\mathrm{cl}} &= \frac{m}{2\sin mT}\qty((\phi_a^2 + \phi_b^2) \cos(m T) - 2\phi_a \phi_b) \\
+    &{\phantom{{}={}}} {} + \int_{t_a}^{t_b} j(t)\qty[\phi_a\frac{\sin(m(t_b - t))}{\sin (mT)} + \phi_b \frac{\sin(m (t - t_a))}{\sin (mT)}]\dd{t} \\
+    &\phantom{{}={}}{} -\frac{1}{m\sin m T}\int_{t_a}^{t_b} \dd{t_1} \int_{t_a}^{t_1} \dd{t_2} j(t_1) \sin(m(t - t_a))\sin(m(t_b - t)) j(t_2),
+\end{align*}
+we have
+\begin{align*}
+    K(\phi_b,t_b,\phi_a,t_a)  = \int_{\substack{\phi(t_a)=\phi_a\\ \phi(t_b) = \phi_b}} \mathcal{D}\phi e^{iS[\phi,j]}
+    &= \frac{1}{\det(i(\partial^2 + m^2)/2\pi)} e^{iS_{\mathrm{cl}}}.
+\end{align*}
+To obtain the factor in the front, we may take the special case $t_a = 0$, $t_b = t$, $\phi_a = 0$, and $\phi_b = x$ to obtain
+\begin{align*}
+    K(x,t,0,0) &= k(t) \exp(\frac{i m \cos(m t)}{2 \sin(m t)} x^2).
+\end{align*}
+Since
+\[ i\pdv{K(x,t,0,0)}{t} = -\frac{1}{2}\pdv[2]{K(x,t,0,0)}{x} + \frac{1}{2}m^2 K(x,t,0,0), \]
+we find
+\[ k(t) = \frac{C}{\sqrt{\sin (mt)}}. \]
+To obtain the constant $C$ we apply the condition (since $K(x,0^+,0,0) = \delta(x)$)
+\[ \int_{-\infty}^\infty K(x,0^+,0,0) \dd{x} = C \cdot \sqrt{\frac{2\pi i}{m}} = 1 \]
+and find
+\begin{align*}
+    K(\phi_b,t_b,\phi_a,t_a) &= \sqrt{\frac{m}{2\pi i \sin(mT)}} e^{iS_{\mathrm{cl}}}.
+\end{align*}
+
+\prule
+
+\plabel{3 (a)}%
+Note that
+\begin{align*}
+    &\phantom{{}={}} \int_{\substack{x\in \mathcal{C}([0,s],\mathbb{R})\\ x(0)=x_a, x(s)=x_b}} \mathcal{D}x \int_{p\in\mathcal{C}([0,s],\mathbb{R})} \mathcal{D}p \exp[-i\int x \dd{p}] \\
+    &= \int \dd{x_1} \cdots \dd{x_{N-1}} \int \dd{p_0} \cdots \dd{p_N} \frac{1}{(\sqrt{2\pi})^{N-1}} \frac{1}{(\sqrt{2\pi})^{N+1}} \exp[-i\int x \dd{p}] \\
+    &= \int \dd{p_0} \cdots \dd{p_N} \frac{(\sqrt{2\pi})^{N-1}}{(\sqrt{2\pi})^{N+1}} \prod \delta(\Delta p) \\
+    &= \int \frac{\dd{p}}{2\pi}.
+\end{align*}
+With the result of problem 3 from problem set 1 we find
+\begin{align*}
+    G_{\mathrm{F}}(x_b,x_a) &= \int_0^\infty \dd{s} \int_{\substack{x\in \mathcal{C}([0,s],\mathbb{R}^4)\\ x(0)=x_a, x(s)=x_b}} \mathcal{D}x \int_{p\in\mathcal{C}([0,s],\mathbb{R}^4)} \mathcal{D}p \exp\qty[i\int_0^s \dd{s'} \qty(\dot{x}\cdot p - H(p))] \\
+    &= \int_0^\infty \dd{s} \int \mathcal{D}x \int \mathcal{D}p \exp\qty[i \qty(x_b p(s) - x_a p(0) - \int_0^s\dd{s'} \qty(x\cdot \dot{p} + H(p)))] \\
+    &= \int_0^\infty \dd{s} \int \frac{\dd[4]{p}}{(2\pi)^4} \exp\qty[i(x_b - x_a)\cdot p - i s H(p)] \\
+    &= \int_0^\infty \dd{s} \int \dd[4]{p} \bra{x_b}\ket{p}e^{-isH(p)}\bra{p}\ket{x_a} \\
+    &= \int_0^\infty \dd{s} \bra{x_b} e^{-isH} \ket{x_a}.
+\end{align*}
+
+\plabel{(b)}%
+With
+\[ H = -p^2 + m^2 - i\epsilon \]
+we find
+\begin{align*}
+    G_{\mathrm{F}}(x_b,x_a) &= \int_0^\infty \dd{s} \int \frac{\dd[4]{p}}{(2\pi)^4} \exp\qty[i(x_b - x_a)p - i s H(p)] \\
+    &= -i \int \frac{\dd[4]{p}}{(2\pi)^4} \frac{e^{i(x_b-x_a)\cdot p}}{H(p)} \\
+    &= i \int \frac{\dd[4]{p}}{(2\pi)^4} \frac{e^{i(x_b-x_a)\cdot p}}{p^2 - m^2 + i\epsilon} \\
+\end{align*}
+
+\prule
+
+\plabel{4 (a)}%
+Note that
+\[ \int_{-\infty}^\infty \dv{}{x} e^{-s(x) - J x} = 0 \]
+where
+\[ \dv{}{x} e^{-s(x) - J x} = (-s'(x) - J) e^{-s(x) - J x} \]
+and therefore
+\[ \langle -s' - J \rangle = 0 \Rightarrow \langle -s' \rangle = J. \]
+
+\plabel{(b)}%
+Note that
+\begin{align*}
+    &\phantom{{}={}} \int \mathcal{D}{\phi} \cdot (-i) \fdv{}{\phi(x)} \exp(iS + i\int \dd[4]{y} J\phi) \\
+    &= \int \mathcal{D}\phi \fdv{\phi(x)}(S + \int \dd[4]{y} J\phi) \exp(iS + i\int \dd[4]{y} J\phi) \\
+    &= \int \mathcal{D}\phi \qty(\fdv{S}{\phi(x)} + J(x)) \exp(iS + i\int \dd[4]{y} J\phi) \\
+    &= 0.
+\end{align*}
+Therefore,
+\[ \ev{-\fdv{S}{\phi(x)}} = J(x). \]
+For the particular case
+\[ S = \int \dd[4]{x} \qty(\frac{1}{2}(\partial \phi)^2 - \frac{1}{2}m^2\phi^2 - \frac{\lambda}{4!}\phi^4), \]
+we have
+\[ \ev{-\fdv{S}{\phi}} = \ev{(\partial^2 + m^2)\phi + \frac{\lambda}{3!}\phi^3} = J. \]
+
+\end{document}

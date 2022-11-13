@@ -145,6 +145,147 @@ has relative energy shift $\delta \Delta E = \bigO(B^2)$, where
 where
 \[ \frac{(g \mu_{\mathrm{B}} - g_{\mathrm{n}} \mu_{\mathrm{N}})^2}{2A} = h\times \SI{31.15}{\giga\hertz\per\square\tesla}. \]
 
+\prule
+
+\plabel{3 (1)}%
+The primary system is \ce{Al+} and the ancilla system is \ce{Be+}.
+This method mitigates the effects of noise and perturbations, and provides real-time measurement feedback, which can further enhance detection efficiency.
+Moreover, short life of $^2\mathrm{P}_{3/2}$ state of \ce{Be+} allows multiple measurements and could therefore reduce error.
+
+\plabel{(2)}%
+$^1\mathrm{P}_1 \rightarrow ^1\mathrm{S}_0$: \SI{167.078}{\nano\meter},
+$^3\mathrm{P}_0 \rightarrow ^1\mathrm{S}_0$: \SI{267.429}{\nano\meter}.
+
+\plabel{(3)}%
+Step 0: Initial state $(\alpha\ket{\downarrow}_{\ce{Al}} + \beta\ket{\uparrow}_{\ce{Al}})\ket{\downarrow}_{\ce{Be}}\ket{0}_{\mathrm{m}}$.
+\par
+Step 1: After a $\pi$ pulse, to
+\[ \alpha\ket{^3\mathrm{P}_1}_{\ce{Al}}\ket{\downarrow}_{\ce{Be}}\ket{1}_{\mathrm{m}} + \beta\ket{\uparrow}_{\ce{Al}}\ket{\downarrow}_{\ce{Be}}\ket{0}_{\mathrm{m}}. \]
+\ce{Al+} and motion are entangled.
+\par
+Step 2: After a $\pi$ pulse, to
+\[ \alpha\ket{^3\mathrm{P}_1}_{\ce{Al}}\ket{\uparrow}_{\ce{Be}}\ket{0}_{\mathrm{m}} + \beta\ket{\uparrow}_{\ce{Al}}\ket{\downarrow}_{\ce{Be}}\ket{0}_{\mathrm{m}}. \]
+\ce{Al+} and \ce{Be+} are entangled.
+
+\plabel{(4)}%
+Step 0: Initial state $(\alpha\ket{\downarrow}_{\ce{Al}} + \beta\ket{\uparrow}_{\ce{Al}})\ket{\downarrow}_{\ce{Be}}\ket{1}_{\mathrm{m}}$.
+\par
+Step 1: After a $\pi$ pulse, to
+\[ \alpha\ket{^3\mathrm{P}_1}_{\ce{Al}}\ket{\downarrow}_{\ce{Be}}\ket{2}_{\mathrm{m}} + \beta\ket{\uparrow}_{\ce{Al}}\ket{\downarrow}_{\ce{Be}}\ket{1}_{\mathrm{m}}. \]
+\par
+Step 2: After a $\pi$ pulse, to
+\[ \alpha\ket{^3\mathrm{P}_1}_{\ce{Al}}\ket{\uparrow}_{\ce{Be}}\ket{1}_{\mathrm{m}} + \beta\ket{\uparrow}_{\ce{Al}}\ket{\uparrow}_{\ce{Be}}\ket{0}_{\mathrm{m}}. \]
+Therefore, measurement on $\beta$ always yields $\ket{\uparrow}$.
+
+\plabel{(5)}%
+Solving $e^{-\mu_1}\mu_1^{n^*} = e^{-\mu_2}\mu_2^{n^*}$ for $n^*$ we find $n^*\approx \num{3.64}$.
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[ybar interval, ymax=0.3,ymin=0,xlabel=Count,ylabel=$P$]
+        \addplot coordinates {
+            (0,0.135335)
+            (1,0.270671)
+            (2,0.270671)
+            (3,0.180447)
+            (4,0.0902235)
+            (5,0.0360894)
+            (6,0.0120298)
+            (7,0.00343709)
+            (8,0.000859272)
+            (9,0.000190949)
+            (10,0.0000381899)
+            (11,0.00000694361)
+            (12,0.00000115727)
+            (13,0.000000178041)
+            (14,0.0000000254345)
+            (15,0.00000000339126)
+        };
+        \addplot coordinates {
+            (0,0.00247875)
+            (1,0.0148725)
+            (2,0.0446175)
+            (3,0.0892351)
+            (4,0.133853)
+            (5,0.160623)
+            (6,0.160623)
+            (7,0.137677)
+            (8,0.103258)
+            (9,0.0688385)
+            (10,0.0413031)
+            (11,0.022529)
+            (12,0.0112645)
+            (13,0.00519899)
+            (14,0.00222814)
+            (15,0.000891256)
+        };
+        \legend{$\ket{\uparrow\uparrow}$,$\ket{\uparrow\downarrow}$}
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+The Bayesian approach is given by
+\begin{align*}
+    \operatorname{P}(\ket{\uparrow\uparrow}|m) &= \frac{\operatorname{P}(m|\ket{\uparrow\uparrow})}{\operatorname{P}(m|\ket{\uparrow\uparrow})+\operatorname{P}(m|\ket{\uparrow\downarrow})} \\
+    &= \frac{e^{-\mu_1}\mu_1^m}{e^{-\mu_1}\mu_1^m + e^{-\mu_2}\mu_2^m}.
+\end{align*}
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[ybar interval, ymax=1,ymin=0,xlabel=Count,ylabel=$P$]
+        \addplot coordinates {
+            (0,0.982014)
+            (1,0.947915)
+            (2,0.858486)
+            (3,0.66911)
+            (4,0.402647)
+            (5,0.183463)
+            (6,0.0696762)
+            (7,0.0243568)
+            (8,0.00825294)
+            (9,0.0027662)
+            (10,0.00092377)
+            (11,0.000308113)
+            (12,0.000102725)
+            (13,0.0000342442)
+            (14,0.000011415)
+            (15,0.00000380502)
+        };
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+At $m\approx n^*$, the probabilities for $\ket{\uparrow\uparrow}$ and $\ket{\uparrow\downarrow}$ to yield $m$ photons are close to each other, and therefore $P\approx \num{0.5}$.
+
+\plabel{(6)}%
+$t = -\tau' \ln (1-P) = -\SI{21}{\second}\times \ln(1-\SI{99.99}{\percent}) = \SI{193.4}{\second}$.
+
+\prule
+
+\plabel{5 (1)}%
+The beams $\sigma^\pm_\parallel$ (frequency $f_{\mathrm{L}} - f_0$) and $\sigma^\mp$ (frequency $f_{\mathrm{L}}$) are used to drive the single qubit gate since their frequency matches (up to $\Delta$) $\ket{\uparrow} \rightarrow 4P_{1/2}$ and $\ket{\downarrow} \rightarrow 4P_{1/2}$, respectively.
+\par
+The beams $\sigma^\pm$ (frequency $f_{\mathrm{L}} - f_{z} - \delta_{\mathrm{g}}$) and $\sigma^\mp$ (frequency $f_{\mathrm{L}}$) because their energy difference $f_{z} + \delta_{\mathrm{g}}$ excites the vibration mode of frequency $f_z$ for $\ket{\Uparrow\Downarrow}$ and $\ket{\Downarrow\Uparrow}$.
+
+\plabel{(2)}%
+The fidelity could be written as
+\[ F = \frac{1}{2}(P_{\Uparrow\Uparrow} + P_{\Downarrow\Downarrow}) + \abs{\rho_{\Uparrow\Uparrow,\Downarrow\Downarrow}}. \]
+The parity
+\[ P(\varphi) = P_{\Downarrow\Downarrow}(\varphi) + P_{\Uparrow\Uparrow}(\varphi) - P_{\Uparrow\Downarrow}(\varphi) - P_{\Downarrow\Uparrow}(\varphi) \]
+has an oscillating pattern
+\[ P(\varphi) \sim C \sin(b \varphi) \]
+where $b\approx 2$ and
+\[ \frac{C}{2} \sim \abs{\rho_{\Uparrow\Uparrow,\Downarrow\Downarrow}}. \]
+From the amplitude of oscillation we could obtain $F$.
+
+\plabel{(3)}%
+The dominant sources of error are Raman and Rayleigh photon scattering, motional heating and dephasing, and spin dephasing.
+\par
+Photon scattering could be reduced by increasing Raman beam intensity.
+\par
+Motional heating and dephasing could be reduced by reducing noise of electric field.
+\par
+Spin dephasing error could be reduced by magnetic field stabilization.
+
+
 % \bibliographystyle{plain}
 % \bibliography{main}
 

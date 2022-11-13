@@ -1,0 +1,146 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 6}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a)}%
+It's clear that
+\begin{align*}
+    \hat{y}(x) = \begin{cases}
+        1, &\text{if } w^\intercal x + b \ge 0, \\
+        0, &\text{otherwise}
+    \end{cases}
+\end{align*}
+and therefore is a linear classifier.
+
+\plabel{(b)}%
+Let
+\[ \tilde{w} = \begin{pmatrix}
+    w \\ b
+\end{pmatrix},\quad \tilde{x} = \begin{pmatrix}
+    x \\ 1
+\end{pmatrix}, \]
+then
+\[ q(\tilde{x}) = \sigma(\tilde{w}^\intercal \tilde{x}) = \sigma(w^\intercal x + b) = q(x) \]
+and therefore $\hat{y}(\tilde{x}) = \hat{y}(x)$.
+
+\prule
+
+\plabel{2 (a)}%
+\begingroup\minusbaseline%
+\[ D_{\tilde{w}}u[v_{\tilde{w}}] = v^\intercal_{\tilde{w}} \tilde{x} = \tilde{x}^\intercal v_{\tilde{w}}. \]
+\endgroup
+
+\plabel{(b)}%
+Since $\sigma'(u) = \sigma(u)(1-\sigma(u))$, we find
+\[ D_u q(u)[v_u] = \sigma(u)(1-\sigma(u))v_u. \]
+
+\plabel{(c)}%
+Since
+\[ H(\tilde{p},\tilde{q}) = -\qty(y \ln q + (1-y) \ln (1-q)), \]
+we find
+\[ D_q H(\tilde{p}_j,\tilde{q}_j)[v_q] = -\qty(\frac{y}{q} - \frac{1-y}{1-q}) v_q = \frac{q-y}{q(1-q)} v_q. \]
+
+\plabel{(d)}%
+With the chain rule we find
+\begin{align}
+    \notag \grad_{\tilde{w}} H(\tilde{p},\tilde{q}) &= \grad_{q} H(\tilde{p},\tilde{q}) \grad_{u} q(u) \grad(\tilde{w}) u(\tilde{w}) \\
+    \notag &= \frac{q-y}{q(1-q)} \sigma(u)(1-\sigma(u)) \tilde{x}^\intercal \\
+    \label{eq:dw_h} &= (\sigma(\tilde{w}^\intercal \tilde{x}) - y) \tilde{x}^\intercal.
+\end{align}
+
+\prule
+
+\plabel{3 (a)}%
+From \cref{eq:dw_h} we find
+\begin{align}
+    \notag \grad^2_{\tilde{w}} H(\tilde{p},\tilde{q}) &= (\grad_{\tilde{w}} (\sigma(\tilde{w}^\intercal \tilde{x}) - y)) \tilde{x}^\intercal \\
+    \label{eq:ddw_h} &= \sigma(\tilde{w}^\intercal \tilde{x})(1-\sigma(\tilde{w}^\intercal \tilde{x})) \tilde{x}\tilde{x}^\intercal.
+\end{align}
+
+\plabel{(b)}%
+If $H(\tilde{p},\tilde{q})$ is convex in $\tilde{w}$, then since $H(\tilde{p},\tilde{q}/m)$ is also convex in $\tilde{w}$.
+Since $\lambda\norm{E\tilde{w}}^2$ is convex in $\tilde{w}$, $J$ is a sum of convex functions and is therefore convex.
+
+\plabel{(c)}%
+Since $\sigma$ is a monotonically increasing function, $\sigma'(u) = \sigma(u)(1-\sigma(u)) > 0$ everywhere.
+Since $\tilde{x}\tilde{x}^\intercal$ is positive semidefinite, from \cref{eq:ddw_h} we find that $\grad^2_{\tilde{w}} H$ is positive semidefinite everywhere and therefore $H$ is convex.
+
+\prule
+
+\plabel{4 (a)}%
+Yes since $\norm{w}^2/2$ is a convex function and the constraints
+\[ -(y_j(w^\intercal x_j + b) - 1) \le 0 \]
+are affine and therefore convex.
+
+\plabel{(b)}%
+The set of feasible points is nonempty if $y_j\neq 0$ for all $j$ and that the following two sets
+\[ X_+ = \Set*{x_j}{y_j>0} \]
+and
+\[ X_- = \Set*{x_j}{y_j<0} \]
+are separable by a hyperplane.
+
+\plabel{(c)}%
+The strong duality holds since the Slater's condition that inequality constraints are affine hold.
+
+\plabel{(d)}%
+Note that
+\begin{align*}
+    \grad_{w,b} f(w) &= w^\intercal, \\
+    \grad_{w,b} \qty[-(y_j(w^\intercal x_j+b)-1)] &= - y_j \begin{pmatrix}
+        x_j^\intercal & 1
+    \end{pmatrix},
+\end{align*}
+The KKT conditions are given by
+\begin{align*}
+    w^{\star \intercal} - \sum_{j=1}^m \lambda^\star_j y_j x^\intercal_j &= 0, \\
+    \sum_{j=1}^m \lambda_j^\star y_j &= 0, \\
+    -(y_j(w^\intercal x_j + b) - 1) &\ge 0, \\
+    \lambda^\star &\ge \vb{0}, \\
+    \lambda^\star_j \cdot (y_j(w^\intercal x_j + b) - 1) &= 0.
+\end{align*}
+
+\plabel{(e)}%
+Since the lagrangian is given by
+\[ L(w,b,\lambda) = \frac{1}{2}\norm{w}^2 - \sum_{j=1}^m \lambda_j (y_j(w^\intercal x_j+b)-1), \]
+we find
+\[ g(\lambda) = \min_{(w,b)\in\mathbb{R}^{n+1}} L(w,b,\lambda) = \begin{cases}
+    \displaystyle -\frac{1}{2}\norm{\sum_{j=1}^m \lambda_j y_j x_j}^2 + \sum_{j=1}^m \lambda_j, &\displaystyle \text{if } \sum_{j=1}^m \lambda_j y_j = 0, \\
+    -\infty, &\text{otherwise}.
+\end{cases} \]
+Therefore, the dual problem is given by
+\[ \max_{\lambda \in \mathbb{R}^m} g(\lambda) \]
+subjected to $\lambda \ge \vb{0}$ and
+\[ \sum_{j=1}^m \lambda_j y_j = 0. \]
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

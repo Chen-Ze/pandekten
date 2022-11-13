@@ -1,0 +1,17 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+        c1 --[fermion] v [dot];
+        v --[fermion] c2;
+        v --[scalar] r[particle=\vphantom{Mg}];
+    }; \ = -ig.
+\end{align*}
+\end{document}

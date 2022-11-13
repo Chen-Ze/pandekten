@@ -1,0 +1,52 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    % real scalar
+    \wick{\c1\chi\c1{\ket{\vb{q}}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        c1 -- v [dot];
+        v -- c2;
+        r[particle=\vphantom{Mg}] --[charged scalar,edge label=$q$] v;
+    }; \ = 1, &
+    \wick{\c1{\bra{\vb{q}}} \c1\chi } &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+        c1 -- v [dot];
+        v -- c2;
+        v --[charged scalar,edge label=$q$] r[particle=\vphantom{Mg}];
+    }; \ = 1, \\
+    % complex scalar (particle)
+    \wick{\c1\phi\c1{\ket{\vb{p},a}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        c1 --[scalar] v [dot];
+        v -- c2;
+        r[particle=\vphantom{Mg}] --[fermion,edge label=$p$] v;
+    }; \ = 1, &
+    \wick{\c1{\bra{\vb{p},a}} \c1\phi^\dagger } &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+        c1 -- v [dot];
+        v --[scalar] c2;
+        v --[fermion,edge label=$p$] r[particle=\vphantom{Mg}];
+    }; \ = 1, \\
+    % complex scalar (anti-particle)
+    \wick{\c1\phi^\dagger\c1{\ket{\vb{p},b}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        c1 --[scalar] v [dot];
+        v -- c2;
+        r[particle=\vphantom{Mg}] --[anti fermion,momentum=$p$] v;
+    }; \ = 1, &
+    \wick{\c1{\bra{\vb{p},b}} \c1\phi } &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+        c1 -- v [dot];
+        v --[scalar] c2;
+        v --[anti fermion,momentum=$p$] r[particle=\vphantom{Mg}];
+    }; \ = 1.
+\end{align*}
+\end{document}

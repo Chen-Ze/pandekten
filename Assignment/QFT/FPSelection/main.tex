@@ -1,0 +1,40 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Final Project Choice}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\paragraph*{First Choice}%
+On the application of conformal field theory in condensed matter physics, e.g. studying systems near critical points.
+This project investigates the framework of CFT and examples of its predictions, e.g. critical exponents.
+
+\paragraph*{Second Choice}%
+On the application of TQFT to various topological phases of matter.
+
+\end{document}

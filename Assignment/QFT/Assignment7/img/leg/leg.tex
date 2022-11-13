@@ -1,0 +1,76 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    % complex scalar (particle)
+    \wick{\c1\Phi\c1{\ket{\vb{q},\Phi,a}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        r[particle=\vphantom{Mg}] --[charged scalar, edge label=$q$] v[blob];
+    }; \ = 1, &
+    \wick{\c1{\bra{\vb{q},\Phi,a}} \c1\Phi^\dagger } &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+        v[blob] --[charged scalar, edge label=$q$] r[particle=\vphantom{Mg}];
+    }; \ = 1, \\
+    % complex scalar (anti-particle)
+    \wick{\c1\Phi^\dagger\c1{\ket{\vb{q},\Phi,b}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        r[particle=\vphantom{Mg}] --[anti charged scalar, momentum=$q$] v[blob];
+    }; \ = 1, &
+    \wick{\c1{\bra{\vb{q},\Phi,b}} \c1\Phi } &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+        v[blob] --[anti charged scalar, momentum=$q$] r[particle=\vphantom{Mg}];
+    }; \ = 1, \\
+    % spinor 1 (particle)
+    \wick{\c1\psi\c1{\ket{\vb{p},\psi,a^s}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        r[particle=\vphantom{Mg}] --[blue!50!black, fermion, edge label=$p$] v[blob];
+    }; \ = u^s_\psi(p), &
+    \wick{\c1{\bra{\vb{p},\psi,a^s}} \c1{\overline{\psi}}} &=\quad
+    \feynmandiagram [small, inline=(v.base), horizontal=r to v] {
+        v[blob] --[blue!50!black, fermion, edge label=$p$] r[particle=\vphantom{Mg}];
+    }; \ = \overline{u}^s_\psi(p), \\
+    % spinor 1 (anti-particle)
+    \wick{\c1{\overline{\psi}}\c1{\ket{\vb{p},\psi,b^s}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        r[particle=\vphantom{Mg}] --[blue!50!black, anti fermion, momentum=$p$] v[blob];
+    }; \ = \overline{v}^s_\psi(p), &
+    \wick{\c1{\bra{\vb{p},\psi,b^s}} \c1\psi } &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+        v[blob] --[blue!50!black, anti fermion, momentum=$p$] r[particle=\vphantom{Mg}];
+    }; \ = v^s_\psi(p), \\
+    % spinor 2 (particle)
+    \wick{\c1\chi\c1{\ket{\vb{p},\chi,a^s}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        r[particle=\vphantom{Mg}] --[cyan!50!black, fermion, edge label=$p$] v[blob];
+    }; \ = u^s_\chi(p), &
+    \wick{\c1{\bra{\vb{p},\chi,a^s}} \c1{\overline{\chi}}} &=\quad
+    \feynmandiagram [small, inline=(v.base), horizontal=r to v] {
+        v[blob] --[cyan!50!black, fermion, edge label=$p$] r[particle=\vphantom{Mg}];
+    }; \ = \overline{u}^s_\chi(p), \\
+    % spinor 2 (anti-particle)
+    \wick{\c1{\overline{\chi}}\c1{\ket{\vb{p},\chi,b^s}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        r[particle=\vphantom{Mg}] --[cyan!50!black, anti fermion, momentum=$p$] v[blob];
+    }; \ = \overline{v}^s_\chi(p), &
+    \wick{\c1{\bra{\vb{p},\chi,b^s}} \c1\chi } &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+        v[blob] --[cyan!50!black, anti fermion, momentum=$p$] r[particle=\vphantom{Mg}];
+    }; \ = v^s_\chi(p), \\
+    % qed
+    \wick{\c1 A_\mu\c1{\ket{\vb{k},A}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        r[particle=\mu\vphantom{Mg}] --[photon, momentum=$k$] v[blob];
+    }; \ = \epsilon_\mu(k), &
+    \wick{\c1{\bra{\vb{q},A}} \c1 A_\mu } &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+        v[blob] --[photon, momentum=$k$] r[particle=\mu\vphantom{Mg}];
+    }; \ = \epsilon^*_\mu(k).
+\end{align*}
+\end{document}

@@ -31,10 +31,11 @@
 \maketitle
 
 \plabel{1}%
-\minusbaseline%
+\begingroup\minusbaseline%
 \begin{align*}
     \pdv{\rho}{t} &= -\epsilon_0 \div \pdv{\vb{E}}{t} = \div\qty(\frac{1}{\mu_0}\curl \vb{B} - \vb{J}) = -\div\vb{J}.
 \end{align*}
+\endgroup
 
 \prule
 \plabel{2 (a)}%
@@ -48,8 +49,9 @@ Integrating twice we get
 \end{align*}
 
 \plabel{(b)}%
-\minusbaseline%
+\begingroup\minusbaseline%
 \[ v = \frac{1}{\sqrt{\epsilon_0 \mu_0}}. \]
+\endgroup
 
 \plabel{(c)}%
 The conditions in terms of $f_1$ and $f_2$ are
@@ -60,8 +62,9 @@ The conditions in terms of $f_1$ and $f_2$ are
 \end{align*}
 Therefore,
 \begin{align*}
-    f_1(x) &= \frac{1}{2}\qty[F(x) + vf_1(0) - vf_2(0) - \int_0^x \dd{x'} G(x')], \\
-    f_2(x) &= \frac{1}{2}\qty[F(x) - vf_1(0) + vf_2(0) + \int_0^x \dd{x'} G(x')].
+    f_1(x) &= \frac{1}{2}\qty[F(x) + f_1(0) - f_2(0) - \frac{1}{c}\int_0^x \dd{x'} G(x')], \\
+    f_2(x) &= \frac{1}{2}\qty[F(x) - f_1(0) + f_2(0) + \frac{1}{c}\int_0^x \dd{x'} G(x')], \\
+    E &= \frac{1}{2}\qty[F(x-vt) + F(x+vt) + \frac{1}{c}\int_{x-vt}^{x+vt} \dd{x'}G(x')].
 \end{align*}
 
 \plabel{(d)}%
@@ -74,9 +77,10 @@ With $v = \omega / k$,
 \[ \grad^2 U - \frac{1}{v^2} \pdv[2]{U}{t} = - k^2 U - \frac{-\omega^2}{v^2} U = 0. \]
 
 \plabel{(b)}%
-\minusbaseline%
+\begingroup\minusbaseline%
 \[ \frac{\omega}{k} = \dv{\omega}{k} = v = \frac{1}{\sqrt{\epsilon_0 \mu_0}}. \]
 In vacuum, $v_{\mathrm{p}} = v_{\mathrm{g}}$.
+\endgroup
 
 \plabel{(c.i)}%
 The divergences give
@@ -132,14 +136,26 @@ For the second equation,
 \end{align*}
 
 \plabel{(b)}%
-\minusbaseline%
+\begingroup\minusbaseline%
 \[ c = \frac{1}{\sqrt{\epsilon_0\mu_0}}. \]
+\endgroup
 
 \plabel{(c)}%
-Applying Fourier transform we find
-\[ \qty(-\vb{k}^2 + \frac{\omega^2}{c^2}) \tilde{\vb{E}}(\omega',\vb{k}) = \mu_0 J_0 (2\pi)^3 \delta^{(2)}(k_y,k_z)\frac{\delta(\omega'-\omega) + \delta(\omega'+\omega)}{2} \hat{\vb{z}}, \]
+Applying Fourier transform we find, for the part $J_0 e^{-i\omega t} / 2$,
+\[ \qty(-k_x^2 + \frac{\omega^2}{c^2}) E_z(\vb{k})e^{-i\omega t} = \mu_0 J_0 e^{-ikx_0}\frac{-i \omega}{2}e^{-i\omega t}, \]
 which may be solved to yield
-\[ \vb{E}(t,\vb{x}) = \frac{1}{2} \mu_0 c J_0 \hat{\vb{z}} \frac{1}{\omega} \sin(\frac{\abs{x}\omega}{c}) \cos(\omega t). \]
+\[ \vb{E}(t,\vb{x}) = \frac{1}{2} c \mu_0 J_0 \hat{\vb{z}} (-1)\exp(i\frac{\abs{x-x_0}\omega}{c}) \frac{e^{-i\omega t}}{2}. \]
+Similarly for the part $J_0 e^{i\omega t} / 2$ we solve
+\[ \qty(-k_x^2 + \frac{\omega^2}{c^2}) E_z(\vb{k})e^{i\omega t} = \mu_0 J_0 e^{-ikx_0}\frac{i\omega}{2}e^{i\omega t} \]
+and find
+\[ \vb{E}(t,\vb{x}) = \frac{1}{2} c \mu_0 J_0 \hat{\vb{z}} (-1)\exp(-i\frac{\abs{x-x_0}\omega}{c}) \frac{e^{i\omega t}}{2}. \]
+Therefore, the solution is given by
+\[ \vb{E}(t,\vb{x}) = -\frac{1}{2} c \mu_0 J_0 \hat{\vb{z}} \cos \qty(\frac{\omega}{c}\abs{x-x_0} - \omega t). \]
+In the above we have chosen the inverse transform such that the wave is propagating outwards.
+\begin{align*}
+    \vb{B}(t,\vb{x}) &= \operatorname{sign}(x - x_0) \hat{\vb{x}}\times \vb{E}(t,\vb{x})/c \\
+    &= \frac{1}{2} \mu_0 J_0 \hat{\vb{y}} \cos \qty(\frac{\omega}{c}\abs{x-x_0} - \omega t)\operatorname{sign}(x-x_0).
+\end{align*}
 
 
 % \bibliographystyle{plain}

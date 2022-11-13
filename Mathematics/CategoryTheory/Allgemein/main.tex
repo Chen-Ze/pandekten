@@ -13,6 +13,56 @@
 
 To define the notion of class, we have to go beyond ZFC and adopt, for example, \href{https://en.wikipedia.org/wiki/Von_Neumann%E2%80%93Bernays%E2%80%93G%C3%B6del_set_theory}{von Neumann-Bernays-G\"odel set theory}.
 
+\begin{definition}{Diagram, Small Diagram, Finite Diagram}{diagram}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ and $\mathbf{J}$ are categories.
+    \end{itemize}
+    A diagram of shape $\mathbf{J}$ in $\mathbf{C}$ is a functor $F:\mathbf{J}\rightarrow\mathbf{C}$.
+    A diagram is said to be small or finite whenever $\mathbf{J}$ is.
+\end{definition}
+
+\begin{definition}{Cone, Cocone}{cone}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ and $\mathbf{J}$ are categories.
+        \item $F:\mathbf{J}\rightarrow\mathbf{C}$ is a diagram.
+    \end{itemize}
+    \paragraph*{Cone}
+    A cone $(N,\psi)$ from $N$ to $F$ is the following collection of data.
+    \begin{itemize}
+        \item An object $N$ of $\mathbf{C}$.
+        \item For each $X$ an object of $\mathbf{J}$, a morphism $\psi_X: N\rightarrow F(X)$, subjected to the following condition.
+        \begin{itemize}
+            \item For every morphism $f:X\rightarrow Y$ in $\mathbf{J}$, the following diagram commutes.
+            \begin{center}
+                \begin{tikzcd}
+                    & N \arrow[dl, "\psi_X"'] \arrow[dr, "\psi_Y"] & \\
+                    F(X) \arrow[rr, "F(f)"]  & & F(Y) \\
+                    X \arrow[rr, "f"] & & Y
+                \end{tikzcd}
+            \end{center}
+        \end{itemize}
+    \end{itemize}
+    \tcblower
+    \paragraph*{Cocone}
+    A cocone $(N,\psi)$ from $F$ to $N$ is the following collection of data.
+    \begin{itemize}
+        \item An object $N$ of $\mathbf{C}$.
+        \item For each $X$ an object of $\mathbf{J}$, a morphism $\psi_X: F(X) \rightarrow N$, subjected to the following condition.
+        \begin{itemize}
+            \item For every morphism $f:X\rightarrow Y$ in $\mathbf{J}$, the following diagram commutes.
+            \begin{center}
+                \begin{tikzcd}
+                    X \arrow[rr, "f"] & & Y \\
+                    F(X) \arrow[dr, "\psi_X"'] \arrow[rr, "F(f)"]  & & F(Y) \arrow[dl, "\psi_Y"] \\
+                    & N &
+                \end{tikzcd}
+            \end{center}
+        \end{itemize}
+    \end{itemize}
+\end{definition}
+
 \section{Universals}
 
 \begin{definition}{Universal from an Object to a Functor}{universal_from_an_object_to_a_functor}
@@ -94,6 +144,196 @@ To define the notion of class, we have to go beyond ZFC and adopt, for example, 
     For a generalization of quotient, see \href{https://uwseminars.com/archive/ly-UPQ/}{this seminar}.
 \end{example}
 
+\subsection{Limit}
+
+\begin{definition}{Limit \defextends{Cone}, Colimit \defextends{Cocone}}{limit_colimit}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ and $\mathbf{J}$ are categories.
+        \item $F:\mathbf{J}\rightarrow\mathbf{C}$ is a diagram.
+    \end{itemize}
+    \paragraph*{Limit}
+    A limit of $F$ is a cone $(L,\phi)$ from $L$ to $F$, such that for each cone $(N,\psi)$ to $F$, there exists a unique morphism $u: N\rightarrow L$ such that the following diagram commutes.
+    \begin{center}
+        \begin{tikzcd}
+            & \forall N \arrow[ddl, bend right, "\psi_X"'] \arrow[ddr, bend left, "\psi_Y"] \arrow[d, dashed, "\exists!u"] & \\
+            & L \arrow[dl, "\phi_X"'] \arrow[dr, "\phi_Y"] & \\
+            F(X) \arrow[rr, "F(f)"]  & & F(Y)
+        \end{tikzcd}
+    \end{center}
+    The limit $L$ is denoted by $\lim F$.
+    \tcblower
+    \paragraph*{Colimit}
+    A colimit of $F$ is a cocone $(L,\phi)$ from $F$ to $L$, such that for each cocone $(N,\psi)$ to $F$, there exists a unique morphism $u: L\rightarrow N$ such that the following diagram commutes.
+    \begin{center}
+        \begin{tikzcd}
+            F(X) \arrow[dr, "\phi_X"'] \arrow[ddr, bend right, "\psi_X"'] \arrow[rr, "F(f)"]  & & F(Y) \arrow[dl, "\phi_Y"] \arrow[ddl, bend left, "\psi_Y"] \\
+            & L \arrow[d, dashed, "\exists!u"] & \\
+            & \forall N &
+        \end{tikzcd}
+    \end{center}
+    The colimit $L$ is denoted by $\operatorname{colim} F$.
+\end{definition}
+
+\begin{definition}{Existence of Limit, Existence of Colimit, Complete Category, Cocomplete Category}{existence_of_limit}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ is a category.
+    \end{itemize}
+    \paragraph*{Existence of Limit}
+    Let $\mathbf{J}$ be a category.
+    $\mathbf{C}$ is said to have limits of shape $\mathbf{J}$ if every diagram $F:\mathbf{J}\rightarrow \mathbf{C}$ of shape $\mathbf{J}$ has a limit in $\mathbf{C}$.
+    \par
+    $\mathbf{C}$ is said to be a complete category if $\mathbf{C}$ has limit of shape $\mathbf{J}$ for all small category $\mathbf{J}$.
+    \tcblower
+    \paragraph*{Existence of Limit}
+    Let $\mathbf{J}$ be a category.
+    $\mathbf{C}$ is said to have colimits of shape $\mathbf{J}$ if every diagram $F:\mathbf{J}\rightarrow \mathbf{C}$ of shape $\mathbf{J}$ has a colimit in $\mathbf{C}$.
+    \par
+    $\mathbf{C}$ is said to be a cocomplete category if $\mathbf{C}$ has colimit of shape $\mathbf{J}$ for all small category $\mathbf{J}$.
+\end{definition}
+
+\begin{definition}{Preservation of Limit, Preservation of Colimit, \\ Continuous Functor, Cocontinuous Functor}{preservation_of_limit}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ and $\mathbf{D}$ are categories.
+        \item $G:\mathbf{C}\rightarrow \mathbf{D}$ is a functor.
+    \end{itemize}
+    \paragraph*{Preservation of Limit}
+    Let $\mathbf{J}$ be a category.
+    $G$ is said to preserve all limit of shape $\mathbf{J}$ if for all diagrams $F:\mathbf{J}\rightarrow \mathbf{C}$ of shape $\mathbf{J}$, $(G\lim F, G\phi)$ is a limit of $GF$ whenever $(\lim F, \phi)$ is a limit of $F$.
+    \par
+    $G$ is said to be a continuous functor if $G$ preserves all limit of shape $\mathbf{J}$ for all small category $\mathbf{J}$.
+    \tcblower
+    \paragraph*{Preservation of Colimit}
+    Let $\mathbf{J}$ be a category.
+    $G$ is said to preserve all colimit of shape $\mathbf{J}$ if for all diagrams $F:\mathbf{J}\rightarrow \mathbf{C}$ of shape $\mathbf{J}$, $(G\operatorname{colim} F, G\phi)$ is a colimit of $GF$ whenever $(\operatorname{colim} F, \phi)$ is a colimit of $F$.
+    \par
+    $G$ is said to be a cocontinuous functor if $G$ preserves all colimit of shape $\mathbf{J}$ for all small category $\mathbf{J}$.
+\end{definition}
+
+\begin{example}{Coproduct as Colimit}{coproduct_as_colimit}
+    Let $\Lambda$ be a discrete category and $\mathbf{C}$ be the category $R$-$\mathbf{Mod}$. 
+    Then the colimit of $F:\Lambda\rightarrow \mathbf{C}$ is just the direct sum
+    \[ \operatorname*{colim} F = \bigoplus_{\lambda\in\Lambda} F(\lambda). \]
+\end{example}
+
+\begin{example}{Coequalizer as Colimit}{coequalizer_as_colimit}
+    Let $\Lambda$ be a category with
+    \begin{itemize}
+        \item two objects $\qty{X, Y}$,
+        \item two morphisms $\alpha,\beta: X\rightrightarrows Y$ between $X$ and $Y$,
+    \end{itemize}
+    $\mathbf{C}$ be the category $R$-$\mathbf{Mod}$.
+    Then the colimit of $F:\Lambda \rightarrow \mathbf{C}$ is just the coequalizer
+    \[ \operatorname*{colim} F = \operatorname{coeq}(F(\alpha), F(\beta)). \]
+\end{example}
+A cocone from $F$ to $N$ should satisfy the following commutative diagram.
+\begin{center}
+    \begin{tikzcd}
+        F(X) \arrow[rr, yshift=0.7ex, "f = F(\alpha)"] \arrow[rr, yshift=-0.7ex, "g = F(\beta)"'] \arrow[rrd, "\varphi_X=\varphi_{Y}f=\varphi_{Y}g"'] & & F(Y) \arrow[d, "\varphi_Y"] \\
+        & & N
+    \end{tikzcd}
+\end{center}
+Then the colimit $L$ satisfies the following commutative diagram.
+\begin{center}
+    \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
+        & & L \arrow[dd, bend left, dashed, "\exists!u"{name=q3}] \\
+        F(X) \arrow[rru] \arrow[rr, yshift=0.7ex, "f"] \arrow[rr, yshift=-0.7ex, "g"'] \arrow[rrd] & & F(Y) \arrow[d, "\forall \varphi"'{name=q2}] \arrow[u, "q"] \\
+        & & |[alias=q1]|\forall N
+    \end{tikzcd}
+\end{center}
+To put it another way, $L$ satisfies the following.
+\begin{center}
+    \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
+        F(X) \arrow[rr, yshift=0.7ex, "f"] \arrow[rr, yshift=-0.7ex, "g"'] \arrow[rrd] & & F(Y) \arrow[rr, "q", "qf=qg"'] \arrow[d,"\forall\varphi"{name=q2}, "\varphi f=\varphi g"'] & & L \arrow[lld, dashed, "\exists!u"{name=q3}] \\
+        & & |[alias=q1]|\forall N
+    \end{tikzcd}
+\end{center}
+
+\begin{theorem}{Existence Theorem for Limits, Existence Theorem for Colimits}{existence_theorem_for_limits}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ is a category.
+        \item $\mathbf{J}$ is a category.
+    \end{itemize}
+    \paragraph*{Existence of Limits}
+    The following are equivalent.
+    \begin{itemize}
+        \item $\mathbf{C}$ has limits of shape $\mathbf{J}$.
+        \item $\mathbf{C}$ has both
+        \begin{itemize}
+            \item products indexed by $\operatorname{ob}(\mathbf{J})$ and $\operatorname{hom}(\mathbf{J})$, and
+            \item equalizers.
+        \end{itemize}
+    \end{itemize}
+    \tcblower
+    \paragraph*{Existence of Colimits}
+    The following are equivalent.
+    \begin{itemize}
+        \item $\mathbf{C}$ has colimits of shape $\mathbf{J}$.
+        \item $\mathbf{C}$ has both
+        \begin{itemize}
+            \item coproducts indexed by $\operatorname{ob}(\mathbf{J})$ and $\operatorname{hom}(\mathbf{J})$, and
+            \item equalizers.
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    The limit $\lim F$ of diagram $F:\mathbf{J}\rightarrow \mathbf{C}$ is given by $\operatorname{eq}(s,t)$ where
+    \[ s,t: \prod_{Z\in\operatorname{ob}(\mathbf{J})} F(Z) \rightrightarrows \prod_{(X\rightarrow Y)\in \operatorname{hom}(\mathbf{J})} F(Y) \]
+    are defined by
+    \begin{align*}
+        s &= \prod_{(X\rightarrow Y)\in\operatorname{hom}(\mathbf{J})} F(f) \circ \operatorname{proj}_X, \\
+        t &= \prod_{(X\rightarrow Y)\in\operatorname{hom}(\mathbf{J})} \operatorname{proj}_Y. \qedhere
+    \end{align*}
+\end{proof}
+
+\begin{theorem}{Continuity Theorem, Cocontinuity Theorem}{existence_theorem_for_limits}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ is a complete category.
+        \item $\mathbf{D}$ is a category.
+        \item $G:\mathbf{C}\rightarrow\mathbf{D}$ is a functor.
+    \end{itemize}
+    \paragraph*{Preservation of Limits}
+    The following are equivalent.
+    \begin{itemize}
+        \item $G$ is continuous.
+        \item $G$ preserves both
+        \begin{itemize}
+            \item products indexed by all small categories, and
+            \item equalizers.
+        \end{itemize}
+    \end{itemize}
+    \tcblower
+    \paragraph*{Preservation of Colimits}
+    The following are equivalent.
+    \begin{itemize}
+        \item $G$ is cocontinuous
+        \item $G$ preserves both
+        \begin{itemize}
+            \item coproducts indexed by all small categories, and
+            \item equalizers.
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{Small Colimits Commute}{small_colimit_commute}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{I}$ and $\mathbf{J}$ are small categories.
+        \item $\mathbf{C}$ is a category that has colimits of shape $\mathbf{I}$ and $\mathbf{J}$.
+        \item $F: \mathbf{I} \rightarrow \mathbf{C}^\mathbf{J}$ is a diagram of shape $\mathbf{I}$ in the category of diagram of shape $\mathbf{J}$ in $\mathbf{C}$.
+        \item $G: \mathbf{J} \rightarrow \mathbf{C}^\mathbf{I}$ is a diagram of shape $\mathbf{J}$ in the category of diagram of shape $\mathbf{I}$ in $\mathbf{C}$.
+        \item $F$ and $G$ satisfy $F(i)(j) = G(j)(i)$ for all $i\in \mathbf{I}$ and $j\in\mathbf{J}$.
+    \end{itemize}
+    Then
+    \[ \operatorname*{colim} \operatorname*{colim} F = \operatorname*{colim} \operatorname*{colim} G. \]
+\end{theorem}
+This could also be written as
+\[ \operatorname*{colim}_{i\in I} \operatorname*{colim}_{j\in J} F(i)(j) = \operatorname*{colim}_{j\in J} \operatorname*{colim}_{i\in I} F(i)(j). \]
+
 \section{Adjoints}
 
 \begin{definition}{Left Adjoint, Right Adjoint, Adjugant, and Adjunction}{adjoint}
@@ -113,6 +353,21 @@ To define the notion of class, we have to go beyond ZFC and adopt, for example, 
     The triple $(F,G,\eta)$ is an adjunction.
 \end{definition}
 
+The conditions may be represented by the following commutative diagram.
+\begin{center}
+    \begin{tikzcd}
+        \operatorname{Hom}_{\mathbf{C}}(GgB,A) \arrow[d, "\eta_{gB,A}", "\simeq"'] \arrow[rr,"{\operatorname{Hom}_{\mathbf{C}}(Gg,A)}"] & &\operatorname{Hom}_{\mathbf{C}}(GB,A) \arrow[d, "\eta_{B,A}", "\simeq"'] \arrow[rr,"{\operatorname{Hom}_{\mathbf{C}}(GB,f)}"] & & \operatorname{Hom}_{\mathbf{C}}(GB,fA) \arrow[d, "\eta_{B,fA}", "\simeq"'] \\
+        \operatorname{Hom}_{\mathbf{D}}(gB,FA) \arrow[rr,"{\operatorname{Hom}_{\mathbf{D}}(g,FA)}"] & & \operatorname{Hom}_{\mathbf{D}}(B,FA) \arrow[rr,"{\operatorname{Hom}_{\mathbf{D}}(B,Ff)}"] & & \operatorname{Hom}_{\mathbf{D}}(B,FfA)
+    \end{tikzcd}
+\end{center}
+This is equivalent to that morphisms $C\rightarrow C'$ and $D\rightarrow D'$ induces the following commutative diagram.
+\begin{center}
+    \begin{tikzcd}
+        \operatorname{Hom}_{\mathbf{C}}(GD',C) \arrow[r, leftrightarrow, "\simeq"] \arrow[d] & \operatorname{Hom}_{\mathbf{D}}(D',FC) \arrow[d] \\
+        \operatorname{Hom}_{\mathbf{C}}(GD,C') \arrow[r, leftrightarrow, "\simeq"] & \operatorname{Hom}_{\mathbf{D}}(D,FC')
+    \end{tikzcd}
+\end{center}
+
 \begin{example}{Semidirect Product as an Adjoint}{semidirect_product_as_an_adjoint}
     This example is copied from \href{https://math.stackexchange.com/questions/284315/universal-property-of-n-rtimes-k}{Universal property of $N\rtimes K$}.
     See \href{https://ncatlab.org/nlab/show/semidirect+product+group#as_a_left_adjoint}{semidirect product group} for more fancy words.
@@ -129,5 +384,40 @@ To define the notion of class, we have to go beyond ZFC and adopt, for example, 
     \end{itemize}
     Now the left adjoint of $U$ maps $(G,\Gamma,\rho)$ to the inclusion $(G,\Gamma,\rho)\xhookrightarrow{} \Gamma \rtimes_\rho G$.
 \end{example}
+
+\begin{example}{Colimit as Left Adjoint}{colimit_as_left_adjoint}
+    Let $\mathbf{C}$ be a diagram and $\Delta$ be the diagonal functor (where $\Lambda$ is a small category)
+    \[ \Delta: \mathbf{C} \rightarrow \mathbf{C}^\Lambda. \]
+    The colimit
+    \[ \operatorname{colim}: \mathbf{C}^\Lambda \rightarrow \mathbf{C} \]
+    is the left adjoint of $\Delta$.
+\end{example}
+Let $F:\Lambda\rightarrow\mathbf{C}$ be a diagram (an object of $\mathbf{C}^\Lambda$), $N$ be an object of $\mathbf{C}$ and $\Delta(N)$ be an diagonal functor (an element of $\mathbf{C}^\Lambda$).
+Then $\operatorname{Hom}_{\mathbf{C}^\Lambda}(F, \Delta(N))$ consists of all natural transformations from $F$ to $\Delta(N)$.
+Let $\eta$ be one of such natural transformations.
+Then for each $X\xrightarrow{f}Y$ of $\Lambda$, the following diagram commutes.
+\begin{center}
+    \begin{tikzcd}
+        F(X) \arrow[rr, "F(f)"] \arrow[rd, "\eta_X"'] & & F(Y) \arrow[ld, "\eta_Y"]  \\
+        & N &
+    \end{tikzcd}
+\end{center}
+Therefore, $\operatorname{Hom}_{\mathbf{C}^\Lambda}(F, \Delta(N))$ consists of the cones to $F$.
+\par
+To verify that  $\lim$ is the left adjoint of $\Delta$, firstly we need a bijection
+\[ \operatorname{Hom}_{\mathbf{C}}(\lim F, N) \xlongleftrightarrow{\simeq} \operatorname{Hom}_{\mathbf{C}^\Lambda}(F, \Delta(N)) = \qty{\text{Cocones from } F \text{ to } N}. \]
+This is just the definition of colimit.
+Secondly, we need to verify that each
+\begin{itemize}
+    \item morphism $N\rightarrow N'$ in $\mathbf{C}$, and
+    \item natural transformation $F\rightarrow F'$
+\end{itemize}
+induces the following commutative diagram.
+\begin{center}
+    \begin{tikzcd}
+        \operatorname{Hom}_{\mathbf{C}}(\lim F', N) \arrow[r, leftrightarrow, "\simeq"] \arrow[d] & \operatorname{Hom}_{\mathbf{C}^\Lambda} (F', \Delta(N)) = \qty{\text{Cocones from $F'$ to $N$}} \arrow[d] \\
+        \operatorname{Hom}_{\mathbf{C}}(\lim F, N') \arrow[r, leftrightarrow, "\simeq"] & \operatorname{Hom}_{\mathbf{C}^\Lambda} (F, \Delta(N')) = \qty{\text{Cocones from $F$ to $N$}} \\
+    \end{tikzcd}
+\end{center}
 
 \end{document}

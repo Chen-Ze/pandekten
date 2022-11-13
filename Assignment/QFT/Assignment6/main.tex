@@ -1,0 +1,285 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 6}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\plabel{(a)}%
+In the momentum space, for $\psi(x) = u(p) e^{-ip\cdot x}$,
+\[ (\gamma^\mu p_\mu - m)u(p) = 0. \]
+Note that
+\[ \slashed{p}\slashed{p} = p_\mu p_\nu \gamma^\mu \gamma^\nu = \frac{1}{2} p_\mu p_\nu \qty{\gamma^\mu,\gamma^\nu} = p_\mu p_\nu\eta^{\mu\nu} = p^2. \]
+Therefore,
+\[ (\slashed{p} + m)(\slashed{p}-m) = \slashed{p}\slashed{p} - m^2 = p^2 - m^2. \]
+
+\plabel{(b)}%
+Let $w$ be the rapidity such that
+\[ \begin{pmatrix}
+    E \\ p^3
+\end{pmatrix} = m \begin{pmatrix}
+    \cosh w \\ \sinh w
+\end{pmatrix}. \]
+\paragraph*{Positive Frequency}
+In the static frame, the Dirac equation for the ansatz $\psi(x) = u(p) e^{-ip\cdot x}$ becomes
+\[ m(\gamma^0 - \mathbbm{1}) u(m,\vb{0}) = 0, \]
+which has solution 
+\[ u(m,\vb{0}) = \sqrt{m}\begin{pmatrix}
+    \xi \\ \xi
+\end{pmatrix}  \]
+for any $\xi \in \mathbb{C}^2$.
+The solution for $p^3>0$ may be obtained by a Lorentz boost, i.e.
+\begin{align*}
+    u(E,0,0,p^3) &= \exp[-\frac{1}{2}w\begin{pmatrix}
+        \sigma^3 & 0 \\
+        0 & -\sigma^3
+    \end{pmatrix}] \begin{pmatrix}
+        \xi \\ \xi
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        \qty[(1-\sigma^3)\sqrt{E+p^3}/2+(1+\sigma^3)\sqrt{E-p^3}/2] \xi \\
+        \qty[(1+\sigma^3)\sqrt{E+p^3}/2+(1-\sigma^3)\sqrt{E-p^3}/2] \xi
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        \sqrt{p\cdot \sigma} \xi \\
+        \sqrt{p\cdot \overline{\sigma}} \xi
+    \end{pmatrix}.
+\end{align*}
+\paragraph*{Negative Frequency}
+In the static frame, the Dirac equation for the ansatz $\psi(x) = v(p) e^{+ip\cdot x}$ becomes
+\[ m(\gamma^0 + \mathbbm{1}) v(p) = 0, \]
+which has the solution
+\[ v(m,\vb{0}) = \sqrt{m} \begin{pmatrix}
+    \eta \\ \eta
+\end{pmatrix} \]
+for any $\eta \in \mathbb{C}^2$.
+The solution for $p^3>0$ may be obtained by a Lorentz boost, i.e.
+\begin{align*}
+    v(E,0,0,p^3) &= \exp[-\frac{1}{2}w\begin{pmatrix}
+        \sigma^3 & 0 \\
+        0 & -\sigma^3
+    \end{pmatrix}] \begin{pmatrix}
+        \eta \\ -\eta
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        \phantom{-}\qty[(1-\sigma^3)\sqrt{E+p^3}/2+(1+\sigma^3)\sqrt{E-p^3}/2] \eta \\
+        -\qty[(1+\sigma^3)\sqrt{E+p^3}/2+(1-\sigma^3)\sqrt{E-p^3}/2] \eta
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        \sqrt{p\cdot \sigma} \eta \\
+        -\sqrt{p\cdot \overline{\sigma}} \eta
+    \end{pmatrix}.
+\end{align*}
+\paragraph*{Taking Limits}
+The solutions in the limit $\vb{p}\rightarrow 0$ is just the solution in the static frame given above.
+The solutions for $m = 0$ are given by
+\begin{align*}
+    u(p^3,0,0,p^3) &= \sqrt{\frac{p^3}{2}} \begin{pmatrix}
+        (1-\sigma^3) \xi \\
+        (1+\sigma^3) \xi
+    \end{pmatrix} = \sqrt{2p^3}\begin{pmatrix}
+        0 \\ \xi_2 \\
+        \xi_1 \\ 0
+    \end{pmatrix}, \\
+    v(p^3,0,0,p^3) &= \sqrt{\frac{p^3}{2}} \begin{pmatrix}
+        (1-\sigma^3) \eta \\
+        -(1+\sigma^3) \eta
+    \end{pmatrix} = \sqrt{2p^3}\begin{pmatrix}
+        0 \\ \eta_2 \\
+        -\eta_1 \\ 0
+    \end{pmatrix}.
+\end{align*}
+
+\plabel{(c)}%
+Solutions with positive helicity are given by $\xi$ and $\eta$ being the eigenvector of $\vb{p}\cdot \vb*{\sigma}$ of positive eigenvalue, and negative helicity by that of negative eigenvalue.
+Therefore, positive helicity is given by
+\[ \xi_+ = \eta_+ = \begin{pmatrix}
+    \cos(\theta/2) \\ \sin(\theta/2) e^{i\varphi}
+\end{pmatrix}, \]
+and negative helicity by
+\[ \xi_- = \eta_- = \begin{pmatrix}
+    \sin(\theta/2) \\ -\cos(\theta/2) e^{i\varphi}
+\end{pmatrix}, \]
+where $(\abs{\vb{p}}, \theta,\varphi)$ is $\vb{p}$ in polar coordinates.
+
+\paragraph*{Positive Frequency, Positive Helicity}
+For $m=0$ and $p=(p^3,0,0,p^3)$, the solution is given by
+\[ u_+(p) = \begin{pmatrix}
+    \sqrt{p\cdot \sigma} \xi_+ \\
+    \sqrt{p\cdot \overline{\sigma}} \xi_+
+\end{pmatrix} = \sqrt{2p^3} \begin{pmatrix}
+    0 \\ 0 \\ 1 \\ 0
+\end{pmatrix}. \]
+\paragraph*{Positive Frequency, Negative Helicity}
+For $m=0$ and $p=(p^3,0,0,p^3)$, the solution is given by
+\[ u_-(p) = \begin{pmatrix}
+    \sqrt{p\cdot \sigma} \xi_- \\
+    \sqrt{p\cdot \overline{\sigma}} \xi_-
+\end{pmatrix} = \sqrt{2p^3} \begin{pmatrix}
+    0 \\ 1 \\ 0 \\ 0
+\end{pmatrix}. \]
+\paragraph*{Negative Frequency, Positive Helicity}
+For $m=0$ and $p=(p^3,0,0,p^3)$, the solution is given by
+\[ v_+(p) = \begin{pmatrix}
+    \sqrt{p\cdot \sigma} \eta_+ \\
+    -\sqrt{p\cdot \overline{\sigma}} \eta_+
+\end{pmatrix} = \sqrt{2p^3} \begin{pmatrix}
+    0 \\ 0 \\ -1 \\ 0
+\end{pmatrix}. \]
+\paragraph*{Negative Frequency, Negative Helicity}
+For $m=0$ and $p=(p^3,0,0,p^3)$, the solution is given by
+\[ v_-(p) = \begin{pmatrix}
+    \sqrt{p\cdot \sigma} \eta_- \\
+    -\sqrt{p\cdot \overline{\sigma}} \eta_-
+\end{pmatrix} = \sqrt{2p^3} \begin{pmatrix}
+    0 \\ 1 \\ 0 \\ 0
+\end{pmatrix}. \]
+
+\plabel{(d)}%
+For $m=0$, if $\xi$ have positive helicity, i.e. $\vb{p}\cdot \vb*{\sigma} \xi = +\abs{\vb{p}} \xi$, then it's clear that
+\[ \sqrt{p\cdot \sigma} \xi = \sqrt{p^0 \mathbbm{1} - \vb{p}\cdot \vb*{\sigma}}\xi = 0. \]
+Therefore,
+\[ u_+ = \begin{pmatrix}
+    0 \\ 0 \\ * \\ *
+\end{pmatrix},\quad v_+ = \begin{pmatrix}
+    0 \\ 0 \\ * \\ *
+\end{pmatrix}, \]
+i.e. the lower two components are right-handed.
+If $\xi$ has negative helicity, then similarly
+\[ \sqrt{p\cdot \overline{\sigma}} \xi = \sqrt{p^0 \mathbbm{1} + \vb{p}\cdot \vb*{\sigma}}\xi = 0. \]
+Therefore,
+\[ u_+ = \begin{pmatrix}
+    * \\ * \\ 0 \\ 0
+\end{pmatrix},\quad v_+ = \begin{pmatrix}
+    * \\ * \\ 0 \\ 0
+\end{pmatrix}, \]
+i.e. the upper two components are left-handed.
+The Dirac equation is given by
+\[ \begin{pmatrix}
+    & i\sigma \cdot \partial \\
+    i\overline{\sigma}\cdot \partial &
+\end{pmatrix} \begin{pmatrix}
+    \psi_L \\ \psi_R
+\end{pmatrix} = 0, \]
+i.e.
+\begin{align*}
+    i\overline{\sigma}\cdot \partial \psi_L &= 0, \\
+    i\sigma\cdot \partial \psi_R &= 0.
+\end{align*}
+
+\plabel{(e)}%
+$P$ is projection since
+\[ P^2 = \frac{\slashed{p}\slashed{p} + 2m\slashed{p} + m^2}{4m^2} = \frac{p^2 + 2m\slashed{p} + m^2}{4m^2} = \frac{\slashed{p} + m}{2m} = P. \]
+Note that
+\begin{align*}
+    p\cdot\sigma \sqrt{p\cdot \overline{\sigma}} &= m \sqrt{p\cdot \sigma}, \\
+    p\cdot\overline{\sigma} \sqrt{p\cdot \sigma} &= m \sqrt{p\cdot \overline{\sigma}}.
+\end{align*}
+If
+\[ P = \frac{\slashed{p} + m}{2m} \]
+then
+\begin{align*}
+    P \begin{pmatrix}
+        \sqrt{p\cdot \sigma} \xi \\ \pm \sqrt{p\cdot \overline{\sigma}}\xi
+    \end{pmatrix} &= \frac{1}{2m}\begin{pmatrix}
+        m & p\cdot\sigma \\
+        p\cdot \overline{\sigma} & m
+    \end{pmatrix}\begin{pmatrix}
+        \sqrt{p\cdot \sigma} \xi \\ \pm \sqrt{p\cdot \overline{\sigma}}\xi
+    \end{pmatrix} \\
+    &= \frac{1}{2m} \begin{pmatrix}
+        m\sqrt{p\cdot \sigma} \xi \pm m \sqrt{p\cdot \sigma}\xi \\
+        \pm m \sqrt{p\cdot \overline{\sigma}}\xi + m\sqrt{p\cdot \overline{\sigma}} \xi
+    \end{pmatrix} \\
+    &= \begin{cases}
+        \begin{pmatrix}
+            \sqrt{p\cdot \sigma} \xi \\ +\sqrt{p\cdot \overline{\sigma}}\xi
+        \end{pmatrix}, & \text{for } +, \\
+        0, & \text{for } -.
+    \end{cases}
+\end{align*}
+Therefore, $P$ drops the negative frequency solution in this case.
+\par
+If
+\[ P = \frac{-\slashed{p}+m}{2m} \]
+then
+\begin{align*}
+    P \begin{pmatrix}
+        \sqrt{p\cdot \sigma} \xi \\ \pm \sqrt{p\cdot \overline{\sigma}}\xi
+    \end{pmatrix} &= \frac{1}{2m}\begin{pmatrix}
+        m & -p\cdot\sigma \\
+        -p\cdot \overline{\sigma} & m
+    \end{pmatrix}\begin{pmatrix}
+        \sqrt{p\cdot \sigma} \xi \\ \pm \sqrt{p\cdot \overline{\sigma}}\xi
+    \end{pmatrix} \\
+    &= \frac{1}{2m} \begin{pmatrix}
+        m\sqrt{p\cdot \sigma} \xi \mp m \sqrt{p\cdot \sigma}\xi \\
+        - m \sqrt{p\cdot \overline{\sigma}}\xi \pm m\sqrt{p\cdot \overline{\sigma}} \xi
+    \end{pmatrix} \\
+    &= \begin{cases}
+        0, & \text{for } +, \\
+        \begin{pmatrix}
+            \sqrt{p\cdot \sigma} \xi \\ -\sqrt{p\cdot \overline{\sigma}}\xi
+        \end{pmatrix}, & \text{for } -.
+    \end{cases}
+\end{align*}
+Therefore, $P$ drops the positive frequency solution in this case.
+
+\plabel{(f)}%
+For $\psi \rightarrow \psi - i\alpha\psi$, we find
+\[ j^\mu = \pdv{\mathcal{L}}{(\partial_\mu \psi)} (-i\psi) = \overline{\psi}\gamma^\mu\psi. \]
+With Dirac equation in $\psi$ and $\overline{\psi}$,
+\begin{align*}
+    \partial_\mu j^\mu &= \partial_\mu(\overline{\psi}\gamma^\mu \psi) \\
+    &= (\partial_\mu \overline{\psi}) \gamma^\mu \psi + \overline{\psi}\gamma^\mu\partial_\mu\psi \\
+    &= im\overline{\psi}\psi + \overline{\psi}(-im)\psi \\
+    &= 0.
+\end{align*}
+In terms of operators,
+\begin{align*}
+    Q &= \int \dd[3]{\vb{x}} \psi^\dagger(\vb{x}) \psi(\vb{x}) \\
+    &= \int \frac{\dd[3]{\vb{p}}}{(2\pi)^3} \frac{1}{{2E_{\vb{p}}}} \psi^\dagger(-\vb{p})\psi(\vb{p}) \\
+    &= \int \frac{\dd[3]{\vb{p}}}{(2\pi)^3} \frac{1}{{2E_{\vb{p}}}} \sum_{r,s}\qty[a^{r\dagger}_{\vb{p}} u^{r\dagger}(p) + b^{r\vphantom{\dagger}}_{-\vb{p}} v^{r\dagger}(p^0,-\vb{p})]\qty[a^{s}_{\vb{p}} u^{s}(p) + b^{s\dagger}_{-\vb{p}} v^{s}(p^0,-\vb{p})] \\
+    &= \int \frac{\dd[3]{\vb{p}}}{(2\pi)^3} \frac{1}{{2E_{\vb{p}}}} \sum_{r,s}\qty(a^{r\dagger}_{\vb{p}} a^s_{\vb{p}} 2E_{\vb{p}} \delta^{rs} + b^{r}_{\vb{p}} b^{s\dagger}_{\vb{p}} 2E_{\vb{p}} \delta^{rs}) \\
+    &= \int \frac{\dd[3]{\vb{p}}}{(2\pi)^3} \sum_{s}\qty(a^{s\dagger}_{\vb{p}} a^s_{\vb{p}}  + b^{s}_{\vb{p}} b^{s\dagger}_{\vb{p}}) \\
+    &= \int \frac{\dd[3]{\vb{p}}}{(2\pi)^3} \sum_{s}\qty(a^{s\dagger}_{\vb{p}} a^s_{\vb{p}}  - b^{s\dagger}_{\vb{p}} b^{s}_{\vb{p}}) + \mathrm{const}.
+\end{align*}
+
+\plabel{(g)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    (i\slashed{\partial} - m)S_F(x-y) &= \int \frac{\dd[4]{p}}{(2\pi)^4} \frac{i(\slashed{p}+m)}{p^2 - m^2 + i\epsilon} (\slashed{p} - m) e^{-ip\cdot (x-y)} \\
+    &= \int \frac{\dd[4]{p}}{(2\pi)^4} \frac{i(p^2 - m^2)}{p^2 - m^2 + i\epsilon} e^{-ip\cdot (x-y)}  \cdot \mathbbm{1}_{4\times 4}  \\
+    &= i\delta^{(4)}(x-y) \cdot \mathbbm{1}_{4\times 4}.
+\end{align*}
+\endgroup
+
+\end{document}

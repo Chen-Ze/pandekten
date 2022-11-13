@@ -1,0 +1,20 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \feynmandiagram [small, horizontal=c2 to c4] {
+        c1 --[fermion, edge label'=$p$] c2 [dot];
+        c3 --[anti fermion, momentum=$k$] c4[dot];
+        c2 --[charged scalar, edge label'=$p-p'$] c4;
+        c2 --[fermion, edge label'=$p'$] c5;
+        c4 --[anti fermion, momentum=$k'$] c6;
+    };
+\end{align*}
+\end{document}

@@ -25,8 +25,14 @@
 % Useful math symbols, e.g. \rtimes
 \RequirePackage{amssymb}
 
+% Useful math commands and environments
+% \RequirePackage{amsmath}
+
 % Feynman slash
 \RequirePackage{slashed}
+
+% Wick Contraction
+\RequirePackage{simpler-wick}
 
 % Cancel to
 \RequirePackage{cancel}
@@ -123,6 +129,20 @@ title={Warning},sharp corners}
   bottom=2pt
 }
 
+\newtcbox{\defextends}[1][red]{
+  on line, 
+  arc=2pt,
+  colback=#1!50!blue,
+  colframe=#1!50!blue,
+  fontupper=\color{white} $\hookrightarrow$\ ,
+  boxrule=1pt, 
+  boxsep=0pt,
+  left=6pt,
+  right=6pt,
+  top=2pt,
+  bottom=2pt
+}
+
 % Long table
 \RequirePackage{longtable}
 
@@ -154,6 +174,11 @@ title={Warning},sharp corners}
  { #1 \,\delimsize| \,\mathopen{} #2 }
 \DeclarePairedDelimiterX\SqDelim[2]{\lbrack}{\rbrack}%
  { #1 \,\delimsize| \,\mathopen{} #2 }
+\DeclarePairedDelimiterX\Infdiv[2]{\lparen}{\rparen}{%
+#1\,\delimsize |\delimsize |\, \mathopen{} #2%
+}
+\DeclarePairedDelimiterX\Conditional[2]{\lparen}{\rparen}%
+ { #1 \,\delimsize| \,\mathopen{} #2 }
 
 % For mixture of super/sub indices
 \RequirePackage{tensor}
@@ -181,5 +206,11 @@ title={Warning},sharp corners}
 
 % Allow display break
 \allowdisplaybreaks
+
+% Custom symbols
+
+% Normal ordering
+% Usage: $\normord{\phi(x)\phi(y)}$
+\newcommand{\normord}[1]{\mathopen{:}#1\mathclose{:}}
 
 \endinput

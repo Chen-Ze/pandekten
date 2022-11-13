@@ -67,18 +67,26 @@ The Hamiltonian is given by
     H &= \int \dd{^3\vb{p}} \frac{\vb{p}^2}{2m} \tilde{\psi}^\dagger(\vb{k})\tilde{\psi}^\dagger(\vb{k}) = \int \dd{^3\vb{p}} \frac{\vb{p}^2}{2m} a_{\vb{p}}^\dagger a_{\vb{p}}.
 \end{align*}
 It's clear that each particle of momentum $\vb{p}$ contributes $\vb{p}^2/2m$ to the energy.
-In the nonrelativistic case, the scale of energy is too low to create an antiparticle, and therefore there is only one set of operators.
-{\color{red}Discuss the physical properties of the $n$ particle states,
-and compare them with the usual description of $n$ particle states in quantum mechanics.}
+The other set of creation and annihilation operators is missing because the conjugate momentum of $\psi^*$ is $0$.
+In the nonrelativistic case, the scale of energy is too low to create an antiparticle (gap $\sim 2mc^2$).
+The $n$ particle states are given by
+\[ \operatorname{Sym}\qty(\operatorname{Span}\Set*{\ket{\vb{p}_1}\otimes \cdots \otimes\ket{\vb{p}_n}}{\vb{p}_1,\cdots,\vb{p}_n\in\mathbb{R}^3}), \]
+where $\operatorname{Sym}$ denotes symmetrization.
+The Energy is given by
+\[ H \operatorname{Sym}\qty(\ket{\vb{p}_1}\otimes \cdots \otimes\ket{\vb{p}_n}) = \qty(\frac{\vb{p}_1^2}{2m} + \cdots + \frac{\vb{p}_n^2}{2m})\operatorname{Sym}\qty(\ket{\vb{p}_1}\otimes \cdots \otimes\ket{\vb{p}_n}). \]
+The $n$-particle states in quantum mechanics are described by their wavefunction
+\[ \Psi(\vb{x}_1,\cdots,\vb{x}_n) \propto \int \frac{\dd{^3 \vb{p}_1}}{2\pi} \cdots \int \frac{\dd{^3 \vb{p}_n}}{2\pi} \Phi(\vb{p}_1,\cdots,\vb{p}_n) e^{i\vb{p}_1\cdot \vb{x}_1 + \cdots + i \vb{p}_n\cdot \vb{x}_n}, \]
+which may be written as
+\[ \ket{\Psi} \propto \int \frac{\dd{^3 \vb{p}_1}}{2\pi} \cdots \int \frac{\dd{^3 \vb{p}_n}}{2\pi} \Phi(\vb{p}_1,\cdots,\vb{p}_n) \ket{\vb{p}_1}\otimes \cdots \otimes\ket{\vb{p}_n}. \]
 
 \prule
 
 \plabel{2 (a)}%
 We have
-\[ \phi = \frac{1}{2m}(a + a^\dagger). \]
+\[ \phi = \frac{1}{\sqrt{2m}}(a + a^\dagger). \]
 The time evolution of $a^\dagger$ is given by $a^\dagger(t) = e^{imt} a^\dagger$.
 Therefore,
-\[ \phi(t) = \frac{1}{2m}\qty(e^{-imt} a + e^{imt} a^\dagger). \]
+\[ \phi(t) = \frac{1}{\sqrt{2m}}\qty(e^{-imt} a + e^{imt} a^\dagger). \]
 The correlators are given by
 \begin{align*}
     \ev{\phi(t)\phi(0)}{0} &= \frac{1}{2m} e^{-imt}, \\
@@ -104,7 +112,14 @@ The differences are given by
     2G_{\mathrm{F}}(t) - \qty(G_{\mathrm{R}}(t) + G_{\mathrm{A}}(t)) &= \frac{\cos(mt)}{m},
 \end{align*}
 which are solutions to the homogenous equation.
-{\color{red}They can be distinguished by their behavior as $t\rightarrow\pm\infty$.}
+$G_{\mathrm{R}}(t) = 0$ for all $t<0$.
+$G_{\mathrm{A}}(t) = 0$ for all $t>0$.
+$G_{\mathrm{F}}(t) \neq 0$ for all $t$.
+It's clear that
+\[ G_{\mathrm{F}}(t + i\infty) = 0 \]
+if $t < 0$ and
+\[ G_{\mathrm{F}}(t - i\infty) = 0 \]
+if $t > 0$.
 
 \plabel{(c)}%
 The equation is transformed into
@@ -126,7 +141,7 @@ Now the Green's functions are evaluated using the residue theorem.
         -\operatorname{Res}_m-\operatorname{Res}_{-m}, & \text{if } t>0, \\
         0, & \text{if } t<0
     \end{cases} = -\frac{i}{m}\sin(mt) \Theta(t), \\
-    G_{\mathrm{R}}(t) &= \begin{cases}
+    G_{\mathrm{A}}(t) &= \begin{cases}
         0, & \text{if } t>0, \\
         \operatorname{Res}_m + \operatorname{Res}_{-m}, & \text{if } t<0
     \end{cases} = \frac{i}{m}\sin(mt) \Theta(-t), \\
@@ -135,9 +150,76 @@ Now the Green's functions are evaluated using the residue theorem.
         \operatorname{Res}_{-m}, & \text{if } t<0
     \end{cases} = \frac{e^{-imt}}{2m} \Theta(t) + \frac{e^{imt}}{2m} \Theta(-t).
 \end{align*}
-{\color{red}Draw the path and write down $\tilde{G}$ with $\epsilon$.}
+Therefore,
+\begin{align*}
+    G_{\mathrm{R}}(t) &= \int_{-\infty}^\infty \frac{\dd{\omega}}{2\pi} \frac{i}{(\omega+i\epsilon)^2 - m^2} e^{-i\omega t}, \\
+    G_{\mathrm{A}}(t) &= \int_{-\infty}^\infty \frac{\dd{\omega}}{2\pi} \frac{i}{(\omega-i\epsilon)^2 - m^2} e^{-i\omega t}, \\
+    G_{\mathrm{F}}(t) &= \int_{-\infty}^\infty \frac{\dd{\omega}}{2\pi} \frac{i}{\omega^2 - m^2 + i\epsilon} e^{-i\omega t}.
+\end{align*}
 
 \plabel{(d)}%
-The transform $t \rightarrow e^{-i\theta}t$ is equivalent to a counterclockwise rotation of the countour since
+To extend to $t \rightarrow e^{-i\theta}t$ the integration contour should be rotated counterclockwise by $\theta$ such that the integrand remains finite as $\omega \rightarrow \infty$.
+To not encounter singularities, the range is given by $0\le \theta < \pi$.
+With the substitution $t \rightarrow -i\tau$ and $\omega \rightarrow i \rho$,
+\[ \mathcal{G}_{\mathrm{F}}(\tau) = \int_{-\infty}^\infty \frac{\dd{\rho}}{2\pi} \frac{i}{-\rho^2 - m^2} e^{-i\rho \tau}. \]
+
+\prule
+\plabel{3 (a)}%
+$\phi(y)$ contributes $a^\dagger$ while $\phi(x)$ contributes $a$.
+\begin{align}
+    \notag \bra{0} \phi(x) \phi(y) \ket{0} &= \int \frac{\dd{^3\vb{p}}}{(2\pi)^3} \int \frac{\dd{^3\vb{q}}}{(2\pi)^3} \frac{1}{\sqrt{2\omega_{\vb{p}}}}\frac{1}{\sqrt{2\omega_{\vb{q}}}} a_{\vb{p}} e^{-ipx} a^\dagger_{\vb{q}} e^{iqy} \\
+    \notag &= \int \frac{\dd{^3\vb{p}}}{(2\pi)^3} \int \frac{\dd{^3\vb{q}}}{(2\pi)^3} \frac{1}{\sqrt{2\omega_{\vb{p}}}}\frac{1}{\sqrt{2\omega_{\vb{q}}}} \qty(\cancel{a^\dagger_{\vb{q}}a_{\vb{p}}} + [a_{\vb{p}},a^\dagger_{\vb{q}}]) e^{-ipx} e^{iqy} \\
+    \notag &= \int \frac{\dd{^3\vb{p}}}{(2\pi)^3} \int \dd{^3\vb{q}} \frac{1}{\sqrt{2\omega_{\vb{p}}}}\frac{1}{\sqrt{2\omega_{\vb{q}}}} \delta^{(3)}(\vb{p}-\vb{q}) e^{-ipx} e^{iqy} \\
+    \label{eq:phiphi} &= \int \frac{\dd{^3\vb{p}}}{(2\pi)^3} \frac{1}{2\omega_{\vb{p}}} e^{-ip\cdot (x-y)}.
+\end{align}
+
+\plabel{(b)}%
+After doing the angular integrals we find
+\[ D(t,r) = (2\pi)^{-3/2} \frac{1}{\sqrt{r}} \int_0^\infty \sqrt{\frac{2}{\pi}} \frac{\sin(pr)}{\sqrt{pr}} \sqrt{p}\cdot p \cdot \frac{e^{-it\sqrt{m^2+p^2}}}{2  \sqrt{m^2+p^2}}\dd{p}. \]
+For space-like separations, we take $t=0$ and find
+\begin{align}
+    \notag D(r) &= \frac{-i}{2(2\pi)^2 r} \int_{-\infty}^\infty e^{ipr} \frac{p}{\sqrt{m^2+p^2}}\dd{p} \\
+    \label{eq:space_like_d} &= \frac{m}{(2\pi)^2 r} K_1(mr).
+\end{align}
+At large $r$,
+\[ D(r) \sim e^{-mr}. \]
+For time-like separations, we take $r=0$ and find
+\begin{align}
+    \notag D(t) &= \frac{1}{(2\pi)^2} \int_m^\infty \sqrt{\omega^2 - m^2} e^{-it\omega} \dd{\omega} \\
+    \label{eq:time_like_d} &= \frac{im(J_1(mt) - iY_1(m\abs{t}))}{8\pi \abs{t}}.
+\end{align}
+At large $t$,
+\[ D(t) \sim \abs{t}^{-3/2} e^{-it}. \]
+Therefore, for space-like $x-y$,
+\[ D(x-y) = \frac{m}{(2\pi)^2 \sqrt{-(x-y)^2}} K_1\qty(m\sqrt{-(x-y)^2}). \]
+For time-like $x-y$ with $x^0 > y^0$,
+\[ D(x-y) = \frac{im}{8\pi \sqrt{(x-y)^2}} H^{(2)}_1\qty(m\sqrt{(x-y)^2}). \]
+For time-like $x-y$ with $x^0 < y^0$,
+\[ D(x-y) = \frac{-im}{8\pi \sqrt{(x-y)^2}} H^{(1)}_1\qty(m\sqrt{(x-y)^2}). \]
+
+\plabel{(c)}%
+From symmetry it's clear that the support is given by
+\[ \Set*{x-y}{(x-y)^2 \ge 0}, \]
+i.e. all time-like and null-like separations.
+Physically, a particle creation could not affect the measurement a space-like distance away.
+For time-like separation, with \cref{eq:time_like_d} we find
+\[ \bra{0}[\phi(x),\phi(y)]\ket{0} = \frac{imJ_1\qty(m\sqrt{(x-y)^2})}{4\pi\sqrt{(x-y)^2}}. \]
+
+\plabel{(d)}%
+For space-like $x-y$, using \cref{eq:space_like_d} we find
+\[ D_{\mathrm{F}}(x-y) = \frac{m}{(2\pi)^2 \sqrt{-(x-y)^2}} K_1\qty(m\sqrt{-(x-y)^2}). \]
+For time-like $x-y$, using \cref{eq:time_like_d} we find
+\[ D_{\mathrm{F}}(x-y) = \frac{im}{8\pi \sqrt{(x-y)^2}} H^{(2)}_1\qty(m\sqrt{(x-y)^2}). \]
+The support is the whole spacetime.
+For $x^0 > y^0$, $D_{\mathrm{F}}(x-y)$ involves $e^{-i\omega(x^0 - y^0)}$ in \cref{eq:phiphi}, while for $x^0 < y^0$, $D_{\mathrm{F}}(x-y)$ involves $e^{i\omega(x^0 - y^0)}$.
+The sign of $\omega$ associated with $x-y$ is different, suggesting the existence of antiparticle of mass $m$.
+
+\plabel{(e)}%
+Taking the limit $m\rightarrow 0$ we find $G_{\mathrm{R}}(x - y) = 0$ except for null-like $x-y$.
+\[ G_{\mathrm{R}}(x-y) = -\frac{i\Theta(x-y)}{2\pi}\delta((x-y)^2), \]
+which is the one for the wave equation (since the Klein-Gordon equation for $m=0$ is the wave equation).
+Taking the limit $m\rightarrow 0$ we find that the Feynman propagator is given by
+\[ G_{\mathrm{F}}(x-y) = -\frac{1}{4\pi^2 (x-y)^2}. \]
+The support is the whole spacetime.
 
 \end{document}

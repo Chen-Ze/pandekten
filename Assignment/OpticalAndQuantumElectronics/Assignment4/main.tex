@@ -1,0 +1,209 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 4}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a)}%
+Let $\lambda_0 = \SI{600}{\nano\meter}$ denote the wavelength in vacuum.
+Then
+\[ d_1 = \frac{1}{4} \frac{\lambda_0}{n_1} = \SI{62.5}{\nano\meter}, \quad d_2 = \frac{1}{4} \frac{\lambda_0}{n_2} = \SI{101.35}{\nano\meter}. \]
+Let $E_0^+$, $E_0^-$, $E_s^+$ denote the (complex) electric field at the boundary, where the superscript $+$ denotes right-propagating and $-$ denotes left propagating wave.
+Then
+\begin{align*}
+    \begin{pmatrix}
+        E_0^+ \\ E_0^-
+    \end{pmatrix} &= \frac{1}{t_{01}} \begin{pmatrix}
+        1 & r_{01} \\
+        r_{01} & 1
+    \end{pmatrix} \begin{pmatrix}
+        e^{-in_1kd_1} & \\
+        & e^{in_1kd_1}
+    \end{pmatrix} \\
+    &\phantom{{}={}} \cdot \frac{1}{t_{12}} \begin{pmatrix}
+        1 & r_{12} \\
+        r_{12} & 1
+    \end{pmatrix} \begin{pmatrix}
+        e^{-in_2kd_2} & \\
+        & e^{in_2kd_2}
+    \end{pmatrix} \\
+    &\phantom{{}={}} \cdot \frac{1}{t_{21}} \begin{pmatrix}
+        1 & r_{21} \\
+        r_{21} & 1
+    \end{pmatrix} \begin{pmatrix}
+        e^{-in_1kd_1} & \\
+        & e^{in_1kd_1}
+    \end{pmatrix} \\
+    &\phantom{{}={}} \cdot \frac{1}{t_{1\mathrm{s}}} \begin{pmatrix}
+        1 & r_{1\mathrm{s}} \\
+        r_{1\mathrm{s}} & 1
+    \end{pmatrix} \begin{pmatrix}
+        E_{\mathrm{s}}^+ \\
+        0
+    \end{pmatrix}.
+\end{align*}
+Since $n_1 k d_1 = n_2 k d_2 = \pi / 2$, we find
+\[ \Gamma = \frac{E_0^-}{E_0^+} = 1 - \frac{2n_1^4}{n_2^2 n_{\mathrm{s}} + n_1^4} = -0.82. \]
+
+\plabel{(b)}%
+With
+\begin{align*}
+    \begin{pmatrix}
+        E_0^+ \\ E_0^-
+    \end{pmatrix} &= \frac{1}{t_{01}} \begin{pmatrix}
+        1 & r_{01} \\
+        r_{01} & 1
+    \end{pmatrix} \begin{pmatrix}
+        e^{-in_1kd_1} & \\
+        & e^{in_1kd_1}
+    \end{pmatrix} \\
+    &\phantom{{}={}} \cdot \bigg[ \frac{1}{t_{12}} \begin{pmatrix}
+        1 & r_{12} \\
+        r_{12} & 1
+    \end{pmatrix} \begin{pmatrix}
+        e^{-in_2kd_2} & \\
+        & e^{in_2kd_2}
+    \end{pmatrix} \\
+    &\phantom{{}={}} \cdot \frac{1}{t_{21}} \begin{pmatrix}
+        1 & r_{21} \\
+        r_{21} & 1
+    \end{pmatrix} \begin{pmatrix}
+        e^{-in_1kd_1} & \\
+        & e^{in_1kd_1}
+    \end{pmatrix}\bigg]^N \\
+    &\phantom{{}={}} \cdot \frac{1}{t_{1\mathrm{s}}} \begin{pmatrix}
+        1 & r_{1\mathrm{s}} \\
+        r_{1\mathrm{s}} & 1
+    \end{pmatrix} \begin{pmatrix}
+        E_{\mathrm{s}}^+ \\
+        0
+    \end{pmatrix}
+\end{align*}
+we find that at $N=6$,
+\[ \Gamma = \num{-0.9984},\quad \abs{\Gamma}^2 = \num{0.9968}. \]
+
+\plabel{(c)}%
+Let
+\[ P_{l+1,l} = \frac{n_{l} \cos \theta_{l}}{n_{l+1} \cos\theta_{l+1}},\quad \Gamma_{l+1,l} = \frac{n_{l+1} \cos \theta_{l+1} - n_l \cos \theta_l}{n_{l+1} \cos \theta_{l+1} + n_{l} \cos \theta_{l}}. \]
+Then
+\begin{align*}
+    \hat{V}_{10} &= \frac{1}{2}(1 + P_{10}) \begin{pmatrix}
+        e^{in_1 k d_1 \cos\theta_1} & \Gamma_{10} e^{in_1 k d_1 \cos\theta_1} \\
+        \Gamma_{10} e^{-in_1 k d_1 \cos\theta_1} & e^{-in_1 k d_1 \cos\theta_1}
+    \end{pmatrix}, \\
+    \hat{V}_{21} &= \frac{1}{2}(1 + P_{21}) \begin{pmatrix}
+        e^{in_1 k d_2 \cos\theta_2} & \Gamma_{21} e^{in_1 k d_2 \cos\theta_2} \\
+        \Gamma_{21} e^{-in_1 k d_2 \cos\theta_2} & e^{-in_1 k d_2 \cos\theta_2}
+    \end{pmatrix}, \\
+    \hat{V}_{32} &= \frac{1}{2}(1 + P_{12}) \begin{pmatrix}
+        e^{in_1 k d_1 \cos\theta_1} & \Gamma_{12} e^{in_1 k d_1 \cos\theta_1} \\
+        \Gamma_{12} e^{-in_1 k d_1 \cos\theta_1} & e^{-in_1 k d_1 \cos\theta_1}
+    \end{pmatrix}, \\
+    \hat{V}_{43} &= \frac{1}{2}(1 + P_{\mathrm{s}1}) \begin{pmatrix}
+        1 & \Gamma_{\mathrm{s}1} \\
+        \Gamma_{\mathrm{s}1} & 1
+    \end{pmatrix}.
+\end{align*}
+
+\plabel{(d)}%
+Since $n_i k d_i = \pi/2$ we find
+\begin{align*}
+    \hat{V}_{10} &= \frac{1}{2}\qty(1+P_{10}) \begin{pmatrix}
+        e^{i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_1)^2}} & \dfrac{1-P_{10}}{1+P_{10}} e^{i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_1)^2}}
+        \\
+        \dfrac{1-P_{10}}{1+P_{10}} e^{-i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_1)^2}} & e^{-i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_1)^2}}
+    \end{pmatrix}, \\
+    \hat{V}_{21} &= \frac{1}{2}\qty(1+P_{21}) \begin{pmatrix}
+        e^{i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_1)^2}} & \dfrac{1-P_{21}}{1+P_{21}} e^{i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_2)^2}}
+        \\
+        \dfrac{1-P_{21}}{1+P_{21}} e^{-i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_1)^2}} & e^{-i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_2)^2}}
+    \end{pmatrix}, \\
+    \hat{V}_{32} &= \frac{1}{2}\qty(1+P_{12}) \begin{pmatrix}
+        e^{i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_1)^2}} & \dfrac{1-P_{12}}{1+P_{12}} e^{i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_1)^2}}
+        \\
+        \dfrac{1-P_{12}}{1+P_{12}} e^{-i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_1)^2}} & e^{-i\frac{\pi}{2}\sqrt{1-(\sin\theta_0/n_1)^2}}
+    \end{pmatrix}, \\
+    \hat{V}_{43} &= \frac{1}{2}\qty(1+P_{\mathrm{s}1}) \begin{pmatrix}
+        1 & \dfrac{1-P_{\mathrm{s}1}}{1+P_{\mathrm{s}1}}
+        \\
+        \dfrac{1-P_{\mathrm{s}1}}{1+P_{\mathrm{s}1}} & 1
+    \end{pmatrix},
+\end{align*}
+where
+\[ P_{ij} = \frac{n_j \cos\theta_j}{n_i \cos\theta_i} = \sqrt{\frac{n_j^2 - \sin^2\theta_0}{n_i^2 - \sin^2\theta_0}}. \]
+
+\plabel{(e, f)}%
+See the next pages. Window shrinks as $N$ goes large.
+
+\prule
+
+\includepdf[pages=-]{Notebook-ECE453-HW4.pdf}
+
+\plabel{2 (a)}%
+\begingroup\minusbaseline%
+\[ \Lambda = d_1 + d_2. \]
+\endgroup
+
+\plabel{(b)}%
+\begingroup\minusbaseline%
+\[ \vb{E}_{l+2} = \vb{E}_l e^{iK\Lambda}. \]
+\endgroup
+
+\plabel{(c)}%
+Let $k_0$ denote the wave vector in vacuum, and
+\[ P_{12} = \frac{n_2 \cos\theta_2}{n_1 \cos\theta_1}. \]
+Then for two every pair,
+\begin{align*}
+    \hat{V} &= \frac{(1+P_{21})(1+P_{12})}{4} \begin{pmatrix}
+        e^{i n_2 k_0 d_2 \cos\theta_2} & \dfrac{1 - P_{21}}{1+P_{21}} e^{i n_2 k_0 d_2 \cos\theta_2} \\
+        \dfrac{1 - P_{21}}{1+P_{21}} e^{-i n_2 k_0 d_2 \cos\theta_2} & e^{-i n_2 k_0 d_2 \cos\theta_2}
+    \end{pmatrix} \\
+    &\phantom{= \frac{(1+P_{21})(1+P_{12})}{4} } \cdot \begin{pmatrix}
+        e^{i n_1 k_0 d_1 \cos\theta_1} & \dfrac{1 - P_{12}}{1+P_{12}} e^{i n_1 k_0 d_1 \cos\theta_1} \\
+        \dfrac{1 - P_{12}}{1+P_{12}} e^{-i n_1 k_0 d_1 \cos\theta_1} & e^{-i n_1 k_0 d_1 \cos\theta_1}
+    \end{pmatrix}.
+\end{align*}
+Solving for
+\[ \det (\hat{V} - e^{iK\Lambda} \mathbbm{1}) = 0 \]
+we find
+\begin{align*}
+    \cos(K\Lambda) &= \cos(n_1 k_0 d_1 \cos\theta_1)\cos(n_2 k_0 d_2 \cos\theta_2) \\
+    &\phantom{{}={}} - \frac{P_{12}+P_{21}}{2} \sin(n_1 k_0 d_1\cos\theta_1)\sin(n_2 k_0 d_2\cos\theta_2).
+\end{align*}
+
+\plabel{(d)}%
+For evanescent waves we require $\abs{\cos(K\Lambda)} > 1$, i.e.
+\begin{align*}
+    \abs{ \cos(k_x^{(1)} d_1)\cos(k_x^{(2)} d_2) - \frac{1}{2}\qty(\frac{k_x^{(1)}}{k_x^{(2)}} + \frac{k_x^{(2)}}{k_x^{(1)}}) \sin(k_x^{(1)}d_1)\sin(k_x^{(2)}d_2)} > 1.
+\end{align*}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

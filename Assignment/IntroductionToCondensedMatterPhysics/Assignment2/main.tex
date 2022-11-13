@@ -1,0 +1,280 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 2}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (1)}%
+\begingroup\minusbaseline
+\begin{align*}
+    c^\dagger_4 c^\dagger_3 c_2 c_4 c_3 \ket{FS} &= c^\dagger_4 c^\dagger_3 c_2 c_4 c_3 c^\dagger_6 c^\dagger_5 c^\dagger_4 c^\dagger_3 c^\dagger_2 c^\dagger_1 \ket{0} \\
+    &= -c_2 c^\dagger_4 c_4 c^\dagger_3 c_3 c^\dagger_6 c^\dagger_5 c^\dagger_4 c^\dagger_3 c^\dagger_2 c^\dagger_1 \ket{0} \\
+    &= -c_2 c^\dagger_6 c^\dagger_5 c^\dagger_4 c^\dagger_3 c^\dagger_2 c^\dagger_1 \ket{0} \\
+    &= -c^\dagger_6 c^\dagger_5 c^\dagger_4 c^\dagger_3 c_2 c^\dagger_2 c^\dagger_1 \ket{0} \\
+    &= -c^\dagger_6 c^\dagger_5 c^\dagger_4 c^\dagger_3 c^\dagger_1 \ket{0} \\
+    &= -\ket{1,0,1,1,1,1}. \\
+    c_4 c^\dagger_3 c_2 c^\dagger_4 c_3 \ket{FS} &= (\cdots) \cdot c_4 c^\dagger_4 c^\dagger_4 \ket{0} = 0.
+\end{align*}
+\endgroup
+
+\plabel{(2)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \ket{1,1,0,1,1,0,1,0,0,1,0,0,\cdots} &= c^\dagger_{10} c^\dagger_{7} c_6 (-c_3) \ket{FS}.
+\end{align*}
+\endgroup
+
+\plabel{(3)}%
+Let
+\begin{align*}
+    \ket{N=0} &= \ket{0,0,0,\cdots}, \\
+    \ket{N=2} &= \ket{1,1,0,\cdots}, \\
+    \ket{N=4} &= \ket{1,1,1,1,\cdots}, \\
+    \ket{N=6} &= \ket{1,1,1,1,1,1,\cdots}, \\
+    \Pi_6 &= \sum_{i\in\qty{0,2,4,6}} \ket{N=i}\bra{N=i}.
+\end{align*}
+Then
+\begin{align*}
+    \Pi_6 \hat{\Delta} \ket{N=0} &= \ket{N=2}, \\
+    \Pi_6 \hat{\Delta} \ket{N=2} &= \ket{N=4} + \ket{N=0}, \\
+    \Pi_6 \hat{\Delta} \ket{N=4} &= \ket{N=6} + \ket{N=2}, \\
+    \Pi_6 \hat{\Delta} \ket{N=6} &= \ket{N=4}. \\
+\end{align*}
+Therefore,
+\begin{align*}
+    \bra{\Psi}\ket{\Psi} &= A_1^* A_0 + (A_2^* + A_0^*) A_1 + (A_3^* + A_1^*) A_2 + A^*_2 A_3 \\
+    &= 2 \Re(A_0^* A_1 + A_1^* A_2 + A_2^* A_3).
+\end{align*}
+
+\plabel{(4.a)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \qty{\begin{pmatrix}
+        d_1 \\ d_2
+    \end{pmatrix}, \begin{pmatrix}
+        d_1^\dagger & d_2^\dagger
+    \end{pmatrix}} &= \qty{U\begin{pmatrix}
+        c_1 \\ c_2
+    \end{pmatrix}, \begin{pmatrix}
+        c_1^\dagger & c_2^\dagger
+    \end{pmatrix} U^\dagger} \\
+    &= U\qty{\begin{pmatrix}
+        c_1 \\ c_2
+    \end{pmatrix}, \begin{pmatrix}
+        c_1^\dagger & c_2^\dagger
+    \end{pmatrix}} U^\dagger \\
+    &= U \mathbbm{1}_{2\times 2} U^\dagger \\
+    &= UU^\dagger.
+\end{align*}
+\endgroup
+Therefore, $\qty{d_m,d^\dagger_n} = \delta_{mn}$ is equivalent to $UU^\dagger = \mathbbm{1}_{2\times 2}$, i.e. $U$ being unitary.
+
+\plabel{(4.b)}%
+\begingroup\minusbaseline
+\begin{align*}
+    H &= \begin{pmatrix}
+        c^\dagger_1 & c^\dagger_2
+    \end{pmatrix} \sigma_x \begin{pmatrix}
+        c_1 \\ c_2
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        c^\dagger_1 & c^\dagger_2
+    \end{pmatrix} \sigma_x \begin{pmatrix}
+        c_1 \\ c_2
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        c^\dagger_1 & c^\dagger_2
+    \end{pmatrix} U^\dagger \begin{pmatrix}
+        -1 & \\ & 1
+    \end{pmatrix} U \begin{pmatrix}
+        c_1 \\ c_2
+    \end{pmatrix}
+\end{align*}
+\endgroup
+where
+\begin{align*}
+    U = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        -1 & 1 \\ 1 & 1
+    \end{pmatrix}.
+\end{align*}
+Therefore, $E_1 = -1$ and $E_2 = 1$.
+
+\prule
+
+\plabel{2 (1)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \qty{c_m, c^\dagger_n} &= \qty{\int \dd[3]{\vb{r}} f^*_m(\vb{r}) \psi(\vb{r}), \int \dd[3]{\vb{r}} f_n(\vb{r}) \psi^\dagger(\vb{r})} \\
+    &= \iint \dd[3]{\vb{r}}\dd[3]{\vb{r}'} f^*_m(\vb{r}) f_n(\vb{r}') \qty{\psi(\vb{r}),\psi^\dagger(\vb{r}')} \\
+    &= \iint \dd[3]{\vb{r}}\dd[3]{\vb{r}'} f^*_m(\vb{r}) f_n(\vb{r}') \delta(\vb{r} - \vb{r}') \\
+    &= \int \dd[3]{\vb{r}} f^*_m(\vb{r}) f_n(\vb{r}) \\
+    &= \delta_{m,n}.
+\end{align*}
+\endgroup
+\plabel{(2)}%
+\begingroup\minusbaseline
+\begin{align*}
+    H &= \int \dd{r} \psi^\dagger(\vb{r}) H(\vb{r}) \psi(\vb{r}) \\
+    &= \sum_{m,n} \int \dd{r} f^*_m(\vb{r}) c^\dagger_m H(\vb{r}) f_n(\vb{r}) c_n \\
+    &= \sum_m E_m c^\dagger_m c_m.
+\end{align*}
+\endgroup
+\plabel{(3)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \bra{0} \psi(\vb{r})\psi(\vb{r}') \ket{\phi} &= \ev**{\psi(\vb{r})\psi(\vb{r}')  \iint \dd[3]{\vb{x}}\dd[3]{\vb{x}'} f_m(\vb{x}) \psi^\dagger(\vb{x}) f_n(\vb{x}') \psi^\dagger(\vb{x}')}{0} \\
+    &= \iint \dd[3]{\vb{x}} \dd[3]{\vb{x}'} f_m(\vb{x})f_n(\vb{x}') \qty[\delta(\vb{r} - \vb{x}') \delta(\vb{r}' - \vb{x}) - \delta(\vb{r} - \vb{x})\delta(\vb{x}' - \vb{r}')] \\
+    &= f_m(\vb{r}')f_n(\vb{r}) - f_m(\vb{r}) f_n(\vb{r}')
+\end{align*}
+\endgroup
+where the second line is derived using Wick's theorem.
+Therefore,
+\begin{align}
+    \label{eq:phi_2p}\ket{\phi} &= \iint \dd[3]{\vb{r}'} \dd[3]{\vb{r}} \qty[f_m(\vb{r}')f_n(\vb{r}) - f_m(\vb{r}) f_n(\vb{r}')] \psi^\dagger(\vb{r}')\psi^\dagger(\vb{r})\ket{0}.
+\end{align}
+\plabel{(4)}%
+\Cref{eq:phi_2p} generalizes to
+\begin{align*}
+    \ket{\phi_N} &= \int \prod_{i=1}^N \dd[3]{\vb{r}_i} \det(f_{m_p}(\vb{r}_q))_{p,q\in\qty{1,\cdots,N}} \psi^\dagger(\vb{r}_1) \cdots \psi^\dagger(\vb{r}_N)\ket{0}.
+\end{align*}
+
+\prule
+
+\plabel{3 (1)}%
+\begingroup\minusbaseline
+\[ \vb{a}_1 = 2\hat{\vb{x}}, \vb{a}_2 = 2\hat{\vb{y}}/3, \vb{b}_1 = \pi\hat{\vb{x}}, \vb{b}_2 = 3\pi\hat{\vb{y}}. \]
+\endgroup
+
+\plabel{(2)}%
+The nonzero components are given by
+\begin{align*}
+    U_{\vb{b}_1} = U_{-\vb{b}_1}^* &= 1, \\
+    U_{2\vb{b}_1} = U_{-2\vb{b}_1}^* &= -2i, \\
+    U_{\vb{b}_2} = U_{-\vb{b}_2}^* &= 3.
+\end{align*}
+
+\plabel{(3)}%
+The matrix of $U$ in the subspace $S=\operatorname{Span}(\ket{\vb{b}_1/2}, \ket{-\vb{b}_1/2})$ is given by
+\[ \eval{U}_S = \begin{pmatrix}
+    \bra{\vb{b}_1/2} U \ket{\vb{b}_1/2} & \bra{\vb{b}_1/2} U \ket{-\vb{b}_1/2} \\
+    \bra{-\vb{b}_1/2} U \ket{\vb{b}_1/2} & \bra{-\vb{b}_1/2} U \ket{-\vb{b}_1/2}
+\end{pmatrix} = \begin{pmatrix}
+    0 & U_{\vb{b}_1} \\
+    U^*_{\vb{b}_1} & 0
+\end{pmatrix}. \]
+The eigenvalues are $E_\pm = \pm 1$ and therefore the gap is $\Delta E = 2$.
+
+\plabel{(4)}%
+The matrix of $U$ in the subspace $S=\operatorname{Span}(\ket{\vb{b}_2/2}, \ket{-\vb{b}_2/2})$ is given by
+\[ \eval{U}_S = \begin{pmatrix}
+    \bra{\vb{b}_2/2} U \ket{\vb{b}_2/2} & \bra{\vb{b}_2/2} U \ket{-\vb{b}_2/2} \\
+    \bra{-\vb{b}_2/2} U \ket{\vb{b}_2/2} & \bra{-\vb{b}_2/2} U \ket{-\vb{b}_2/2}
+\end{pmatrix} = \begin{pmatrix}
+    0 & U_{\vb{b}_2} \\
+    U^*_{\vb{b}_2} & 0
+\end{pmatrix}. \]
+The eigenvalues are $E_\pm = \pm 3$ and therefore the gap is $\Delta E = 6$.
+
+\plabel{(4)}%
+Applying second-order perturbation we find
+\begin{align*}
+    E_{1,\vb{k}} &= \frac{\hbar^2 k^2}{2m_0} + \sum_{\vb{k}'\neq \vb{k}} \frac{\abs{\bra{\vb{k}}U \ket{\vb{k}'}}^2}{\epsilon_{\vb{k}} - \epsilon_{\vb{k}'}} \\
+    &= \frac{\hbar^2 k^2}{2m_0} - \frac{2m_0}{\hbar^2} \sum_{\vb{b}\in\qty{\vb{b}_1, 2\vb{b}_1,\vb{b}_2}} \abs{U_{\mathrm{b}}}^2 \qty(\frac{2}{b^2} + \frac{8(\vb{k}\cdot \vb{b})^2}{b^6}) \\
+    &= \frac{\hbar^2 k^2}{2m_0} - \frac{12m_0}{\hbar^2\pi^2} - \frac{2m_0}{\hbar^2} \qty(\frac{10k_x^2}{\pi^4} + \frac{8k_y^2}{9\pi^4}).
+\end{align*}
+Therefore,
+\begin{align*}
+    E_{1,\vb{0}} &= -\frac{12m_0}{\hbar^2\pi^2}, \\
+    A_1 &= \frac{\hbar^2}{2m_0}  - \frac{20m_0}{\hbar^2 \pi^4}, \\
+    A_2 &= \frac{\hbar^2}{2m_0}  - \frac{16m_0}{9\hbar^2 \pi^4}.
+\end{align*}
+
+\prule
+
+\plabel{4 (1)}%
+$b_1 = 2\pi$.
+Nonzero components of $U$ are given by
+\begin{align*}
+    U_{\vb{b}_1} = U^*_{-\vb{b}_1} = 1.
+\end{align*}
+
+\plabel{(2)}%
+$\mathcal{H}(\vb{k})$ is given by
+\begin{align*}
+    \mathcal{H}(\vb{k}) = \begin{pmatrix}
+        (k-4\pi)^2/2 &1 & & & \\
+        1& (k-2\pi)^2/2 &1 & & \\
+        & 1& k^2/2 &1 & \\
+        & & 1& (k+2\pi)^2/2 &1 \\
+        & & & 1& (k+4\pi)^2/2
+    \end{pmatrix}.
+\end{align*}
+
+\plabel{(3)}%
+The plot is given below.
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[xlabel=$k$, ylabel=$E$]
+        \addplot[draw=red] table {plot1.txt};
+        \addplot[draw=green] table {plot2.txt};
+        \addplot[draw=blue] table {plot3.txt};
+        \addplot[draw=cyan] table {plot4.txt};
+        \addplot[draw=magenta] table {plot5.txt};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\prule
+
+\plabel{5 (1)}%
+From
+\[ f_k(x) = \frac{1}{\sqrt{2N}}e^{ikx}\qty(1 + e^{2\pi ix}) \]
+we find
+\[ u_k(x) = \frac{1}{\sqrt{2}} \qty(1 + e^{2\pi ix}). \]
+\plabel{(2)}%
+From
+\[ \sum = \frac{N}{2\pi}\int \]
+we find
+\begin{align*}
+    W_R(x) &= \frac{\sqrt{N}}{2\pi} \int_{-\pi}^\pi \dd{k} e^{-ikR}\cdot \frac{1}{\sqrt{2N}}(e^{ikx} + e^{i(k+2\pi)x}) \\
+    &= \frac{1}{\sqrt{2}\pi} \frac{\sin(\pi(x-R))}{x-R} (1+e^{2\pi i x}).
+\end{align*}
+\plabel{(3)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \frac{1}{\sqrt{N}} \sum_{\vb{R}} e^{i\vb{k}\cdot\vb{R}} W_{n,\vb{R}}(\vb{r}) &= \frac{1}{N} \sum_{\vb{R}} e^{i\vb{k}\cdot\vb{R}} \sum_{\vb{k}'} e^{-i\vb{k}'\cdot\vb{R}} f_{n,\vb{k}'}(\vb{r}) \\
+    &= \sum_{\vb{k}'} \delta_{\vb{k},\vb{k}'} f_{n,\vb{k}'}(\vb{r}) \\
+    &= f_{n,\vb{k}}(\vb{r}).
+\end{align*}
+\endgroup
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

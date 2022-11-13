@@ -252,12 +252,13 @@ Let $N$ denote the number of lattice points.
 \end{align*}
 
 \plabel{(3)}%
-\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}%
+\begingroup\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}%
 \begin{align*}
     E &= -\pdv{\ln Z}{\beta} = \sum_k \hbar\omega_k \qty(\frac{1}{e^{\beta\hbar\omega_k} - 1} + \frac{1}{2}), \\
     F &= -\beta^{-1}\ln Z = \beta^{-1} \sum_k \ln \qty[2 \sinh(\beta\hbar\omega_k/2)], \\
     S = k_{\mathrm{B}}\beta(E - F) &= k_{\mathrm{B}}\sum_k \qty(\frac{\beta\hbar\omega_k}{e^{\beta\hbar\omega_k} - 1} - \ln\qty(1-e^{-\beta\hbar\omega_k})).
 \end{align*}
+\endgroup
 
 % \bibliographystyle{plain}
 % \bibliography{main}

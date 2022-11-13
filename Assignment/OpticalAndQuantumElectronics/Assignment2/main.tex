@@ -1,0 +1,171 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 1}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a)}%
+Since $\vb{v}\times\vb{B}$ is perpendicular to $\vb{v}$ we find
+\[ P = \vb{F}\cdot \vb{v} = q\qty(\vb{E}+\vb{v}\times\vb{B})\cdot\vb{v} = q\vb{E}\cdot \vb{v} = \vb{J}\cdot\vb{E}. \]
+
+\plabel{(b)}%
+Let $G$ and $F$ be 1-forms on a $3$-dimensional Euclidean manifold.
+Then
+\begin{align*}
+    \dd{(G\wedge F)} &= \dd{G}\wedge F - G\wedge \dd{F}.
+\end{align*}
+The LHS is $((\div (\vb{G}\times \vb{F})) \bigwedge_{i=1}^3 \dd{x^i}$ while the RHS is $((\curl \vb{G})\cdot \vb{F} - \vb{G}\cdot \curl\vb{F})\bigwedge_{i=1}^3 \dd{x^i}$.
+
+\plabel{(c)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \vb{J}\cdot\vb{E} &= \frac{1}{\mu_0}\qty(\curl\vb{B} - \frac{1}{c^2} \pdv{\vb{E}}{t})\cdot \vb{E} \\
+    &= \frac{1}{\mu_0}\qty((\curl\vb{B})\cdot\vb{E}) - \frac{1}{2}\epsilon_0\pdv{\abs{\vb{E}}^2}{t} \\
+    &= \frac{1}{\mu_0}\qty(\vb{B}\cdot \curl\vb{E} - \div(\vb{E}\times\vb{B})) - \frac{1}{2}\epsilon_0\pdv{\abs{\vb{E}}^2}{t} \\
+    &= -\frac{1}{\mu_0} \vb{B}\cdot \pdv{\vb{B}}{t}  -\frac{1}{\mu_0}\div(\vb{E}\times\vb{B}) - \frac{1}{2}\epsilon_0\pdv{\abs{\vb{E}}^2}{t} \\
+    &= -\frac{1}{2\mu_0}\pdv{\abs{\vb{B}}^2}{t}  -\frac{1}{\mu_0}\div(\vb{E}\times\vb{B}) - \frac{1}{2}\epsilon_0\pdv{\abs{\vb{E}}^2}{t}.
+\end{align*}
+\endgroup
+
+\plabel{(d)}%
+\begingroup\minusbaseline
+\begin{align}
+    \notag \int_V \dd{V} \vb{J}\cdot \vb{E} &= - \int_V \dd{V} \qty(\frac{1}{2\mu_0}\pdv{\abs{\vb{B}}^2}{t} + \frac{1}{2}\epsilon_0\pdv{\abs{\vb{E}}^2}{t}) - \int_V \dd{V} \frac{1}{\mu_0}\div(\vb{E}\times\vb{B}) \\
+    \notag &= - \int_V \dd{V} \qty(\frac{1}{2\mu_0}\pdv{\abs{\vb{B}}^2}{t} + \frac{1}{2}\epsilon_0\pdv{\abs{\vb{E}}^2}{t}) - \int_{\partial V} \dd{a} \vb{n} \cdot (\vb{E}\times\vb{B}) \\
+    \label{eq:jeus} &= -\pdv{U}{t} - \int_{\partial V} \dd{a} \vb{n} \cdot \vb{S}.
+\end{align}
+\endgroup
+
+\plabel{(e)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \vb{S} &= \frac{1}{\mu_0}\Re \qty(\tilde{\vb{E}}e^{-i\omega t}) \times \Re \qty(\tilde{\vb{B}} e^{-i\omega t}) \\
+    &= \frac{1}{\mu_0} \frac{\tilde{\vb{E}}e^{-i\omega t} + \tilde{\vb{E}}^*e^{i\omega t}}{2}\times \frac{\tilde{\vb{B}}e^{-i\omega t} + \tilde{\vb{B}}^*e^{i\omega t}}{2} \\
+    &= \frac{1}{2\mu_0}\Re\qty(\tilde{\vb{E}}\times \tilde{\vb{B}}^* + \tilde{\vb{E}}\times \tilde{\vb{B}} e^{-2i\omega t}).
+\end{align*}
+\endgroup
+The second part $(\tilde{\vb{E}}\times\tilde{\vb{B}}e^{-2i\omega t})/(2\mu_0)$ aveages to zero in one period.
+Therefore,
+\[ \langle \vb{S} \rangle = \frac{1}{2\mu_0} \Re\qty(\vb{E}\times\vb{B}^*). \]
+Imaginary part of $\vb{S}$ is the part of energy propagation that oscillates back and forth.
+
+\plabel{(f)}%
+The fields are given by
+\begin{align*}
+    \vb{E}(t,\vb{x}) &= -\frac{1}{2} c \mu_0 J_0 \hat{\vb{z}} \cos \qty(\frac{\omega}{c}\abs{x-x_0} - \omega t), \\
+    \vb{B}(t,\vb{x}) &= \frac{1}{2} \mu_0 J_0 \hat{\vb{y}} \cos \qty(\frac{\omega}{c}\abs{x-x_0} - \omega t)\operatorname{sign}(x-x_0).
+\end{align*}
+The source is given by
+\begin{align*}
+    \vb{J}(t,\vb{x}) &= J_0 \delta(x-x_0) \cos(\omega t)\hat{\vb{z}}.
+\end{align*}
+Relevent terms are given by
+\begin{align*}
+    \vb{J}\cdot \vb{E} &= -\frac{1}{2} c \mu_0 J_0^2 \delta(x-x_0) \cos \qty(\frac{\omega}{c}\abs{x-x_0} - \omega t)\cos(\omega t),\\
+    u = \frac{1}{\mu_0}\abs{\vb{B}}^2 &= \frac{1}{4} \mu_0 J_0^2 \cos^2 \qty(\frac{\omega}{c}\abs{x-x_0} - \omega t), \\
+    \vb{S} &= \frac{1}{4} c\mu_0  J_0^2 \cos^2 \qty(\frac{\omega}{c}\abs{x-x_0} - \omega t) \operatorname{sign}(x-x_0) \hat{\vb{x}}.
+\end{align*}
+Let
+\[ V = \Set*{(x,y,z)}{x\in[a,b],(y,z)\in U\subset \mathbb{R}^2}. \]
+Let $A$ denote the area of $U$.
+\paragraph*{Case 1}
+If $a>x_0$ and $b>x_0$, then
+\begin{gather*}
+    \int_V \dd{V} \vb{J}\cdot \vb{E} = 0, \\
+    U = \frac{A J_0^2\mu_0}{16\omega}\qty[2\omega(b-a) + c\qty(\sin\qty(\frac{2\omega(x_0+ct-a)}{c}) - \sin\qty(\frac{2\omega(x_0+ct-b)}{c}))], \\
+    \dv{U}{t} = \frac{1}{8} A c \mu_0 J_0^2 \qty[\cos(\frac{2\omega(x_0+ct-a)}{c}) - \cos(\frac{2\omega(x_0+ct-b)}{c})], \\
+    \int_{\partial V} \dd{a} \vb{n}\cdot\vb{S} = -\frac{1}{8} A c \mu_0 J_0^2 \qty[\cos(\frac{2\omega(x_0+ct-a)}{c}) - \cos(\frac{2\omega(x_0+ct-b)}{c})].
+\end{gather*}
+It's clear that \cref{eq:jeus} holds.
+The two terms in $\int_{\partial V} \dd{a} \vb{n}\cdot\vb{S}$ are energy flowing into the left surface and out of the right surface respectively.
+The first term $\int_V \dd{V} \vb{J}\cdot \vb{E}$ vanishes since there is no charge inside the region $V$.
+\paragraph*{Case 2} If $a<x_0$ and $b>x_0$ then
+\begin{gather*}
+    \int_V \dd{V} \vb{J}\cdot \vb{E} = -\frac{1}{2} A c \mu_0 J_0^2 \cos^2 \qty(\omega t) = -\frac{1}{4} A c \mu_0 J_0^2 (1+\cos(2\omega t)),\\
+    U = \frac{A \mu_0 J_0^2}{16\omega}\bigg[2\omega(a+b-x_0) + 2c\sin(2\omega t) \hspace{6cm} \\ - c\qty(\sin\qty(\frac{2\omega(x_0-ct-a)}{c}) + \sin\qty(\frac{2\omega(x_0+ct-b)}{c}))
+    \bigg], \\
+    \dv{U}{t} = \frac{1}{8} A c\mu_0 J_0^2\qty(2\cos(2\omega t) - \cos\qty(\frac{2\omega(x_0-ct-a)}{c}) - \cos\qty(\frac{2\omega(x_0+ct-b)}{c})), \\
+    \int_{\partial V} \dd{a} \vb{n}\cdot\vb{S} = \frac{1}{8} A c \mu_0 J_0^2 \qty[2+\cos(\frac{2\omega(x_0-ct-a)}{c}) + \cos(\frac{2\omega(x_0+ct-b)}{c})].
+\end{gather*}
+It's clear that \cref{eq:jeus} holds.
+The two terms in $\int_{\partial V} \dd{a} \vb{n}\cdot\vb{S}$ are energy flowing out of the left surface and out of the right surface respectively.
+The first term $\int_V \dd{V} \vb{J}\cdot \vb{E}$ is the work done by electric field on the current.
+\paragraph*{Case 3} For $a<x_0$ and $b<x_0$, the terms are similar to those in case 1.
+
+\plabel{(g)}%
+Poynting's theorem may have a correction for the dissipation term, i.e.
+\[ \pdv{u}{t} + \div \vb{S} + \vb{E}\cdot \vb{J} + \mathcal{R} = 0. \]
+$\epsilon$ and $\mu$ may also be complex numbers to account for dissipation.
+In Ohm materials, for example, the Poynting's theorem could be reformulated as
+\[ \pdv{u}{t} + \div \vb{S} + \sigma\abs{\vb{E}}^2 = 0. \]
+
+\prule
+
+\plabel{2 (a)}%
+Setting the numerator to zero we find
+\[ \sqrt{\frac{\mu_1}{\epsilon_1}}\cos\theta_1 = \sqrt{\frac{\mu_2}{\epsilon_2}}\cos\theta_2, \]
+i.e.
+\[ \frac{\cos\theta_1}{n_1} = \frac{\cos\theta_2}{n_2}. \]
+Together with
+\[ n_1 \sin\theta_1 = n_2 \sin\theta_2 \]
+we find
+\[ \qty(\frac{n_2}{n_1})^2 \cos^2\theta_1 + \qty(\frac{n_1}{n_2})^2\sin^2\theta_1 = 1, \]
+i.e.
+\begin{equation}
+    \label{eq:cos_eq}
+    \cos^2\theta_1 = \frac{1}{1+(n_2/n_1)^2},
+\end{equation}
+i.e.
+\[ \tan\theta_1 = \frac{n_2}{n_1}. \]
+
+\plabel{(b)}%
+It suffices to show that
+\[ \cos\theta_1 = \sin\theta_2 = \frac{n_1}{n_2}\sin\theta_1, \]
+i.e.
+\[ \cos^2\theta_1 = \qty(\frac{n_1}{n_2})^2(1-\cos^2\theta_1), \]
+which is clear from \cref{eq:cos_eq}.
+
+\plabel{(c)}%
+The condition of total internal reflection is
+\[ \sin\theta_2 = n_3 / n_2, \]
+i.e.
+\[ n_1^2 \sin^2\theta_1 = n_3^2. \]
+With \cref{eq:cos_eq} we find
+\[ n_3^2 = \frac{n_1^2 n_2^2}{n_1^2 + n_2^2}. \]
+
+\plabel{(d)}%
+No transmission to the third medium.
+All components reflect to the first medium eventually.
+$\abs{\Gamma^2_{\mathrm{TM}}} = 1$ independent of the thickness.
+However, varying the thickness may incur a different phase factor, and $\Gamma_{\mathrm{TM}}$ may vary.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

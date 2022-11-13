@@ -1,0 +1,240 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 6}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a)}%
+It's the direction along $w$, with rate
+\[ \grad (w^\intercal x + b) = w^\intercal. \]
+
+\plabel{(b)}%
+Large $\norm{w}$ implies dense planes $w^\intercal x + b = \pm 1$, i.e. the separation of the planes becomes small as $\norm{w}$ becomes large.
+Small $\norm{w}$ implies sparse planes $w^\intercal x + b = \pm 1$ and therefore more support vectors.
+
+\plabel{(c)}%
+Since
+\[ \min_{w,b,s} \qty(\frac{1}{2} w^\intercal w + \frac{1}{2} C \sum_{j=1}^m s_j) = C \min_{w,b,s} \qty(\frac{1}{2C} w^\intercal w + \frac{1}{2} \sum_{j=1}^m s_j), \]
+as $C$ becomes large the penalty of $\norm{w}$ becomes small, and therefore $\norm{w}$ may become larger.
+In such case, there may be less support vectors and therefore $\sum_j s_j$ may become smaller.
+
+\plabel{(d.i)}%
+Misclassification: 2 blue, 1 red.
+
+\plabel{(d.ii)}%
+The numbers are listed below.
+\begin{center}
+    \begin{tabular}{cc}
+        \toprule
+        Classifier & Support Vectors \\
+        \midrule
+        \num{1} & \num{12} \\
+        \num{2} & \num{7} \\
+        \num{3} & \num{25} \\
+        \num{4} & \num{16} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\plabel{(d.iii)}%
+Large $C$ corresponds to smaller plane separation and less support vector.
+\begin{center}
+    \begin{tabular}{cc}
+        \toprule
+        Classifier & $C$ \\
+        \midrule
+        \num{1} & \num{1} \\
+        \num{2} & \num{5} \\
+        \num{3} & \num{0.1} \\
+        \num{4} & \num{0.5} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\prule
+
+\plabel{2}%
+The primal simple linear SVM problem is defined by
+\[ \min_{w\in\mathbb{R},b\in\mathbb{R}} \frac{1}{2} \norm{w}^2 \]
+subjected to
+\[ y_j (w^\intercal x_j + b) \ge 1 \]
+for all $j\in\qty{1,\cdots,m}$.
+The KKT conditions are
+\begin{align*}
+    w - Z\alpha &= 0, \\
+    \alpha^\intercal y &= 0, \\
+    Z^\intercal w + y b - \vb{1}_m &\ge \vb{0}_m, \\
+    \alpha &\ge \vb{0}_m, \\
+    \alpha \otimes (Z^\intercal w + y b - \vb{1}_m) &= 0.
+\end{align*}
+\par
+The primal linear SVM problem is defined by
+\[ \min_{w\in\mathbb{R}^n,b\in\mathbb{R},s\in\mathbb{R}^m} \frac{1}{2}\norm{w}^2 + C\sum_{j=1}^m s_j \]
+subjected to
+\[ y_j(x_j^\intercal w + b) + s_j \ge 1,\quad s_j\ge 0. \]
+for all $j\in\qty{1,\cdots,m}$.
+\par
+It's clear that $w^\star$, $b^\star$ and $\alpha^\star$ of the primal simple linear SVM problem and $s^\star = 0$ satisfy the KKT conditions
+\begin{align*}
+    w - Z\alpha &= 0, \\
+    \alpha^\intercal y &= 0, \\
+    Z^\intercal w + y b - \vb{1}_m + s &\ge \vb{0}_m, & \text{(since $s = \vb{0}_m$)} \\
+    s & \ge \vb{0}_m,  & \text{(since $s = \vb{0}_m$)} \\
+    \alpha &\ge \vb{0}_m, \\
+    \alpha \otimes (Z^\intercal w + y b - \vb{1}_m + s) &= 0, & \text{(since $\alpha \otimes s = 0$)}, \\
+    \mu &\ge \vb{0}_m, \\
+    \mu\otimes s &= 0, & \text{since $s = 0$}.
+\end{align*}
+To satisfy
+\[ \alpha + \mu - C \vb{1}_m = 0 \]
+we need
+\[ C \ge \max_j \alpha^\star_j. \]
+
+\prule
+
+\plabel{3 (a)}%
+In the dual SVM problem the data $Z$ occurs only in the objective function
+\[ \vb{1}_m^\intercal \alpha - \frac{1}{2} \alpha^\intercal Z^\intercal Z \alpha. \]
+Under a transformation $x_j \rightarrow Q x_j$, $Z$ transforms accordingly by $Z \rightarrow Q Z$ and therefore
+\[ Z^\intercal Z \rightarrow Z^\intercal Q^\intercal Q Z = Z^\intercal Z, \]
+leaving the objective function and thus the dual problem invariant.
+
+\plabel{(b)}%
+$z$-scoring the data is a transformation $Z \rightarrow \Lambda Z$ where $\Lambda$ is a diagonal matrix.
+Therefore, the objective function becomes
+\[ \vb{1}_m^\intercal \alpha - \frac{1}{2} \alpha^\intercal Z^\intercal Z \alpha \rightarrow \vb{1}_m^\intercal \alpha - \frac{1}{2} \alpha^\intercal Z^\intercal \Lambda^2 Z \alpha, \]
+which is not invariant.
+
+\prule
+
+\plabel{4 (a)}%
+With $r = R^2$, the optimization problem is given by
+\[ \min_{r\in\mathbb{R},a\in\mathbb{R}^n,s\in\mathbb{R}^m} r + C \vb{1}^\intercal s \]
+subjected to
+\[ \norm{x_i - a}^2 - r - s_i \le 0,\quad -s_i\le 0,\quad -r\le 0, \quad i \in \qty{1,\cdots,m}. \]
+Since the objective function is affine and the constraints are convex, this is an convex optimization problem.
+It's feasible since $a = \vb{0}_n$, $r = \max_i \norm{x_i}^2$, $s = \vb{1}_m$ is clearly feasible and the inequality holds strictly.
+Therefore, the Slater's condition is satisfied.
+
+\plabel{(b)}%
+The Lagrangian is given by
+\begin{align}
+    \label{eq:L} L(r,a,s,\alpha,\mu,\mu_0) = r + C\vb{1}^\intercal s - \sum_i \alpha_i (r + s_i - \norm{x_i - a}^2) - \mu_0 r - \mu^\intercal s.
+\end{align}
+Therefore, the KKT conditions are given by
+\begin{align*}
+    1 - \alpha^\intercal \vb{1} - \mu_0 &= 0, \\
+    \alpha + \mu - C \vb{1} &= 0, \\
+    (X - a \vb{1}^\intercal) \alpha &= 0, \\
+    r + s_i - \norm{x_i - a}^2 &\ge \vb{0}, \\
+    s &\ge \vb{0}, \\
+    r &\ge 0, \\
+    \alpha &\ge \vb{0}, \\
+    \mu &\ge \vb{0}, \\
+    \mu_0 &\ge 0, \\
+    \alpha_i(r + s_i - \norm{x_i - a}^2) &= 0, \\
+    \mu_0 r &= 0, \\
+    \mu \otimes s &= 0.
+\end{align*}
+
+\plabel{(c)}%
+If $\alpha^\star = 0$, then
+\begin{align*}
+    \mu_0 &= 1, \\
+    \mu &= C\vb{1},
+\end{align*}
+and therefore (from complementary slackness)
+\begin{align*}
+    r &= 0, \\
+    s &= 0,
+\end{align*}
+and the constraint
+\[ \norm{x_i - a}^2 - r - s_i \le 0 \]
+fails.
+Therefore $\alpha^\star \neq 0$.
+
+\par
+
+If $r^\star = (R^2)^\star = 0$, then we let $A$ be the indices $i$ such that $\alpha^\star_j > 0$.
+\begin{itemize}
+    \item If $j\notin A$, then $\alpha^\star_j = 0$ and $\mu^\star_j = C > 0$ and therefore $s^\star_i = 0$.
+    From the inequality constraints $s_i - \norm{x_j - a}^2 \ge 0$ we find
+    \[ x_i = a^\star. \]
+    \item If $j\in A$, then $\alpha^\star_j > 0$ and we find (from complementary slackness)
+    \[ \norm{x_j - a^\star}^2 = s_j^\star. \]
+\end{itemize}
+Since there are at least $d$ distinct points $x_j$, we find that there are at least $d-1$ indices $j\in A$ such that $s_j^\star > 0$.
+These $j$ form a subset $J\subset A$.
+Therefore, for all $j\in J$, $\mu^\star_j = 0$ (from complementary slackness), and thus $\alpha^\star_j = C$.
+Now we find
+\[ C\cdot (d-1) \le C\cdot \abs{J} = \sum_{j\in J} \alpha_j \le 1 - \mu_0 \le 1. \]
+Therefore, $C \le 1/(d-1)$ if $r^\star = (R^2)^\star = 0$.
+
+\plabel{(d)}%
+Support vectors are $\Set*{x_j}{j\in A}$ where $A = \Set*{j}{\alpha^\star_j > 0}$.
+They all satisfy the condition that
+\[ \norm{x_j - a^\star}^2 \ge r. \]
+
+\plabel{(e)}%
+$L$ is defined by \cref{eq:L}.
+To minimize $L$ with respect to $r$ we find the dual feasibility constraint
+\[ 1 - \alpha^\intercal \vb{1} - \mu_0 = 0. \]
+To minimize $L$ with respect to $s$ we find the dual feasibility constraint
+\[ C - \alpha_i - \mu_i = 0. \]
+Now we minimize $L$ with respect to $a$ and find
+\[ g(\alpha,\mu,\mu_0) = \min_{r\in\mathbb{R},a\in\mathbb{R}^n,s\in\mathbb{R}^n} L(r,a,s,\alpha,\mu,\mu_0) = \sum_j \alpha_j x_j^2 - \frac{\norm{\sum_j \alpha_j x_j}^2}{\sum_j \alpha_j}. \]
+Therefore, the dual problem is given by
+\[ \max_{\alpha\ge \vb{0},\mu\ge\vb{0},\mu_0\ge 0} g(\alpha,\mu,\mu_0) \]
+subjected to
+\begin{align*}
+    1 - \alpha^\intercal \vb{1} - \mu_0 &\ge 0, \\
+    C - \alpha_i - \mu_i &\ge 0.
+\end{align*}
+This could be rewritten as
+\[ \max_{\alpha\ge\vb{0}} \qty(\sum_j \alpha_j x_j^2 - \frac{\norm{\sum_j \alpha_j x_j}^2}{\sum_j \alpha_j}) \]
+subjected to
+\begin{align*}
+    \sum_j \alpha_j &\le 1, \\
+    \alpha_i &\le C.
+\end{align*}
+
+\plabel{(f)}%
+Suppose that the dual solution $\alpha^\star$ is given, then
+\[ a^\star = \frac{\sum_j \alpha^\star_j x_j}{\sum_j \alpha^\star_j}. \]
+Since $s^\star_j = 0$ for $j\notin A$, and $\norm{x_j - a^\star}^2 = r^\star + s^\star_j$ for $j\in A$, we may restrict the optimization problem to
+\[ \min_{r\in\mathbb{R},s_A\in \mathbb{R}^A} r + C\sum_{i\in A}(\norm{x_i - a^\star}^2 - r). \]
+subjected to
+\[ 0 \le r \le \norm{x_i - a^\star}^2,\quad i\in A. \]
+Since $C>1/(d-1)$, the solution is $r^\star > 0$ and we conclude that $r$ has to be the maximal real number that satisfies the constraint, i.e.
+\[ (R^2)^\star = r^\star = \max_{i\in A} \norm{x_i - a^\star}^2. \]
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

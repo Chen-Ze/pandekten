@@ -1,0 +1,203 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Foundation}
+
+\begin{definition}{Probability Simplex}{probability_simplex}
+    The probability simplex of dimension $c-1$ is given by
+    \begin{align*}
+        \Delta^{c-1} \coloneqq \Set*{p\in [0,1]^c}{\sum_{i=1}^c p_i = 1}.
+    \end{align*}
+\end{definition}
+
+\begin{definition}{Entropy}{entropy}
+    Input:
+    \begin{itemize}
+        \item $p\in \Delta^{c-1}$.
+    \end{itemize}
+    The entropy of $p$ is given by
+    \[ H(p) \coloneqq -\sum_{i=1}^c p_i \ln p_i. \]
+\end{definition}
+
+\begin{definition}{Cross Entropy}{cross_entropy}
+    Input:
+    \begin{itemize}
+        \item $p,q\in \Delta^{c-1}$.
+    \end{itemize}
+    The cross entropy between $p$ and $q$ is given by
+    \[ H(p,q) \coloneqq -\sum_{i=1}^c p_i \ln q_i. \]
+\end{definition}
+
+\begin{warning}
+    Cross entropy is not symmetric.
+\end{warning}
+
+\begin{definition}{Kullback-Leibler Divergence, K-L Divergence}{kl_divergence}
+    Input:
+    \begin{itemize}
+        \item $p,q\in \Delta^{c-1}$.
+    \end{itemize}
+    The Kullback-Leibler divergence between $p$ and $q$ is given by
+    \[ D\Infdiv*{p}{q} = -H(p) + H(p,q). \]
+\end{definition}
+
+\begin{warning}
+    K-L divergence is not symemtric.
+\end{warning}
+
+\subsection{Optimization}
+
+\begin{definition}{Optimization Problem, Feasible Point, Active Inequality, Active Point}{optimization_problem}
+    An optimization problem (minimization) consists of the following data.
+    \begin{itemize}
+        \item Target function $f:\mathbb{R}^n\rightarrow\mathbb{R}$.
+        \item Constraint functions $g:\mathbb{R}^n\rightarrow\mathbb{R}^p$ and $h:\mathbb{R}^n\rightarrow\mathbb{R}^q$.
+    \end{itemize}
+    $x^\star\in\mathbb{R}^n$ is called a feasible point if
+    \begin{align*}
+        g(x^\star) \ge \vb{0}, \\
+        h(x^\star) = \vb{0}.
+    \end{align*}
+    $g_i\le 0$ is said to be active at $x^\star$ if
+    \begin{align*}
+        g_i(x^\star) = 0.
+    \end{align*}
+    $x^\star\in\mathbb{R}^n$ is called a regular point if
+    \begin{itemize}
+        \item $x^\star$ is a feasible point, and
+        \item The following set of gradients
+        \[ \Set*{\grad h_j(x^\star)}{j\in\qty{1,\cdots,q}} \cup \Set*{\grad g_i(x^\star)}{g_i(x^\star = 0), i\in\qty{1,\cdots,p}} \]
+        forms a linearly independent set.
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}{Karush-Kuhn-Tucker Theorem, K-K-T Theorem}{karush_kuhn_tucker_theorem}
+    Input:
+    \begin{itemize}
+        \item $P = (f,g,h)$ is an optimization problem.
+        \item $x^\star$ is a feasible local minimum of $P$ and is a regular point.
+    \end{itemize}
+    There exist $\lambda^\star$ and $\nu^\star$ such that all of the following are satisfied.
+\end{theorem}
+
+\begin{example}{Constraint and Regular Point}{constraint_and_regular_point}
+    Let $P = (f,g,h)$ be a optimization problem and
+    \begin{align*}
+        g(p) &= -p \le \vb{0}, \\
+        h(p) &= \begin{pmatrix}
+            1 & \cdots & 1
+        \end{pmatrix} p - 1 = 0.
+    \end{align*}
+    Therefore,
+    \begin{align*}
+        \grad h(p) &= \begin{pmatrix}
+            1 & \cdots & 1
+        \end{pmatrix}, \\
+        \grad g(p) &= -\mathbbm{1}.
+    \end{align*}
+\end{example}
+
+\section{Maximum Likelihood}
+
+Come back later.
+
+\section{Probabilistic Classification}
+
+\begin{definition}{MAP Classifier}{map_classifier}
+    \[ \hat{y} = \argmax_{k\in\qty{1,\cdots,c}} f_{\Conditional*{Y}{X}}\Conditional*{k}{x}. \]
+\end{definition}
+This is equivalent to
+\[ \argmax_{i\in\qty{1,\cdots,c}} \qty(\ln f_i(x) + \ln p_i). \]
+In particular, for normal distributions we have
+\[ \hat{y} = \argmin_{i\in\qty{1,\cdots,c}} \qty(\frac{1}{2}\qty(\frac{x - \mu_i}{\sigma_i})^2 - \ln \frac{p_i}{\sigma_i}). \]
+
+\section{Convex Optimization}
+
+\begin{definition}{Convex Optimization Problem, Feasible Point}{convex_optimization_problem}
+    A convex optimization problem (minimization) consists of the following data.
+    \begin{itemize}
+        \item Loss function $f:\mathbb{R}^n\rightarrow\mathbb{R}$ that is convex.
+        \item Constraint functions $g:\mathbb{R}^n \rightarrow \mathbb{R}^k$ where every component is convex.
+        \item Affine constraint $A\in\mathbb{R}^{m\times n}$ and $b\in\mathbb{R}^{n}$.
+    \end{itemize}
+    $x^\star\in\mathbb{R}^n$ is called a feasible point if
+    \begin{align*}
+        g(x^\star) &\le \vb{0}, \\
+        Ax^\star - b &= \vb{0}.
+    \end{align*}
+\end{definition}
+
+\begin{definition}{Convex Optimization Lagrangian}{convex_optimization_lagrangian}
+    Let $(f:\mathbb{R}^n \rightarrow \mathbb{R},g:\mathbb{R}^n,\rightarrow\mathbb{R}^k,A\in \mathbb{R}^{m\times n},b\in \mathbb{R}^n)$ be a convex optimization problem.
+    The Lagrangian is defined by
+    \begin{align*}
+        L(w,\lambda,\mu) &= f(w) + \lambda \cdot g(w) + \mu^\intercal(Aw-b),
+    \end{align*}
+    with domain defined by
+    \begin{itemize}
+        \item $w\in\mathbb{R}^n$,
+        \item $\lambda\in\vb{R}^k$ and $\lambda \ge \vb{0}$,
+        \item $u\in\mathbb{R}^m$.
+    \end{itemize}
+\end{definition}
+For $w$ feasible, $L$ has the following properties.
+\begin{itemize}
+    \item $L(w,\lambda,\mu) \le f(w)$.
+    \item $\max_{\lambda,\mu} L(w,\lambda,\mu) = f(w)$.
+    \item $L(w,\lambda,\mu)$ is convex in $w$.
+\end{itemize}
+
+\begin{definition}{Dual Problem}{dual_problem}
+    Let $(f:\mathbb{R}^n \rightarrow \mathbb{R},g:\mathbb{R}^n,\rightarrow\mathbb{R}^k,A\in \mathbb{R}^{m\times n},b\in \mathbb{R}^n)$ be a convex optimization problem.
+    $L$ be its Lagrangian.
+    Then the dual optimization problem is $((\lambda,\mu) \mapsto -\min_w L(w,\lambda,\mu),(\lambda,\mu)\mapsto -\lambda)$.
+\end{definition}
+Let
+\[ g(\lambda,\mu) = \min_{w\in\mathbb{R}^n} L(w,\lambda,\mu), \]
+then the dual problem is to maximize
+\[ \max_{\lambda\ge \vb{0},\mu} g(\lambda,\mu). \]
+
+\begin{proposition}{Weak Duality}{weak_duality}
+    If $(f,\bullet,\bullet,\bullet)$ is an convex optimization problem and $(-g,\bullet)$ is its dual, then for all feasible $w$ and dual feasible $(\lambda,\mu)$,
+    \[ g(\lambda,\mu) \le f(w). \]
+\end{proposition}
+In particular, we have
+\[ \max_{\lambda\ge \vb{0},\mu} g(\lambda,\mu) \le \min_{w \text{ feasible}} f(w). \]
+
+\begin{theorem}{Slatter's Strong Duality}{slatter_s_strong_duality}
+    If $(f:\mathbb{R}^n\rightarrow \mathbb{R},G: \mathbb{R}^n\rightarrow \mathbb{R}^k,\bullet,\bullet)$ is an convex optimization problem, $(-g,\bullet)$ is its dual, and either of the following
+    \begin{itemize}
+        \item there is a feasible point $w$ such that $G < \vb{0}$, or
+        \item $G$ is affine,
+    \end{itemize}
+    holds, then
+    \[ \max_{\lambda\ge \vb{0},\mu} g(\lambda,\mu) = \min_{w \text{ feasible}} f(w). \]
+    Let $(\lambda,\mu) = \argmax_{\lambda\ge \vb{0},\mu} g$, and $w^\star = \argmin_{w \text{ feasible}} f$.
+    In such case, for all $i\in\qty{1,\cdots,k}$,
+    \[ \lambda_i^\star g_i(w^\star) = 0. \]
+\end{theorem}
+
+This implies the KKT conditions for $f$ and $G$ are continuously differentiable.
+
+\subsection{Support Vector Machine}
+
+The minimization problem of SVM is given by
+\[ \min_{w\in\mathbb{R}^n} \frac{1}{2}\norm{w}^2 \]
+subjected to
+\[ y_j ( w^\intercal x_j + b) \ge 1 \]
+for all $j$.
+With the hinge loss the optimization problem is rewritten as
+\[ \min_{w\in\mathbb{R}^n} \frac{1}{2}\norm{w}^2 + C \sum_j h(y_j (w^\intercal x_j + b)). \]
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

@@ -1,0 +1,182 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 3}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\plabel{1 (a)}%
+Let $(u, u_2, \cdots, u_n)$ be a orthonormal basis of $\mathbb{R}^n$.
+Then
+\[ P = \begin{pmatrix}
+    u & u_2 & \cdots & u_n
+\end{pmatrix} \operatorname{diag}(1,0,\cdots,0) \begin{pmatrix}
+    u & u_2 & \cdots & u_n
+\end{pmatrix}^\intercal. \]
+
+\plabel{(b)}%
+It's a consequence of that $\norm{A}_2 = \sigma_1(A)$ and that $\norm{A}_2$ is convex in $A$, the latter of which is proven by noting that
+\[ \norm{A}_2 = \max_{\abs{x} = 1} \norm{Ax} \]
+and that
+\begin{itemize}
+    \item $A \mapsto \norm{Ax}$ is a composition of a linear function in $A$ and the Euclidean norm (which is convex) and is therefore convex, and
+    \item $A \mapsto \max_{x=1} \norm{Ax}$ takes the maximum of a set of convex functions indexed by $\Set*{x}{\abs{x} = 1}$ and is therefore convex.
+\end{itemize}
+The equality holds of $A_1 = A_2 = \cdots = A_k$.
+
+\plabel{(c)}%
+It's a consequence of
+\[ \norm{A}_{\mathrm{F}} = \sqrt{\sum_j \sigma_j(A)} \ge \sigma_1(A) = \norm{A}_2. \]
+
+\plabel{(d)}%
+$f$ is $c$-strongly convex and therefore $x\mapsto f(x) - c\norm{x}^2/2$ is convex, and therefore $x\mapsto f(x) - c\norm{x}^2/2 + g(x)$ is convex since it's a sum of two convex functions, and therefore $f(x) + g(x)$ is $c$-strongly convex.
+
+\prule
+\plabel{2 (a)}%
+If $A = U \Sigma V^\intercal$ is a compact SVD then $\mathcal{N}(A)^\perp$ is spanned by columns of $V$.
+To prove $\mathcal{N}(A) = \mathcal{N}(B)$, it suffices to prove that the $V$ in their compact SVD are identical.
+\begin{itemize}
+    \item For $\mathcal{N}(A^\intercal A) = \mathcal{N}(A)$, we find that a compact SVD of $A^\intercal A$ is
+    \[ A^\intercal A = V \Sigma^\intercal U^\intercal U \Sigma V^\intercal = V \Sigma^2 V^\intercal \]
+    and therefore it shares the same $V$ as in the SVD of $A$.
+    \item For $\mathcal{N}(A A^\intercal) = \mathcal{N}(A^\intercal)$, it suffices to replace $A \rightarrow A^\intercal$ in the previous case.
+\end{itemize}
+
+\plabel{(b)}%
+Since $F^\intercal F$ is clearly positive semidefinite, it is positive definite if and only if it is invertible.
+Since $\mathcal{N}(F^\intercal F) = \mathcal{N}(F)$ we find that $F^\intercal F$ is invertible if and only if $\mathcal{N}(F^\intercal F) = \qty{0}$, if and only if $\mathcal{N}(F) = \qty{0}$, if and only if the columns of $F$ are independent.
+
+\plabel{(c)}%
+The solution is $w = Q^\intercal y$ since
+\[ Q^\intercal Q w = w = Q^\intercal y. \]
+It's the projection coordinates of $y$ onto columns of $Q$.
+The least square problem is equivalent to finding the best approximation to $y$ using columns of $Q$ as basis vectors.
+
+\plabel{(d)}%
+With the compact SVD
+\[ X^\intercal = U \Sigma V^\intercal,\quad X = V \Sigma U^\intercal \]
+we find
+\[ V V^\intercal w^\star = V \Sigma^{-1} U^\intercal y. \]
+This is the projection of $w^\star$ onto $\mathcal{R}(X)$ since $\mathcal{R}(X)$ is spanned by columns of $V$ and is unique.
+
+\prule
+\plabel{3 (a)}%
+The normal equation is given by
+\[ \tilde{X} \tilde{X}^\intercal \tilde{w} = \tilde{X} y = \begin{pmatrix}
+    X X^\intercal & X \mathbf{1}_m \\
+    \mathbf{1}^\intercal_m X^\intercal & m
+\end{pmatrix}\begin{pmatrix}
+    w \\ b
+\end{pmatrix} = \begin{pmatrix}
+    XX^\intercal w + X\mathbf{1}_m b \\
+    \mathbf{1}^\intercal_m X^\intercal w + mb
+\end{pmatrix} = \begin{pmatrix}
+    X y \\
+    \mathbf{1}_m^\intercal y
+\end{pmatrix}. \]
+Therefore,
+\begin{align}
+    \label{eq:slope}XX^\intercal w + X\mathbf{1}_m b &= X y, \\
+    \label{eq:intercept}\mathbf{1}^\intercal_m X^\intercal w + mb &= \mathbf{1}_m^\intercal y.
+\end{align}
+
+\plabel{(b)}%
+From \cref{eq:intercept} we find
+\begin{equation}
+    \label{eq:mean}\frac{1}{m}\mathbf{1}^\intercal_m X^\intercal w + b = w^\intercal X \mathbf{1}_m\cdot \frac{1}{m} + b = w^\intercal \hat{\mu}_x + b = \frac{1}{m}\mathbf{1}_m^\intercal y = \hat{\mu}_y.
+\end{equation}
+
+\plabel{(c)}%
+With \cref{eq:mean} we find
+\[ b = \hat{\mu}_y - w^\intercal \hat{\mu}_x. \]
+Substituting into \eqref{eq:slope} we find
+\begin{align*}
+    &\phantom{{}={}} \frac{1}{m}X X^\intercal w + \frac{1}{m}X\mathbf{1}_m (\hat{\mu}_y - w^\intercal \hat{\mu}_x) \\
+    &= \frac{1}{m}X X^\intercal w + \hat{\mu}_x (\hat{\mu}_y - w^\intercal \hat{\mu}_x) \\
+    &= \frac{1}{m}X X^\intercal w - \hat{\mu}_x \hat{\mu}^\intercal_x w + \hat{\mu}_x\hat{\mu}_y \\
+    & = \frac{1}{m} Xy.
+\end{align*}
+Therefore,
+\[ \frac{1}{m}X X^\intercal w - \hat{\mu}_x \hat{\mu}^\intercal_x w = \frac{1}{m} Xy - \hat{\mu}_x\hat{\mu}_y. \]
+
+\plabel{(d)}%
+We find
+\begin{align*}
+    \frac{1}{m}XX^\intercal - \hat{\mu}_x \hat{\mu}_x^\intercal &= \frac{1}{m} \sum_{i=1}^m (x_i - \hat{\mu}_x) (x_i - \hat{\mu}_x)^\intercal = \hat{R}.
+\end{align*}
+Similarly,
+\begin{align*}
+    \frac{1}{m}X y - \hat{\mu}_x \hat{\mu}_y &= \frac{1}{m} \sum_{i=1}^m (x_i - \hat{\mu}_x) (y_i - \hat{\mu}_y).
+\end{align*}
+Therefore,
+\begin{align*}
+    \frac{1}{m}XX^\intercal - \hat{\mu}_x \hat{\mu}_x^\intercal &= \frac{1}{m}(X - \hat{\mu}_x \mathbf{1}_m^\intercal) (X - \hat{\mu}_x \mathbf{1}_m^\intercal)^\intercal, \\
+    \frac{1}{m}X y - \hat{\mu}_x \hat{\mu}_y &= \frac{1}{m}(X - \hat{\mu}_x\mathbf{1}_m^\intercal) (y - \hat{\mu}_y\mathbf{1}_m)^\intercal.
+\end{align*}
+
+\plabel{(e)}%
+$w^\star$ should satisfy
+\[ (X - \hat{\mu}_x \mathbf{1}_m^\intercal) (X - \hat{\mu}_x \mathbf{1}_m^\intercal)^\intercal w = (X - \hat{\mu}_x\mathbf{1}_m^\intercal) (y - \hat{\mu}_y\mathbf{1}_m)^\intercal. \]
+This is the normal equation with
+\[ X \rightarrow X - \hat{\mu}_x \mathbf{1}_m^\intercal,\quad y \rightarrow y - \hat{\mu}_y \mathbf{1}_m, \]
+i.e. $X$ and $y$ are centered.
+The solution for the weights $w$ (i.e. the slopes) is not affected by shifting the data by a constant, and hence not by centering the data.
+\par
+The solution is unique if columns of $F = X^\intercal - \mathbf{1}_m \hat{\mu}_x^\intercal$ are independent.
+In such case, solution to both $w^\star$ and $b^\star$ are unique.
+
+\prule
+\plabel{4 (a)}%
+Let
+\[ L = \norm{Y - FW}^2_{\mathrm{F}} + \lambda \norm{W}^2_F. \]
+We find
+\begin{align*}
+    \grad_W L &= 2(FW - Y)^\intercal F + 2\lambda W^\intercal = 0
+\end{align*}
+and therefore
+\[ F^\intercal F W - F^\intercal Y + \lambda W = 0. \]
+Each column $w$ of $W$ ($d$ columns in total) satisfies the equation
+\[ F^\intercal F w + \lambda w = F^\intercal y. \]
+
+\plabel{(b)}%
+For $\lambda > 0$, $F^\intercal F + \lambda$ is invertible since it's positive definite.
+In such case,
+\[ W = (F^\intercal F + \lambda)^{-1} F^\intercal Y. \]
+Each column may be given separately from this solution.
+If $\lambda = 0$, then we have to use SVD again.
+With
+\[ F = U\Sigma V^\intercal \]
+we find
+\[ V^T W = \Sigma^{-1}U^\intercal Y, \]
+which holds for each column, i.e.
+\[ V^\intercal w = \Sigma^{-1} U^\intercal y. \]
+
+\end{document}

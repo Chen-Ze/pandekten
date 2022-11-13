@@ -1,0 +1,247 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 4}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\plabel{1 (a)}%
+The joint density is given by
+\[ f(x_1,\cdots,x_m;\mu,\sigma^2) = \prod_{i=1}^m \frac{1}{\sqrt{2\pi}\sigma} \exp(-\frac{(x_i-\mu)^2}{2\sigma^2}) \]
+and therefore the log-likelihood is given by
+\[ l = -\sum_{i=1}^m \frac{(x-\mu)^2}{2\sigma^2} - \frac{1}{2} m \ln\sigma^2 + \mathrm{const}., \]
+i.e.
+\[ l(\mu,s) = -\sum_{i=1}^m \frac{(x_i-\mu)^2}{2s} - \frac{1}{2} m \ln s + \mathrm{const}. \]
+
+\plabel{(b)}%
+The gradient is are given by
+\begin{align*}
+    \pdv{l(\mu,s)}{\mu} &= \sum_{i=1}^m \frac{x_i-\mu}{s}, \\
+    \pdv{l(\mu,s)}{s} &= \sum_{i=1}^m \frac{(x_i-\mu)^2}{2s^2} - \frac{1}{2} \frac{m}{s}.
+\end{align*}
+
+\plabel{(c)}%
+Setting the gradient to zero we find 
+\begin{align*}
+    \sum_{i=1}^m \frac{x-\hat{\mu}}{s} = 0 & \Rightarrow \hat{\mu} = \frac{1}{m}\sum_{i=1}^m x_i, \\
+    \sum_{i=1}^m \frac{(x-\hat{\mu})^2}{2\hat{s}^2} - \frac{1}{2} \frac{m}{\hat{s}} = 0 & \Rightarrow \hat{s} = \frac{1}{m}\sum_{i=1}^m (x_i-\hat{\mu})^2.
+\end{align*}
+
+\plabel{(d)}%
+The second-order derivative gives
+\begin{align*}
+    \grad^2 l(\mu,s) &= \begin{pmatrix}
+        -m/s & -\sum_{i=1}^m (x_i-\mu)/s^2 \\
+        -\sum_{i=1}^m (x_i-\mu)/s^2 & -\sum_{i=1}^m (x_i-\mu)^2/s^3 + m/(2s^2)
+    \end{pmatrix}, \\
+    \grad^2 l(\hat{\mu},\hat{s}) &= -\begin{pmatrix}
+        m/\hat{s} & \\
+        & m/(2\hat{s}^2)
+    \end{pmatrix}.
+\end{align*}
+It's clear that $\grad^2 l(\hat{\mu},\hat{s})$ is negative definite and therefore at $(\hat{\mu},\hat{s})$, $l$ has a local maximum.
+
+\plabel{(e)}%
+Since the solution to $\grad l(\hat{\mu},\hat{s}) = 0$ exists and is unique, and $l(\mu,s) \rightarrow -\infty$ as $\abs{\mu} \rightarrow \infty$, $s\rightarrow 0$ or $s\rightarrow \infty$, we conclude that $\hat{\mu}$ and $\hat{s}$ are the maximum likelihood estimates.
+
+\prule
+\plabel{2 (a)}%
+The normal equation is given by
+\[ F^\intercal_m F_m w = F^\intercal_m Y, \]
+i.e.
+\[ P_m w - s_m = 0. \]
+Since the columns of $F$ are linearly independent, we find $\mathcal{N}(F_m) = \qty{0}$, and therefore $\mathcal{N}(P_m) = \mathcal{N}(F_m^\intercal F_m) = \mathcal{N}(F_m^\intercal) = \qty{0}$.
+Thus a unique solution exists.
+
+\plabel{(b)}%
+The updates are given by
+\begin{align*}
+    F_{m+1} &= \begin{pmatrix}
+        F_m \\ x^\intercal_{m+1}
+    \end{pmatrix}, \\
+    y_{m+1} &= \begin{pmatrix}
+        y_m \\ y(m+1)
+    \end{pmatrix}, \\
+    s_{m+1} &= F^\intercal_{m+1} y_{m+1} \\
+    &= \begin{pmatrix}
+        F^\intercal_m & x_{m+1}
+    \end{pmatrix} \begin{pmatrix}
+        y_m \\ y(m+1)
+    \end{pmatrix} \\
+    &= F^\intercal m y_m + x_{m+1} y(m+1) \\
+    &= s_m + x_{m+1} y(m+1).
+\end{align*}
+
+\plabel{(c)}%
+It has a unique solution since the columns of $F_{m+1}$ are still linearly independent because their first $m$ components are.
+
+\plabel{(d)}%
+Since
+\[ P_{m+1} = \begin{pmatrix}
+    F^\intercal_m & x_{m+1}
+\end{pmatrix} \begin{pmatrix}
+    F_m \\ x^\intercal_{m+1}
+\end{pmatrix} = F^\intercal_m F_m + x_{m+1} x^\intercal_{m+1}, \]
+we find
+\[ P_{m+1}^{-1} = P_m^{-1} - \frac{1}{1+x^\intercal_{m+1} P_m^{-1} x_{m+1}}(P_m^{-1} x_{m+1})(P_m^{-1} x_{m+1})^\intercal. \]
+Therefore,
+\begin{align*}
+    w^\star_{m+1} &= P^{-1}_{m+1} s_{m+1} \\
+    &= P^{-1}_m s_m + P^{-1}_{m} x_{m+1}y(m+1) \\
+    &\phantom{{}={}} {} - \frac{1}{1+x^\intercal_{m+1} P_m^{-1} x_{m+1}}(P_m^{-1} x_{m+1})(P_m^{-1} x_{m+1})^\intercal (s_m + x_{m+1} y(m+1)) \\
+    &= w^\star_m + \frac{P^{-1}_m x_{m+1}}{1+x^\intercal_{m+1} P^{-1}_m x_{m+1}}\qty(y(m+1) - x^\intercal_{m+1}w^\star_m).
+\end{align*}
+
+\prule
+\plabel{3 (a)}%
+The MSE is given by
+\begin{align*}
+    \mathrm{MSE} &= \operatorname{E}(\norm{E}^2) \\
+    &= \operatorname{E}(\norm{E - \mu_E + \mu_E}^2) \\
+    &= \operatorname{E}(\norm{E - \mu_E}^2 + (E - \mu_E)^\intercal \mu_E + \mu_E^\intercal (E - \mu_E) + \norm{\mu_E}^2) \\
+    &= \operatorname{E}(\tr((E - \mu_E)^\intercal (E - \mu_E))) + \operatorname{E}(\norm{\mu_E}^2) \\
+    &= \tr(\operatorname{E}((E - \mu_E) (E - \mu_E)^\intercal)) + \operatorname{E}(\norm{\mu_E}^2) \\
+    &= \tr(\Sigma_E) + \norm{\mu_E}^2.
+\end{align*}
+
+\plabel{(b.i)}%
+The error has expected value
+\[ \mu_E = \operatorname{E}(E) = \operatorname{E}(Y - \mu_Y) = \operatorname{E}(Y) - \mu_Y = \mu_Y - \mu_Y = 0. \]
+
+\plabel{(b.ii)}%
+The covariance is given by
+\begin{align*}
+    \Sigma_E &= \operatorname{E}((E - \mu_E) (E - \mu_E)^\intercal) \\
+    &= \operatorname{E}(E E^\intercal) \\
+    &=  \operatorname{E}((Y - \mu_Y) (Y-\mu_Y)^\intercal) \\
+    &= \Sigma_Y.
+\end{align*}
+
+\plabel{(b.iii)}%
+The MSE is given by
+\[ \operatorname{E}(\norm{E}^2) = \tr \Sigma_E = \tr \Sigma_Y = \operatorname{E}(\norm{Y}^2). \]
+
+\plabel{(c.i)}%
+The error is given by
+\[ E = Y - (\mu_Y + W^{\star\intercal}(x-\mu_X)) \]
+and therefore the expected value of error is
+\begin{align*}
+    \mu_E &= \operatorname{E}(E) = \operatorname{E}(Y) - \operatorname{E}(\mu_Y + W^{\star\intercal}(X-\mu_X)) \\
+    &= \operatorname{E}(Y - \mu_Y) + W^{\star\intercal}\operatorname{E}(X - \mu_X) \\
+    &= 0.
+\end{align*}
+
+\plabel{(c.ii)}%
+The covariance of $E$ is given by
+\begin{align*}
+    \Sigma_E &= \operatorname{E}((E - \mu_E)^\intercal (E - \mu_E)) \\
+    &= \operatorname{E}(E^\intercal E) \\
+    &= \operatorname{E}[(Y - \mu_Y)(Y - \mu_Y)^\intercal - (Y - \mu_Y)(X - \mu_X)^\intercal W^\star] \\
+    &\phantom{{}={}}{} - \operatorname{E}[W^{\star\intercal}(X - \mu_X)(Y^\intercal - \mu_Y)^\intercal] \\
+    &\phantom{{}={}}{} + \operatorname{E}[W^{\star\intercal}(X - \mu_X)(X - \mu_X)^\intercal W^\star] \\
+    &= \Sigma_Y - \Sigma_{XY}^\intercal W^\star - W^{\star\intercal}\Sigma_{XY} + W^{\star\intercal}\Sigma_X W^\star.
+\end{align*}
+
+\plabel{(c.iii)}%
+Since the predictor is unbiased, the MSE is given by
+\begin{align*}
+    \mathrm{MSE} &= \tr\Sigma_E \\
+    &= \tr(\Sigma_Y) - \tr(\Sigma_{XY}^\intercal W^\star) - \tr(W^{\star\intercal}\Sigma_{XY}) + \tr(W^{\star\intercal}\Sigma_X W^\star) \\
+    &= \tr(\Sigma_Y) - \tr(W^{\star\intercal}\Sigma_{XY}) - \tr(W^{\star\intercal}\Sigma_{XY}) + \tr(W^{\star\intercal}\Sigma_X W^\star) \\
+    &= \tr(\Sigma_Y) - \tr(W^{\star\intercal}\Sigma_X W^\star).
+\end{align*}
+where we get the last line using
+\[ \Sigma_X W^\star = \Sigma_{XY}. \]
+
+\plabel{(c.iv)}%
+The improvement is given by
+\begin{align*}
+    \mathrm{MSE}_{\mathrm{b}} - \mathrm{MSE}_{\mathrm{c}} &= \tr(W^{\star\intercal}\Sigma_X W^\star) \ge 0
+\end{align*}
+since
+\[ w^\intercal (W^{\star\intercal}\Sigma_X W^\star) w = (W^\star w)^\intercal \Sigma_X (W^\star w) \ge 0 \]
+for any vector $w$ and therefore $W^{\star\intercal}\Sigma_X W^\star$ is positve semidefinite.
+
+\prule
+\plabel{4 (a)}%
+Since $A$ and $D$, and at least one of $S_A$ or $S_D$ is invertible, $M$ is invertible.
+\begin{align*}
+    \begin{pmatrix}
+        A & B \\
+        C & D
+    \end{pmatrix}^{-1} &= \begin{pmatrix}
+        \mathbbm{1}_p & -A^{-1}B \\ & \mathbbm{1}_q
+    \end{pmatrix} \begin{pmatrix}
+        A^{-1} & \\ & S_A^{-1}
+    \end{pmatrix} \begin{pmatrix}
+        \mathbbm{1}_p & \\ -CA^{-1} & \mathbbm{1}_q
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        \mathbbm{1}_p & \\ -D^{-1}C & \mathbbm{1}_q
+    \end{pmatrix} \begin{pmatrix}
+        S^{-1}_D & \\ & D^{-1}
+    \end{pmatrix} \begin{pmatrix}
+        \mathbbm{1}_p & -BD^{-1} \\ & \mathbbm{1}_q
+    \end{pmatrix}.
+\end{align*}
+Therefore,
+\begin{align*}
+    &{\phantom{{}={}}} \begin{pmatrix}
+        S^{-1}_D & \\ & D^{-1}
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        \mathbbm{1}_p & \\ D^{-1}C & \mathbbm{1}_q
+    \end{pmatrix} \begin{pmatrix}
+        \mathbbm{1}_p & -A^{-1}B \\ & \mathbbm{1}_q
+    \end{pmatrix} \begin{pmatrix}
+        A^{-1} & \\ & S_A^{-1}
+    \end{pmatrix} \begin{pmatrix}
+        \mathbbm{1}_p & \\ -CA^{-1} & \mathbbm{1}_q
+    \end{pmatrix} \begin{pmatrix}
+        \mathbbm{1}_p & BD^{-1} \\ & \mathbbm{1}_q
+    \end{pmatrix},
+\end{align*}
+and we conclude that
+\begin{equation*}
+    S_D^{-1} = A^{-1} + A^{-1}B S^{-1}_A C A^{-1},
+\end{equation*}
+i.e.
+\begin{equation}
+    \label{eq:sd_sa} (A - BD^{-1}C)^{-1} = A^{-1} + A^{-1}B (D - CA^{-1}B)^{-1} C A^{-1}.
+\end{equation}
+
+\plabel{(b)}%
+Putting $D\rightarrow D^{-1}$ and $B\rightarrow -B$ in \cref{eq:sd_sa} we find
+\begin{equation}
+    (A + BDC)^{-1} = A^{-1} - A^{-1} B (D^{-1} + CA^{-1}B)^{-1}CA^{-1}.
+\end{equation}
+
+\end{document}

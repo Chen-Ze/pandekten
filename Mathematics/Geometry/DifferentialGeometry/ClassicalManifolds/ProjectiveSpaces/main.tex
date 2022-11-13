@@ -14,69 +14,69 @@
 \section{Real Projective Space}
 
 \begin{definition}{Real Projective Space}{real_projective_space}
-    The real projective space $\mathbb{R}P^n$ is the quotient space $\mathbb{R}^{n+1}\setminus\qty{0}\rightarrow \mathbb{R}P^n$ with fibers given by the partition induced by the equivalence relation
+    The real projective space $\mathbb{R}\mathrm{P}^n$ is the quotient space $\mathbb{R}^{n+1}\setminus\qty{0}\rightarrow \mathbb{R}\mathrm{P}^n$ with fibers given by the partition induced by the equivalence relation
     \[ \sim = \Set*{(x,y)}{\exists\alpha\in\mathbb{R},x=y\alpha}. \]
 \end{definition}
 
 \begin{theorem}{Real Projective Space from Sphere}{real_projective_space_from_sphere}
-    $\mathbb{R}P^n \cong S^n/\sim$ with fibers given by the partition induced by the equivalence relation
+    $\mathbb{R}\mathrm{P}^n \cong S^n/\sim$ with fibers given by the partition induced by the equivalence relation
     \[ \sim = \Set*{(x,y)}{\exists\alpha\in\qty{1,-1},x=y\alpha}. \]
 \end{theorem}
 
-Therefore, $\mathbb{R}P^n$ may be identified with $S^n/\mathbb{Z}_2$.
+Therefore, $\mathbb{R}\mathrm{P}^n$ may be identified with $S^n/\mathbb{Z}_2$.
 
-\begin{example}{$\mathbb{R}P^1\cong S^1$}{rp_1_is_s_1}
-    Note that the inhomogeneous coordinates of $\mathbb{R}P^1$ coincides with the stereographic projection of $S^1$, i.e.
+\begin{example}{$\mathbb{R}\mathrm{P}^1\cong S^1$}{rp_1_is_s_1}
+    Note that the inhomogeneous coordinates of $\mathbb{R}\mathrm{P}^1$ coincides with the stereographic projection of $S^1$, i.e.
     \[ \varphi_1 \circ \varphi_2^{-1} = \varphi_{\mathrm{N}}\circ\varphi_{\mathrm{S}}^{-1}. \]
-    A homeomorphism may be defined between $\mathbb{R}P^1\cong S^1$ using the gluing lemma (\cref{Top-lem:the_gluing_lemma}).
+    A homeomorphism may be defined between $\mathbb{R}\mathrm{P}^1\cong S^1$ using the gluing lemma (\cref{Top-lem:the_gluing_lemma}).
 \end{example}
 
 \section{Complex Projective Space}
 
 \begin{definition}{Complex Projective Space}{complex_projective_space}
-    The complex projective space $\mathbb{C}P^n$ is the quotient space $\mathbb{C}^{n+1}\setminus\qty{0}\rightarrow \mathbb{C}P^n$ with fibers given by the partition induced by the equivalence relation
+    The complex projective space $\mathbb{C}\mathrm{P}^n$ is the quotient space $\mathbb{C}^{n+1}\setminus\qty{0}\rightarrow \mathbb{C}\mathrm{P}^n$ with fibers given by the partition induced by the equivalence relation
     \[ \sim = \Set*{(x,y)}{\exists\alpha\in\mathbb{C},x=y\alpha}. \]
 \end{definition}
 
 \begin{theorem}{Complex Projective Space from Sphere}{complex_projective_space_from_sphere}
-    $\mathbb{C}P^n \cong S_{\mathbb{C}}^n/\sim$ with fibers given by the partition induced by the equivalence relation
+    $\mathbb{C}\mathrm{P}^n \cong S_{\mathbb{C}}^n/\sim$ with fibers given by the partition induced by the equivalence relation
     \[ \sim = \Set*{(x,y)}{\exists\alpha\in U,x=y\alpha}, \]
     where
     \[ S_{\mathbb{C}}^n = \Set*{x\in\mathbb{C}^{n+1}}{\norm{x}^2 = 1} \]
     and
-    \[ U = \Set*{z\in\mathbb{C}}{\abs{z} = 1}. \]
+    \[ U = \Set*{z\in\mathbb{C}}{\abs{z} = 1} = \operatorname{U}(1). \]
 \end{theorem}
 
-Therefore, $\mathbb{C}P^n$ may be identified with $S^{2n-1}/\operatorname{U}(1)$ where $\operatorname{U}(1)\cong S^1$.
+Therefore, $\mathbb{C}\mathrm{P}^{n-1}$ may be identified with $S^{2n-1}/\operatorname{U}(1)$ where $\operatorname{U}(1)\cong S^1$.
 
-\begin{example}{$\mathbb{C}P^1\cong S^1$}{cp_1_is_s_2}
-    Note that the inhomogeneous coordinates of $\mathbb{C}P^1$ coincides with the stereographic projection of $S^2$, i.e.
+\begin{example}{$\mathbb{C}\mathrm{P}^1\cong S^2$}{cp_1_is_s_2}
+    Note that the inhomogeneous coordinates of $\mathbb{C}\mathrm{P}^1$ coincides with the stereographic projection of $S^2$, i.e.
     \[ \overline{\varphi}_1 \circ \varphi_2^{-1} = \varphi_{\mathrm{N}}\circ\varphi_{\mathrm{S}}^{-1}. \]
-    A homeomorphism may be defined between $\mathbb{C}P^1\cong S^2$ using the gluing lemma (\cref{Top-lem:the_gluing_lemma}).
+    A homeomorphism may be defined between $\mathbb{C}\mathrm{P}^1\cong S^2$ using the gluing lemma (\cref{Top-lem:the_gluing_lemma}).
 \end{example}
 
 \section{Quaternion Projective Space}
 
 \begin{definition}{Quaternion Projective Space}{quaternion_projective_space}
-    The quaternion projective space $\mathbb{H}P^n$ is the quotient space $\mathbb{H}^{n+1}\setminus\qty{0}\rightarrow \mathbb{H}P^n$ with fibers given by the partition induced by the equivalence relation
+    The quaternion projective space $\mathbb{H}\mathrm{P}^n$ is the quotient space $\mathbb{H}^{n+1}\setminus\qty{0}\rightarrow \mathbb{H}\mathrm{P}^n$ with fibers given by the partition induced by the equivalence relation
     \[ \sim = \Set*{(x,y)}{\exists\alpha\in\mathbb{H},x=y\alpha}. \]
 \end{definition}
 
 \begin{theorem}{Quaternion Projective Space from Sphere}{quaternion_projective_space_from_sphere}
-    $\mathbb{H}P^n \cong S_{\mathbb{H}}^n/\sim$ with fibers given by the partition induced by the equivalence relation
+    $\mathbb{H}\mathrm{P}^n \cong S_{\mathbb{H}}^n/\sim$ with fibers given by the partition induced by the equivalence relation
     \[ \sim = \Set*{(x,y)}{\exists\alpha\in U,x=y\alpha}, \]
     where
     \[ S_{\mathbb{H}}^n = \Set*{x\in\mathbb{H}^{n+1}}{\norm{x}^2 = 1} \]
     and
-    \[ U = \Set*{z\in\mathbb{H}}{\abs{z} = 1}. \]
+    \[ U = \Set*{z\in\mathbb{H}}{\abs{z} = 1} = \operatorname{Sp}(1). \]
 \end{theorem}
 
-Therefore, $\mathbb{H}P^n$ may be identified with $S^{4n-1}/\operatorname{SU}(2)$ where $\operatorname{SU}(2)\cong S^3$.
+Therefore, $\mathbb{H}\mathrm{P}^{n-1}$ may be identified with $S^{4n-1}/\operatorname{SU}(2)$ where $\operatorname{SU}(2)\cong S^3$.
 
-\begin{example}{$\mathbb{H}P^1\cong S^4$}{hp_1_is_s_4}
-    Note that the inhomogeneous coordinates of $\mathbb{H}P^1$ coincides with the stereographic projection of $S^4$, i.e.
+\begin{example}{$\mathbb{H}\mathrm{P}^1\cong S^4$}{hp_1_is_s_4}
+    Note that the inhomogeneous coordinates of $\mathbb{H}\mathrm{P}^1$ coincides with the stereographic projection of $S^4$, i.e.
     \[ \overline{\varphi}_1 \circ \varphi_2^{-1} = \varphi_{\mathrm{N}}\circ\varphi_{\mathrm{S}}^{-1}. \]
-    A homeomorphism may be defined between $\mathbb{H}P^1\cong S^4$ using the gluing lemma (\cref{Top-lem:the_gluing_lemma}).
+    A homeomorphism may be defined between $\mathbb{H}\mathrm{P}^1\cong S^4$ using the gluing lemma (\cref{Top-lem:the_gluing_lemma}).
 \end{example}
 
 % \bibliographystyle{plain}

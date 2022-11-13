@@ -1,0 +1,18 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+\usepackage{physics}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+        c1[particle=${(M/2,\vb{-p})}$] --[cyan!50!black, fermion] v [dot];
+        v --[blue!50!black, fermion] c2[particle=${(M/2,\vb{p})}$];
+        r[particle=${(M,\vb{0})}$\vphantom{Mg}] --[charged scalar] v;
+    };
+\end{align*}
+\end{document}

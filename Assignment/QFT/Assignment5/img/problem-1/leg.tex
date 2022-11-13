@@ -1,0 +1,30 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    % real scalar
+    \wick{{} \bigg(i\int \dd[4]{x} j(x) \c2\phi(x)\bigg)\c2{\ket{\vb{q}}}} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=v to r] {
+        r[particle=\vphantom{Mg}] --[fermion,edge label=$p$] v[dot];
+    }; \ = i\int \dd[4]{x} j(x) e^{-ip\cdot x} = i\tilde{\jmath}(p)^*, \\
+    \wick{\c2{\bra{\vb{q}}} \bigg(i\int \dd[4]{x} j(x) \c2\phi(x)\bigg)} &=\quad
+    \feynmandiagram [small, inline=(r.base), horizontal=r to v] {
+        v[dot] --[fermion,edge label=$p$] r[particle=\vphantom{Mg}];
+    }; \ = i\int \dd[4]{x} j(x) e^{ip\cdot x} = i\tilde{\jmath}(p). \\
+    \wick{- \int \dd[4]{x} j(x) \c2\phi(x) \int \dd[4]{y} j(y) \c2\phi(y)} &= 
+    \feynmandiagram [small, inline=(s.base), horizontal=v to r] {
+        t[particle=\vphantom{Mg}];
+        v[dot] -- r[dot];
+        s[particle=\vphantom{Mg}];
+    }; \\
+    &= -\int \frac{\dd[4]{p}}{(2\pi)^4} \frac{i}{p^2 - m^2 + i\epsilon} \abs{\tilde{\jmath}(p)}^2 \\
+    &= - \int \frac{\dd[3]{\vb{p}}}{(2\pi)^3} \frac{1}{2E_{\vb{p}}} \abs{\tilde{\jmath}(p)}^2.
+\end{align*}
+\end{document}
