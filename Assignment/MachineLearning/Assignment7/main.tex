@@ -23,7 +23,7 @@
 
 \setlength{\parindent}{0pt}
 
-\title{Assignment 6}
+\title{Assignment 7}
 \author{Ze Chen}
 
 \begin{document}
@@ -41,8 +41,13 @@ Small $\norm{w}$ implies sparse planes $w^\intercal x + b = \pm 1$ and therefore
 \plabel{(c)}%
 Since
 \[ \min_{w,b,s} \qty(\frac{1}{2} w^\intercal w + \frac{1}{2} C \sum_{j=1}^m s_j) = C \min_{w,b,s} \qty(\frac{1}{2C} w^\intercal w + \frac{1}{2} \sum_{j=1}^m s_j), \]
-as $C$ becomes large the penalty of $\norm{w}$ becomes small, and therefore $\norm{w}$ may become larger.
-In such case, there may be less support vectors and therefore $\sum_j s_j$ may become smaller.
+as $C$ becomes large,
+\begin{itemize}
+    \item the penalty of $\norm{w}$ becomes small (relatively), and
+    \item the penalty of outliers becomes larger.
+\end{itemize}
+Therefore $\norm{w}$ may become larger, to decrease hyperplane separation and reduce the number of support vectors.
+In such case, there may be less support vectors and $\sum_j s_j$ could be smaller.
 
 \plabel{(d.i)}%
 Misclassification: 2 blue, 1 red.

@@ -1,0 +1,226 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 4}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (1)}%
+\begingroup\minusbaseline%
+\[ \Delta_x(1/B) = \Delta_y(1/B) = \Delta_z(1/B) = \frac{2e}{\hbar k_0^2}. \]
+\endgroup
+
+\plabel{(2)}%
+Multiple periods exist.
+\begin{align*}
+    \Delta_x(1/B) &= \Delta_y(1/B) = \Delta_z(1/B) = \frac{2e}{\hbar k_0^2}, \\
+    \Delta_x(1/B) &= \Delta_z(1/B) = \frac{e}{\hbar k_0^2}.
+\end{align*}
+
+\plabel{(3)}%
+\begingroup\minusbaseline%
+\[ \Delta_x(1/B) = \Delta_y(1/B) = \Delta_z(1/B) = \frac{2 e}{\hbar k_0^2}. \]
+\endgroup
+
+\plabel{(4)}%
+Multiple periods exist.
+\begin{align*}
+    \Delta_x(1/B) &= \Delta_y(1/B) = \Delta_z(1/B) = \frac{2 e}{\hbar k_0^2}, \\
+    \Delta_x(1/B) &= \Delta_y(1/B) = \frac{e}{\hbar k_0^2}, \\
+    \Delta_z(1/B) &= \frac{e}{2\hbar k_0^2}.
+\end{align*}
+
+\plabel{(5)}%
+The ellipse is determined by
+\begin{align*}
+    & \frac{\hbar^2}{2E_{\mathrm{F}}} \begin{pmatrix}
+        k_x & k_y & 0
+    \end{pmatrix} \begin{pmatrix}
+        1 & & \\
+        & \cos\theta & -\sin\theta \\
+        & \sin\theta & \cos\theta
+    \end{pmatrix}\begin{pmatrix}
+        1/m_x & & \\
+        & 1/m_y & \\
+        & & 1/m_z
+    \end{pmatrix} \\
+    & \hspace{8em} \cdot \begin{pmatrix}
+        1 & & \\
+        & \cos\theta & \sin\theta \\
+        & -\sin\theta & \cos\theta
+    \end{pmatrix} \begin{pmatrix}
+        k_x \\ k_y \\ 0
+    \end{pmatrix} = 1.
+\end{align*}
+The area is given by
+\[ S(\theta) = \frac{2\pi E_{\mathrm{F}}}{\hbar^2} \sqrt{\frac{m_x m_y m_z}{m_y \sin^2\theta + m_z \cos^2\theta}}. \]
+The period is given by
+\[ \Delta(1/B) = \frac{2\pi e}{\hbar S(\theta)}. \]
+
+\plabel{(6)}%
+\begingroup\minusbaseline%
+\[ \Delta(1/B) = \frac{2e\cos\theta}{\hbar k_0^2}. \]
+\endgroup
+
+\prule
+
+\plabel{2 (1)}%
+For $s=s'$ and $\vb{k}' - \vb{k} = \vb{p}$,
+\begin{align*}
+    &\phantom{{}={}}\bra{\varphi_0}[c^\dagger_{\vb{k}+\vb{p},s}(t)c_{\vb{k},s}(t), c^\dagger_{\vb{k}'-\vb{p},s'}(0)c_{\vb{k}',s'}(0)] \ket{\varphi_0} \\
+    &= e^{i(E_{\vb{k}+\vb{p}} - E_{\vb{k}})t/\hbar}\bra{\varphi_0}[c^\dagger_{\vb{k}+\vb{p},s}(0)c_{\vb{k},s}(0), c^\dagger_{\vb{k}'-\vb{p},s'}(0)c_{\vb{k}',s'}(0)] \ket{\varphi_0} \\
+    &= e^{i(E_{\vb{k}+\vb{p}} - E_{\vb{k}})t/\hbar}\qty(f_{\vb{k}'}(1-f_{\vb{k}}) - f_{\vb{k}}(1-f_{\vb{k}'})) \\
+    &= e^{i(E_{\vb{k}+\vb{p}} - E_{\vb{k}})t/\hbar}(f_{\vb{k}'} - f_{\vb{k}}).
+\end{align*}
+Otherwise this vanishes.
+
+\plabel{(2)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    &\phantom{{}={}}\expval{s_{z,\vb{p}}} \\
+    &= \frac{i}{\hbar} \qty(- \frac{\mu_{\mathrm{B}} B_{\vb{p}}}{\mathrm{Vol}}) \sum_{\vb{k}} \sum_{\vb{q}} \int_{-\infty}^0 e^{\delta \cdot t/\hbar} \dd{t} \\
+    &\phantom{{}={}}\bra{\varphi_0}[c^\dagger_{\vb{k} + \vb{p},\uparrow}(t)c_{\vb{k},\uparrow}(t) - c^\dagger_{\vb{k}+\vb{p},\downarrow}(t)c_{\vb{k},\downarrow}(t),c^\dagger_{\vb{q} - \vb{p},\uparrow}(0)c_{\vb{q},\uparrow}(0) - c^\dagger_{\vb{q}-\vb{p},\downarrow}(0)c_{\vb{q},\downarrow}(0)] \ket{\varphi_0} \\
+    &= \frac{i}{\hbar} \qty(- \frac{\mu_{\mathrm{B}} B_{\vb{p}}}{\mathrm{Vol}}) \sum_{\vb{k}} \int_{-\infty}^0 e^{i(E_{\vb{k}+\vb{p}} - E_{\vb{k}}-i\delta)t/\hbar} \dd{t} \cdot 2 \qty(f_{\vb{k}+\vb{p}} - f_{\vb{k}}) \\
+    &= 2\mu_{\mathrm{B}}B_{\vb{p}} \int \frac{\dd[3]{\vb{k}}}{(2\pi)^3} \frac{f_{\vb{k}} - f_{\vb{k}+\vb{p}}}{E_{\vb{k}+\vb{p}} - E_{\vb{k}} - i\delta}.
+\end{align*}
+\endgroup
+
+\plabel{(3)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    \expval{s_{z,\vb{p}}} &= 2\mu_{\mathrm{B}}B_{\vb{p}} \int \frac{\dd[3]{\vb{k}}}{(2\pi)^3} \frac{f_{\vb{k}} - f_{\vb{k}+\vb{p}}}{E_{\vb{k}+\vb{p}} - E_{\vb{k}} - i\delta} \\
+    &= \mu_{\mathrm{B}}B_{\vb{p}} \frac{m k_{\mathrm{F}}}{\pi^2 \hbar^2}.
+\end{align*}
+\endgroup
+
+\prule
+
+\plabel{3 (1.a)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    A_{\vb{k}}(t) &= e^{iHt} A_{\vb{k}} e^{-iHt} \\
+    &= e^{iHt} (a_{\vb{k}}+a^\dagger_{-\vb{k}}) e^{-iHt} \\
+    &= e^{-i\omega_{\vb{k}}t} a_{\vb{k}} + e^{i\omega_{\vb{k}}t} a^\dagger_{-\vb{k}}.
+\end{align*}
+\endgroup
+
+\plabel{(1.b)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    D(\vb{k},t) &= -i e^{-i\omega_{\vb{k}} t}\Theta(t) -i e^{i\omega_{\vb{k}} t}\Theta(-t) = -i e^{-i\omega_{\vb{k}}\abs{t}}.
+\end{align*}
+\endgroup
+
+\plabel{(1.c)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    D(\vb{k},\omega) &= \int_{-\infty}^\infty \dd{t} e^{i\omega t} (-i) e^{-i\omega_{\vb{k}}\abs{t}} = \frac{2\omega_{\vb{k}}}{\omega^2 - \omega_{\vb{k}}^2 + i\delta}.
+\end{align*}
+\endgroup
+
+\plabel{(1.d)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    D^{\mathrm{R}}(\vb{k},t) &= -i\Theta(t)(e^{-i\omega_{\vb{k}} t} - e^{i\omega_{\vb{k}} t}) \\
+    &= -2\Theta(t) \sin(\omega_{\vb{k}}t).
+\end{align*}
+\endgroup
+
+\plabel{(1.e)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    D^{\mathrm{R}}(\vb{k},\omega) &= -2\int_{-\infty}^\infty \dd{t} e^{i\omega t} \Theta(t)\sin(\omega_{\vb{k}}t) = \frac{2\omega_{\vb{k}}}{(\omega+i\delta)^2 - \omega^2_{\vb{k}}}.
+\end{align*}
+\endgroup
+
+\plabel{(2.a)}%
+If $0<\tau<\beta$, then
+\begin{align*}
+    D_\beta(\vb{k},-i\tau) &= -Z^{-1} \tr[e^{-\beta H}A_{\vb{k}}(-i\tau)A_{-\vb{k}}(0)] \\
+    &= -Z^{-1} \tr[e^{-\beta H}e^{H\tau}A_{\vb{k}}(0)e^{-H\tau} e^{H\beta} e^{-H\beta} A_{-\vb{k}}(0)] \\
+    &= -Z^{-1} \tr[e^{-H\beta} A_{-\vb{k}}(0) e^{-\beta H}e^{H\tau}A_{\vb{k}}(0)e^{-H\tau} e^{H\beta}] \\
+    &= -Z^{-1} \tr[e^{-H\beta} A_{-\vb{k}}(0) A_{\vb{k}}(-i(\tau-\beta))] \\
+    &= D_{\beta}(\vb{k},-i(\tau-\beta)).
+\end{align*}
+
+\plabel{(2.b)}%
+If $0<\tau<\beta$, then
+\begin{align*}
+    D_\beta(\vb{k},-i\tau) &= -Z^{-1} \tr[e^{-\beta H} (e^{-\omega_{\vb{k}}\tau} (n_{\vb{k}}+1) + e^{\omega_{\vb{k}}\tau}n_{-\vb{k}})] \\
+    &= -\frac{e^{-\omega_{\vb{k}}\tau}}{1-e^{-\omega_{\vb{k}}\beta}} - \frac{e^{\omega_{\vb{k}}\tau}}{e^{\omega_{\vb{k}}\beta} - 1}.
+\end{align*}
+
+\plabel{(2.c)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    D_\beta(\vb{k},i\omega_n) &= \int_0^\beta \dd{\tau} e^{i\omega_n \tau} \qty(-\frac{e^{-\omega_{\vb{k}}\tau}}{1-e^{-\omega_{\vb{k}}\beta}} - \frac{e^{\omega_{\vb{k}}\tau}}{e^{\omega_{\vb{k}}\beta} - 1}) \\
+    &= -\frac{2\beta^2 \omega_{\vb{k}}}{\beta^2 \omega_{\vb{k}}^2 + (2\pi n)^2} \\
+    &= -\frac{2\omega_{\vb{k}}}{\omega_{\vb{k}}^2 + \omega_n^2}.
+\end{align*}
+\endgroup
+
+\plabel{(2.d)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    iD_\beta(\vb{k},t) &= -i \qty(\frac{e^{-i\omega_{\vb{k}}t}}{1-e^{-\omega_{\vb{k}}\beta}}+\frac{e^{i\omega_{\vb{k}}t}}{e^{\omega_{\vb{k}}\beta}-1}).
+\end{align*}
+\endgroup
+
+\prule
+
+\plabel{4 (1)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    \expval{c^\dagger_s(x) c_{s'}(x')} &= \frac{1}{L} \frac{L}{2\pi} \int \dd{k} \int \dd{k'} e^{-ikx + ik'x'} \delta_{ss'}\delta(k-k') \Theta(k_{\mathrm{F}} - \abs{\vb{k}}) \\
+    &= \frac{1}{\pi} \frac{\sin(k_{\mathrm{F}}(x-x'))}{x-x'}\delta_{ss'}.
+\end{align*}
+\endgroup
+For $x\rightarrow x'$ we find
+\[ \expval{c^\dagger_s(x)c_{s'}(x')} \rightarrow \frac{k_{\mathrm{F}}}{\pi} \delta_{ss'}. \]
+
+\plabel{(2)}%
+Since $\expval{c^\dagger_s(x')c_{s'}(x')}$ is a constant we find
+\begin{align*}
+    h_{\mathrm{H}}(x) &= 2\cdot \frac{k_{\mathrm{F}}}{\pi}  \delta_{ss'} \int_{-L/2}^{L/2} V(x-x')\dd{x'} \\
+    &= 2\cdot \frac{k_{\mathrm{F}}}{\pi} \delta_{ss'} \int_{-L/2}^{L/2} \qty(V(x-x') - V(x'))\dd{x'} \\
+    &= 0
+\end{align*}
+where we have taken the limit $L\rightarrow \infty$.
+
+\plabel{(3)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    h_{\mathrm{F},s',s}(x',x) &=-\qty(\frac{e^2}{4\pi\epsilon \abs{x-x'}} - \frac{1}{L}\int_{-L/2}^{L/2} \dd{x''} \frac{e^2}{4\pi\epsilon\abs{x''}}) \frac{1}{\pi} \frac{\sin(k_{\mathrm{F}}(x-x'))}{x-x'}\delta_{ss'} \\
+    &\rightarrow -\qty(\frac{e^2}{4\pi\epsilon \abs{x-x'}}) \frac{1}{\pi} \frac{\sin(k_{\mathrm{F}}(x-x'))}{x-x'}\delta_{ss'}.
+\end{align*}
+\endgroup
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

@@ -1,0 +1,112 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 8}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a)}%
+For input $x$, we compute for all $i$
+\[ k_i = \langle \phi(x)-\phi(x_i), \phi(x)-\phi(x_i) \rangle = k_\phi(x,x) - 2 k_\phi(x,x_i) + k_\phi(x_i,x_i), \]
+and return the value
+\[ \hat{y} = y_j \]
+where
+\[ j = \argmin_i k_i. \]
+The matrix $k_\phi(x_i,x_i)$ could be precomputed.
+
+\plabel{(b)}%
+The kernel is given by
+\[ k_\phi(x, y) = \abs{x} \abs{y}. \]
+The 1-NN classifier returns $\hat{y} = y_j$ where
+\[ j = \argmin_i \qty(\abs{x} - \abs{x_i})^2 = \argmin_i \abs{\abs{x} - \abs{x}_i}. \]
+This classifier returns for $x$ the label of $x_i$ that has the closest $r$-coordinate to $x$.
+
+\prule
+
+\plabel{2 (a)}%
+The projection $\operatorname{proj}_i: \mathbb{R}^n \rightarrow \mathbb{R}$ is a feature map and therefore for all $i$,
+\[ \kappa_i(x,y) = \kappa(\operatorname{proj}_i (x), \operatorname{proj}_i (y)) \]
+is a kernel.
+Since kernel is closed under summation and multiplication,
+\[ \prod_{i=1}^n \kappa_i(x,z) \]
+and
+\[ \sum_{i=1}^n \kappa_i(x,z) \]
+are also kernels.
+
+\plabel{(b)}%
+The feature map $\phi: \mathcal{I} \rightarrow L^2(\mathbb{R})$ is given by
+\[ \phi(I) = \chi_I, \]
+where $\chi_I$ is the characteristic function, i.e.
+\[ \chi_I(x) = \begin{cases}
+    1, &\text{if } x\in I, \\
+    0, &\text{otherwise}.
+\end{cases} \]
+It's clear that
+\[ k([a,b],[c,d]) = \int_{\mathbb{R}} \dd{x} \chi_{[a,b]}(x) \chi_{[c,d]}(x) = l([a,b]\cap [c,d]). \]
+
+\plabel{(c.a)}%
+$\phi:\mathcal{X} \rightarrow \mathbb{R}^q \oplus \mathbb{R}^q \cong \mathbb{R}^{2q}$ is defined by
+\[ \phi(x) = \phi_1(x) \oplus \phi_2(x). \]
+The new kernel is the inner product of the direct sum.
+
+\plabel{(c.b)}%
+$\phi:\mathcal{X} \rightarrow \mathbb{R}^q \otimes \mathbb{R}^q \cong \mathbb{R}^{q\times q}$ is defined by (where $\otimes$ denote the tensor product)
+\[ \phi(x) = \phi_1(x) \otimes \phi_2(x). \]
+The new kernel is the inner product of the tensor product.
+
+\prule
+
+\plabel{3 (a)}%
+From the results in part 1 we know that $(x,z) \mapsto \min(x,y)$ and $(x,y) \mapsto a - \max(x,y)$ are kernels, and therefore
+\[ \gamma(\min(x,y) - \max(x,y)) + \gamma a \]
+is a kernel, and therefore
+\[ e^{-\gamma a}\exp(\gamma(\min(x,y) - \max(x,y)) + \gamma a) = e^{-\gamma\abs{x-y}} \]
+is a kernel.
+
+\plabel{(b)}%
+With the feature map $\phi:\qty[-a,a] \rightarrow \qty[0,2a]$ defined by
+\[ \phi(x) = x+a \]
+we find that $(x,y)\mapsto e^{-\gamma\abs{\phi(x) - \phi(y)}} = e^{-\gamma\abs{x-y}}$ is a kernel on $\qty[-a,a]$.
+
+\plabel{(c)}%
+For each $a>0$, define a feature map $\phi_a:\mathbb{R}\rightarrow \qty[-a,a]$ by
+\[ \phi_a(x) = \begin{cases}
+    a, &\text{if } x>a,\\
+    -a,&\text{if } x<a,\\
+    x, &\text{otherwise}
+\end{cases}
+\]
+and a kernel on $\mathbb{R}$ by $k_a(x,y) = \exp(-\gamma\abs{\phi_a(x) - \phi_a(y)})$.
+Taking the limit and we find
+\[ \lim_{a\rightarrow \infty} k_a(x,y) = k(x,y) \]
+is a kernel.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

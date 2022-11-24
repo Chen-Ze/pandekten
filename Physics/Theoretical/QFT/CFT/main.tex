@@ -1,0 +1,289 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Conformal Field Theory}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Prerequisites}
+
+\subsection{Conformal Transformation}
+
+\begin{definition}{Compact Minkowski Space \\ \defextends{Pseudo-Riemannian Manifold}}{compact_minkowski_space}
+    The compact minkowski space $(S^{p,q},g)$ is defined by
+    \[ S^{p,q} = S^{p}\times S^{q} \subset \mathbb{R}^{p+1,0} \times \mathbb{R}^{0,q+1} \cong \mathbb{R}^{p+1,q+1}, \]
+    with $g$ induced by the inclusion.
+\end{definition}
+
+\begin{definition}{Conformal Transformation\\ \defextends{Local Diffeomorphism}}{conformal_transformation}
+    Input:
+    \begin{itemize}
+        \item $(M,g)$ and $(N,g')$ are pseudo-Riemannian manifolds.
+    \end{itemize}
+    A conformal transformation $\varphi: M \rightarrow N$ is a local diffeomorphism such that
+    \[ \varphi^* g' = \Omega g \]
+    for some $\Omega > 0$.
+\end{definition}
+
+\begin{example}{Conformal Transformation of $\mathbb{R}^{2,0}$}{conformal_transformation_of_r_2}
+    A local diffeomorphism $\varphi: M\subset \mathbb{R}^{2,0} \rightarrow \mathbb{R}^{2,0}$ is a conformal transformation if and only if $\varphi$ is holomorphic or anti-holomorphic.
+\end{example}
+
+\begin{example}{Light-Cone Coordinate}{light_cone_coordinate}
+    $(\mathbb{R}^2,g$) with
+    \[ g(u,v) = \frac{1}{2}(u^1 v^2 + u^2 v^1) \]
+    is isometrically isomorphic to $\mathbb{R}^{1,1}$ by
+    \[ (x,y) \mapsto (x+y,x-y). \]
+\end{example}
+
+\begin{example}{Stereographic Projection is Conformal}{stereographic_projection_is_conformal}
+    The stereographic projection
+    \[ \pi:\mathbb{S}^{p,q} \backslash\qty(\qty{(0,\cdots,0,1)\times \mathbb{R}^q} \cup \qty{\mathbb{R}^p\times (0,\cdots,0,1)}) \rightarrow \mathbb{R}^{p,q} \]
+    is conformal.
+\end{example}
+
+\begin{definition}{Conformal Killing Field \defextends{Vector Field} \\ Conformal Killing Factor \defextends{Scalar Field}}{conformal_killing_field}
+    Let $(M,g)$ be a pseudo-Riemannian manifold.
+    A vector field $X$ on $M$ is called a conformal Killing field if
+    \[ \mathcal{L}_X g = \kappa g \]
+    for some scalar field $\kappa$ on $M$ where $\kappa > 0$ everywhere.
+    \par
+    A scalar field $\kappa$ on $M$ is called a conformal Killing factor if there exists a conformal Killing field $X$ such that $\mathcal{L}_X g = \kappa g$.
+\end{definition}
+
+If $X$ is a conformal Killing field \href{https://en.wikipedia.org/wiki/Conformal_Killing_vector_field}{then} 
+\[ \mathcal{L}_X g = \frac{2}{n}(\operatorname{div} X) g. \]
+
+\begin{theorem}{Conformal Killing Factor in Minkowski Space}{conformal_killing_factor_in_minkowski_space}
+    A scalar field $\kappa: \mathbb{R}^{p,q}\rightarrow \mathbb{R}$ is a conformal Killing factor if and only if
+    \[ (n-2) \kappa_{,\mu\nu} + g_{\mu\nu} \Delta \kappa = 0, \]
+    where $\Delta$ denote the Laplace-Beltrami operator, i.e.
+    \[ \Delta = g^{kl}\partial_k \partial_l. \]
+\end{theorem}
+
+\subsection{Conformal Transformation in Minkowski Space}
+
+\begin{theorem}{Classification of Conformal Killing Field}{classification_of_conformal_killing_field}
+    Input:
+    \begin{itemize}
+        \item $M\subset \mathbb{R}^{p,q}$ is a connected open set.
+        \item $X$ is a conformal Killing field on $M$.
+    \end{itemize}
+    Then the following holds.
+    \begin{itemize}
+        \item If $p+q>2$, then
+        \[ X(q) = 2 \langle q, b\rangle q^\mu - \langle q, q \rangle b^\mu + \lambda q + c + \omega q, \]
+        where $b,c\in \mathbb{R}^{p+q}$, $\lambda\in\mathbb{R}$, and $\omega \in \mathfrak{o}(p,q)$.
+    \end{itemize}
+\end{theorem}
+
+In $\mathbb{R}^{1,1}$ the conformal Killing factor has the form
+\[ \kappa(x,y) = f(x+y) + g(x-y) \]
+and the conformal Killing field is given by
+\[ X(x,y) = (F(x+y) + G(x-y), F(x+y) - G(x-y)). \]
+
+\begin{theorem}{Classification of Conformal Transformation}{classification_of_conformal_transformation}
+    Input:
+    \begin{itemize}
+        \item $M\subset \mathbb{R}^{p,q}$ is a connected open set.
+        \item $\varphi: M \rightarrow \mathbb{R}^{p,q}$ is a conformal transformation.
+    \end{itemize}
+    Then the following holds.
+    \begin{itemize}
+        \item If $p+q>2$, then $\varphi$ is a composition of
+        \begin{itemize}
+            \item a translation $q \mapsto q + c$, for some $c\in\mathbb{R}^{p+q}$,
+            \item an orthogonal transformation $q\mapsto \Lambda q$, for some $\Lambda \in \operatorname{O}(p,q)$,
+            \item a dilation $q\mapsto e^\lambda q$, for some $\lambda\in\mathbb{R}$, and
+            \item a special conformal transformation
+            \[ q\mapsto \frac{q - \langle q,q \rangle b}{1 - 2\langle q,b\rangle + \langle q,q\rangle \langle b,b\rangle} \]
+            for some $b\in\mathbb{R}^{p+q}$.
+        \end{itemize}
+        \item If $p=2$ and $q=0$, and if $\varphi$ is orientation-preserving, then $\varphi$ is a holomorphic function.
+        \item If $p=1$ and $q=1$, then
+        \[ (\partial_x u)^2 > (\partial_x v)^2, \]
+        and either
+        \begin{itemize}
+            \item $\partial_x u = \partial_y v$ and $\partial_y u = \partial_x v$, or
+            \item $\partial_x u = -\partial_y v$ and $\partial_y u = -\partial_x v$.
+        \end{itemize}
+        If, moreover, $\varphi$ is linear and orientation-preserving from $\mathbb{R}^{1,1}$ to $\mathbb{R}^{1,1}$, then either
+        \[ \varphi(x^1,x^2) = e^t \begin{pmatrix}
+            \cosh s & \sinh s \\ \sinh s & \cosh s
+        \end{pmatrix} \begin{pmatrix}
+            x^1 \\ x^2
+        \end{pmatrix} \]
+        or
+        \[ \varphi(x^1,x^2) = e^t \begin{pmatrix}
+            -\cosh s & \sinh s \\ \sinh s & -\cosh s
+        \end{pmatrix} \begin{pmatrix}
+            x^1 \\ x^2
+        \end{pmatrix}, \]
+        where $s,t\in\mathbb{R}$.
+    \end{itemize}
+\end{theorem}
+
+\subsection{Conformal Group}
+
+\begin{definition}{Conformal Compactification}{conformal_compactification}
+    The conformal compactification $N^{p,q}$ of $\mathbb{R}^{p,q}$ is defined by
+    \[ N^{p,q} = \Set*{(\xi^0 : \cdots : \xi^{p+q+1})\in \mathbb{R}\mathrm{P}^{p+q+1}}{g(\xi,\xi) = 0} \]
+    where $g$ is the metric on $\mathbb{R}^{p+1,q+1}$.
+\end{definition}
+
+\begin{definition}{Conformal Group}{conformal_group}
+    The conformal group $\operatorname{Conf}(p,q)$ is the connected component of the identity in the group $G$ of diffeomorphisms of conformal compactification $N^{p,q}$ of $\mathbb{R}^{p,q}$, with topology generated by
+    \[ \mathcal{S} = \Set*{\Set*{g\in G}{g(K)\subset V}}{K\subset \mathbb{R}^{p,q} \text{ compact and } V\subset \mathbb{R}^{p,q} \text{ open}}. \]
+\end{definition}
+
+\begin{proposition}{Properties of Conformal Compactification \badge{UMP}}{properties_of_conformal_compactification}
+    The conformal compactification $N^{p,q}$ of $\mathbb{R}^{p,q}$ satisfies the following properties.
+    \begin{itemize}
+        \item $N^{p,q} = \overline{\imath(\mathbb{R}^{p,q})}$ where $\imath:\mathbb{R}^{p,q} \rightarrow \mathbb{R}\mathrm{P}^{p+q+1}$ is the inclusion map defined by
+        \[ \imath(x^1,\cdots,x^{p+q}) = \qty(\frac{1-g(x,x)}{2}: x^1 : \cdots : x^{p+q} : \frac{1+g(x,x)}{2}), \]
+        where $g$ is the metric on $\mathbb{R}^{p,q}$.
+        \item $N^{p+q}$ is a $(p+q)$-dimensional compact submanifold of $\mathbb{R}\mathrm{P}^{p+q+1}$.
+    \end{itemize}
+\end{proposition}
+
+\begin{lemma}{$S^p\times S^q$ Doubly Covers $N^{p,q}$}{s_p_q_doubly_covers_n_p_q}
+    Let $\pi:\mathbb{R}^{p+q+2}\rightarrow \mathbb{R}\mathrm{P}^{p+q+1}$ be the projection, and
+    \[ S^p\times S^q = \Set*{(\xi^0,\cdots,\xi^{p+q+1})\in\mathbb{R}^{p+q+2}}{\sum_{j=0}^p \qty(\xi^j)^2 = \sum_{j=p+1}^{p+q+1} \qty(\xi^j)^2 = 1}. \]
+    Then
+    \[ \eval{\pi}_{S^p\times S^q}: S^p\times S^q \rightarrow N^{p,q} \]
+    is a smooth 2-to-1 convering.
+\end{lemma}
+
+\begin{proposition}{Conformal Embedding $\mathbb{R}^{p,q} \rightarrow S^p\times S^q$}{conformal_embedding_r_p_q_s_p_s_q}
+    Let $\imath:\mathbb{R}^{p,q} \rightarrow \mathbb{R}\mathrm{P}^{p+q+1}$ is the inclusion map defined by
+    \[ \imath(x^1,\cdots,x^{p+q}) = \qty(\frac{1-g(x,x)}{2}: x^1 : \cdots : x^n : \frac{1+g(x,x)}{2}). \]
+    Let $\tau:\mathbb{R}^{p,q} \rightarrow S^p\times S^q$ be defined by
+    \[ \tau(x^1,\cdots,x^{p+q}) = \frac{1}{r(x)} \qty(\frac{1-g(x,x)}{2}, x^1 , \cdots , x^n , \frac{1+g(x,x)}{2}), \]
+    where
+    \[ r(x^1,\cdots,x^{p+q}) = \frac{1}{2}\sqrt{1 + 2\sum_{j=1}^{p+q} \qty(x^j)^2 + g(x,x)^2}, \]
+    where $g$ is the metric on $\mathbb{R}^{p,q}$.
+    Then the following statements hold.
+    \begin{itemize}
+        \item $\tau$ is a conformal embedding.
+        \item $\imath = \pi \circ \tau$, where $\pi:\mathbb{R}^{p+q+2}\rightarrow \mathbb{R}\mathrm{P}^{p+q+1}$ is the projection.
+    \end{itemize}
+\end{proposition}
+
+\begin{theorem}{$\operatorname{O}(p+1,q+1)$ Acting on $N^{p,q}$}{o_p_1_q_1_acting_on_n_p_q}
+    For every $\Lambda\in\operatorname{O}(p+1,q+1)$, let $\psi_\Lambda: N^{p+q} \rightarrow N^{p+q}$ be defined by
+    \[ \psi_\Lambda(\xi^0: \cdots : \xi^{p+q+1}) = \pi(\Lambda \xi), \]
+    where $\pi: \mathbb{R}^{p+q+2}\rightarrow \mathbb{R}\mathrm{P}^{p+q+1}$ is the projection.
+    Then the following holds.
+    \begin{itemize}
+        \item For every $\Lambda\in\operatorname{O}(p+1,q+1)$, $\psi_\Lambda$ is a conformal transformation and a diffeomorphism.
+        \item If $\psi_\Lambda = \psi_{\Lambda'}$ for some $\Lambda,\Lambda'\in\operatorname{O}(p+1,q+1)$, then $\Lambda = \pm\Lambda'$.
+    \end{itemize}
+\end{theorem}
+
+\begin{definition}{Conformal Continuation}{conformal_continuation}
+    Input:
+    \begin{itemize}
+        \item $\varphi:M\rightarrow\mathbb{R}^{p,q}$ is a conformal transformation, where $M$ is a connected open subset of $\mathbb{R}^{p,q}$.
+    \end{itemize}
+    Then $\hat{\varphi}:N^{p,q}\rightarrow N^{p,q}$ is called a conformal continuation of $\varphi$ if
+    \begin{itemize}
+        \item $\hat{\varphi}$ is a conformal diffeomorphism, and
+        \item with $\imath:\mathbb{R}^{p,q} \rightarrow \mathbb{R}\mathrm{P}^{p+q+1}$ (the inclusion map) defined by
+        \[ \imath(x^1,\cdots,x^{p+q}) = \qty(\frac{1-g(x,x)}{2}: x^1 : \cdots : x^n : \frac{1+g(x,x)}{2}), \]
+        the following diagram commutes.
+        \begin{center}
+            \begin{tikzcd}
+                M \arrow[r,"\varphi"]\arrow[d,"\imath"] & \mathbb{R}^{p,q} \arrow[d,"\imath"] \\
+                N^{p,q} \arrow[r,"\hat{\varphi}"] & N^{p,q}
+            \end{tikzcd}
+        \end{center}
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}{UMP of Conformal Compactification}{ump_of_conformal_compactification}
+    If $p+q>2$, then every conformal transformation $\varphi:M\rightarrow \mathbb{R}^{p,q}$ from a connected open subset $M\subset \mathbb{R}^{p,q}$ has a unique conformal continuation $\hat{\varphi}: N^{p,q} \rightarrow N^{p,q}$.
+\end{theorem}
+
+\begin{theorem}{Group of Conformal Transformations}{group_of_conformal_transformations}
+    If $p+q>2$, then the group of all transformations $N^{p,q} \rightarrow N^{p,q}$ is isomorphic to $\operatorname{O}(p+1,q+1)/\qty{\pm 1}$.
+\end{theorem}
+
+\begin{theorem}{$\operatorname{Conf}(p,q)$ is Quotient of $\operatorname{SO}^+(p+1,q+1)$}{conf_p_q_is_quotient_of_so_plus_p_1_q_1}
+    If $p+q>2$, then $\operatorname{Conf}(p,q)$ is isomorphic to
+    \begin{itemize}
+        \item $\operatorname{SO}^+(p+1,q+1)/\qty{\pm 1}$ if $-1$ is in the connected component containing $1$, or
+        \item $\operatorname{SO}^+(p+1,q+1)$, otherwise,
+    \end{itemize}
+    where $\operatorname{SO}^+(p+1,q+1)$ denote the connected component of $1$ in $\operatorname{O}(p+1,q+1)$.
+\end{theorem}
+
+\begin{definition}{Global Conformal Transformation on $\mathbb{R}^{2,0}$}{global_conformal_transformation_on_r_2_0}
+    A global conformal transformation on $\mathbb{R}^{2,0}$ is an injective holomorphic function defined on $\mathbb{C}$ with at most one exceptional point.
+\end{definition}
+
+\begin{theorem}{UMP of $N^{2,0}$}{ump_of_n_2_0}
+    Every global conformal transformation $\varphi:M\rightarrow \mathbb{C}$ of $\mathbb{C}$ has a unique conformal continuation $\hat{\varphi}:N^{2,0}\rightarrow N^{2,0}$.
+    \par
+    The conformal continuation $\hat{\varphi}$ has the form $\varphi_\Lambda$ for some $\Lambda\in\operatorname{O}(3,1)$, where
+    \[ \varphi_\Lambda(\xi^0,\xi^1,\xi^2,\xi^3) = \pi(\Lambda \xi), \]
+    where $\pi: \mathbb{R}^{4}\rightarrow \mathbb{R}\mathrm{P}^{3}$ is the projection.
+    \par
+    The group $G$ of conformal diffeomorphisms $\psi:N^{2,0} \rightarrow N^{2,0}$ is isomorphic to $\operatorname{O}(3,1)/\qty{\pm 1}$.
+    \par
+    The connected component of $1$ of $G$ is isomorphic to $\operatorname{SO}^+(3,1)$.
+\end{theorem}
+
+\begin{theorem}{$\operatorname{Conf}(2,0)$}{conf_2_0}
+    Let $\operatorname{Mb}$ denote the M\"obius group.
+    Let $\operatorname{Aut}(\mathbb{C}\mathrm{P}^1)$ denote the group of biholomorphic maps $\mathbb{C}\mathrm{P}^1 \rightarrow \mathbb{C}\mathrm{P}^1$.
+    Then
+    \[ \operatorname{Mb} \cong \operatorname{PSL}(2,\mathbb{C}) \cong \operatorname{Aut}(\mathbb{C}\mathrm{P}^1) \cong \operatorname{SO}^+(3,1) \cong \operatorname{Conf}(2,0). \]
+\end{theorem}
+
+\begin{theorem}{Orientation Preserving Conformal Map on $\mathbb{R}^{1,1}$}{orientation_preseving_conformal_map_on_r_1_1}
+    Let $\Phi: C^\infty(\mathbb{R})\times C^\infty(\mathbb{R})\rightarrow C^\infty(\mathbb{R}^2,\mathbb{R}^2)$ be defined by
+    \[ (f,g) \mapsto \frac{1}{2}(f_+ + g_-, f_+ - g_-), \]
+    where
+    \[ f_\pm(x,y) = f(x \pm y),\quad g_\pm(x,y) = g(x\pm y). \]
+    Then the following statements hold.
+    \begin{itemize}
+        \item The image of $\Phi$ consists of
+        \[ \Set*{(u,v)\in C^\infty(\mathbb{R}^2,\mathbb{R}^2)}{\partial_x u = \partial_y v, \partial_y u = \partial_x v}. \]
+        \item $\Phi(f,g)$ is conformal is equivalent to
+        \begin{itemize}
+            \item $f'>0$ and $g'>0$, or
+            \item $f'<0$ and $g'<0$.
+        \end{itemize}
+        \item $\Phi(f,g)$ is bijective is equivalent to $f$ and $g$ being both bijective.
+        \item $\Phi(f\circ h, g\circ k) = \Phi(f,g)\circ \Phi(g,k)$.
+    \end{itemize}
+    The group $G$ of orientation-preserving conformal diffeomorphisms $\varphi:\mathbb{R}^{1,1}\rightarrow \mathbb{R}^{1,1}$ is isomorphic to
+    \[ \qty(\operatorname{Diff}_+(\mathbb{R}) \times \operatorname{Diff}_+(\mathbb{R})) \cup \qty(\operatorname{Diff}_-(\mathbb{R}) \times \operatorname{Diff}_-(\mathbb{R})), \]
+    where $G$ and $\operatorname{Diff}_\pm(\mathbb{R})$ is endowed with the topology of uniform convergence of all orders (including the zeroth) of derivatives, and $\operatorname{Diff}_\pm(\mathbb{R})$ denote the group of orientation-preserving (orientation-reversing) diffeomorphisms.
+\end{theorem}
+
+\begin{theorem}{$\operatorname{Conf}(1,1)$}{conf_1_1}
+    Let $\operatorname{Diff}_\pm(\mathbb{R})$ denote the group of orientation-preserving (orientation-reversing) diffeomorphisms.
+    Then
+    \[ \operatorname{Conf}(1,1) \cong \operatorname{Diff}_+(\mathbb{R}) \times \operatorname{Diff}_+(\mathbb{R}). \]
+\end{theorem}
+
+\begin{proposition}{Restricted $\operatorname{Conf}(1,1)$}{restricted_conf_1_1}
+    The group $\operatorname{PSL}(2,\mathbb{R})\times \operatorname{PSL}(2,\mathbb{R})$ acts on $\mathbb{R}^{1,1}$ by
+    \[ (A_+,A_-)(x_+,x_-) = \qty(\frac{a_+ x_+ + b_+}{c_+ x_+ + d_+}, \frac{a_- x_- + b_-}{c_- x_- + d_-}), \]
+    where $x_\pm = x\pm y$ for $(x,y)\in\mathbb{R}^{1,1}$.
+    The following statements hold.
+    \begin{itemize}
+        \item $\operatorname{SO}^+(2,2)/\qty{\pm 1} \cong \operatorname{PSL}(2,\mathbb{R})\times \operatorname{PSL}(2,\mathbb{R})$.
+        \item $\operatorname{SO}^+(2,2)/\qty{\pm 1} \subset \operatorname{Conf}(1,1)$.
+    \end{itemize}
+\end{proposition}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

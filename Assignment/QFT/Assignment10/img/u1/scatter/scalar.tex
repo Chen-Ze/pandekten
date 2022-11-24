@@ -1,0 +1,32 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+\usepackage{slashed}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+\feynmandiagram [inline=($0.5*(r.base)+0.5*(v.base)$), small, vertical=v to r] {
+    c1 --[boson, edge label'={}] v [dot];
+    v --[boson, edge label'={}] c2;
+    r[dot] --[edge label=$s$] v;
+    c3 --[boson, edge label={}] r;
+    r --[boson, edge label={}] c4;
+}; + \feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+    c1 --[boson, edge label'={}] v [dot];
+    v --[boson, edge label'={}] c2;
+    r[dot] --[edge label=$t$] v;
+    c3 --[boson, edge label={}] r;
+    r --[boson, edge label={}] c4;
+}; + \feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+    c1 --[boson, edge label'={}] v [dot];
+    v --[boson, edge label'={}] c2;
+    r[dot] --[edge label=$u$] v;
+    c3 --[boson, edge label={}] r;
+    r --[boson, edge label={}] c4;
+};
+\end{align*}
+\end{document}

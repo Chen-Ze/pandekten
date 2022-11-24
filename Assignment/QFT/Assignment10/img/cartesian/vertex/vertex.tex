@@ -1,0 +1,42 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] -- c1;
+        c2 -- v;
+        c3 -- v;
+    }; \ &= -\frac{3i\lambda v}{\sqrt{2}}, &
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] -- c1;
+        c2 --[scalar] v;
+        c3 --[scalar] v;
+    }; \ &= -\frac{i\lambda v}{\sqrt{2}}, \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        c3 -- v[dot];
+        v -- c0;
+        v -- c1;
+        c2 -- v;
+    }; \ &= -\frac{3i\lambda}{2}, &
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] -- c0;
+        c3 --[dashed] v;
+        v -- c1;
+        c2 --[dashed] v;
+    }; \ &= -\frac{i\lambda}{2}, \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        c3 --[dashed] v[dot];
+        v --[dashed] c0;
+        v --[dashed] c1;
+        c2 --[dashed] v;
+    }; \ &=-\frac{3i\lambda}{2}.
+\end{align*}
+\end{document}

@@ -1,0 +1,36 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] -- c1;
+        c2 -- v;
+        c3 -- v;
+    }; \ &= -\frac{3i\lambda v}{\sqrt{2}}, &
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] -- c1;
+        c2[particle=$\mu$] --[boson] v;
+        c3[particle=$\nu$] --[boson] v;
+    }; \ &= i\sqrt{2}ve^2g^{\mu\nu}, \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        c3 -- v[dot];
+        v -- c0;
+        v -- c1;
+        c2 -- v;
+    }; \ &= -\frac{3i\lambda}{2}, &
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] -- c0;
+        c3[particle=$\nu$] --[boson] v;
+        v -- c1;
+        c2[particle=$\mu$] --[boson] v;
+    }; \ &= ie^2g^{\mu\nu}.
+\end{align*}
+\end{document}

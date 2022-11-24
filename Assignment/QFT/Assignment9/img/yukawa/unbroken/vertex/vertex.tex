@@ -1,0 +1,30 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+\usepackage{slashed}
+\usepackage{physics}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \feynmandiagram [inline=(v.base), small, horizontal=i to l] {
+        i[particle=$i$] --[boson] v[dot];
+        j[particle=$j$] --[boson] v;
+        k[particle=$k$] --[boson] v;
+        l[particle=$l$] --[boson] v;
+    }; \ &= -2 i \lambda\qty(\delta^{ij}\delta^{kl} + \delta^{il}\delta^{jk} + \delta^{ik} \delta^{jl}), \\
+    \feynmandiagram [inline=(v.base), small, horizontal=i to v] {
+        i[particle=$1$] --[boson] v[dot];
+        v --[fermion] c2;
+        c1 --[fermion] v;
+    }; \ &= -ig, \\
+    \feynmandiagram [inline=(v.base), small, horizontal=i to v] {
+        i[particle=$2$] --[boson] v[dot];
+        v --[fermion] c2;
+        c1 --[fermion] v;
+    }; \ &= -ig(i\gamma^5).
+\end{align*}
+\end{document}
