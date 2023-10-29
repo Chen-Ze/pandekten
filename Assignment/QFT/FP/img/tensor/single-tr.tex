@@ -1,0 +1,30 @@
+\documentclass{standalone}
+
+% Plotting
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{calc}
+% quantikz breaks tikz-cd, see https://tex.stackexchange.com/questions/618330/quantikz-breaks-spacing-in-tikz-matrices-tikz-cd
+%\usetikzlibrary{quantikz}
+\usetikzlibrary{cd}
+\usepackage{pgfplots}
+
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\begin{tikzpicture}[xscale=1.5,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{>}}}]
+
+    \draw (0, 0) node[rectangle, draw] (a) {$A$};
+    \draw (0.75, 0) node[rectangle, draw] (b) {$B$};
+    
+    \draw (b.east) node[anchor=west] {${}= \tr(AB)$};
+    \draw[postaction={decorate}] (b) -- (a);
+    \draw[postaction={decorate}] (a.west) to[out=150, in=30, looseness=2.5] (b.east);
+\end{tikzpicture}
+\end{document}

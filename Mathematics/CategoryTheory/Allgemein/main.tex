@@ -63,6 +63,64 @@ To define the notion of class, we have to go beyond ZFC and adopt, for example, 
     \end{itemize}
 \end{definition}
 
+\begin{definition}{Natural Transformation, \\ Natural Isomorphism}{natural_transformation}
+    Let $S,T: \mathbf{A} \rightarrow \mathbf{B}$ be functors.
+    A natural transformation $\tau:S\rightarrow T$ is a one-parameter family of morphisms in $\mathbf{B}$,
+    \[ \tau_A: SA \rightarrow TA \]
+    for each object $A$ of $\mathbf{A}$, such that the following diagram commutes for all $f:A\rightarrow A'$ in $\mathbf{A}$.
+    \begin{center}
+        \begin{tikzcd}
+            SA \arrow[d,"Sf"] \arrow[r,"\tau_A"] & TA \arrow[d,"Tf"] \\
+            SA' \arrow[r,"\tau_{A'}"] & TA'
+        \end{tikzcd}
+    \end{center}
+    A natural isomorphism is a natural transformation $\tau$ for which each $\tau_A$ is an isomorphism.
+\end{definition}
+
+\begin{example}{Dual of Dual Space}{dual_of_dual_space}
+    Let $\mathbf{V}$ denote the category of vector spaces over $k$, $\mathbbm{1}_{\mathbf{V}}$ the identity functor, and $\Box^{**}$ the double dual functor.
+    Then $\tau_V: V \rightarrow V^{**}$ defined in the obvious way is a natural transformation from $\mathbbm{1}_{\mathbf{V}}$ to $\Box^{**}$.
+\end{example}
+
+\begin{theorem}{Yoneda Lemma}{yoneda_lemma}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ is a locally small category.
+        \item $A$ is an object of $\mathbf{C}$.
+        \item $G:\mathbf{C}\rightarrow \mathbf{Set}$ is a functor.
+    \end{itemize}
+    Then there is a bijection
+    \[ y: \operatorname{Nat}(\operatorname{Hom}(A,\Box), G) \rightarrow G(A) \]
+    given by $\tau \rightarrow \tau_A(\mathbbm{1}_A)$, where $\operatorname{Nat}$ denote the set of natural transformations.
+\end{theorem}
+
+\begin{definition}{Representable Functor}{representable_functor}
+    Let $\mathbf{C}$ be a locally small category.
+    A functor $F:\mathbf{C}\rightarrow \mathbf{Set}$ is representable if there exists an object $A$ of $\mathbf{C}$ such that $F$ is naturally isomorphic to $\operatorname{Hom}(A,\Box)$.
+\end{definition}
+
+\begin{example}{Natural Transformation of Sequence}{natural_transformation_of_sequence}
+    A functor in $\mathbf{Ab}^{\mathbb{Z}}$ is a sequence
+    \[ \cdots \rightarrow A_{n+1} \xrightarrow{d_{n+1}} A_n \xrightarrow{d_n} A_{n-1} \rightarrow \cdots. \]
+    A natural transformation between two such functors is a sequence of maps $(\cdots,f_{n+1},f_n,f_{n-1},\cdots)$ making the following diagram commute.
+    \begin{center}
+        \begin{tikzcd}
+            \cdots \arrow[r] & A_{n+1} \arrow[d,"f_{n+1}"] \arrow[r,"d_{n+1}"] & A_{n} \arrow[d,"f_{n}"] \arrow[r,"d_n"] & A_{n-1} \arrow[d,"f_{n-1}"] \arrow[r] & \cdots \\
+            \cdots \arrow[r] & A'_{n+1} \arrow[r,"d_{n+1}"] & A'_{n} \arrow[r,"d_n"] & A'_{n-1} \arrow[r] & \cdots
+        \end{tikzcd}
+    \end{center}
+    A complex is a functor in $\mathbf{Ab}^{\mathbb{Z}}$ such that $d_n d_{n+1} = 0$ for all $n$.
+    $\mathbf{Comp}$ is the full subcategory of $\mathbf{Ab}^{\mathbb{Z}}$ of all complexes.
+\end{example}
+
+\begin{corollary}{Yoneda Imbedding}{yoneda_imbedding}
+    If $\mathbf{C}$ is a small category, then there is a functor $Y:\mathbf{C}^{\mathrm{op}} \rightarrow \mathbf{Set}^{\mathbf{C}}$ that is
+    \begin{itemize}
+        \item injective on objects, and
+        \item whose image is a full subcategory of $\mathbf{Set}^{\mathbf{C}}$.
+    \end{itemize}
+\end{corollary}
+
 \section{Universals}
 
 \begin{definition}{Universal from an Object to a Functor}{universal_from_an_object_to_a_functor}
@@ -77,7 +135,7 @@ To define the notion of class, we have to go beyond ZFC and adopt, for example, 
         \item $U$ is an object of $\mathbf{C}$, and
         \item $u$ is a morphism from $B$ to $FU$
     \end{itemize}
-    such that if $A$ is an object of $\mathbb{C}$,
+    such that if $A$ is an object of $\mathbf{C}$,
     and $g$ is any morphism from $B$ to $FA$,
     then there exists a unique morphism $\tilde{g}$ of $U$ into $A$
     such that the following diagram is commutative.
@@ -164,7 +222,7 @@ To define the notion of class, we have to go beyond ZFC and adopt, for example, 
     The limit $L$ is denoted by $\lim F$.
     \tcblower
     \paragraph*{Colimit}
-    A colimit of $F$ is a cocone $(L,\phi)$ from $F$ to $L$, such that for each cocone $(N,\psi)$ to $F$, there exists a unique morphism $u: L\rightarrow N$ such that the following diagram commutes.
+    A colimit of $F$ is a cocone $(L,\phi)$ from $F$ to $L$, such that for each cocone $(N,\psi)$ from $F$, there exists a unique morphism $u: L\rightarrow N$ such that the following diagram commutes.
     \begin{center}
         \begin{tikzcd}
             F(X) \arrow[dr, "\phi_X"'] \arrow[ddr, bend right, "\psi_X"'] \arrow[rr, "F(f)"]  & & F(Y) \arrow[dl, "\phi_Y"] \arrow[ddl, bend left, "\psi_Y"] \\
@@ -334,6 +392,29 @@ To put it another way, $L$ satisfies the following.
 This could also be written as
 \[ \operatorname*{colim}_{i\in I} \operatorname*{colim}_{j\in J} F(i)(j) = \operatorname*{colim}_{j\in J} \operatorname*{colim}_{i\in I} F(i)(j). \]
 
+\subsection{Pushout}
+
+\begin{definition}{Pushout, Fibered Sum}{pushout}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{C}$ is a category.
+        \item $f:A\rightarrow B$ and $g:A\rightarrow C$ are morphisms in $\mathbf{C}$.
+    \end{itemize}
+    A push out is a triple $(D,\alpha,\beta)$ such that
+    \begin{itemize}
+        \item $\beta g = \alpha f$, and
+        \item for every triple $(Y,\alpha',\beta')$ with $\beta' g = \alpha' f$, there exists a unique morphism $\theta:D\rightarrow Y$ such that the following diagram commutes.
+        \begin{center}
+            \begin{tikzcd}
+                A \arrow[r,"g"] \arrow[d,"f"] & C \arrow[d,"\beta"] \arrow[rdd,"\beta'"] & \\
+                B \arrow[r,"\alpha"] \arrow[rrd,"\alpha'"'] & D \arrow[rd,dashed,"\theta"] & \\
+                & & Y
+            \end{tikzcd}
+        \end{center}
+    \end{itemize}
+    The pushout may be denoted by $B\cup_A C$.
+\end{definition}
+
 \section{Adjoints}
 
 \begin{definition}{Left Adjoint, Right Adjoint, Adjugant, and Adjunction}{adjoint}
@@ -385,12 +466,19 @@ This is equivalent to that morphisms $C\rightarrow C'$ and $D\rightarrow D'$ ind
     Now the left adjoint of $U$ maps $(G,\Gamma,\rho)$ to the inclusion $(G,\Gamma,\rho)\xhookrightarrow{} \Gamma \rtimes_\rho G$.
 \end{example}
 
+The definition requires that $\operatorname{Hom}_{\mathbf{C}}(GB,A) \cong \operatorname{Hom}_{\mathbf{D}}(B,FA)$ in a natural way.
 \begin{example}{Colimit as Left Adjoint}{colimit_as_left_adjoint}
     Let $\mathbf{C}$ be a diagram and $\Delta$ be the diagonal functor (where $\Lambda$ is a small category)
     \[ \Delta: \mathbf{C} \rightarrow \mathbf{C}^\Lambda. \]
     The colimit
     \[ \operatorname{colim}: \mathbf{C}^\Lambda \rightarrow \mathbf{C} \]
     is the left adjoint of $\Delta$.
+    \par
+    It can be seen that
+    \begin{itemize}
+        \item each element of $\operatorname{Hom}(\operatorname{colim} J, X)$ is a cone below $J$, and
+        \item each element of $\operatorname{Hom}(J, X^\Lambda)$ is also a cone below $J$.
+    \end{itemize}
 \end{example}
 Let $F:\Lambda\rightarrow\mathbf{C}$ be a diagram (an object of $\mathbf{C}^\Lambda$), $N$ be an object of $\mathbf{C}$ and $\Delta(N)$ be an diagonal functor (an element of $\mathbf{C}^\Lambda$).
 Then $\operatorname{Hom}_{\mathbf{C}^\Lambda}(F, \Delta(N))$ consists of all natural transformations from $F$ to $\Delta(N)$.
@@ -419,5 +507,44 @@ induces the following commutative diagram.
         \operatorname{Hom}_{\mathbf{C}}(\lim F, N') \arrow[r, leftrightarrow, "\simeq"] & \operatorname{Hom}_{\mathbf{C}^\Lambda} (F, \Delta(N')) = \qty{\text{Cocones from $F$ to $N$}} \\
     \end{tikzcd}
 \end{center}
+
+\section{Topology}
+
+\begin{definition}{Presheaf}{presheaf}
+    Input:
+    \begin{itemize}
+        \item $\mathbf{U}$ is a topology of a topological space $X$ as a category, with objects given by open sets and morphisms by inclusion.
+        \item $\mathbf{C}$ is a category.
+    \end{itemize}
+    A presheaf over $X$ is a contravariant functor $P:\mathbf{U} \rightarrow \mathbf{C}$.
+\end{definition}
+
+\begin{example}{Skyscraper Sheaf}{skyscraper_sheaf}
+    Let $X$ be a topological space, $x\in X$, and $A$ be an abelian group.
+    A sheaf $P:X\rightarrow \mathbb{Ab}$ may be given by $P(U) = A$ if $x\in U$ and $P(U) = 0$ otherwise.
+\end{example}
+
+\begin{example}{Presheaf not a Sheaf}{presheaf_not_a_sheaf}
+    Let $X$ be a Riemann surface and $\mathcal{O}^\times(-)$ be the sheaf which assigns to $U\subset X$ the set of non-vanishing holomorphic functions on $U$.
+    Let $(\exp \mathcal{O}^\times)(U) = \Set*{\exp \circ f}{f\in \mathcal{O}^\times(U)}$.
+    The quotient $\mathcal{O}^\times(U) / \exp \mathcal{O}^\times(U)$ is not a sheaf since locally every nonvanishing holomorphic function $f$ may be written as $\exp \log f$ while globally not.
+\end{example}
+
+\begin{definition}{Affine Scheme}{affine_scheme}
+    Let $R$ be a ring.
+    An affine scheme is a pair $(X,\mathcal{O}_X)$, satisfying both of the following.
+    \begin{itemize}
+        \item $X = \operatorname{Spec} R$ is a topological space with the Zariski topology generated by the open sets
+        \[ U(f) = \Set*{P \in \operatorname{Spec} R}{f \notin P} \]
+        for $f\in R$.
+        \item $\mathcal{O}_X$ is a sheaf of ring, called the structure sheaf of $X$, defined by
+        \begin{itemize}
+            \item $\mathcal{O}_X(U(f)) = R_f$, the localization of $R$ by $f$;
+            \item and
+            \[ \operatorname{res}_{U(f), U(g)}: \mathcal{O}_X(U(f)) \rightarrow \mathcal{O}_X(U(g)) \]
+            defined by $R_f \rightarrow R_g$ given by localizing $R_f$ at $g$.
+        \end{itemize}
+    \end{itemize}
+\end{definition}
 
 \end{document}

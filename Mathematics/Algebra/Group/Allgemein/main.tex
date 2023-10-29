@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Extension}
+
+\begin{definition}{Group Extension}{group_extension}
+    An extension of a group $G$ by a group $A$ is an short exact sequence of group homomorphisms
+    \[ 1 \rightarrow A \hookrightarrow E \twoheadrightarrow G \rightarrow 1. \]
+\end{definition}
+
+\begin{example}{Trivial Extension}{trivial_extension}
+    The following extension is trivial:
+    \[ 1 \rightarrow A \xrightarrow{\imath} A\times G \xrightarrow{\operatorname{proj}_2} G \rightarrow 1. \]
+\end{example}
+
+\begin{example}{An Extension of $\operatorname{U}(1)$}{an_extension_of_u_1}
+    A nontrivial extension of $\operatorname{U}(1)$ is given by
+    \[ 1 \rightarrow \mathbb{Z}/k\mathbb{Z} \xrightarrow{\imath} \operatorname{U}(1) \xrightarrow{\pi} \operatorname{U}(1) \rightarrow 1, \]
+    where
+    \[ \pi(z) = z^k. \]
+\end{example}
+
+\begin{definition}{Split Group Extension}{split_group_extension}
+    An group extension
+    \[ 1 \rightarrow A \hookrightarrow E \twoheadrightarrow G \rightarrow 1 \]
+    splits if there is a homomorphism $\sigma:G\rightarrow E$ such that
+    \[ \pi \circ \sigma = \operatorname{id}_G. \]
+\end{definition}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

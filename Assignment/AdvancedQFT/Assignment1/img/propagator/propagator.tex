@@ -1,0 +1,16 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+\usepackage{slashed}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{alignat*}{2}
+    \feynmandiagram [inline=(r2.base), horizontal=r1 to r2] {
+        r1 --[edge label'=$p$] r2[particle=\vphantom{Mg}],
+    }; \ &&= \frac{1}{p^2 + m^2 + i\epsilon}.
+\end{alignat*}
+\end{document}

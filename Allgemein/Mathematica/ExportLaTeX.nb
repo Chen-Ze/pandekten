@@ -1,0 +1,448 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     22636,        440]
+NotebookOptionsPosition[     21739,        417]
+NotebookOutlinePosition[     22136,        433]
+CellTagsIndexPosition[     22093,        430]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Block", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"System`ConvertersDump`$extensionMappings", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<*.3ds\>\"", "->", "\"\<3DS\>\""}], ",", 
+       RowBox[{"\"\<*.aco\>\"", "->", "\"\<ACO\>\""}], ",", 
+       RowBox[{"\"\<*.aif\>\"", "->", "\"\<AIFF\>\""}], ",", 
+       RowBox[{"\"\<*.aiff\>\"", "->", "\"\<AIFF\>\""}], ",", 
+       RowBox[{"\"\<*.au\>\"", "->", "\"\<AU\>\""}], ",", 
+       RowBox[{"\"\<*.avi\>\"", "->", "\"\<AVI\>\""}], ",", 
+       RowBox[{"\"\<*.b64\>\"", "->", "\"\<BASE64\>\""}], ",", 
+       RowBox[{"\"\<*.bdf\>\"", "->", "\"\<BDF\>\""}], ",", 
+       RowBox[{"\"\<*.bmp\>\"", "->", "\"\<BMP\>\""}], ",", 
+       RowBox[{"\"\<*.dib\>\"", "->", "\"\<BMP\>\""}], ",", 
+       RowBox[{"\"\<*.rle\>\"", "->", "\"\<BMP\>\""}], ",", 
+       RowBox[{"\"\<*.byu\>\"", "->", "\"\<BYU\>\""}], ",", 
+       RowBox[{"\"\<*.bz2\>\"", "->", "\"\<BZIP2\>\""}], ",", 
+       RowBox[{"\"\<*.c\>\"", "->", "\"\<C\>\""}], ",", 
+       RowBox[{"\"\<*.cdf\>\"", "->", "\"\<CDF\>\""}], ",", 
+       RowBox[{"\"\<*.cif\>\"", "->", "\"\<CIF\>\""}], ",", 
+       RowBox[{"\"\<*.col\>\"", "->", "\"\<DIMACS\>\""}], ",", 
+       RowBox[{"\"\<*.col.b\>\"", "->", "\"\<DIMACS\>\""}], ",", 
+       RowBox[{"\"\<*.csv\>\"", "->", "\"\<CSV\>\""}], ",", 
+       RowBox[{"\"\<*.css\>\"", "->", "\"\<CSS\>\""}], ",", 
+       RowBox[{"\"\<*.cur\>\"", "->", "\"\<CUR\>\""}], ",", 
+       RowBox[{"\"\<*.dae\>\"", "->", "\"\<DAE\>\""}], ",", 
+       RowBox[{"\"\<*.dat\>\"", "->", "\"\<Table\>\""}], ",", 
+       RowBox[{"\"\<*.dcm\>\"", "->", "\"\<DICOM\>\""}], ",", 
+       RowBox[{"\"\<*.dic\>\"", "->", "\"\<DICOM\>\""}], ",", 
+       RowBox[{"\"\<*.dicm\>\"", "->", "\"\<DICOM\>\""}], ",", 
+       RowBox[{"\"\<*.dif\>\"", "->", "\"\<DIF\>\""}], ",", 
+       RowBox[{"\"\<*.dot\>\"", "->", "\"\<DOT\>\""}], ",", 
+       RowBox[{"\"\<*.dxf\>\"", "->", "\"\<DXF\>\""}], ",", 
+       RowBox[{"\"\<*.edf\>\"", "->", "\"\<EDF\>\""}], ",", 
+       RowBox[{"\"\<*.emf\>\"", "->", "\"\<EMF\>\""}], ",", 
+       RowBox[{"\"\<*.eml\>\"", "->", "\"\<EML\>\""}], ",", 
+       RowBox[{"\"\<*.enc\>\"", "->", "\"\<UUE\>\""}], ",", 
+       RowBox[{"\"\<*.ent\>\"", "->", "\"\<PDB\>\""}], ",", 
+       RowBox[{"\"\<*.eps\>\"", "->", "\"\<EPS\>\""}], ",", 
+       RowBox[{"\"\<*.epsf\>\"", "->", "\"\<EPS\>\""}], ",", 
+       RowBox[{"\"\<*.epsi\>\"", "->", "\"\<EPS\>\""}], ",", 
+       RowBox[{"\"\<*.fcs\>\"", "->", "\"\<FCS\>\""}], ",", 
+       RowBox[{"\"\<*.fsa\>\"", "->", "\"\<FASTA\>\""}], ",", 
+       RowBox[{"\"\<*.fasta\>\"", "->", "\"\<FASTA\>\""}], ",", 
+       RowBox[{"\"\<*.fa\>\"", "->", "\"\<FASTA\>\""}], ",", 
+       RowBox[{"\"\<*.mpfa\>\"", "->", "\"\<FASTA\>\""}], ",", 
+       RowBox[{"\"\<*.fq\>\"", "->", "\"\<FASTQ\>\""}], ",", 
+       RowBox[{"\"\<*.fastq\>\"", "->", "\"\<FASTQ\>\""}], ",", 
+       RowBox[{"\"\<*.fit\>\"", "->", "\"\<FITS\>\""}], ",", 
+       RowBox[{"\"\<*.fits\>\"", "->", "\"\<FITS\>\""}], ",", 
+       RowBox[{"\"\<*.flac\>\"", "->", "\"\<FLAC\>\""}], ",", 
+       RowBox[{"\"\<*.flv\>\"", "->", "\"\<FLV\>\""}], ",", 
+       RowBox[{"\"\<*.g6\>\"", "->", "\"\<Graph6\>\""}], ",", 
+       RowBox[{"\"\<*.gif\>\"", "->", "\"\<GIF\>\""}], ",", 
+       RowBox[{"\"\<*.gml\>\"", "->", "\"\<Graphlet\>\""}], ",", 
+       RowBox[{"\"\<*.grd\>\"", "->", "\"\<SurferGrid\>\""}], ",", 
+       RowBox[{"\"\<*.grib\>\"", "->", "\"\<GRIB\>\""}], ",", 
+       RowBox[{"\"\<*.grb\>\"", "->", "\"\<GRIB\>\""}], ",", 
+       RowBox[{"\"\<*.gv\>\"", "->", "\"\<DOT\>\""}], ",", 
+       RowBox[{"\"\<*.gw\>\"", "->", "\"\<LEDA\>\""}], ",", 
+       RowBox[{"\"\<*.gxl\>\"", "->", "\"\<GXL\>\""}], ",", 
+       RowBox[{"\"\<*.graphml\>\"", "->", "\"\<GraphML\>\""}], ",", 
+       RowBox[{"\"\<*.gz\>\"", "->", "\"\<GZIP\>\""}], ",", 
+       RowBox[{"\"\<*.hdf\>\"", "->", "\"\<HDF\>\""}], ",", 
+       RowBox[{"\"\<*.hmm\>\"", "->", "\"\<HMMER\>\""}], ",", 
+       RowBox[{"\"\<*.htm\>\"", "->", "\"\<HTML\>\""}], ",", 
+       RowBox[{"\"\<*.html\>\"", "->", "\"\<HTML\>\""}], ",", 
+       RowBox[{"\"\<*.sds\>\"", "->", "\"\<HDF\>\""}], ",", 
+       RowBox[{"\"\<*.h5\>\"", "->", "\"\<HDF5\>\""}], ",", 
+       RowBox[{"\"\<*.icc\>\"", "->", "\"\<ICC\>\""}], ",", 
+       RowBox[{"\"\<*.icm\>\"", "->", "\"\<ICC\>\""}], ",", 
+       RowBox[{"\"\<*.icns\>\"", "->", "\"\<ICNS\>\""}], ",", 
+       RowBox[{"\"\<*.ico\>\"", "->", "\"\<ICO\>\""}], ",", 
+       RowBox[{"\"\<*.ics\>\"", "->", "\"\<ICS\>\""}], ",", 
+       RowBox[{"\"\<*.jar\>\"", "->", "\"\<ZIP\>\""}], ",", 
+       RowBox[{"\"\<*.jp2\>\"", "->", "\"\<JPEG2000\>\""}], ",", 
+       RowBox[{"\"\<*.j2k\>\"", "->", "\"\<JPEG2000\>\""}], ",", 
+       RowBox[{"\"\<*.jpc\>\"", "->", "\"\<JPEG2000\>\""}], ",", 
+       RowBox[{"\"\<*.jpg\>\"", "->", "\"\<JPEG\>\""}], ",", 
+       RowBox[{"\"\<*.jpeg\>\"", "->", "\"\<JPEG\>\""}], ",", 
+       RowBox[{"\"\<*.jfif\>\"", "->", "\"\<JPEG\>\""}], ",", 
+       RowBox[{"\"\<*.jvx\>\"", "->", "\"\<JVX\>\""}], ",", 
+       RowBox[{"\"\<*.kml\>\"", "->", "\"\<KML\>\""}], ",", 
+       RowBox[{"\"\<*.kmz\>\"", "->", "\"\<KML\>\""}], ",", 
+       RowBox[{"\"\<*.lgr\>\"", "->", "\"\<LEDA\>\""}], ",", 
+       RowBox[{"\"\<*.lmd\>\"", "->", "\"\<FCS\>\""}], ",", 
+       RowBox[{"\"\<*.lwo\>\"", "->", "\"\<LWO\>\""}], ",", 
+       RowBox[{"\"\<*.m\>\"", "->", "\"\<Package\>\""}], ",", 
+       RowBox[{"\"\<*.ma\>\"", "->", "\"\<Maya\>\""}], ",", 
+       RowBox[{"\"\<*.mat\>\"", "->", "\"\<MAT\>\""}], ",", 
+       RowBox[{"\"\<*.mbx\>\"", "->", "\"\<MBOX\>\""}], ",", 
+       RowBox[{"\"\<*.mbox\>\"", "->", "\"\<MBOX\>\""}], ",", 
+       RowBox[{"\"\<*.mesh\>\"", "->", "\"\<MESH\>\""}], ",", 
+       RowBox[{"\"\<*.mgf\>\"", "->", "\"\<MGF\>\""}], ",", 
+       RowBox[{"\"\<*.mid\>\"", "->", "\"\<MIDI\>\""}], ",", 
+       RowBox[{"\"\<*.mml\>\"", "->", "\"\<MathML\>\""}], ",", 
+       RowBox[{"\"\<*.mol\>\"", "->", "\"\<MOL\>\""}], ",", 
+       RowBox[{"\"\<*.mol2\>\"", "->", "\"\<MOL2\>\""}], ",", 
+       RowBox[{"\"\<*.mov\>\"", "->", "\"\<QuickTime\>\""}], ",", 
+       RowBox[{"\"\<*.mp3\>\"", "->", "\"\<MP3\>\""}], ",", 
+       RowBox[{"\"\<*.mtx\>\"", "->", "\"\<MTX\>\""}], ",", 
+       RowBox[{"\"\<*.mulaw\>\"", "->", "\"\<AU\>\""}], ",", 
+       RowBox[{"\"\<*.mx\>\"", "->", "\"\<MX\>\""}], ",", 
+       RowBox[{"\"\<*.nb\>\"", "->", "\"\<NB\>\""}], ",", 
+       RowBox[{"\"\<*.nc\>\"", "->", "\"\<NETCDF\>\""}], ",", 
+       RowBox[{"\"\<*.ndk\>\"", "->", "\"\<NDK\>\""}], ",", 
+       RowBox[{"\"\<*.net\>\"", "->", "\"\<PAJEK\>\""}], ",", 
+       RowBox[{"\"\<*.nex\>\"", "->", "\"\<NEXUS\>\""}], ",", 
+       RowBox[{"\"\<*.noff\>\"", "->", "\"\<NOFF\>\""}], ",", 
+       RowBox[{"\"\<*.nxs\>\"", "->", "\"\<NEXUS\>\""}], ",", 
+       RowBox[{"\"\<*.obj\>\"", "->", "\"\<OBJ\>\""}], ",", 
+       RowBox[{"\"\<*.ods\>\"", "->", "\"\<ODS\>\""}], ",", 
+       RowBox[{"\"\<*.off\>\"", "->", "\"\<OFF\>\""}], ",", 
+       RowBox[{"\"\<*.oga\>\"", "->", "\"\<OGG\>\""}], ",", 
+       RowBox[{"\"\<*.ogg\>\"", "->", "\"\<OGG\>\""}], ",", 
+       RowBox[{"\"\<*.pcx\>\"", "->", "\"\<PCX\>\""}], ",", 
+       RowBox[{"\"\<*.pbm\>\"", "->", "\"\<PBM\>\""}], ",", 
+       RowBox[{"\"\<*.pgm\>\"", "->", "\"\<PGM\>\""}], ",", 
+       RowBox[{"\"\<*.ppm\>\"", "->", "\"\<PPM\>\""}], ",", 
+       RowBox[{"\"\<*.pnm\>\"", "->", "\"\<PNM\>\""}], ",", 
+       RowBox[{"\"\<*.png\>\"", "->", "\"\<PNG\>\""}], ",", 
+       RowBox[{"\"\<*.pdb\>\"", "->", "\"\<PDB\>\""}], ",", 
+       RowBox[{"\"\<*.pdf\>\"", "->", "\"\<PDF\>\""}], ",", 
+       RowBox[{"\"\<*.pic\>\"", "->", "\"\<PXR\>\""}], ",", 
+       RowBox[{"\"\<*.pic\>\"", "->", "\"\<PICT\>\""}], ",", 
+       RowBox[{"\"\<*.pict\>\"", "->", "\"\<PICT\>\""}], ",", 
+       RowBox[{"\"\<*.pct\>\"", "->", "\"\<PICT\>\""}], ",", 
+       RowBox[{"\"\<*.ply\>\"", "->", "\"\<PLY\>\""}], ",", 
+       RowBox[{"\"\<*.pov\>\"", "->", "\"\<POV\>\""}], ",", 
+       RowBox[{"\"\<*.pxr\>\"", "->", "\"\<PXR\>\""}], ",", 
+       RowBox[{"\"\<*.qt\>\"", "->", "\"\<QuickTime\>\""}], ",", 
+       RowBox[{"\"\<*.raw\>\"", "->", "\"\<RawBitmap\>\""}], ",", 
+       RowBox[{"\"\<*.rib\>\"", "->", "\"\<RIB\>\""}], ",", 
+       RowBox[{"\"\<*.rtf\>\"", "->", "\"\<RTF\>\""}], ",", 
+       RowBox[{"\"\<*.sdf\>\"", "->", "\"\<SDF\>\""}], ",", 
+       RowBox[{"\"\<*.sct\>\"", "->", "\"\<SCT\>\""}], ",", 
+       RowBox[{"\"\<*.ch\>\"", "->", "\"\<SCT\>\""}], ",", 
+       RowBox[{"\"\<*.ct\>\"", "->", "\"\<SCT\>\""}], ",", 
+       RowBox[{"\"\<*.sff\>\"", "->", "\"\<SFF\>\""}], ",", 
+       RowBox[{"\"\<*.sp3\>\"", "->", "\"\<SP3\>\""}], ",", 
+       RowBox[{"\"\<*.stl\>\"", "->", "\"\<STL\>\""}], ",", 
+       RowBox[{"\"\<*.s6\>\"", "->", "\"\<Sparse6\>\""}], ",", 
+       RowBox[{"\"\<*.smi\>\"", "->", "\"\<SMILES\>\""}], ",", 
+       RowBox[{"\"\<*.snd\>\"", "->", "\"\<SND\>\""}], ",", 
+       RowBox[{"\"\<*.svg\>\"", "->", "\"\<SVG\>\""}], ",", 
+       RowBox[{"\"\<*.svgz\>\"", "->", "\"\<SVGZ\>\""}], ",", 
+       RowBox[{"\"\<*.swf\>\"", "->", "\"\<SWF\>\""}], ",", 
+       RowBox[{"\"\<*.tar\>\"", "->", "\"\<TAR\>\""}], ",", 
+       RowBox[{"\"\<*.tex\>\"", "->", "\"\<TeX\>\""}], ",", 
+       RowBox[{"\"\<*.tga\>\"", "->", "\"\<TGA\>\""}], ",", 
+       RowBox[{"\"\<*.tgf\>\"", "->", "\"\<TGF\>\""}], ",", 
+       RowBox[{"\"\<*.tgz\>\"", "->", "\"\<GZIP\>\""}], ",", 
+       RowBox[{"\"\<*.tff\>\"", "->", "\"\<TIFF\>\""}], ",", 
+       RowBox[{"\"\<*.tif\>\"", "->", "\"\<TIFF\>\""}], ",", 
+       RowBox[{"\"\<*.tiff\>\"", "->", "\"\<TIFF\>\""}], ",", 
+       RowBox[{"\"\<*.tsv\>\"", "->", "\"\<TSV\>\""}], ",", 
+       RowBox[{"\"\<*.txt\>\"", "->", "\"\<Text\>\""}], ",", 
+       RowBox[{"\"\<*.uue\>\"", "->", "\"\<UUE\>\""}], ",", 
+       RowBox[{"\"\<*.w64\>\"", "->", "\"\<Wave64\>\""}], ",", 
+       RowBox[{"\"\<*.wav\>\"", "->", "\"\<WAV\>\""}], ",", 
+       RowBox[{"\"\<*.webp\>\"", "->", "\"\<WebP\>\""}], ",", 
+       RowBox[{"\"\<*.wdx\>\"", "->", "\"\<WDX\>\""}], ",", 
+       RowBox[{"\"\<*.wlnet\>\"", "->", "\"\<WLNet\>\""}], ",", 
+       RowBox[{"\"\<*.wmf\>\"", "->", "\"\<WMF\>\""}], ",", 
+       RowBox[{"\"\<*.html\>\"", "->", "\"\<XHTML\>\""}], ",", 
+       RowBox[{"\"\<*.htm\>\"", "->", "\"\<XHTML\>\""}], ",", 
+       RowBox[{"\"\<*.xhtml\>\"", "->", "\"\<XHTML\>\""}], ",", 
+       RowBox[{"\"\<*.xbm\>\"", "->", "\"\<XBM\>\""}], ",", 
+       RowBox[{"\"\<*.xht\>\"", "->", "\"\<XHTML\>\""}], ",", 
+       RowBox[{"\"\<*.xml\>\"", "->", "\"\<XML\>\""}], ",", 
+       RowBox[{"\"\<*.xml\>\"", "->", "\"\<ExpressionML\>\""}], ",", 
+       RowBox[{"\"\<*.xml\>\"", "->", "\"\<XHTML\>\""}], ",", 
+       RowBox[{"\"\<*.xml\>\"", "->", "\"\<XHTMLMathML\>\""}], ",", 
+       RowBox[{"\"\<*.xls\>\"", "->", "\"\<XLS\>\""}], ",", 
+       RowBox[{"\"\<*.xlsx\>\"", "->", "\"\<XLSX\>\""}], ",", 
+       RowBox[{"\"\<*.wrl\>\"", "->", "\"\<VRML\>\""}], ",", 
+       RowBox[{"\"\<*.vtk\>\"", "->", "\"\<VTK\>\""}], ",", 
+       RowBox[{"\"\<*.x3d\>\"", "->", "\"\<X3D\>\""}], ",", 
+       RowBox[{"\"\<*.xyz\>\"", "->", "\"\<XYZ\>\""}], ",", 
+       RowBox[{"\"\<*.zip\>\"", "->", "\"\<ZIP\>\""}], ",", 
+       RowBox[{"\"\<*.zpr\>\"", "->", "\"\<ZPR\>\""}], ",", 
+       RowBox[{"\"\<*.cha\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.che\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.cra\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.cre\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.csa\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.cse\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.cua\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.cue\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.cza\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.cze\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.pha\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.phe\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.pra\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.pre\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.psa\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.pse\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.pua\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.pue\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.pza\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.pze\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.rha\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.rhe\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.rra\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.rre\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.rsa\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.rse\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.rua\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.rue\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.rza\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.rze\>\"", "->", "\"\<HarwellBoeing\>\""}], ",", 
+       RowBox[{"\"\<*.json\>\"", "->", "\"\<JSON\>\""}], ",", 
+       RowBox[{"\"\<*.bay\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.bmq\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.cr2\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.crw\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.cs1\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.dc2\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.dcr\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.dng\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.erf\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.fff\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.hdr\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.k25\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.kdc\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.mdc\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.mos\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.mrw\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.nef\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.orf\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.pef\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.pxn\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.raf\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.raw\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.rdc\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.sr2\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.srf\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.x3f\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.arw\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.3fr\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.cine\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.ia\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.kc2\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.mef\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.nrw\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.qtk\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.rw2\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.sti\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.rwl\>\"", "->", "\"\<Raw\>\""}], ",", 
+       RowBox[{"\"\<*.tex\>\"", "->", "\"\<TEX\>\""}], ",", 
+       RowBox[{"\"\<*.latex\>\"", "->", "\"\<LATEX\>\""}], ",", 
+       RowBox[{"\"\<*.tcx\>\"", "->", "\"\<TECHEXPLORER\>\""}], ",", 
+       RowBox[{"\"\<*.tcx\>\"", "->", "\"\<TCX\>\""}], ",", 
+       RowBox[{"\"\<*.css\>\"", "->", "\"\<CSS\>\""}]}], "}"}]}], "}"}], ",", 
+   
+   RowBox[{"Needs", "@", "\"\<CellsToTeX`\>\""}]}], "]"}]], "Input",
+ CellLabel->"In[30]:=",ExpressionUUID->"8e3ebe78-83bf-404a-a221-27319ca50102"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"$PrePrint", "=", "TraditionalForm"}]], "Input",
+ CellChangeTimes->{{3.889137265225069*^9, 3.889137269958865*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"58919f4a-c0a8-40d5-bcc0-ef4768d2e37a"],
+
+Cell[BoxData[
+ FormBox["TraditionalForm", TraditionalForm]], "Output",
+ CellChangeTimes->{{3.8891372705958347`*^9, 3.88913728497402*^9}, 
+   3.8891376175686293`*^9, 3.889137703805952*^9, 3.889137929804875*^9, 
+   3.8891379720568857`*^9},
+ CellLabel->"Out[31]=",ExpressionUUID->"fb4cfcff-785a-46ef-bf5c-154374619140"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[Alpha]", " ", 
+      SuperscriptBox["x", "2"]}], "+", 
+     RowBox[{"\[Beta]", " ", "x"}], "+", "\[Gamma]"}], "==", "0"}], ",", 
+   "x"}], "]"}]], "Input",
+ CellChangeTimes->{{3.889136248661614*^9, 3.889136256730682*^9}, {
+  3.889137917917297*^9, 3.889137922817951*^9}, {3.8891379610439663`*^9, 
+  3.889137968328442*^9}},
+ CellLabel->"In[32]:=",ExpressionUUID->"cd565055-37c9-4e07-a7b9-f4c1a22e4919"],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"x", "\[Rule]", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"-", 
+         SqrtBox[
+          RowBox[{
+           SuperscriptBox["\[Beta]", "2"], "-", 
+           RowBox[{"4", " ", "\[Alpha]", " ", "\[Gamma]"}]}]]}], "-", 
+        "\[Beta]"}], 
+       RowBox[{"2", " ", "\[Alpha]"}]]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", "\[Rule]", 
+      FractionBox[
+       RowBox[{
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox["\[Beta]", "2"], "-", 
+          RowBox[{"4", " ", "\[Alpha]", " ", "\[Gamma]"}]}]], "-", 
+        "\[Beta]"}], 
+       RowBox[{"2", " ", "\[Alpha]"}]]}], "}"}]}], "}"}], 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.8891362570402718`*^9, 3.889136464966854*^9, 3.8891372025998087`*^9, 
+   3.889137285033412*^9, 3.88913761757382*^9, 3.889137703811925*^9, {
+   3.889137923059909*^9, 3.8891379298133163`*^9}, {3.889137968853223*^9, 
+   3.889137972063921*^9}},
+ CellLabel->"Out[32]=",ExpressionUUID->"c73c2711-d8e7-46f7-8d22-098c7b84227a"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"nbObj", "=", 
+     RowBox[{"NotebookGet", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"CurrentValue", "[", 
+      RowBox[{"nbObj", ",", "CellLabelAutoDelete"}], "]"}], "=", "False"}], 
+    ";", "\n", 
+    RowBox[{"SelectionMove", "[", 
+     RowBox[{"nbObj", ",", "All", ",", "Notebook"}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"SelectionEvaluate", "[", 
+     RowBox[{"nbObj", ",", "Before"}], "]"}], ";"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"SetOptions", "[", 
+     RowBox[{"CellToTeX", ",", 
+      RowBox[{"\"\<CurrentCellIndex\>\"", "->", "Automatic"}]}], "]"}], ";"}],
+    "\n", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<export.tex\>\""}],
+         "}"}], "]"}], ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"NotebookGet", "[", "]"}], "/.", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Notebook", "[", 
+            RowBox[{"x_List", ",", "y___"}], "]"}], ":>", 
+           RowBox[{"Notebook", "[", 
+            RowBox[{
+             RowBox[{"Drop", "[", 
+              RowBox[{
+               RowBox[{"Drop", "[", 
+                RowBox[{"x", ",", "1"}], "]"}], ",", 
+               RowBox[{"-", "1"}]}], "]"}], ",", "y"}], "]"}]}], "}"}]}], 
+        ")"}], "/.", " ", 
+       RowBox[{
+        RowBox[{"cell", ":", 
+         RowBox[{"Cell", "[", 
+          RowBox[{"_", ",", "__"}], "]"}]}], ":>", 
+        RowBox[{"Cell", "[", 
+         RowBox[{
+          RowBox[{"CellToTeX", "[", "cell", "]"}], ",", "\"\<Final\>\""}], 
+         "]"}]}]}], ",", "\"\<TeX\>\"", ",", 
+      RowBox[{"\"\<FullDocument\>\"", "->", "False"}], ",", 
+      RowBox[{"\"\<ConversionRules\>\"", "->", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Final\>\"", "->", "Identity"}], "}"}]}]}], "]"}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.889135337914052*^9, 3.8891353396430902`*^9}, {
+  3.889135482953334*^9, 3.889135493725464*^9}, {3.889136003526486*^9, 
+  3.889136003751479*^9}, {3.8891363682893744`*^9, 3.8891363965028257`*^9}, {
+  3.889136431541943*^9, 3.8891364343528967`*^9}, {3.8891365701708727`*^9, 
+  3.889136570976493*^9}, {3.889136627100225*^9, 3.889136631430287*^9}, {
+  3.889136691499406*^9, 3.889136703437771*^9}, {3.889136806097541*^9, 
+  3.889136842696519*^9}, {3.8891368733739433`*^9, 3.8891368974897747`*^9}, {
+  3.889137096370768*^9, 3.8891371011666822`*^9}, {3.889137138047491*^9, 
+  3.889137152806518*^9}, {3.8891371901648483`*^9, 3.8891371967779293`*^9}, {
+  3.8891375526659937`*^9, 3.889137555966547*^9}, {3.889137601417087*^9, 
+  3.889137614839551*^9}, {3.889137654957314*^9, 3.889137695870273*^9}},
+ CellLabel->"In[33]:=",ExpressionUUID->"3ba43dd2-21c1-4ac8-8ebe-c3c84039ca21"]
+},
+WindowSize->{808, 731},
+WindowMargins->{{-1112, Automatic}, {-15, Automatic}},
+FrontEndVersion->"13.1 for Mac OS X ARM (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"550e4f3e-096a-4806-9d8d-c6ecbb6956ff"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 16084, 259, 1354, "Input",ExpressionUUID->"8e3ebe78-83bf-404a-a221-27319ca50102"],
+Cell[CellGroupData[{
+Cell[16667, 283, 216, 3, 30, "Input",ExpressionUUID->"58919f4a-c0a8-40d5-bcc0-ef4768d2e37a"],
+Cell[16886, 288, 316, 5, 30, "Output",ExpressionUUID->"fb4cfcff-785a-46ef-bf5c-154374619140"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17239, 298, 490, 12, 33, "Input",ExpressionUUID->"cd565055-37c9-4e07-a7b9-f4c1a22e4919"],
+Cell[17732, 312, 1079, 31, 57, "Output",ExpressionUUID->"c73c2711-d8e7-46f7-8d22-098c7b84227a"]
+}, Open  ]],
+Cell[18826, 346, 2909, 69, 199, "Input",ExpressionUUID->"3ba43dd2-21c1-4ac8-8ebe-c3c84039ca21"]
+}
+]
+*)
+

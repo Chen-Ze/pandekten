@@ -1,0 +1,45 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage{tgadventor}
+\renewcommand{\familydefault}{\sfdefault}
+
+%\setmainfont{arial}
+
+\title{Arrow In Equation}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+This is a test.
+
+\begin{equation*}
+    E = \tikzmarknode{mass}{m} c^2
+\end{equation*}
+\lipsum[1]
+\begin{tikzpicture}[overlay, remember picture, node distance=.5cm]
+    \draw (mass) node (desc) [below=5em]{Description};
+    \draw[-latex] (mass) ++ (0, -.5em) -- (desc);
+\end{tikzpicture}
+
+\vspace{10em}
+
+\begin{equation}
+    \hspace{10em}\int \mathrm{d} \Omega^A \mathrm{d} \Omega^B \tikzmarknode{dGdO}{\big(\frac{\mathrm{d} \Gamma_{ab}}{\mathrm{d} \Omega^A}\big)} R_{ab,\bar{a}\bar{b}} \big(\frac{\mathrm{d} \bar{\Gamma}_{\bar{a}\bar{b}}}{\mathrm{d} \Omega^B}\big) \notag
+\end{equation}
+\begin{equation}
+    \tikzmarknode{dGdODef}{\frac{\mathrm{d} \Gamma_{ab}}{\mathrm{d} \Omega}} \propto \delta_{ab} + \kappa\, \sigma_{ab}^i\, \Omega^i
+\end{equation}
+\begin{tikzpicture}[overlay, remember picture, node distance=.5cm]
+    \draw[-latex] (dGdO) -- (dGdODef);
+\end{tikzpicture}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

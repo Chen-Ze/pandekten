@@ -11,6 +11,53 @@
 
 \maketitle
 
+\section{Linear Algebra}
+
+\subsection{Projective Hilbert Space}
+
+\begin{definition}{Transition Probability}{transition_probability}
+    \begin{itemize}
+        \item Let $H$ be a Hilbert space over $\mathbb{C}$.
+        \item $\gamma: H\rightarrow H/\mathbb{C}^\times$ be the projection.
+    \end{itemize}
+    Then for $\varphi,\psi\in H/\mathbb{C}^\times$, the transition probability is defined by
+    \[ \delta(\varphi,\psi) = \frac{\abs{\langle f,g \rangle}^2}{\norm{f}^2 \norm{g}^2}, \]
+    where $f,g\in H$ such that $\gamma(f) = \varphi$ and $\gamma(g) = \psi$.
+\end{definition}
+
+\begin{definition}{Projective Transformation}{projective_transformation}
+    \begin{itemize}
+        \item Let $H$ be a Hilbert space over $\mathbb{C}$.
+        \item $\gamma: H\rightarrow H/\mathbb{C}^\times$ be the projection.
+    \end{itemize}
+    A projective transformation is a bijective map $T: H/\mathbb{C}^\times \rightarrow H/\mathbb{C}^\times$ such that
+    \[ \delta(T\varphi,T\psi) = \delta(\varphi,\psi) \]
+    for all $\varphi,\psi\in H/\mathbb{C}^\times$, where $\delta$ is the transition probability.
+\end{definition}
+
+\begin{definition}{Induced Projective Transformation}{induced_projective_transformation}
+    \begin{itemize}
+        \item Let $H$ be a Hilbert space over $\mathbb{C}$.
+        \item $\gamma: H\rightarrow H/\mathbb{C}^\times$ be the projection.
+    \end{itemize}
+    $\hat{\gamma}:\operatorname{U}(H)\rightarrow \operatorname{Aut}(H/\mathbb{C}^\times)$ is a group homomorphism defined by
+    \[ \hat{\gamma}(U)(\varphi) = \gamma(U(f)) \]
+    where $\gamma(f) = \varphi$ and $\operatorname{Aut}(H/\mathbb{C}^\times)$ denotes the projective transformation group.
+\end{definition}
+
+\begin{theorem}{Wigner's Theorem}{wigner_s_theorem}
+    \begin{itemize}
+        \item Let $H$ be a Hilbert space over $\mathbb{C}$.
+        \item $\gamma: H\rightarrow H/\mathbb{C}^\times$ be the projection.
+        \item $\operatorname{Aut}(H/\mathbb{C}^\times)$ denotes the projective transformation group.
+    \end{itemize}
+    For every projective transformation $T\in \operatorname{Aut}(H/\mathbb{C}^\times)$, there exists a unitary or an anti-unitary operator $U$ with
+    \[ T = \hat{\gamma}(U) \]
+    where
+    \[ \hat{\gamma}(U)(\varphi) = \gamma(U(f)) \]
+    for $f\in H$ such that $\gamma(f) = \varphi$.
+\end{theorem}
+
 \section{Group}
 
 \subsection{Quotient Group}

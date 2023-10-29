@@ -1,0 +1,147 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\usepackage{quantikz}
+
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 4}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (1)}%
+\begingroup\minusbaseline
+\begin{center}
+    \begin{tabular}{c>{\(}c<{_L\)}}
+        000 & 0 \\
+        001 & 0 \\
+        010 & 0 \\
+        011 & 1 \\
+        100 & 0 \\
+        101 & 1 \\
+        110 & 1 \\
+        111 & 1
+    \end{tabular}
+\end{center}
+\endgroup
+
+\plabel{(2)}%
+Circled plus denotes CNOT gate. 
+\begin{center}
+    \begin{quantikz}
+        \lstick{$\ket{\psi}$} & \ctrl{1} & \ctrl{2} & \qw \\
+        \lstick{$\ket{0}$} & \targ{} & \qw & \qw \\
+        \lstick{$\ket{0}$} & \qw & \targ{} & \qw
+    \end{quantikz}
+\end{center}
+
+\plabel{(3)}%
+\begingroup\minusbaseline
+\begin{center}
+    \begin{tabular}{>{\(}c<{\)}ccc}
+        \toprule
+        & $Z_1 Z_2$ & $Z_2 Z_3$ & $Z_1 Z_3$ \\
+        \midrule
+        \ket{000} & $+1$ & $+1$ & $+1$ \\
+        \ket{001} & $+1$ & $-1$ & $-1$ \\
+        \ket{010} & $-1$ & $-1$ & $+1$ \\
+        \ket{011} & $-1$ & $+1$ & $-1$ \\
+        \ket{100} & $-1$ & $+1$ & $-1$ \\
+        \ket{101} & $-1$ & $-1$ & $+1$ \\
+        \ket{110} & $+1$ & $-1$ & $-1$ \\
+        \ket{111} & $+1$ & $+1$ & $+1$ \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+\endgroup
+
+\plabel{(4)}%
+We need only two parity measurements since the third is always the product of the first two.
+\begingroup\minusbaseline
+\begin{center}
+    \begin{tabular}{>{\(}c<{\)}cccc}
+        \toprule
+        & $Z_1 Z_2$ & $Z_2 Z_3$ & $Z_1 Z_3$ & Operation \\
+        \midrule
+        \ket{000} & $+1$ & $+1$ & $+1$ & $1$ \\
+        \ket{001} & $+1$ & $-1$ & $-1$ & $X_3$ \\
+        \ket{010} & $-1$ & $-1$ & $+1$ & $X_2$ \\
+        \ket{011} & $-1$ & $+1$ & $-1$ & $X_1$ \\
+        \ket{100} & $-1$ & $+1$ & $-1$ & $X_1$ \\
+        \ket{101} & $-1$ & $-1$ & $+1$ & $X_2$ \\
+        \ket{110} & $+1$ & $-1$ & $-1$ & $X_3$ \\
+        \ket{111} & $+1$ & $+1$ & $+1$ & $1$ \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+\endgroup
+
+\prule
+
+\plabel{(1)}%
+The state is encoded in a three-qubit entangled state by CPhase gate.
+The error is corrected by CCNot gate.
+
+\plabel{(2)}%
+\begingroup\minusbaseline%
+\begin{enumerate}
+    \item $Q_2$ is moved into resonance with the avoided crossing to transfer the population of $\ket{111}$ and $\ket{102}$.
+    \item $Q_2$ is moved suddenly further up in frequency to where its two-qubit phase with $Q_3$ is cancelled during the gate by accumulating a multiple of $2\pi$.
+    \item $Q_1$ is moved up to initiate the interaction between $\ket{102}$ and $\ket{003}$.
+    \item The population in $\ket{102}$ is transferred back to $\ket{111}$ by a reversing swap procedure.
+    \item The two-qubit phase between $Q_1$ and $Q_2$ is cancelled with an additional adiabatic interaction.
+\end{enumerate}
+\endgroup
+
+\plabel{(3)}%
+If at most one of $Q_1$ and $Q_3$ is $\ket{1}$, then either no error on $Q_2$ occurred.
+If both $Q_1$ and $Q_2$ is $\ket{1}$, then $Q_2$ is flipped and the CCNot gate flips $Q_2$ to get the correct state.
+
+\plabel{(4)}%
+If the error only occurs on $Q_2$ with $Q_2 = \ket{0}$ initially, before the CCNot gate the state is $\alpha\ket{000} + \beta\ket{111}$, and then the CCNot gate returns $Q_2$ to the correct state for both components.
+
+\plabel{(5)}%
+Final fidelity $\sim p^2$ since correction fails only if at least two errors occurs, which has probability $\sim p^2$.
+\par
+Even if no qubit occurs, the errors due to the extra gates and in $Q_1$ and $Q_3$ may incur error on $Q_2$.
+
+\plabel{(6)}%
+\begingroup\minusbaseline
+\begin{itemize}
+    \item Energy relaxation of the three qubits during the \SI{85}{\nano\second} measurement.
+    \item Qubit transition frequency drift during dataset collection.
+    \item Decoherence.
+\end{itemize}
+\endgroup
+
+\plabel{(7)}
+The phase-flip correction circuit is equivalent to the bit-flip one by adding a global $X(\pi/2)$ rotation and $X(-\pi/2)$ rotation before and after the error.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

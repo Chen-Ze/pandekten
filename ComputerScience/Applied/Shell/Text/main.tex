@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\newtcblisting{commandshell}{%
+colback=black,%
+colupper=white,%
+%colframe=yellow!75!black,%
+listing only,%
+listing options={style=tcblatex,language=sh},%
+every listing line={\textcolor{red}{\small\ttfamily\bfseries \$> }}}
+
+\tcbuselibrary{hooks, minted}
+
+\title{Text}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{grep}
+
+\begin{minted}[mathescape]{shell}
+# lines starting with e.g. '    3'
+grep -E "^\s\s\s\s\d"
+\end{minted}
+
+\section{cut}
+
+\begin{minted}[mathescape]{shell}
+# any number of spaces as delimiter
+tr -s ' ' < file | cut -d ' ' -f 8
+\end{minted}
+
+\section{sed}
+
+\begin{minted}[mathescape]{shell}
+# replace 'o' with '0' and output to the terminal
+sed 's/o/0/g' input.file
+\end{minted}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

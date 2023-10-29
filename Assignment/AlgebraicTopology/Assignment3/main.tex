@@ -1,0 +1,174 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 3}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{2.2.2}%
+If for all $x\in S^{2n}$, $f(x)\neq \pm x$, then projecting $f(x) - x$ onto the tangent plane of $S^{2n}$ at $x$ yields a tangent vector field of $S^{2n}$ nonzero everywhere, which is impossible.
+\par
+Let $f:\mathbb{R}P^{2n} \rightarrow \mathbb{R}P^{2n}$ be a map.
+Then $f$ induces a map $S^{2n} \rightarrow \mathbb{R}P^{2n}$, which can be lifted to a map $g:S^{2n} \rightarrow S^{2n}$.
+Since there is a point $x\in S^{2n}$ satisfying $g(x) = \pm x$, the projection of $x$ onto $\mathbb{R}P^{2n}$ gives a fixed point of $f$.
+\par
+The linear transformation $\mathbb{R}^{2n} \rightarrow \mathbb{R}^{2n}$ given by
+\[ x \mapsto \begin{pmatrix}
+    0 & -1 & & & \\
+    1 &  0 & & & \\
+      &    & \ddots & & \\
+      & & & 0 & -1 \\
+      & & & 1 & 0
+\end{pmatrix}x \]
+has no eigenvectors, and therefore induces a map $\mathbb{R}P^{2n-1} \rightarrow \mathbb{R}P^{2n-1}$ without fixed point.
+
+\plabel{4}%
+Let $f:D^n \rightarrow S^n$ be the obvious surjective map that send $\partial D^n$ to a single point of $S^n$.
+Then $f$ induces a map from
+\[ S^n = D^n \sqcup_{\partial D^n} D^n \]
+to $S^n$.
+This map has degree zero.
+
+\plabel{5}%
+For $u\in S^n$, let $r_u:S^n \rightarrow S^n$ be
+\[ r_u(x) = x - 2 x\cdot u, \]
+i.e. reflection through the hyperplane orthogonal to $u$.
+Then for $u,v\in S^n$, let $\gamma$ be a path connecting $u$ and $v$.
+Then $r_\gamma: S^n \times [0,1] \rightarrow S^n$ defined by
+\[ r_\gamma(x,t) = r_{\gamma(t)}(x) \]
+is a homotopy from $r_u$ to $r_v$.
+
+\plabel{8}%
+Since $\hat{f}^{-1}(\infty) = \infty$, the degree of $\hat{f}$ equal to the local degree at $\infty$.
+Since $f(z) = a_n z^k (1+\bigO(1/z))$, the local degree at $\infty$ is $k$.
+\par
+Let $z_0$ be a zero of $f$. Then $f(z) = c \cdot (z-z_0)^r (1 + \bigO(z-z_0))$.
+Therefore the local degree at $z_0$ is $r$.
+
+\plabel{9 (a)}%
+\begingroup\minusbaseline
+\[ \tilde{H}_n(S^1 \vee S^2) = \tilde{H}_n(S^1) \oplus \tilde{H}_n(S^2) = \begin{cases}
+    0, & n>2,\\
+    \mathbb{Z},& n=2, \\
+    \mathbb{Z},& n=1, \\
+    \mathbb{Z}\oplus \mathbb{Z}, & n=0.
+\end{cases} \]
+\endgroup
+Therefore, $H_n = \mathbb{Z}$ for $n=0,1,2$.
+$H_n = 0$ for $n>2$.
+
+\plabel{(b)}%
+Since $\mathbb{Z}$ is a free module over $\mathbb{Z}$,
+\begin{align*}
+    H_0(S^1 \times (S^1 \vee S^1)) &= H_0(S^1) \otimes H_0(S^1 \vee S^1) = \mathbb{Z}, \\
+    H_1(S^1 \times (S^1 \vee S^1)) &= H_0(S^1) \otimes H_1(S^1\vee S^1) \oplus  H_1(S^1) \otimes H_0(S^1\vee S^1) \\
+    &= \mathbb{Z} \oplus \mathbb{Z} \oplus \mathbb{Z}, \\
+    H_2(S^1 \times (S^1 \vee S^1)) &= H_1(S^1) \otimes H_1(S^1\vee S^1) = \mathbb{Z} \oplus \mathbb{Z}, \\
+    H_n(S^1 \times (S^1 \vee S^1)) &= 0,\quad \text{if } n>2.
+\end{align*}
+
+\plabel{(c)}%
+Let $A_1, A_2, A_3$ be three cylinders and $B$ be $D^2$ minus two inner disks.
+Let $A = A_1 \sqcup A_2 \sqcup A_3$ be the three cylinders glued along a circle.
+Then
+\[ H_2(A) = 0, H_1(A) = H_0(A) = \mathbb{Z}. \]
+Moreover,
+\[ H_2(B) =0, H_1(B) = \mathbb{Z} \oplus \mathbb{Z}, H_0(B) = \mathbb{Z}. \]
+Now $X = A \sqcup B$ is the complex in the question.
+Then we have a sequence
+\begin{align*}
+    0 &\rightarrow H_2(A\cap {B}) (=0) \rightarrow H_2(A)\oplus H_2(B) (=0) \rightarrow H_2(X) \\
+    &\rightarrow H_1(A\cap {B})(=\mathbb{Z}\oplus \mathbb{Z} \oplus \mathbb{Z}) \rightarrow H_1(A)\oplus H_1(B) (=\mathbb{Z}\oplus \mathbb{Z} \oplus \mathbb{Z}) \rightarrow H_1(X) \\
+    &\rightarrow H_0(A\cap {B})(=\mathbb{Z}\oplus \mathbb{Z} \oplus \mathbb{Z}) \rightarrow H_0(A)\oplus H_0(B) (=\mathbb{Z}\oplus \mathbb{Z}) \rightarrow H_0(X) (=\mathbb{Z}) \\
+    &\rightarrow 0.
+\end{align*}
+We find
+\[ H_2(X) = 0, H_1(X) = \mathbb{Z} \oplus \mathbb{Z}, H_0(X) = \mathbb{Z}. \]
+
+\plabel{(d)}%
+The cell structure is given by one $0$-cell, two $1$-cells, and one $2$-cell.
+The boundary maps are trivial.
+Therefore,
+\[ H_2 = \mathbb{Z}, H_1 = \mathbb{Z} \oplus \mathbb{Z}, H_0 = \mathbb{Z}. \]
+
+\plabel{12}%
+The map takes the single generator of $H_2(S^1 \times S^1)$, i.e. the $2$-cell, to the single generator of $H_2(S^2)$, and is therefore an isomorphism.
+\par
+Since $S^2$ is simply-connected, $S^2 \rightarrow S^1 \times S^1$ can be lifted to $S^2 \rightarrow \mathbb{R}^2$.
+Since $\mathbb{R}^2$ is nullhomotopic, the map is also nullhomotopic.
+
+\plabel{14}%
+\textbf{Odd $n$:}
+Both $H_n(S^n)$ and $H_n(\mathbb{R}P^n)$ are generated by a single $n$-cell.
+The induced map $H_n(S^n) \rightarrow H_n(\mathbb{R}P^n)$ is a multiplication by $2$.
+Therefore the induced map $H_n(S^n) \rightarrow H_n(S^n)$ has degree divisible by $2$.
+\par
+Map of degree $2k$ could be constructed composing a map from the $n$-cell of $\mathbb{R}P^n$ to $S^n$ of degree $k$ with the projection $S^n \rightarrow \mathbb{R}P^n$.
+
+\textbf{Even $n$:}
+$H_n(\mathbb{R}P^n) = 0$.
+Therefore the induced map $H_n(S^n) \rightarrow H_n(S^n)$ is zero.
+
+\plabel{19}%
+The chain complex is given by
+\begin{equation*}
+    0 \rightarrow (C_n=)\mathbb{Z} \xrightarrow{} \mathbb{Z} \xrightarrow{} \cdots \xrightarrow{} \mathbb{Z} \xrightarrow{} (C_{m+1}=)\mathbb{Z} \xrightarrow{} 0 \rightarrow \cdots \rightarrow 0 \rightarrow \mathbb{Z} \rightarrow 0,
+\end{equation*}
+i.e. $C_i = \mathbb{Z}$ for $m<i\le n$ and $i=0$; $C_i = 0$ otherwise.
+Therefore,
+\begin{equation*}
+    H_k(\mathbb{R}P^n/\mathbb{R}P^m) = \begin{cases}
+        \mathbb{Z} & \text{for $k=0$, for $k=n$ odd, for $k=m+1$ where $m$ odd}, \\
+        \mathbb{Z}_2 & \text{for $k$ odd where $m<k<n$}, \\
+        0 & \text{otherwise}.
+    \end{cases}
+\end{equation*}
+
+\plabel{20}%
+Let $r_n(X)$ denote the number of $n$-cells of $X$. Then
+\begin{align*}
+    \chi(X\times Y) &= \sum_n (-1)^n r_n(X\times Y) \\
+    &= \sum_n (-1)^n \sum_{i} r_{i}(X) r_{n-i}(Y) \\
+    &= \sum_i (-1)^i  r_{i}(X) \sum_j (-1)^j r_{j}(Y) \\
+    &= \chi(X) \chi(Y).
+\end{align*}
+
+\plabel{21}%
+Let $r_n(X)$ denote the number of $n$-cells of $X$.
+Since $r_n(X\cup Y) = r_n(X) + r_n(Y) - r_n(X\cap Y)$ and $\chi(X) = \sum_n (-1)^n r_n(X)$ we have $\chi(A \cup B) = \chi(A) + \chi(B) - \chi(A\cap B)$.
+
+\plabel{22}%
+Let $r_i(X)$ denote the number of $i$-cells of $X$.
+Then $r_i(\tilde{X}) = n\cdot r_i(X)$ since $\tilde{X}$ is an $n$-sheeted cover.
+Therefore $\chi(\tilde{X}) = \sum_i (-1)^i n\cdot r_i(X) = n\cdot \chi(X)$.
+
+\plabel{23}%
+Since $\chi(M_g) = 2 - 2g = n\chi(M_h) = 2 - 2h$ we find
+\[ g-1 = n(h-1). \]
+
+\end{document}

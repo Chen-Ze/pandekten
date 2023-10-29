@@ -1,0 +1,53 @@
+\documentclass{standalone}
+
+% Plotting
+\usepackage{tikz}
+\usetikzlibrary{calc}
+% quantikz breaks tikz-cd, see https://tex.stackexchange.com/questions/618330/quantikz-breaks-spacing-in-tikz-matrices-tikz-cd
+%\usetikzlibrary{quantikz}
+\usetikzlibrary{cd}
+\usepackage{pgfplots}
+
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    trig format plots=rad,
+    axis equal,
+    hide axis,
+    xmin=-1,
+    xmax=2,
+    ymin=-1,
+    ymax=1
+]
+\foreach \i in {1,4,...,49} {
+    \addplot[draw=black] table {plot\i.txt};
+}
+\foreach \i in {1,4,...,49} {
+    \addplot[draw=black] table {p-plot\i.txt};
+}
+
+\node at (axis cs: 0,0) [circle,fill,inner sep=1.5pt]{};
+\node at (axis cs: 1,0) [circle,fill,inner sep=1.5pt]{};
+
+\node[] at (axis cs: -0.5,-1) (x1) {$x_2$};
+\draw[-latex,lightgray] (x1) -- (axis cs: 0,0);
+
+\node[] at (axis cs: 1.5,-1) (x2) {$x_1$};
+\draw[-latex,lightgray] (x2) -- (axis cs: 1,0);
+
+\draw[thick,blue,dash pattern= on 4pt off 4pt] (axis cs:0,0) -- (axis cs: 1,0);
+\draw[thick,red,dash pattern= on 4pt off 4pt,dash phase=4pt] (axis cs:0,0) -- (axis cs: 1,0);
+
+\end{axis}
+
+%\foreach \x in {0,...,25}
+    %\foreach \y in {0,...,25}
+        
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,20 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+\usepackage{physics}
+
+\begin{document}
+\feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+    c1[dot, label=below:$x_1$] -- v [dot];
+    r[dot] -- c2[dot, label=below:$x_2$];
+    r -- v;
+    c3[dot, label=$x_3$] -- r1[dot];
+    v1[dot] -- c4[dot, label=$x_4$];
+    r1 -- v1;
+    r1 -- r;
+    v1 -- v;
+};
+\end{document}

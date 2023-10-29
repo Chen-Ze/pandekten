@@ -1,0 +1,119 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 2}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{2.1}%
+The forward pass has $P\times T \times B$ FLOPS while the backward pass has twice as many.
+Therefore it's $3\times P\times T \times B$ in total.
+
+\prule
+
+\plabel{2.2}%
+Heterogeneous:
+\begin{align*}
+    \dv{f(u_j)}{\sigma} = -\frac{(u_j-\theta) e^{-\frac{u_j - \theta}{\sigma }}}{\sigma ^2 \left(e^{-\frac{u_j - \theta}{\sigma }}+1\right)^2}.
+\end{align*}
+Homogeneous:
+\begin{align*}
+    \dv{f(u_j)}{\sigma} = -\frac{1}{N} \sum_{j=1}^N \frac{(u_j-\theta) e^{-\frac{u_j - \theta}{\sigma }}}{\sigma ^2 \left(e^{-\frac{u_j - \theta}{\sigma }}+1\right)^2}.
+\end{align*}
+
+\prule
+
+\plabel{2.3}%
+ReLU activation:
+Note that
+\begin{align*}
+    \operatorname{E}(x_\ell^2) &= \operatorname{E}\qty(\max(0,y_{\ell-1})^2) \\
+    &= \operatorname{E}\qty(\frac{y^2}{4} + \frac{y\abs{y}}{2} + \frac{\abs{y}^2}{4}) \\
+    &\xlongequal{\operatorname{E}(y) = 0} \frac{1}{2} \operatorname{Var}(y_{\ell - 1}).
+\end{align*}
+Therefore
+\begin{align*}
+    \operatorname{Var}(\grad x_\ell) &= \hat{n}_\ell \operatorname{Var}(W_\ell \grad y_\ell) \\
+    &\xlongequal{\operatorname{E}(W_\ell) = \operatorname{E}(y_\ell) = 0} \hat{n}_\ell \operatorname{Var}(W_\ell) \operatorname{Var}(\grad y_\ell) \\
+    &= \frac{1}{2} \hat{n}_\ell \operatorname{Var}(W_\ell) \operatorname{Var}(\grad x_{\ell+1}).
+\end{align*}
+The case for linear activation follows similarly.
+
+\prule
+
+\plabel{2.4}%
+$p_1 = p_3 = 0.5$, $p_2 = 0.75$.
+
+\prule
+\plabel{2.5}%
+For the numerical values of (a) -- (d), see the document attached at the end.
+
+\plabel{(e)}%
+CE is preferred.
+Smaller $\sigma$ does help.
+
+\prule
+\plabel{2.6(a)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \grad_w \mathcal{L} &= (X^\intercal X + \lambda I) w - X^\intercal y = 0
+\end{align*}
+\endgroup
+and therefore
+\[ w^* = (X^\intercal X + \lambda I)^{-1} X^\intercal y. \]
+$(X^\intercal X + \lambda I)$ is invertible because it's a PD matrix since it's a sum of two PD matrices.
+
+\plabel{(b)}%
+\begingroup\minusbaseline
+\begin{align*}
+    w^* = X^\intercal\cdot \qty[\frac{1}{\lambda} (y-Xw)].
+\end{align*}
+\endgroup
+$w$ is a linear combination of columns of $X^\intercal$ and therefore lies in the span.
+
+\plabel{(c)}%
+Note that
+\[ (X^\intercal X + \lambda I)^{-1}X^\intercal = X^\intercal (X X^\intercal + \lambda I)^{-1}. \]
+Therefore
+\[ w^* = X^\intercal (X X^\intercal + \lambda I)^{-1} y. \]
+
+\plabel{(d)}%
+$Xw = XX^\intercal (XX^\intercal + \lambda I)^{-1}y$.
+
+\plabel{(e)}%
+\begingroup\minusbaseline
+\begin{align*}
+    x^\intercal w^* &= \begin{pmatrix}
+        x^\intercal x_1 \\ \vdots \\ x^\intercal x_n
+    \end{pmatrix} (XX^\intercal + \lambda I)^{-1} y.
+\end{align*}
+\endgroup
+
+\includepdf[pages=-,pagecommand={}]{2023SpHW3.pdf}
+
+\end{document}

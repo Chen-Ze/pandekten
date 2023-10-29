@@ -1,0 +1,133 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{CFT and Entanglement Entropy}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\section{Strategy of Evaluation}
+
+To evaluate the entanglement entropy
+\[ S_A = -\tr(\rho_A \log \rho_A), \]
+we first evaluate the partition function $Z_n(A)$ of the $n$-sheeted geometry, and then $S_A$ is obtained by
+\[ S_A = -\eval{\pdv{n} \frac{Z_n(A)}{Z^n}}_{n=1}. \]
+
+\par
+Our major utility of evaluation is the following identity from CFT, the transformation of energy momentum tensor
+\begin{equation}
+    \label{eq:trans_T}
+    T(w) = \qty(\dv{z}{w})^2 T(z) + \frac{c}{12}\qty{z,w},
+\end{equation}
+where
+\[ \qty{z,w} = \frac{z''' z' - (3/2) z''^2}{z'^2}. \]
+Another is the effect of infinitesimal transformation $w \rightarrow w+\alpha(w)$, under which
+\begin{equation}
+    \label{eq:dZ_dS}
+    \delta Z = \langle \delta S \rangle = \langle -\frac{1}{2\pi} \int T_{\mu\nu} \alpha^{\mu,\nu} \dd[2]{x} \rangle.
+\end{equation}
+
+\section{Evaluation}
+
+\subsection{Critical 1-Dimensional System}
+\label{ss:c1ds}
+
+\paragraph*{Infinite System, Zero Temperautre}
+For a finite interval $A = [u, v]$ in a infinite system $(-\infty,\infty)$ at zero temperature, the entanglement entropy, evaluated in the slides, is given by
+\[ S_A \sim \frac{c}{3} \log \ell. \]
+The most important step to this result is obtained by \eqref{eq:trans_T} and \eqref{eq:dZ_dS}
+\begin{equation}
+    \label{eq:rho_A_n}
+    \tr \rho^n_A = c_n \qty(\frac{u - v}{a})^{-(c/6)(n - 1/n)}.
+\end{equation}
+
+\paragraph*{Infinite System, Nonzero Temperature}
+\eqref{eq:rho_A_n} may be generalized to nonzero temperature by a conformal map $w \rightarrow \beta/(2\pi) \cdot \log w$ on each sheet.
+Then we find
+\begin{equation}
+    \label{eq:S_A_inf_nonzero_T}
+    S_A \sim \frac{c}{3} \log(\frac{\beta}{\pi a} \sinh(\frac{\pi\ell}{\beta})) + c'_1.
+\end{equation}
+This entropy is extensive when $\ell \gg \beta$.
+
+\paragraph*{Finite System, Zero Temperature}
+With a similar conformal transformation we map the interval to an arc along the azimuthal direction of the cylinder, which is equivalent to the replacement $L\rightarrow i\beta$.
+Then we find
+\begin{equation}
+    \label{eq:S_A_finite_zero_T}
+    S_A \sim \frac{c}{3} \log(\frac{L}{\pi a} \sin(\frac{\pi\ell}{L})) + c'_1.
+\end{equation}
+
+\paragraph*{Semi-Infinite System, Zero Temperature}
+A single sheet is now defined by $w = \tau + ix$, where $x \in [0,\infty)$, and the subsystem is given by $A = [0, \ell]$.
+The transformation $z = ((w - i\ell)/(w + i\ell))^{1/n}$ maps the whole $n$-sheeted surface to the disc $\abs{z} \le 1$.
+By rotational symmetry, $\langle T(z) \rangle = 0$.
+Therefore,
+\[ \tr \rho^n_A \sim \tilde{c}_n \qty(\frac{2l}{a})^{(c/12)(n - 1/n)}, \]
+and
+\[ S_A \sim \frac{c}{6} \log(\frac{2\ell}{a}) + \tilde{c}'_1. \]
+
+\paragraph*{Semi-Infinite System, Nonzero Temperature}
+At nonzero temperature
+\[ S_A \sim \frac{c}{6} \log(\frac{\beta}{\pi a} \sinh(\frac{2\pi \ell}{\beta})) + \tilde{c}'_1. \]
+
+\paragraph*{Finite-System, Zero-Temperature}
+Let the system be $[0,L]$ and $A$ be $[0,\ell]$.
+Different from the case in \eqref{eq:S_A_finite_zero_T}, $A$ now shares a boundary point.
+Then
+\[ S_A = \frac{c}{6} \log(\frac{L}{\pi a} \sin \frac{\pi \ell}{L}) + 2g + c'_1, \]
+where $g = \tilde{c}'_1 - c'_1$.
+
+\subsection{Non-Critical 1-Dimensional System}
+\label{ss:nc1ds}
+For a infinite system $(-\infty,\infty)$ and subsystem $A$ of length $\ell \gg \xi$, the entanglement entropy now depends on the correlation length $\xi$.
+To study $\delta Z / \delta \xi$, we need $\langle \Theta \rangle$ instead of $\langle T \rangle$, where $\Theta = 4T_{z\overline{z}}$ is the trace of the energy-momentum tensor.
+From the conservation laws of energy-momentum tensor and by investigating the limiting cases $\xi \gg \abs{z}$ and $\xi \ll \abs{z}$, we find (with $m=1/\xi$)
+\[ \int (\langle \Theta_n \rangle - \langle \Theta_1 \rangle) \dd[2]{w} = -2\pi m\pdv{m}\qty(\log Z_n - n\log Z) = -\frac{\pi c}{6}\qty(n - \frac{1}{n}). \]
+Therefore,
+\[ S_A \sim \frac{c}{6} \log(\frac{\xi}{a}). \]
+
+\subsection{Finite-Size Scaling}
+
+The cases where $\ell \ll \xi$ and $\ell \gg \xi$ were studied at \cref{ss:c1ds} and \cref{ss:nc1ds}, respectively.
+For intermediate cases, the entanglement entropy may be given by some finite-size scaling theory.
+For example, for a finite system $[{-L,L}]$ and $A = [{-L,0}]$, the entanglement entropy has the form
+\[ S_A(L,\xi) = \frac{c}{6}\qty(\log L + s_{\mathrm{FSS}}(L/\xi)), \]
+where for small $x$,
+\[ s_{\mathrm{FSS}}(x) = \sum_{j\ge 1} s_j x^{2j} \]
+and for large $x$,
+\[ s_{\mathrm{FSS}}(x) = -\log x + \sum_{j\ge 0} \frac{s^\infty_j}{x^j}, \]
+and the coefficients $s_j$ and $s_j^\infty$ are universal.
+
+\subsection{Higher Dimensions}
+
+In higher dimensions $d>1$, the entanglement entropy is proportional to the surface area of the subsystem.
+For example, a 2-dimensional system has $S_A \propto \mathcal{P}$ where $\mathcal{P}$ is the perimeter and a 3-dimensional system has $S_A\propto \mathcal{A}$ where $\mathcal{A}$ is the surface area, which has the same form as Bekenstein-Hawking entropy.
+\par
+More generally, the Ryu-Takayanagi conjecture states that, the entanglement entropy $S_A$ for a $d$-dimensional subsystem $A$ of a CFT on $\mathbb{R}^{1,d}$ is given by
+\begin{equation}
+    \label{eq:rt}
+    S_A = \frac{\text{Area of }\gamma_A}{4G^{(d+2)}_N},
+\end{equation}
+where $\gamma_A$ is the $d$-dimensional static minimal surface in $\mathrm{AdS}_{d+2}$ whose boundary is given by $\partial A$ and $G^{(d+2)}_N$ is the Newton's constant.
+\par
+Applying \eqref{eq:rt} to 1-dimensional systems one restores \eqref{eq:S_A_inf_nonzero_T} and \eqref{eq:S_A_finite_zero_T}.
+A higher dimensional example is given by a disk at $z=0$ of radius $\ell$ where the coordinate system is the one for the Poincar\'e metric
+\[ \dd{s}^2 = R^2 z^{-2}\qty(\dd{z}^2 - \dd{x}_0^2 + \sum_{i=1}^d \dd{x}_i^2) \]
+and we find
+\begin{align*}
+    \text{Area of }\gamma_A &= p_1\qty(\frac{\ell}{a})^{d-1} + p_3\qty(\frac{\ell}{a})^{d-3} + \cdots \\
+    &\phantom{{}={}} + \begin{cases}
+        p_{d-1}(\ell/a) + p_d + \bigO(a/\ell), & d \text{ even}, \\
+        p_{d-2}(\ell/a)^2 + q \log(\ell/a) + \bigO(1), & d \text{ odd}.
+    \end{cases}
+\end{align*}
+This reproduces the area law.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

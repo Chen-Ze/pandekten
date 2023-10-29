@@ -1,0 +1,28 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\tcbuselibrary{hooks, minted}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\section{Miscellany}
+
+See \href{https://stackoverflow.com/questions/4708549/what-is-the-difference-between-command-and-command-in-shell-programming}{What is the difference between \$(command) and \textasciigrave command\textasciigrave in shell programming?}
+
+\begin{minted}[mathescape]{shell}
+# store the output of a command
+echo $(foo)
+# the following is deprecated
+echo `foo`
+\end{minted}
+
+\end{document}

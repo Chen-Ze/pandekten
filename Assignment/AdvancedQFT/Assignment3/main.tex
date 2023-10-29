@@ -1,0 +1,299 @@
+\documentclass{article}
+
+\usepackage{mmacells}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+%workaround from link
+\usetikzlibrary{external}
+\immediate\write18{mkdir -p pgf-img}
+\tikzexternalize[
+  prefix=pgf-img/,
+  system call={
+    lualatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname="\image" "\texsource" || rm "\image.pdf"
+  },
+]
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 3}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a)}%
+For $d=4$, the degree of divergence is given by $D = 4 - N_\phi - 3/2 N_\psi$.
+The divergent diagrams are as follows (the tadpole diagram of $\phi$ is ignored).
+\begin{align*}
+    \feynmandiagram [layered layout, inline=(p2.base), horizontal=p1 to p2, small] {
+    p1[] --[scalar] c1[blob],
+    c1 --[scalar] p2[],
+    }; && D = 2 &&
+    \feynmandiagram [layered layout, inline=(p2.base), horizontal=p1 to p2, small] {
+        p1[] --[fermion] c1[blob],
+        c1 --[fermion] p2[],
+    }; && D = 1 \\
+    \feynmandiagram [inline=(v.base), horizontal=v to p2, small] {
+        p1 --[anti fermion] v[blob],
+        p2 --[scalar] v,
+        p3 --[fermion] v,
+    }; && D = 0 &&
+    \feynmandiagram [inline=(v.base), horizontal=p1 to p3, small] {
+        p1 --[scalar] v[blob],
+        p2 --[scalar] v,
+        p3 --[scalar] v,
+        p4 --[scalar] v,
+    }; && D = 0
+\end{align*}
+The counter terms are as follows.
+\begin{gather*}
+\feynmandiagram [layered layout, inline=(p2.base), horizontal=p1 to p2, small] {
+p1[] --[scalar] c1[crossed dot],
+c1 --[scalar] p2[],
+}; \quad
+\feynmandiagram [layered layout, inline=(p2.base), horizontal=p1 to p2, small] {
+    p1[] --[fermion] c1[crossed dot],
+    c1 --[fermion] p2[],
+}; \\
+\feynmandiagram [inline=(v.base), horizontal=v to p2, small] {
+    p1 --[anti fermion] v[crossed dot],
+    p2 --[scalar] v,
+    p3 --[fermion] v,
+}; \quad
+\feynmandiagram [inline=(v.base), horizontal=p1 to p3, small] {
+    p1 --[scalar] v[crossed dot],
+    p2 --[scalar] v,
+    p3 --[scalar] v,
+    p4 --[scalar] v,
+};
+\end{gather*}
+
+\plabel{(b)}%
+\textbf{1PI of $\phi$.}
+\begin{align*}
+    -i M^2(p^2) &= \feynmandiagram [layered layout, inline=(p2.base), horizontal=p1 to p2, small] {
+        p1[particle=$p$\vphantom{$Mg$}] --[scalar] c1[],
+        c1 --[scalar] p2[particle=$p$\vphantom{$Mg$}],
+        c1 --[scalar,out=135,in=45,loop,min distance=4em] c1,
+    }; + \feynmandiagram [layered layout, inline=(p2.base), horizontal=p1 to p2, small] {
+        p1[particle=$p$\vphantom{$Mg$}] --[scalar] c1[dot],
+        c2[dot] --[scalar] p2[particle=$p$\vphantom{$Mg$}],
+        c1 --[half left, fermion] c2;
+        c1 --[half right, anti fermion] c2;
+    }; + \feynmandiagram [layered layout, inline=(p2.base), horizontal=p1 to p2, small] {
+        p1[particle=$p$\vphantom{$Mg$}] --[scalar] c1[crossed dot],
+        c1 --[scalar] p2[particle=$p$\vphantom{$Mg$}],
+    }; \\
+    &= -\frac{i\lambda}{2} \int \frac{\dd[d]{k}}{(2\pi)^d} \frac{i}{k^2 - m^2} - (-ig)^2 \int \frac{\dd[d]{k}}{(2\pi)^d} \tr\qty[\frac{i(\slashed{k} + \slashed{p} + M)\gamma^5 i(\slashed{k}+M) \gamma^5}{\qty((k+p)^2 - M^2)(k^2 - M^2)}] \\
+    &\phantom{{}={}} + i(p^2 \delta_{Z,\phi} - \delta_m) \\
+    &= \frac{i\lambda m^2}{(4\pi)^2}\frac{1}{\epsilon} + \frac{4ig^2(p^2 - 2M^2)}{(4\pi)^2}\frac{1}{\epsilon} + i(p^2 \delta_{Z,\phi} - \delta_m).
+\end{align*}
+$\eval{\partial M^2(p^2)/\partial p^2}_{p^2 = m^2} = 0$ yields
+\[ \delta_{Z,\phi} = -\frac{4g^2}{(4\pi)^2}\frac{1}{\epsilon}. \]
+$M^2(m^2) = 0$ yields
+\[ \delta_m = \frac{(\lambda m^2 - 8g^2 M^2)}{(4\pi)^2}\frac{1}{\epsilon}. \]
+
+\textbf{1PI of $\psi$.}
+\begin{align*}
+    -i\Sigma_2(p) &= \feynmandiagram [layered layout, inline=(p2.base), horizontal=p1 to p2, small] {
+        p1[particle=$p$\vphantom{$Mg$}] --[fermion] c1[dot],
+        c2[dot] --[fermion] p2[particle=$p$\vphantom{$Mg$}],
+        c1 --[scalar,half left] c2;
+        c1 --[fermion] c2,
+    }; + \feynmandiagram [layered layout, inline=(p2.base), horizontal=p1 to p2, small] {
+        p1[particle=$p$\vphantom{$Mg$}] --[fermion] c1[crossed dot],
+        c1 --[fermion] p2[particle=$p$\vphantom{$Mg$}],
+    }; \\
+    &= -(-ig)^2 \int \frac{\dd[d]{k}}{(2\pi)^d} \gamma^5 \frac{i(\slashed{k} + M)}{k^2 - M^2} \gamma^5 \frac{i}{(k-p)^2 - m^2} + i(\slashed{p}\delta_{Z,\psi} - \delta_M) \\
+    &= \frac{ig^2(\slashed{p} - 2M)}{(4\pi)^2} \frac{1}{\epsilon} + i(\slashed{p}\delta_{Z,\psi} - \delta_M).
+\end{align*}
+$\eval{\partial \Sigma(\slashed{p})/\partial \slashed{p}}_{\slashed{p} = m} = 0$ yields
+\[ \delta_{Z,\psi} = \frac{-g^2}{(4\pi)^2}\frac{1}{\epsilon}. \]
+$\Sigma(\slashed{p} = M) = 0$ yields
+\[ \delta_M = -\frac{2g^2 M}{(4\pi)^2} \frac{1}{\epsilon}. \]
+
+\textbf{Vertex Correction.}
+\begin{align*}
+    &{\phantom{{}={}}} \delta\Gamma^5(p=p'=q=0) \\
+    &= \feynmandiagram [inline=(p1.base), horizontal=v1 to p1, small] {
+        p1[particle=\vphantom{$Mg$}] --[scalar] v1[dot],
+        p2[] --[anti fermion] v2[dot],
+        p3[] --[fermion] v3[dot],
+        v1 --[fermion] v2,
+        v1 --[anti fermion] v3,
+        v2 --[scalar, quarter right] v3,
+    }; + \feynmandiagram [inline=(v.base), horizontal=v to p2, small] {
+        p1[particle=\vphantom{$Mg$}] --[anti fermion] v[crossed dot],
+        p2 --[scalar] v,
+        p3 --[fermion] v,
+    }; \\
+    &= g^2 \int \frac{\dd[d]{k}}{(2\pi)^d} \frac{i(\slashed{k}+M)}{k^2 - M^2} \gamma^5 \frac{i(\slashed{k}+M)}{k^2 - M^2} \gamma^5 \frac{i}{k^2 - m^2} + \delta_g \gamma^5 \\
+    &= -\frac{g^2\gamma^5 }{(4\pi)^2}\frac{2}{\epsilon} + \delta_g \gamma^5.
+\end{align*}
+Therefore
+\[ \delta_g = \frac{2g^2}{(4\pi)^2}\frac{1}{\epsilon}. \]
+
+\textbf{$\phi^4$ Process.}
+\begin{align*}
+    &\phantom{{}={}} i\mathcal{M}(\phi^4,p_1=p_2=p_3=p_4=0) \\
+    &= 3 \times \feynmandiagram [inline=(c2.base), horizontal=c1 to c2, small] {
+        p1[particle=\vphantom{$Mg$}] --[scalar] c1[dot],
+        p2[particle=\vphantom{$Mg$}] --[scalar] c1,
+        c2[dot] --[scalar] p3,
+        c2 -- [scalar]p4,
+        c1 --[scalar, half left] c2;
+        c1 --[scalar, half right] c2;
+    }; + 6\times \feynmandiagram [inline=($0.5*(c2.base)+0.5*(c4.base)$), horizontal=c1 to c2, small] {
+        c1 --[scalar] p1,
+        c2 --[scalar] p2,
+        c3 --[scalar] p3,
+        c4 --[scalar] p4,
+        p1 --[fermion, quarter right] p2,
+        p2 --[fermion, quarter right] p3,
+        p3 --[fermion, quarter right] p4,
+        p4 --[fermion, quarter right] p1,
+    }; + \feynmandiagram [inline=(v.base), horizontal=p1 to p3, small] {
+        p1 --[scalar] v[crossed dot],
+        p2 --[scalar] v,
+        p3 --[scalar] v,
+        p4 --[scalar] v,
+    }; \\
+    &= 3\times \frac{(-i\lambda)^2}{2} \int \frac{\dd[d]{k}}{(2\pi)^d} \qty(\frac{i}{k^2 - m^2})^2 + 6\times (-1) g^4 \int \frac{\dd[d]{k}}{(2\pi)^d} \tr\qty[\qty(\gamma^5 \frac{i(\slashed{k}+M)}{k^2 - M^2})^4] -i\delta_\lambda \\
+    &= 3\times \frac{i\lambda^2}{(4\pi)^2}\frac{1}{\epsilon} - 6\times \frac{8ig^4}{(4\pi)^2}\frac{1}{\epsilon} - i\delta_\lambda.
+\end{align*}
+Therefore,
+\[ \delta_\lambda = \frac{3\lambda^2 - 48g^4}{(4\pi)^2}\frac{1}{\epsilon}. \]
+
+\prule
+
+\plabel{2}%
+Note that
+\begin{align*}
+    \delta_2 &= -\frac{e^2}{(4\pi)^{d/2}} \Gamma(2-d/2) \int_0^1 \dd{x} \frac{1}{((1-x)^2 m^2 + x\mu^2)^{2-d/2}} \\
+    &{\phantom{{}={}}} \quad \times \qty[(2-\epsilon)x - \frac{\epsilon}{2}\frac{2x(1-x)m^2}{(1-x)^2 m^2 + x \mu^2}(4-2x-\epsilon(1-x))], \\
+    \delta_1 &= -\frac{e^2}{(4\pi)^{d/2}} \Gamma(2-d/2) \int_0^1 \dd{x} \frac{1}{((1-x)^2 m^2 + x\mu^2)^{2-d/2}} \\
+    &{\phantom{{}={}}} \quad \times (1-x) \times \qty[\frac{(2-\epsilon)^2}{2} + \frac{\epsilon}{2}\frac{1}{(1-x)^2m^2 + x\mu^2} \qty[2(1-4x+x^2) - \epsilon(1-x)^2]m^2].
+\end{align*}
+The difference is given by
+\begin{align*}
+    \delta_2 - \delta_1 &= -\frac{e^2}{(4\pi)^{d/2}} \Gamma(\epsilon/2) \int_0^1 \dd{x} \frac{1}{((1-x)^2 m^2 + x\mu^2)^{1+\epsilon/2}} \\
+    &{\phantom{{}={}}} \quad \times \qty[2 m^2 (x-1)^2 (x (\epsilon -2)+1)+\mu ^2 x (x (\epsilon -4)-\epsilon +2)] \\
+    &= -\frac{e^2}{(4\pi)^{d/2}} \Gamma(\epsilon/2) \times (-2) \int_0^1 \dd{x} \dv{x}\qty[\frac{x(x-1)}{((1-x)^2 m^2 + x\mu^2)^{\epsilon/2}}] \\
+    &= 0.
+\end{align*}
+Expanding around $\epsilon=0$ we find
+\begin{align*}
+    \delta_1 &= \frac{e^2}{(4\pi)^2} \int_0^1 \dd{x} \\
+    &{\phantom{{}={}}} \quad\qty[-\frac{4x}{\epsilon} + 2x\qty(1+\gamma+\frac{2m^2(x-2)(x-1)}{(1-x)^2m^2 + x\mu^2} + \log\qty(\frac{(1-x)^2m^2 + x\mu^2}{4\pi})) + \bigO(\epsilon)].
+\end{align*}
+
+\prule
+
+\plabel{3}%
+It suffices to show that the following
+\[ I^\mu(P,p) = \int \frac{\dd[4]{k}}{(2\pi)^4} \frac{\overline{u}(P)(p-k)_\nu (p-k)_\rho \gamma^\nu (\slashed{k} + \slashed{P} - \slashed{p} + m) \gamma^\mu (\slashed{k}+m) \gamma^\rho u(p)}{\qty((p-k)^2 - \mu^2)^2 \qty((k+P-p)^2 - m^2) (k^2 - m^2)} \]
+has the form
+\[ I^\mu(P,p) = \int \frac{\dd[4]{k}}{(2\pi)^4} \overline{u}(P) \qty{\text{something doesn't on $P,p,m$}} u(p). \]
+This holds since the following input
+\begin{mmaCell}[moredefined={ScalarProduct, OneLoopSimplify, SpinorUBarD, Pair, LorentzIndex, Momentum, GAD, GSD, SpinorUD, FAD}]{Input}
+ScalarProduct[p,p]=\mmaSup{m}{2};
+ScalarProduct[P,P]=\mmaSup{m}{2};
+OneLoopSimplify[
+    SpinorUBarD[P,m].
+    Pair[LorentzIndex[\mmaUnd{\(\pmb{\nu}\)},D],Momentum[p-k,D]].
+    Pair[LorentzIndex[\mmaUnd{\(\pmb{\rho}\)},D],Momentum[p-k,D]].
+    GAD[\mmaUnd{\(\pmb{\nu}\)}].
+    (GSD[k]+GSD[P-p]+m).
+    GAD[\mmaUnd{\(\pmb{\mu}\)}].
+    (GSD[k]+m).
+    GAD[\mmaUnd{\(\pmb{\rho}\)}].
+    SpinorUD[p,m].
+    FAD[\{p-k,\mmaUnd{\(\pmb{\mu}\)},2\},\{k,m\},\{k+P-p,m\}],
+    k
+]
+\end{mmaCell}
+yields the following output.
+\begin{mmaCell}{Output}
+\mmaFrac{(\(\varphi\)(P,m)).\mmaSup{\(\gamma\)}{\(\mu\)}.(\(\varphi\)(p,m))}{\mmaSup{(\mmaSup{k}{2}-\mmaSup{\(\mu\)}{2})}{2}}
+\end{mmaCell}
+
+Let
+\[ I^\mu(P,p) =  \overline{u}(P) \gamma^\mu I(\mu) u(p). \]
+The divergent bahavior is given by
+\begin{align*}
+    I(\mu) &= \int \frac{\dd[d]{k}}{(2\pi)^d} \frac{1}{(k^2 - \mu^2)^2} = \frac{i}{(4\pi)^{d/2}}\frac{\Gamma(2-d/2)}{\Gamma(2)} \qty(\frac{1}{\mu^2})^{2-d/2} \\
+    &= \frac{i}{(4\pi)^2}\qty(\frac{2}{\epsilon} + \log(\frac{4\pi}{\mu^2}) - \gamma) + \bigO(\epsilon)
+\end{align*}
+with dimensional regularization ($d=4-\epsilon$) and
+\begin{align*}
+    I(\mu) &= \int \frac{\dd[d]{k}}{(2\pi)^d} \qty[\frac{1}{(k^2 - \mu^2)^2} - \frac{1}{(k^2 - \Lambda^2)^2}] \approx \frac{i}{(4\pi)^2} \log(\frac{\Lambda^2}{\mu^2})
+\end{align*}
+with Pauli-Villars regularization.
+
+\prule
+
+\plabel{4 (a)}%
+Replacing $e \gamma^\mu$ with the effective vertex $e \Gamma^\mu$, we find
+\begin{align*}
+    \bra{\vb{p}_2,s_2} H \ket{\vb{p}_1,s_1} &= \int \dd[3]{\vb{x}} e A_\mu(\vb{x}) \overline{u}_2 \Gamma^\mu(p_2,p_1) u_1 e^{-i\vb{q}\cdot \vb{x}} \\
+    &= \int \dd[3]{\vb{x}} e \overline{u}_2 \qty(A_0 \gamma^0 F_1 - A_i \gamma^i F_1 - \frac{i \sigma^{\mu\nu} A_\mu q_\nu}{2m} F_2) u_1 e^{-i\vb{q}\cdot \vb{x}} .
+\end{align*}
+To the first order in $q$, we have
+\[ u(p) \approx \sqrt{m} \begin{pmatrix}
+    (1-\vb{p}\cdot \vb*{\sigma}/2m)\xi \\
+    (1+\vb{p}\cdot \vb*{\sigma}/2m)\xi
+\end{pmatrix} \]
+and
+\begin{align*}
+    \bra{\vb{p}_2,s_2} H \ket{\vb{p}_1,s_1} &= 2m \int \dd[3]{\vb{x}} \xi_2^\dagger \\
+    & e \qty(A_0 \qty(F_1(0) - \frac{i\sigma^{0\nu} q_\nu}{2m}F_2(0)) - A_i \qty(\frac{-i}{2m} \epsilon^{ijk} q^j \sigma^k) (F_1(0) + F_2(0))) \\
+    &\xi_1 e^{-i\vb{q}\cdot \vb{x}} .
+\end{align*}
+Therefore,
+\[ H_I = eA_0 \qty(1 - \frac{i\sigma^{0\nu} q_\nu}{2m}F_2(0)) - eA_i \qty(\frac{-i}{2m} \epsilon^{ijk} q^j \sigma^k) (1 + F_2(0)). \]
+For Coulomb interaction, $H_I = e A_0$ to the lowest order of $q$.
+For magnetic interaction,
+\begin{align*}
+    \bra{\vb{p}_2,s_2} H \ket{\vb{p}_1,s_1} &= -2m \int \dd[3]{\vb{x}} \xi^\dagger_2  e A^i\qty(\frac{i}{2m} \epsilon^{ijk} q^j \sigma^k)(1+F_2(0)) \xi_1 e^{-i\vb{q}\cdot \vb{x}} \\
+    &= -2m \int \dd[3]{\vb{x}} \xi^\dagger_2  \qty(\frac{e}{2m} B^k \sigma^k)(1+F_2(0)) \xi_1 e^{-i\vb{q}\cdot \vb{x}}
+\end{align*}
+and therefore
+\[ H_I = -\frac{e}{2m} B^k \sigma^k (1+F_2(0)). \]
+
+\plabel{(b)}%
+By identifying
+\[ H_I = -\vb*{\mu} \cdot \vb{B} \]
+we find
+\[ \vb{\mu} = \frac{e}{m}\vb{S}(1+F_2(0)). \]
+Therefore, $g = 2+2F_2(0)$.
+At tree level $F_2(0) = 0$ and therefore $g=2$.
+At 1-loop level $F_2(0) = \alpha/2\pi$ and therefore $g = 2+\alpha/\pi$.
+
+\plabel{(c)}%
+At one-loop level $g/2 \approx \num{1.001161}$.
+The spin frequency is given by $\omega = g(eB)/(2m)$ while the cyclotron frequency is given by $\Omega = eB/(m)$ and therefore $\omega/\Omega = g/2$.
+
+\end{document}

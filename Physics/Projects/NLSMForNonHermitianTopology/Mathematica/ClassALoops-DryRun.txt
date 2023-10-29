@@ -1,0 +1,81 @@
+h[p_] := ArrayFlatten[( {
+     {m PauliMatrix[0], 
+      Sum[p[[i]] PauliMatrix[i], {i, 
+         3}] + (I Subscript[m, 5] - x) PauliMatrix[0]},
+     {-Sum[
+         p[[i]] PauliMatrix[i], {i, 3}] + (I Subscript[m, 5] + 
+          x) PauliMatrix[0], m PauliMatrix[0]}
+    } )];
+gk = Inverse[h[{Subscript[k, 1], Subscript[k, 2], Subscript[k, 3]}]];
+gkp1 = Normal[
+    Series[Inverse[
+      h[{Subscript[k, 1] + Subscript[p, 1] t, 
+        Subscript[k, 2] + Subscript[p, 2] t, 
+        Subscript[k, 3] + Subscript[p, 3] t}]], {t, 0, 1}]] /. 
+   t -> 1;
+gkq1 = gkp1 /. p -> q;
+evaluateLoop[integrand_] := Module[
+   {trIntegrand, trIntegrandPol, trIntegrandPolInt, 
+    trIntegrandPolIntKInt, trIntegrandPolIntKIntSeries},
+   trIntegrand = FullSimplify[Tr[integrand]];
+   Print["Integrand = ", trIntegrand];
+   trIntegrandPol = 
+    FullSimplify[
+     trIntegrand /. {Subscript[k, 1] -> k Sin[\[Theta]] Cos[\[Phi]], 
+       Subscript[k, 2] -> k Sin[\[Theta]] Sin[\[Phi]], 
+       Subscript[k, 3] -> k Cos[\[Theta]]}];
+   Print["Integrand in Polar = ", trIntegrandPol];
+   trIntegrandPolInt = 
+    FullSimplify[
+     Integrate[
+      trIntegrandPol Sin[\[Theta]], {\[Theta], 0, \[Pi]}, {\[Phi], 0, 
+       2 \[Pi]}]];
+   Print["Integral in Polar = ", trIntegrandPolInt];
+   trIntegrandPolIntKInt = 
+    Integrate[trIntegrandPolInt k^2, {k, 0, \[CapitalLambda]}, 
+     Assumptions -> {m \[Element] Reals, m != 0, 
+       Subscript[m, 5] \[Element] Reals, Subscript[m, 5] != 0, 
+       x \[Element] Reals, x != 0, \[CapitalLambda] > 0}];
+   Print["Integral in k = ", trIntegrandPolIntKInt];
+   trIntegrandPolIntKIntSeries = 
+    Series[trIntegrandPolIntKInt, {\[CapitalLambda], Infinity, 0}, 
+     Assumptions -> {m \[Element] Reals, m != 0, 
+       Subscript[m, 5] \[Element] Reals, Subscript[m, 5] != 0, 
+       x \[Element] Reals, x != 0, \[CapitalLambda] > 0}];
+   Print["Series = ", trIntegrandPolIntKIntSeries];
+   trIntegrandPolIntKIntSeries
+   ];
+ggg = Table[
+   Subscript[gamma, 0] = ( {
+      {1, 0, 0, 0},
+      {0, 1, 0, 0},
+      {0, 0, -1, 0},
+      {0, 0, 0, -1}
+     } );
+   Subscript[gamma, 5] = ( {
+      {0, 0, 1, 0},
+      {0, 0, 0, 1},
+      {1, 0, 0, 0},
+      {0, 1, 0, 0}
+     } );
+   Subscript[gamma, 1] = ArrayFlatten[( {
+       {0, PauliMatrix[1]},
+       {-PauliMatrix[1], 0}
+      } )];
+   Subscript[gamma, 2] = ArrayFlatten[( {
+       {0, PauliMatrix[2]},
+       {-PauliMatrix[2], 0}
+      } )];
+   Subscript[gamma, 3] = ArrayFlatten[( {
+       {0, PauliMatrix[3]},
+       {-PauliMatrix[3], 0}
+      } )];
+   Subscript[chiral, 0] = Subscript[gamma, 0];
+   Subscript[chiral, 1] = IdentityMatrix[4];
+   evaluateLoop[
+     Subscript[chiral, ic] . Subscript[gamma, xxx] . 
+     Subscript[chiral, jc] . Subscript[gamma, yyy] . Subscript[
+     chiral, lc] . Subscript[gamma, zzz]],
+   {ic, 0, 1}, {jc, 0, 1}, {lc, 0, 1}
+   ];
+InputForm[Normal[ggg]]

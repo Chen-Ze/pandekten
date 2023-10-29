@@ -1,0 +1,21 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+\usepackage{slashed}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{alignat*}{3}
+    \wick{\c1 \sigma(x) \c1 \sigma(y)} &= \quad
+    \feynmandiagram [inline=(c2.base), horizontal=c1 to c2] {
+        c1[particle=\phantom{$i$}] --[cyan!50!black, fermion, edge label'=$p$] c2[particle=\phantom{$j$}\vphantom{Mg}],
+    }; \ &&= \frac{i}{p^2 - 2\mu^2 + i\epsilon}, \\
+    \wick{\c1 \pi^i(x) \c1 \pi^j(y)} &= \quad
+    \feynmandiagram [inline=(c2.base), horizontal=c1 to c2] {
+        c1[particle=$i$] --[fermion, edge label'=$p$] c2[particle=$j$\vphantom{Mg}],
+    }; \ &&= \frac{i \delta^{ij}}{p^2 + i\epsilon}.
+\end{alignat*}
+\end{document}

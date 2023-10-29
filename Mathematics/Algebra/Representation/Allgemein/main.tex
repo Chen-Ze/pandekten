@@ -6,6 +6,7 @@
 \author{Ch\=an Taku}
 
 \externaldocument[Int-]{../../../../Mathematics/Calculus/Integrals/main}
+\externaldocument[Alg-]{../../Allgemein/main}
 
 \begin{document}
 
@@ -32,5 +33,45 @@
     \[ \rho: G \rightarrow \operatorname{U}(V), \]
     where $\operatorname{U}(V)$ is the unitary group of $V$.
 \end{definition}
+\begin{definition}{Projective Representation}{projective_representation}
+    Input:
+    \begin{itemize}
+        \item A Hilbert space $H$ over $\mathbb{C}$.
+        \item $\gamma: H\rightarrow H/\mathbb{C}^\times$ is the projection.
+        \item $\hat{\gamma}$ denotes the induced projective transformation (\cref{Alg-def:induced_projective_transformation}).
+        \item A group $G$.
+    \end{itemize}
+    A projective representation $\rho$ of $G$ is a homomorphism
+    \[ \rho: G \rightarrow \operatorname{U}(H/\mathbb{C}^\times), \]
+    where
+    \[ \operatorname{U}(H/\mathbb{C}^\times) = \hat{\gamma}(\operatorname{U}(H)). \]
+\end{definition}
+
+\subsection{Unitary Representation}
+
+\begin{theorem}{Irreducible Subspaces of Nonisomorphic Restrictions Are Orthogonal}{irreducible_subspaces_of_nonisomorphic_restrictions_are_orthogonal}
+    Input:
+    \begin{itemize}
+        \item $K$ is a compact subgroup of $\operatorname{GL}(n,\mathbb{C})$.
+        \item $H$ is a Hilbert space.
+        \item $\rho$ is a unitary representation of $K$ on $H$.
+        \item $H_1$ and $H_2$ are two irreducible invariant subspaces of $H$.
+    \end{itemize}
+    $H_1$ and $H_2$ are orthogonal if the restriction of $\rho$ to $H_1$ and $H_2$ are not isomorphic.
+\end{theorem}
+See \href{https://math.stackexchange.com/questions/3529154/orthogonality-about-irreducible-unitary-representations-of-compact-group}{orthogonality about irreducible unitary representations of compact group}.
+
+\subsection{Character}
+
+\begin{example}{Product of Representations of $\operatorname{SU}(2)$}{product_of_representations_of_su_2}
+    Let $\psi$ denotes the angle of rotation (i.e. the conjugation class).
+    Then with
+    \[ \chi(j) = \zeta^j + \zeta^{j-1} + \cdots + \zeta^{-j} \]
+    with $\zeta = e^{i\psi}$ we find
+    \[ \chi(k)\chi(j) = \chi(j+k) + \chi(j+k-1) + \cdots + \chi(j-k) \]
+    if $j\ge k$.
+    Therefore
+    \[ k\otimes j = (j+k) \oplus (j+k-1) \oplus \cdots \oplus (j-k). \]
+\end{example}
 
 \end{document}

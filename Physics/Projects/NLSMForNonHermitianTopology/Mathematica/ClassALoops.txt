@@ -1,0 +1,83 @@
+h[p_] := 
+  ArrayFlatten[({{m PauliMatrix[0], 
+      Sum[p[[i]] PauliMatrix[i], {i, 
+         3}] + (I Subscript[m, 5] - x) PauliMatrix[0]}, {-Sum[
+         p[[i]] PauliMatrix[i], {i, 3}] + (I Subscript[m, 5] + 
+          x) PauliMatrix[0], m PauliMatrix[0]}})];
+gk = Inverse[h[{Subscript[k, 1], Subscript[k, 2], Subscript[k, 3]}]];
+gkp1 = Normal[
+    Series[Inverse[
+      h[{Subscript[k, 1] + Subscript[p, 1] t, 
+        Subscript[k, 2] + Subscript[p, 2] t, 
+        Subscript[k, 3] + Subscript[p, 3] t}]], {t, 0, 1}]] /. 
+   t -> 1;
+gkq1 = gkp1 /. p -> q;
+
+integratePolar[
+   x_] := (x Cos[\[Theta]]^a Cos[\[Phi]]^b Sin[\[Theta]]^
+      c Sin[\[Phi]]^
+      d) /. {(Cos[\[Theta]]^k_ Cos[\[Phi]]^l_ Sin[\[Theta]]^
+        m_ Sin[\[Phi]]^
+        n_) :> ((1 + (-1)^(k - a)) (1 + (-1)^(l - b)) (1 + (-1)^(n - 
+             d)) Gamma[(1 + (k - a))/2] Gamma[(1 + (l - b))/
+          2] Gamma[(1 + (m - c))/2] Gamma[(1 + (n - d))/2])/(4 Gamma[
+         1/2 (2 + (k - a) + (m - c))] Gamma[
+         1/2 (2 + (l - b) + (n - d))])};
+
+evaluateLoop[integrand_] := Module[
+   {trIntegrand, trIntegrandPol, trIntegrandPolExpand, 
+    trIntegrandPolInt, trIntegrandPolIntKInt, 
+    trIntegrandPolIntKIntSeries},
+   
+   trIntegrand = Tr[integrand];
+   Print["Integrand = ", Short[trIntegrand]];
+   
+   trIntegrandPol = 
+    trIntegrand /. {Subscript[k, 1] -> k Sin[\[Theta]] Cos[\[Phi]], 
+      Subscript[k, 2] -> k Sin[\[Theta]] Sin[\[Phi]], 
+      Subscript[k, 3] -> k Cos[\[Theta]]};
+   trIntegrandPol = trIntegrandPol //. {b_^n_ :> Simplify[b]^n};
+   trIntegrandPolExpand = Expand[trIntegrandPol Sin[\[Theta]]];
+   Print["Integrand in Polar = ", Short[trIntegrandPolExpand]];
+   
+   trIntegrandPolInt = 
+    Distribute[
+      f$[trIntegrandPolExpand]] /. {f$[x_] :> integratePolar[x]};
+   trIntegrandPolInt = FullSimplify[trIntegrandPolInt];
+   Print["Integral in Polar = ", Short[trIntegrandPolInt]];
+   
+   trIntegrandPolIntKInt = 
+    Integrate[trIntegrandPolInt k^2, {k, 0, \[CapitalLambda]}, 
+     Assumptions -> {m \[Element] Reals, m != 0, 
+       Subscript[m, 5] \[Element] Reals, Subscript[m, 5] != 0, 
+       x \[Element] Reals, x != 0, \[CapitalLambda] > 0}];
+   Print["Integral in k = ", Short[trIntegrandPolIntKInt]];
+   
+   trIntegrandPolIntKIntSeries = 
+    Series[trIntegrandPolIntKInt, {\[CapitalLambda], Infinity, 0}, 
+     Assumptions -> {m \[Element] Reals, m != 0, 
+       Subscript[m, 5] \[Element] Reals, Subscript[m, 5] != 0, 
+       x \[Element] Reals, x != 0, \[CapitalLambda] > 0}];
+   Print["Series = ", trIntegrandPolIntKIntSeries];
+   trIntegrandPolIntKIntSeries
+   ];
+
+ggg = Table[
+   Subscript[gamma, 
+     0] = ({{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, -1, 0}, {0, 0, 0, -1}});
+   Subscript[gamma, 
+     5] = ({{0, 0, 1, 0}, {0, 0, 0, 1}, {1, 0, 0, 0}, {0, 1, 0, 0}});
+   Subscript[gamma, 1] = 
+    ArrayFlatten[({{0, PauliMatrix[1]}, {-PauliMatrix[1], 0}})];
+   Subscript[gamma, 2] = 
+    ArrayFlatten[({{0, PauliMatrix[2]}, {-PauliMatrix[2], 0}})];
+   Subscript[gamma, 3] = 
+    ArrayFlatten[({{0, PauliMatrix[3]}, {-PauliMatrix[3], 0}})];
+   Subscript[chiral, 0] = Subscript[gamma, 0];
+   Subscript[chiral, 1] = IdentityMatrix[4];
+   evaluateLoop[
+    gk . Subscript[chiral, ic] . Subscript[gamma, xxx] . gkp1 . 
+     Subscript[chiral, jc] . Subscript[gamma, yyy] . gkq1 . 
+     Subscript[chiral, lc] . Subscript[gamma, zzz]], {ic, 0, 1}, {jc, 
+    0, 1}, {lc, 0, 1}];
+InputForm[Normal[ggg]]

@@ -1,0 +1,129 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 1}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{2.1}%
+$X = \qty{(1,0)}$.
+Therefore $U_X = (x-1,y)$.
+\par
+$k[x,y]/U_X \cong k$ while $k[x,y]/(x-1, x^2+y^2-1) \cong k[y]/(y^2)$.
+Therefore $U_X \neq (x-1,x^2+y^2-1)$.
+
+\plabel{2.4}%
+For any $g\in k[X]$, it's clear that $f^*(g)(1) = f^*(g)(-1) = g(0,0)$.
+\par
+$f^*$ is an injection since $f$ is a surjection.
+\par
+Now we prove $f^*$ is an surjection.
+Since $g(1) = g(-1)$,
+\[ g(t) = g_0 + (t^2 - 1)h(t), \]
+where
+\[ h(t) = h_0 + h_1 t + \cdots + h_n t^n. \]
+Now define $u\in k(X)$ be given by
+\begin{align*}
+    u(x,y) &= x \cdot h(x/y) + g_0.
+\end{align*}
+It can be shown that
+\begin{align*}
+    u(x,y) &= x(h_0 + h_2(x+1) + h_4(x+1)^2 + \cdots) \\
+    &\phantom{{}={}} + y(h_1 + h_3(x+1) + \cdots + h_5(x+1)^3 + \cdots) \\
+    &\phantom{{}={}} + g_0,
+\end{align*}
+i.e. $u\in k[X]$.
+It's clear that $f^*(u) = u\circ f = g$.
+
+\plabel{2.6}%
+$f(\mathbb{A}^2) = \Set*{(x,y)}{x\neq 0} \cup (0,0)$.
+\par
+If $f(\mathbb{A}^2)$ is open in $\mathbb{A}^2$, then $\mathbb{A}^2 \setminus f(\mathbb{A}^2)$ would be closed in $\mathbb{A}^2$ and thus $\mathbb{A}^1 \setminus \qty{0}$ would be closed in $\mathbb{A}^1$, leading to a contradiction.
+Therefore $f(\mathbb{A}^2)$ is not open.
+\par
+$f(\mathbb{A}^2)$ is dense since if $g = \sum_n g_n(x) y^n\in k[x,y]$ vanishes on $f(\mathbb{A}^2)$, then it vanishes on $\mathbb{A}^2$.
+This is because for each $x\neq 0$, $g_0(x) = \cdots = g_n(x) = 0$ since $g(x,y) = 0$ as a polynomial in $k[y]$.
+For each $i$, $g_i\in k[x]$ vanishes for all $x\neq 0$, and therefore $g_i = 0$, and $g=0$.
+\par
+Since $\overline{f(\mathbb{A}^2)} = \mathbb{A}^2 \supsetneq f(\mathbb{A}^2)$, $f(\mathbb{A}^2)$ is not closed.
+
+\plabel{2.12}%
+Let $I$ denote the ideal of closed sets.
+Let $f$ be given componentwise by $y_i = f_i(x)$, $i=1,\cdots,m$.
+Then $\Gamma_f$ is defined by the equations that defines $X$ in $\mathbb{A}^n$, plus the following
+\[ y_1 - f_1(x),\cdots,y_m - f_m(x), \]
+and is therefore closed.
+\par
+$\Gamma_f$ is isomorphic to $X$ by the regular maps
+\[ \varphi(x,y) = x \]
+and
+\[ \psi(x) = (x,f(x)) \]
+that are clearly regular and are inverse to each other.
+
+\plabel{2.15}%
+Let $V$ denote the zero locus.
+Since $\mathbb{A}^n \setminus U_\alpha$ is closed for each $\alpha$,
+\[ \mathbb{A}^n \setminus U_\alpha = V(I_\alpha) \]
+for some ideal $I_\alpha$ of $k[\mathbb{A}^n]$.
+Now 
+\[ \mathbb{A}^n \setminus X = \bigcap_\alpha (\mathbb{A}^n \setminus U_\alpha) = V\qty(\sum_\alpha I_\alpha). \]
+By the Hilbert's basis theorem, $(\sum_\alpha I_\alpha)$ is finitely generated and therefore can be written as $I_{\alpha_1} + \cdots + I_{\alpha_r}$.
+Therefore,
+\[ X = \bigcup_{i=1}^r U_{\alpha_i}. \]
+
+\prule
+
+\plabel{3.4}%
+\begingroup\minusbaseline
+\begin{align*}
+    V(y^2-xz, z^2-y^3) &= V(y^2-xz, z(z-xy)) \\
+    &= V(y^2 - xz) \cap (V(z) \cup V(z-xy)) \\
+    &= (V(y^2 - xz) \cap V(z)) \cup (V(y^2 - xz) \cap V(z-xy)) \\
+    &= (V(y^2 - xz, z)) \cup (V(y^2 - xz, z-xy)) \\
+    &= V(y,z) \cup (V(y(y - x^2), z-xy)) \\
+    &= V(y,z) \cup V(y, z-xy) \cup V(y - x^2, z-xy) \\
+    &= V(y,z) \cup V(y, z) \cup V(y - x^2, z-xy) \\
+    &= V(y,z) \cup V(y - x^2, z-x^3).
+\end{align*}
+\endgroup
+$V(y,z)$ is the image of $(x) \mapsto (x,0,0)$ and $V(y - x^2, z-x^3)$ is the image of $(x) \mapsto (x,x^2,x^3)$.
+Therefore both $V(y,z)$ and $V(y - x^2, z-x^3)$ are isomorphic to $\mathbb{A}^1$ by Exercise 2.12 and thus irreducible and birational to $\mathbb{A}^1$.
+
+\plabel{3.7}%
+$y/x$ is clearly regular at $(x,y) \neq (0,0)$.
+Now we prove that it is not regular at $(x,y) = (0,0)$.
+Otherwise
+\[ \frac{y}{x} = \frac{f(x) + g(x)y}{u(x) + v(x)y} \]
+in $k(X)$ where $u(0) \neq 0$.
+Therefore,
+\[ x(f(x) + g(x)y) - y(u(x) + v(x)y) = (y^2 - x^2 - x^3) h(x,y) \]
+in $k[x,y]$ for some $h(x,y)$.
+Since $u(x) \neq 0$, the monomial $y$ has nonzero coefficient on LHS, while on RHS the coefficient is zero, leading to a contradiction.
+Therefore, $y/x$ is not regular, and therefore not in $k[X]$.
+
+\end{document}

@@ -1,0 +1,153 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Class AIII}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+We will make use of the following two identities, where $X$ and $Y$ are any matrices of c-numbers of size $\mathbb{C}^{N\times N}$:
+\begin{align*}
+    \int_{\substack{V\in \mathbb{C}^{N\times N} \\ V=V^\dagger}} \dd{V} \exp(-\tr(V^2) + \alpha\tr(VX)) &= \mathrm{const.} \times \exp[\tr(\frac{\alpha^2}{4}X^2)], \\
+    \int_{V\in \mathbb{C}^{N\times N}} \dd{V} \exp(-\tr(VV^\dagger) + \alpha\tr(VX) + \beta \tr(V^\dagger Y)) &= \mathrm{const.} \times \exp[\alpha\beta \tr(XY)].
+\end{align*}
+In the first identity,
+\[ \dd{V} = \prod_{i=1}^N \dd{V_{ii}} \prod_{N \ge i>j\ge 1} \dd{\Re V_{ij}} \dd{\Im V_{ij}}, \]
+and in the second identity,
+\[ \dd{V} = \prod_{i,j=1}^n \dd{\Re V_{ij}} \dd{\Im V_{ij}}. \]
+
+\par
+The Non-Hermitian class AIII has the following Hamiltonian:
+\[ H = \begin{pmatrix}
+    iA & B \\
+    B^\dagger & iD
+\end{pmatrix}, \]
+where $A,B,D \in \mathbb{C}^{N\times N}$, and $A$ and $D$ are Hermitian.
+
+\section{First Approach: Brute Force}
+
+We are going to evaluate
+\begin{align*}
+    Z &= \int \dd{A} \dd{B} \dd{D} \prod_{a=1}^r \qty(\dd\overline{\varphi}_a \dd\overline{\chi}_a \dd\overline{\psi}_a \dd\overline{\xi}_a \dd{\varphi}_a \dd{\chi}_a \dd{\psi}_a \dd{\xi}_a) \\
+    &{\phantom{{}={}}} \times \exp\qty[-\tr({A^\dagger A}) - \tr({D^\dagger D}) - 2\tr({B^\dagger B})] \\
+    &{\phantom{{}={}}} \hspace{-2em} \times \exp[\sum_{a=1}^r \begin{pmatrix}
+        \overline{\varphi}_a & \overline{\chi}_a & \overline{\psi}_a & \overline{\xi}_a
+    \end{pmatrix} \begin{pmatrix}
+        igA - z & gB & & \\
+        gB^\dagger & igD - z & & \\
+        & & -igA - \overline{z} & gB \\
+        & & gB^\dagger & -igD - \overline{z}
+    \end{pmatrix} \begin{pmatrix}
+        \varphi_a \\ \chi_a \\ \psi_a \\ \xi_a
+    \end{pmatrix}] \\
+    &= \int \dd{A} \dd{B} \dd{D} \prod_{a=1}^r \qty(\dd\overline{\varphi}_a \dd\overline{\chi}_a \dd\overline{\psi}_a \dd\overline{\xi}_a \dd{\varphi}_a \dd{\chi}_a \dd{\psi}_a \dd{\xi}_a) \\
+    &{\phantom{{}={}}} \times \exp\qty[-\tr({A^\dagger A}) - \tr({D^\dagger D}) - 2\tr({B^\dagger B})] \\
+    &{\phantom{{}={}}} \hspace{-3em} \times \exp[\sum_{a=1}^r \begin{pmatrix}
+        \overline{\varphi}_a  & \overline{\psi}_a & \overline{\chi}_a & \overline{\xi}_a
+    \end{pmatrix} \begin{pmatrix}
+        igA - z & & gB & \\
+        & -igA - \overline{z} & & gB \\
+        gB^\dagger & & -igD - z & \\
+        & gB^\dagger & & -igD - \overline{z}
+    \end{pmatrix} \begin{pmatrix}
+        \varphi_a \\ \psi_a \\ \chi_a \\ \xi_a
+    \end{pmatrix}].
+\end{align*}
+
+The integral in $B$ yields the following (we write $Q$ as $2\times 2$ blocks of $r\times r$):
+\begin{align*}
+    & \phantom{{}={}} \int \dd{B} \exp[-2\tr(B^\dagger B)] \exp[g \cdots] \\
+    &= \int_{Q\in \mathbb{C}^{2r\times 2r}} \dd{Q} \\
+    &{\phantom{{}={}}} \hspace{-2em} \exp[\frac{g}{\sqrt{2}}\sum_{a,b=1}^r \begin{pmatrix}
+        \overline{\varphi}_a & \overline{\psi}_a & \overline{\chi}_a & \overline{\xi}_a
+    \end{pmatrix} \begin{pmatrix}
+        (Q_{11})_{ab} & (Q_{12})_{ab} & & \\
+        (Q_{21})_{ab} & (Q_{22})_{ab} & & \\
+        & & -(Q^\dagger_{11})_{ab} & -(Q^\dagger_{12})_{ab} \\
+        & & -(Q^\dagger_{21})_{ab} & -(Q^\dagger_{22})_{ab}
+    \end{pmatrix} \begin{pmatrix}
+        \varphi_b \\ \psi_b \\ \chi_b  \\ \xi_b
+    \end{pmatrix}].
+\end{align*}
+
+The integral in $A$ and $D$ yields the following:
+\begin{align*}
+    & \phantom{{}={}} \int \dd{A} \dd{D} \exp[-\tr(A^\dagger A) - \tr(D^\dagger D)] \exp[g \cdots] \\
+    &= \int_{\substack{R,S\in \mathbb{C}^{2r\times 2r} \\ R,S \text{ Hermitian}}} \dd{R} \dd{S} \\
+    &{\phantom{{}={}}} \hspace{-2em} \exp[i g\sum_{a,b=1}^r \begin{pmatrix}
+        \overline{\varphi}_a & \overline{\psi}_a & \overline{\chi}_a & \overline{\xi}_a
+    \end{pmatrix} \begin{pmatrix}
+        (R_{11})_{ab} & (R_{12})_{ab} & & \\
+        -(R_{21})_{ab} & -(R_{22})_{ab} & & \\
+        & & (S_{11})_{ab} & (S_{12})_{ab}  \\
+        & & -(S_{21})_{ab} & -(S_{22})_{ab}
+    \end{pmatrix} \begin{pmatrix}
+        \varphi_b \\ \psi_b \\ \chi_b  \\ \xi_b
+    \end{pmatrix}].
+\end{align*}
+
+Combining these we find
+\begin{align*}
+    Z &= \det(\frac{g}{\sqrt{2}}Q_{2r\times 2r} + ig(\sigma_z \otimes \mathbbm{1}_{r\times r}) R_{2r\times 2r} - \begin{pmatrix}
+        z \mathbbm{1}_{r\times r} & \\
+        & \overline{z}  \mathbbm{1}_{r\times r}
+    \end{pmatrix}) \\
+    &{\phantom{{}={}}} \times \det(-\frac{g}{\sqrt{2}}Q^\dagger_{2r\times 2r} + ig(\sigma_z \otimes \mathbbm{1}_{r\times r}) S_{2r\times 2r} - \begin{pmatrix}
+        z  \mathbbm{1}_{r\times r} & \\
+        & \overline{z}  \mathbbm{1}_{r\times r}
+    \end{pmatrix}).
+\end{align*}
+
+\section{Second Approach: Hermitian Class A}
+
+In the following we set $z = iy$.
+Then after a unitary transformation,
+\begin{align*}
+    Z &= \int_{H\in \text{AIII}} \dd{H} e^{-\tr({H^\dagger H})} \det \qty[\mathbbm{1}_{r\times r} \otimes \begin{pmatrix}
+        & H - z \\
+        H^\dagger - \overline{z} &
+    \end{pmatrix}] \\
+    &= \int_{H\in \text{AIII}} \dd{H} e^{-\tr({H^\dagger H})} \det \qty[\mathbbm{1}_{r\times r} \otimes \begin{pmatrix}
+        & & iA - z & B \\
+        & & B^\dagger & iD - z \\
+        -iA - \overline{z} & B & & \\
+        B^\dagger & -iD - \overline{z} & &
+    \end{pmatrix}] \\
+    &= \int_{H\in \text{AIII}} \dd{H} e^{-\tr({H^\dagger H})} \det \qty[\mathbbm{1}_{r\times r} \begin{pmatrix}
+        -A + y & -iB & & \\
+        iB^\dagger & D-y & & \\
+        & & A-y & iB \\
+        & & -iB^\dagger & -D+y
+    \end{pmatrix}] \\
+    &= \int_{H\in \text{AIII}} \dd{H} e^{-\tr({H^\dagger H})} \det \qty[\mathbbm{1}_{r\times r} \otimes \begin{pmatrix}
+        1 & \\ & -1
+    \end{pmatrix} \otimes \begin{pmatrix}
+        -A + y & -iB \\
+        iB^\dagger & D-y
+    \end{pmatrix}].
+\end{align*}
+
+The $\begin{pmatrix}
+    1 & \\ & -1
+\end{pmatrix}$ factor affects the determinant up to a factor of $\pm 1$ (or, equivalent to replacing $\overline{\psi} \rightarrow -\overline{\psi}$ and $\overline{\xi} \rightarrow -\overline{\xi}$).
+Denote
+\[ \tilde{H} = \begin{pmatrix}
+    -A & -iB \\ iB^\dagger & D
+\end{pmatrix}. \]
+Then $\tilde{H}$ is Hermitian, and
+\begin{align*}
+    Z &= \pm \int_{H\in \text{Hermitian}} \dd{H} e^{-\tr({\tilde{H}^\dagger \tilde{H}})} \det[\mathbbm{1}_{2r\times 2r} \otimes \qty(\tilde{H} + y \sigma_z \otimes \mathbbm{1}_{N\times N})].
+\end{align*}
+Introducing the auxiliary field $Q\in \mathbb{C}^{2r\times 2r}$ where $Q$ is Hermitian, we find
+\begin{align*}
+    Z &= \pm \int_{Q\in \text{Hermitian}} e^{-\tr({\tilde{Q}^\dagger \tilde{Q}})} \exp\qty[\tr \log\qty(iQ\otimes \mathbbm{1}_{2N\times 2N} + y \mathbbm{1}_{2r\times 2r} \otimes \sigma_z \otimes \mathbbm{1}_{N\times N}) ].
+\end{align*}
+That is, $Q$ acts on the $2r$ replica indices, while the term on $y$ acts on acts on the $2N$ flavor indices.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

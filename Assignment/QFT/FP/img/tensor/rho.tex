@@ -1,0 +1,42 @@
+\documentclass{standalone}
+
+% Plotting
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{calc}
+% quantikz breaks tikz-cd, see https://tex.stackexchange.com/questions/618330/quantikz-breaks-spacing-in-tikz-matrices-tikz-cd
+%\usetikzlibrary{quantikz}
+\usetikzlibrary{cd}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
+
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\tdplotsetmaincoords{-50}{20}
+\begin{tikzpicture}[scale=2,tdplot_main_coords,decoration={
+    markings,
+    mark=at position 0.5 with {\arrow{>}}}]
+    \foreach \i in {0,15,...,345} {
+        \foreach \j in {0} {
+            \draw[thick, gray] (\j,{cos(\i)},{sin(\i)}) -- (\j,{cos(\i +15)},{sin(\i +15)});
+        }
+    }
+    \foreach \i in {0,15,...,345} {
+        \foreach \j in {0.1, 0.3, ..., 1.9} {
+            \draw[fill=lightgray, draw=none, fill opacity=0.75] (\j-0.1,{cos(\i)},{sin(\i)}) -- (\j-0.1,{cos(\i +15)},{sin(\i +15)}) -- (\j+0.1,{cos(\i +15)},{sin(\i +15)}) -- (\j+0.1,{cos(\i)},{sin(\i)}) -- cycle;
+            \draw[postaction={decorate}] (\j,{cos(\i)},{sin(\i)}) -- (\j,{cos(\i +15)},{sin(\i +15)});
+        }
+        \draw[thick] (0,{cos(\i)},{sin(\i)}) -- (2,{cos(\i)},{sin(\i)});
+    }
+    \foreach \i in {0,15,...,345} {
+        \foreach \j in {2} {
+            \draw[thick, yellow, opacity=0.4] (\j,{cos(\i)},{sin(\i)}) -- (\j,{cos(\i +15)},{sin(\i +15)});
+        }
+    }
+\end{tikzpicture}
+\end{document}

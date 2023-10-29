@@ -1,0 +1,363 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{NLSM for Non-Hermitian Topological}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\section{Convention}
+
+We use the following $\gamma$-matrices.
+\begin{align*}
+    \gamma^k &= \begin{pmatrix}
+        & \sigma_k \\ -\sigma_k
+    \end{pmatrix},\\
+    \gamma^0 &= \begin{pmatrix}
+        \mathbbm{1} & \\ & -\mathbbm{1}
+    \end{pmatrix},\\
+    \gamma^5 &= \begin{pmatrix}
+        & \mathbbm{1} \\ \mathbbm{1}
+    \end{pmatrix}, \\
+    \gamma^0 \gamma^k &= \begin{pmatrix}
+        & \sigma_k \\ \sigma_k
+    \end{pmatrix}, \\
+    \gamma^0 \gamma^5 &= \begin{pmatrix}
+        & \mathbbm{1} \\ -\mathbbm{1}
+    \end{pmatrix}.
+\end{align*}
+
+\section{Dirac Hamiltonian}
+
+For non-Hermitian systems, the Dirac Hamiltonians are defined by
+\[ H(\vb{k}) = \sum_{i=1}^d k_i \Gamma_i + m \Gamma_0, \]
+where $\Gamma_i$ are non-Hermitian Dirac matrices.
+The mass term $m\Gamma_0$ commutes with all $\Gamma_i$.
+\par
+In the presence of a point gap, they satisfy the relation
+\[ \Gamma_i \Gamma_j^\dagger + \Gamma_j \Gamma_i^\dagger = 2\delta_{ij}. \]
+\par
+In the presence of a line gap, they take the same representation as the Hermitian case.
+
+\begin{example}{Dirac Hamiltonians}{dirac_hamiltonians}
+    In 1D, class A with point gap, we have
+    \[ H(k) = k + im,\quad m\in \mathbb{R}. \]
+\end{example}
+
+\section{Replica Path Integral}
+
+We note the following useful integrals (where $z=x+iy$, $a$ and $b$ are c-numbers).
+\begin{align*}
+    \int \dd{x} \dd{y} \exp(-\abs{z}^2/g^2 + az + b\overline{z}) &= \pi g^2 e^{g^2 ab},\\
+    \int \dd{x} \exp(-x^2/(2g^2) + ax) &= \sqrt{2\pi}g \exp(g^2/2\cdot a^2), \\
+    \int \dd{x} \exp(-x^2/(2g^2) + iax) &= \sqrt{2\pi}g \exp(-g^2/2\cdot a^2).
+\end{align*}
+Let
+\begin{align*}
+    a &= \alpha \sum_{i,c}\overline{\chi}_{i,c} \phi_{i,c}, \\
+    b &= \beta \sum_{j,d}\overline{\xi}_{j,d} \psi_{j,d},
+\end{align*}
+where $\alpha$ and $\beta$ are complex numbers, $i$ denotes different components of the Grassmann variables, and $c$ is the replica index.
+For some pairs $i,j$, it is possible that $\phi_i = \psi_j$ or $\overline{\chi}_i = \overline{\xi}_j$.
+The overline is just a notation for Grassmann variables \textit{on the left}, and the ones without the overline are \textit{on the right}.
+Then ($w=u+iv$)
+\begin{align*}
+    &\phantom{{}={}} \int \dd{x} \dd{y} \exp(-\abs{z}^2/g^2 + az + b\overline{z}) \\
+    &= \pi g^2 \exp(g^2 \alpha \beta \sum_{i,c}\overline{\chi}_{i,c} \phi_{i,c} \sum_{j,d}\overline{\xi}_{j,d} \psi_{j,d}) \\
+    &= \pi g^2 \exp(-g^2 \alpha \beta \sum_{i,c}\sum_{j,d} \overline{\chi}_{i,c}\psi_{j,d} \overline{\xi}_{j,d} \phi_{i,c} ) \\
+    &= \prod_{i,j,c,d} \int \dd{u}^{i,j}_{c,d} \dd{v}^{i,j}_{c,d} \exp(-\abs{w^{i,j}_{c,d}}^2/g^2 + \alpha w^{i,j}_{c,d} \overline{\chi}_{i,c}\psi_{j,d} - \beta \overline{w}^{i,j}_{c,d} \overline{\xi}_{j,d} \phi_{i,c}) \\
+    &= \prod_{i,j} \int \qty(\prod_{c,d} \dd{u}^{i,j}_{c,d} \dd{v}^{i,j}_{c,d}) \exp\qty(-\frac{1}{g^2} \tr(Q^{(i,j)} Q^{(i,j)\dagger}) + \alpha \overline{\chi}^\intercal_i Q^{(i,j)} \psi_j - \beta \overline{\xi}^\intercal_{j} Q^{(i,j)\dagger} \psi_i).
+\end{align*}
+
+\begin{example}{Auxiliary Fields on Rectangle Vertices}{aux_field_on_rec_vertices}
+    Suppose the disorder has the following form ($z=x+iy$).
+    \[ \int \dd{x} \dd{y} \exp\qty[-\abs{z}^2/g^2 + \begin{pmatrix}
+        \overline{\chi}_1 & \overline{\chi}_2 & \overline{\chi}_3 & \overline{\chi}_4
+    \end{pmatrix} \begin{pmatrix}
+        & & z & \\
+        & & & z \\
+        \overline{z} & & & \\
+        & \overline{z} & &
+    \end{pmatrix} \begin{pmatrix}
+        \psi_1 \\ \psi_2 \\ \psi_3 \\ \psi_4
+    \end{pmatrix}]. \]
+    There are four pairs of $(z,\overline{z})$.
+    For each pair we introduce a pair of auxiliary fields $(Q, -Q^\dagger)$ on the two vertices of the rectangle formed by $(z,\overline{z})$, finding the effective action
+    \begin{align*}
+        S &= -\frac{1}{g^2} \tr(QQ^\dagger + PP^\dagger + VV^\dagger + WW^\dagger) \\
+        &\phantom{{}={}} + \begin{pmatrix}
+            \overline{\chi}_1 & \overline{\chi}_2 & \overline{\chi}_3 & \overline{\chi}_4
+        \end{pmatrix} \begin{pmatrix}
+            Q & V & & \\
+            W & P & & \\
+            & & -Q^\dagger & -W^\dagger \\
+            & & -V^\dagger & -P^\dagger
+        \end{pmatrix} \begin{pmatrix}
+            \psi_1 \\ \psi_2 \\ \psi_3 \\ \psi_4
+        \end{pmatrix} \\
+        &= -\frac{1}{g^2}\tr(AA^\dagger) \\
+        &\phantom{{}={}} + \begin{pmatrix}
+            \overline{\chi}_1 & \overline{\chi}_2 & \overline{\chi}_3 & \overline{\chi}_4
+        \end{pmatrix} \begin{pmatrix}
+            A_{2r\times 2r} & \\
+            & -A^\dagger_{2r\times 2r}
+        \end{pmatrix} \begin{pmatrix}
+            \psi_1 \\ \psi_2 \\ \psi_3 \\ \psi_4
+        \end{pmatrix}
+    \end{align*}
+    Take another example
+    \[ \int \dd{x} \dd{y} \exp\qty[-\abs{z}^2/g^2 + \begin{pmatrix}
+        \overline{\chi}_1 & \overline{\chi}_2
+    \end{pmatrix} \begin{pmatrix}
+        z - \overline{z} & \\
+        & \overline{z} - z
+    \end{pmatrix} \begin{pmatrix}
+        \psi_1 \\ \psi_2
+    \end{pmatrix}]. \]
+    The effective action is given by
+    \begin{align*}
+        S &= -\frac{1}{g^2} \tr(QQ^\dagger + PP^\dagger + VV^\dagger + WW^\dagger) \\
+        &\phantom{{}={}} + \begin{pmatrix}
+            \overline{\chi}_1 & \overline{\chi}_2
+        \end{pmatrix} \begin{pmatrix}
+            Q + Q^\dagger & V - W \\
+            -V^\dagger + W^\dagger & P + P^\dagger
+        \end{pmatrix} \begin{pmatrix}
+            \psi_1 \\ \psi_2
+        \end{pmatrix}.
+    \end{align*}
+\end{example}
+
+More useful is the following formula ($A$ is any matrix of c-numbers).
+\begin{align*}
+    \int_{\substack{V\in \mathbb{C}^{N\times N} \\ V=V^\dagger}} \dd{V} \exp(-\tr(V^2) + \alpha\tr(VA)) &= \mathrm{const.} \times \exp[\tr(\frac{\alpha^2}{4}A^2)], \\
+    \int_{V\in \mathbb{C}^{N\times N}} \dd{V} \exp(-\tr(VV^\dagger) + \alpha\tr(VA) + \beta \tr(V^\dagger B)) &= \mathrm{const.} \times \exp[\alpha\beta \tr(AB)].
+\end{align*}
+
+\subsection{Topological Terms}
+
+See \textit{Metal-Insulator Transition in 2D
+Disordered Bipartite Systems}:
+\begin{quotation}
+    In many cases, the effect of the non-trivial homotopy group can be expressed via a locally defined topological term added to the action. Still, there not being a canonical recipe for constructing topological terms, in the present work we also encounter a case where such a topological term is not yet known.
+\end{quotation}
+
+Class C: QSHE. Class D: Thermal QHE.
+
+In general, the NL$\sigma$M manifold has the form $G/H$.
+\begingroup
+\color{red}
+Note that this is not necessarily a group---$H$ is the stabilizer group of something, and is generally not a normal subgroup.
+It doesn't make sense to say the group $G/H$.
+It should be understood as a fibration $H\rightarrow G \rightarrow G/H$, or the coset space $G/H$ since the orbit-stabilizer theorem tells us that the orbit is equivalent to $G/H$.
+\endgroup
+
+\subsubsection{\texorpdfstring{$\theta$-Term}{Theta-Term}}
+
+The Pruisken term is one kind of $\theta$-terms.
+\[ S[Q] \propto \int \dd[2]{x} \sigma_{xy} \epsilon_{ij}\tr(Q \partial_i Q \partial_j Q). \]
+This terms counts how many times the map $S^2\mapsto \operatorname{U}(2N)/\operatorname{U}(N)\times \operatorname{U}(N)$ wraps around $\operatorname{U}(2)/\operatorname{U}(1)\times \operatorname{U}(1)$.
+
+\subsubsection{WZW-Term}
+
+The WZW terms requires an extension of $Q$.
+
+See \textit{Metal-Insulator Transition in 2D
+Disordered Bipartite Systems}:
+\begin{quotation}
+    In solid state physics, the presence or absence of the chiral anomaly and the WZW depend
+    on the underlying microscopic theory. For example, graphene with vacancies and a random
+    vector potential falls into class AIII without WZW term, whereas the $\sigma$-model of graphene
+    with dislocations and a random vector potential (also AIII) will include a WZW term
+[MEGO10].
+\end{quotation}
+
+\section{NHSC A 3D}
+
+\subsection{Replica Action}
+
+Given the Hamiltonian (in 3D)
+\[ H = \vb*{\sigma} \cdot \vb{p} + i \gamma, \]
+and disorder
+\[ V: \mathbb{R}^3 \rightarrow \mathbb{C}^{2\times 2}, \]
+we find (each of $\overline{\psi},\psi,\overline{\chi},\chi$ has two components; $\overline{\psi}$ and $\overline{\chi}$ are row vectors; $\psi$ and $\chi$ are column vectors; $a,b$ are replica indices and are summed over from $1$ to $n$)
+\begin{align*}
+    Z_n &= \int DV \int D{\overline{\psi}}D{{\psi}}D{\overline{\chi}}D{{\chi}} \\
+    &\phantom{{}={}} \exp[\int \dd[3]{x}\qty(-\tr(V^\dagger V) + \overline{\psi}_a(H + gV - z)\psi_a + \overline{\chi}_a(H^\dagger + gV^\dagger - \overline{z})\chi_a)].
+\end{align*}
+The integral in $V$ is evaluated to be
+\begin{align*}
+    &\phantom{{}={}} \int DV \exp[\int \dd[3]{x} (-\tr(V^\dagger V) + g\tr(V \psi_a \overline{\psi}_a) + g\tr(V^\dagger \chi_a \overline{\chi}_a))] \\
+    &= \text{const.} \times \exp[g^2 \int \dd[3]{x} \tr(\psi_a \overline{\psi}_a \chi_b \overline{\chi}_b)] \\
+    &= \text{const.} \times \exp[-g^2 \int \dd[3]{x} \overline{\chi}_b \psi_a \overline{\psi}_a \chi_b ] \\
+    &= \text{const.} \times \exp[-g^2 \int \dd[3]{x} \tr(\overline{W}W) ] \\
+    &= \text{const.} \times \int DQ \exp[\int \dd[3]{x} \qty(-\tr(Q^\dagger Q) + g \tr(Q\overline{W}) - g\tr(Q^\dagger W)) ] \\
+    &= \text{const.} \times \int DQ \exp[\int \dd[3]{x} \qty(-\tr(Q^\dagger Q) + g \overline{\chi}_a Q_{ab} \psi_b - g\overline{\psi}_a Q^\dagger_{ab}\chi_b) ].
+\end{align*}
+where
+\[ \overline{W}_{ba} = \overline{\chi}_b \psi_a;\quad W_{ab} = \overline{\psi}_a \chi_b; \]
+and $Q: \mathbb{R}^3 \rightarrow \mathbb{C}^{n\times n}$.
+\par
+Plugging in and ignoring the constant factor we find
+\begin{align*}
+    Z_n &= \int DQ e^{-\int \dd[3]{x} \tr(Q^\dagger Q)} \int D{\overline{\psi}}D{{\psi}}D{\overline{\chi}}D{{\chi}} \\
+    &\phantom{{}={}} \exp[\int \dd[3]{x} \begin{pmatrix}
+        \overline{\psi}_a & \overline{\chi}_a
+    \end{pmatrix} \begin{pmatrix}
+        (H - z)\delta_{ab} & -g Q^\dagger_{ab} \\
+        g Q_{ab} & (H^\dagger - \overline{z})\delta_{ab}
+    \end{pmatrix} \begin{pmatrix}
+        \psi_b \\ \chi_b
+    \end{pmatrix}].
+\end{align*}
+By redefining $g$ we have $Q\in \operatorname{U}(n)$ at the saddle point.
+Then we make a change of variables
+\[ \chi'_a = Q^\dagger_{ab} \chi_b;\quad \overline{\chi}'_b = \overline{\chi}_a Q_{ab}. \]
+The effective action is
+\begin{align*}
+    Z_n^{\text{saddle}} &= \int_{Q\in \operatorname{U}(n)} DQ \int D{\overline{\psi}}D{{\psi}}D{\overline{\chi}'}D{{\chi}'} \\
+    &\phantom{{}={}} \exp[\int \dd[3]{x} \begin{pmatrix}
+        \overline{\psi}_a & \overline{\chi}'_a
+    \end{pmatrix} \begin{pmatrix}
+        (H - z)\delta_{ab} & -g \\
+        g & Q^\dagger_{ac}(H^\dagger - \overline{z})Q_{cb}
+    \end{pmatrix} \begin{pmatrix}
+        \psi_b \\ \chi'_b
+    \end{pmatrix}] \\
+    &= \int_{Q\in \operatorname{U}(n)} DQ \int D{\overline{\psi}}D{{\psi}}D{\overline{\chi}'}D{{\chi}'} \\
+    &\phantom{{}={}} \exp[\int \dd[3]{x} \begin{pmatrix}
+        \overline{\psi}_a & \overline{\chi}'_a
+    \end{pmatrix} \begin{pmatrix}
+        g & (H - z)\delta_{ab} \\
+        Q^\dagger_{ac}(- H^\dagger + \overline{z})Q_{cb} & g
+    \end{pmatrix} \begin{pmatrix}
+        -\chi'_b \\ \psi_b 
+    \end{pmatrix}].
+\end{align*}
+Let
+\[ \overline{\Psi}_a = \begin{pmatrix}
+    \overline{\psi}_a & \overline{\chi}'_a
+\end{pmatrix};\quad \Psi_b = \begin{pmatrix}
+    -\chi'_b \\ \psi_b 
+\end{pmatrix}. \]
+Then the effective action is given by
+\[ S = \int \dd[3]{x} \mathcal{L}, \quad Z_n^{\text{saddle}} = \int_{Q\in \operatorname{U}(n)} DQ \int D{\overline{\psi}}D{{\psi}}D{\overline{\chi}'}D{{\chi}'} e^S. \]
+where
+\[ \mathcal{L} = \overline{\Psi}_a \begin{pmatrix}
+    g & \sigma_i k^i + i\gamma - z \\
+    -\sigma_i k^i + i\gamma + \overline{z} & g
+\end{pmatrix} \Psi_a - i\overline{\Psi} \qty(\frac{1}{2} Q^\dagger \partial_k Q) \cdot (\gamma^k - \gamma^0 \gamma^k) \Psi. \]
+Now we set $A_k = -B_k = (1/2) Q^\dagger \partial_k Q$.
+Then
+\[ \mathcal{L} = \overline{\Psi}_a \begin{pmatrix}
+    g & \sigma_i k^i + i\gamma - z \\
+    -\sigma_i k^i + i\gamma + \overline{z} & g
+\end{pmatrix} \Psi_a - i\overline{\Psi} \gamma^k A_k \Psi - i\overline{\Psi} \gamma^0 \gamma^k B_k \Psi. \]
+The effective action can be expanded using
+\[ S = \Tr \log (H - V) = Tr\log H - \sum_{n=1}^\infty \frac{1}{n} \Tr(G V)^n \]
+where
+\[ V = i\overline{\Psi} \gamma^k A_k \Psi + i\overline{\Psi} \gamma^0 \gamma^k B_k \Psi. \]
+
+\subsection{Loop Integrals}
+
+In the following we set $M^2 = m^2 + m_5^2$, $M>0$, $m = g$ and $im_5 = i\gamma - i \Im z$ and $x = \Re z$.
+Let
+\[ G(k) = \begin{pmatrix}
+    m & \sigma_i k^i + im_5 - x \\
+    -\sigma_i k^i + im_5 + x & m
+\end{pmatrix}^{-1}. \]
+The loop diagrams are evaluated.
+
+\begin{itemize}
+    \item One insertion.
+    \begin{align*}
+        \tr[\int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^i] &= 0, \\
+        \tr[\int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^0 \gamma^i] &= 0.
+    \end{align*}
+    \item Two insertions (discarding $\bigO(p^2)$).
+    \begin{align*}
+        \tr[\frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^i G(k+p)\gamma^j] &= -\frac{\Lambda\delta^{ij}}{3\pi^2}, \\
+        \tr[\frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^0\gamma^i G(k+p)\gamma^j] \\
+        + \tr[\frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^i G(k+p)\gamma^0\gamma^j] &= -\frac{m_5 \epsilon^{ijk} p^k}{2\pi M}, \\
+        \tr[\frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^0\gamma^i G(k+p)\gamma^0\gamma^j] &= \qty(-\frac{\Lambda}{3\pi^2} + \frac{m^2}{2\pi M} + \frac{m^2 x^2}{6\pi M^3})\delta^{ij} \\
+        &\phantom{{}={}} - \frac{i m^2 x \epsilon^{ijk}p_k}{6\pi M^3}.
+    \end{align*}
+   % \item Two insertions.
+   % \begin{align*}
+   %     \frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} \frac{(-m + \slashed{k} + i\gamma^5 m_5) \gamma^i (-m + (\slashed{k}+\slashed{p}) + i\gamma^5 m_5) \gamma^j}{(-k^2 - M^2)(-(k+p)^2 - M^2)} &= \frac{\Lambda \delta^{ij}}{3\pi^2}, \\
+   %     \frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} \frac{(-m + \slashed{k} + i\gamma^5 m_5) \gamma^0 \gamma^i (-m + (\slashed{k}+\slashed{p}) + i\gamma^5 m_5) \gamma^j}{(-k^2 - M^2)(-(k+p)^2 - M^2)} &= -\frac{m_5 \epsilon^{ijk}}{4\pi M} p^k,\\
+   %     \frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} \frac{(-m + \slashed{k} + i\gamma^5 m_5) \gamma^i (-m + (\slashed{k}+\slashed{p}) + i\gamma^5 m_5) \gamma^0 \gamma^j}{(-k^2 - M^2)(-(k+p)^2 - M^2)} &= -\frac{m_5 \epsilon^{ijk}}{4\pi M} p^k,\\
+   %     \frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} \frac{(-m + \slashed{k} + i\gamma^5 m_5) \gamma^0 \gamma^i (-m + (\slashed{k}+\slashed{p}) + i\gamma^5 m_5) \gamma^0 \gamma^j}{(-k^2 - M^2)(-(k+p)^2 - M^2)} &= \frac{\Lambda \delta^{ij}}{3\pi^2} - \frac{m^2}{2\pi M} \delta^{ij}.
+   % \end{align*}
+    \item Three insertions (discarding $\bigO(p)+\bigO(q)$).
+    \begin{align*}
+        \tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^i G(k+p)\gamma^j G(k+q) \gamma^k] &= 0, \\
+        \tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^0 \gamma^i G(k+p)\gamma^j G(k+q) \gamma^k] & \\
+        +\tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^i G(k+p)\gamma^0 \gamma^j G(k+q) \gamma^k] & \\
+        +\tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^i G(k+p)\gamma^j G(k+q) \gamma^0 \gamma^k] &= -\frac{m_5 \epsilon^{ijk}}{2\pi M}, \\
+        \tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^i G(k+p)\gamma^0 \gamma^j G(k+q) \gamma^0 \gamma^k] & \\
+        +\tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^0 \gamma^i G(k+p)\gamma^j G(k+q) \gamma^0 \gamma^k] & \\
+        +\tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^0 \gamma^i G(k+p)\gamma^0 \gamma^j G(k+q) \gamma^k] &= -\frac{i m x \epsilon^{ijk}}{3\pi M^3}, \\
+        \tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^0 \gamma^i G(k+p)\gamma^0 \gamma^j G(k+q)\gamma^0 \gamma^k] &= -\frac{m_5^3 \epsilon^{ijk}}{6\pi M^3}.
+    \end{align*}
+\end{itemize}
+
+\subsection{Effective Action}
+
+%Set $m = g$ and $im_5 = i\gamma - z$ and assume that $z$ is purely imaginary.
+%We have
+%\[ \begin{pmatrix}
+%    m & \sigma_i p^i + im_5 \\
+%    -\sigma_i p^i + im_5 & m
+%\end{pmatrix}^{-1} = \frac{\gamma^k p_k + im_5 \gamma^5 - m}{-p^2 - m_5^2 - m^2}. \]
+
+%The model is given by
+%\[ \mathcal{L} = \overline{\psi} \qty[\qty(\gamma^k p_k + m + im_5 \gamma^5) + \qty(\gamma^k - \gamma^0 \gamma^k) \qty(\frac{1}{2}U \partial_k U^\dagger)]\psi. \]
+
+%Then the loop integrals above allows us to obtain the terms similar to those in equation (C9) of the paper \textit{Disorder-induced \ldots}.
+
+Using the loop integrals, we find
+\begin{align*}
+    S^{(2)} &= \int \dd[3]{x} \qty(-\frac{\Lambda}{3\pi^2} \tr(A_j A_j + B_j B_j) + \frac{im_5 \epsilon^{ijk}}{2\pi M} \tr(A_i \partial_k B_j)) \\
+    &\phantom{{}={}} + \int \dd[3]{x} \qty(\qty(\frac{m^2}{2\pi M} + \frac{m^2 x^2}{6\pi M^3})\tr(B_j B_j) - \frac{m^2 x}{6\pi M^3}\epsilon^{ijk} \tr(B_i \partial_k B_j)); \\
+    S^{(3)} &= \int \dd[3]{x} \qty(-\frac{i m_5 \epsilon^{ijk}}{2\pi M} \tr(A_i A_j B_k) + \frac{m x \epsilon^{ijk}}{3\pi M^3}\tr(A_i B_j B_k)) \\
+    &\phantom{{}={}} + \int \dd[3]{x} \qty(-\frac{i m_5^3 \epsilon^{ijk}}{6\pi M^3}\tr(B_i B_j B_k)).
+\end{align*}
+
+These combine to
+\begin{align*}
+    S &= -\frac{\Lambda}{3\pi^2} \int \dd[3]{x} \tr(A_j A_j + B_j B_j) \\
+        &\phantom{{}={}} + \int \dd[3]{x} \qty(\frac{m^2}{2\pi M} + \frac{m^2 x^2}{6\pi M^3})\tr(B_j B_j) \\
+        &\phantom{{}={}} + \qty(\frac{3m_5}{4M} - \frac{m_5^3}{4M^3}) 2\pi i \cdot  \frac{1}{24\pi^2} \epsilon^{ijk}  \int \dd[3]{x} \tr(U^\dagger \partial_i U U^\dagger \partial_j U U^\dagger \partial_k U). % + \int \dd[3]{x} \qty(-\frac{i m_5 \epsilon^{ijk}}{2\pi M} \tr(A_i A_j B_k) - \frac{i m_5^3 \epsilon^{ijk}}{6\pi M^3}\tr(B_i B_j B_k) + \frac{im_5 \epsilon^{ijk}}{\pi M} \tr(B_i B_j B_k)).
+\end{align*}
+
+\section{A Few Mathematical Tips}
+
+If $Q\in \mathbb{C}^{n\times n}$ and $Q^2 = \mathbbm{1}$ then $Q$ is Hermitian (see \href{https://math.stackexchange.com/questions/219565/number-of-matrices-whose-square-is-identity}{Number of matrices whose square is identity}).
+
+\par
+
+Although $\log (AB) \neq \log (BA)$ in general, still we have
+\[ \tr \log (AB) = \tr \log (BA) \]
+since $\tr \log (AB) = \log \det(AB) = \log \det(BA) = \tr\log(BA)$.
+
+\paragraph*{On Misusing the Chain Rule}
+
+Let $f: \mathbb{R}^m \rightarrow \mathbb{R}^n$ and $A\in \mathbb{R}^{m\times l}$.
+Let $x: \mathbb{R} \rightarrow \mathbb{R}^l$.
+Then
+\[ \dv{t} f(A x(t)) = (\grad f(A x(t))) \cdot A \cdot \dv{t} x(t). \]
+
+However, the following doesn't hold.
+Let $A: \mathbb{R} \rightarrow \mathbb{R}^{n\times n}$, then
+\[ \dv{t} e^{A(t)} \neq e^{A(t)} \dv{t} A(t). \]
+In particular,
+\[ e^{\Lambda(x)} \grad e^{-\Lambda(x)} \neq -\grad \Lambda(x). \]
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

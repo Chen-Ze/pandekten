@@ -1,0 +1,17 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \feynmandiagram [inline=(r.base), small, horizontal=v to r] {
+        c1 --[] v [dot];
+        v --[] c2;
+        r[particle=\vphantom{Mg}] -- v;
+    }; \ &= \lambda.
+\end{align*}
+\end{document}

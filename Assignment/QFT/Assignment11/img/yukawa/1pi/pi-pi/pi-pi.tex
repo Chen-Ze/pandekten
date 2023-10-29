@@ -1,0 +1,17 @@
+\documentclass{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\feynmandiagram [inline=(v1.base), small, horizontal=v1 to v2, layered layout] {
+    c1 --[boson] v1[dot];
+    v1 --[boson, half right] v2[dot];
+    v2 --[boson] c2;
+    v1 --[boson, half left] v2;
+};
+\end{document}

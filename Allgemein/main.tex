@@ -1,6 +1,10 @@
 \documentclass{article}
 
+\usepackage{mmacells}
+
 \usepackage{pandekten}
+
+\tcbuselibrary{hooks, minted}
 
 \title{Allgemein}
 \author{Ch\=an Taku}
@@ -26,6 +30,10 @@ More tools may be found \href{https://tex.stackexchange.com/questions/58200/what
 
 \section{Admonitions}
 
+\subsection{Style}
+
+$f\colon X \to Y$ over $f: X\rightarrow Y$. Make replacements.
+
 \subsection{Covariant Properties}
 
 Although Pandekten pratices the DRY principle,
@@ -36,5 +44,54 @@ We have to restate the same definition for smooth fiber bundles, and replace eve
 \par
 This problem is mitigated by using the language of category theory.
 However, to make the text more accessible, we have to sometimes surrender to the plain language.
+
+\section{Problems}
+
+\begin{itemize}
+    \item In the Hilbert action, the spacetime $M$ is given.
+    Do we know the shape of $M$ \textit{a priori}?
+    \item Does it make sense to evaluate $\langle \psi \rangle$ of the Dirac spinor using path integral?
+    What if $\psi$ is a majorana field?
+\end{itemize}
+
+\section{Including Mathematica Documents}
+
+To include Mathematica cells, see \href{https://mathematica.stackexchange.com/questions/73223/how-best-to-embed-various-cell-groups-into-a-latex-project/73589#73589}{How best to embed various cell groups into a \LaTeX project?}. See also \href{https://tex.stackexchange.com/questions/84748/fanciest-way-to-include-mathematica-code-in-latex}{Fanciest way to include Mathematica code in LaTeX}.
+The \LaTeX package is found in \href{https://github.com/jkuczm/mmacells}{jkuczm/mmacells}
+The Mathematica package is found in \href{https://github.com/jkuczm/MathematicaCellsToTeX/issues/31}{jkuczm/MathematicaCellsToTeX}.
+To import the Mathematica package from Version 13 on, some \href{https://github.com/jkuczm/MathematicaCellsToTeX/issues/31}{special options} are needed.
+An example is provided below.
+
+\input{Mathematica/export.tex}
+
+\section{Beamer}
+
+To load serif font for beamer, we may use the following.
+\begin{minted}[mathescape]{tex}
+\documentclass{beamer}
+\usefonttheme{professionalfonts}
+\end{minted}
+For the difference between math fonts, see \href{https://www.logicmatters.net/resources/pdfs/MathFonts.pdf}{Fonts with Beamer}.
+
+The following also works.
+\begin{minted}[mathescape]{tex}
+\documentclass{beamer}
+\usefonttheme[onlymath]{serif}
+\end{minted}
+
+The following also works.
+\begin{minted}[mathescape]{tex}
+\usepackage[mathrm=sym]{unicode-math}
+\end{minted}
+
+\section{Text in Equations}
+
+For a comparison between \texttt{\textbackslash mathrm}, \texttt{\textbackslash textnormal} and \texttt{\textbackslash text}, see the following.
+\begin{itemize}
+    \item \href{https://tex.stackexchange.com/questions/98406/which-command-should-i-use-for-textual-subscripts-in-math-mode}{Which command should I use for textual subscripts in math mode?}
+    \item \href{https://tex.stackexchange.com/questions/70632/difference-between-various-methods-for-producing-text-in-math-mode}{Difference between various methods for producing text in math mode}.
+    \item \href{https://tex.stackexchange.com/questions/98008/is-mathrm-really-preferable-to-text}{Is \textbackslash mathrm really preferable to \textbackslash text?}
+    \item \href{https://tex.stackexchange.com/questions/48459/whats-the-difference-between-mathrm-and-operatorname}{What's the difference between \textbackslash mathrm and \textbackslash operatorname?}
+\end{itemize}
 
 \end{document}

@@ -1,0 +1,107 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 1}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a)}%
+If $r$ is a nonunit, then $\langle r \rangle \ni r$ is an ideal containing no units, and is therefore contained in a maximal ideal.
+
+\plabel{(b)}%
+If $\mathfrak{m}$ is not maximal, then it is contained in a maximal ideal $\mathfrak{n} \supsetneq \mathfrak{m}$.
+$\mathfrak{n}$ should therefore contain a unit, leading to a contradiction.
+\par
+If $A$ has another maximal ideal $\mathfrak{m}'$ then there exists some $r\notin \mathfrak{m}$ satisfying $r\in \mathfrak{m}'$.
+Such $r$ should be a unit, leading to a contradiction.
+
+\plabel{(c)}%
+Let $r$ be an element of $\mathfrak{m}$.
+Then $1+r$ is not in $\mathfrak{m}$.
+Therefore $\langle 1+r \rangle$ is contained in no maximal ideal and has to be $A$, i.e. $1+r$ is a unit.
+
+\plabel{(d)}%
+If $A$ has another maximal ideal $\mathfrak{m}' \neq \mathfrak{m}$, then there is an element $r$ in $\mathfrak{m}$ and not in $\mathfrak{m}'$, and an element $r'$ in $\mathfrak{m}'$ and not in $\mathfrak{m}$.
+$\langle r,r' \rangle$ is contained in no ideal and should be $A$.
+Therefore, there is $a\in A$ such that $ar' - 1 \in \mathfrak{m}$, i.e. $ar'\in \mathfrak{m}'$ is a unit, leading to a contradiction.
+
+\plabel{2 (a)}%
+$f^{-1}(\mathfrak{p})$ is a prime ideal of $A$: If $a,a'\in A$ satisfy $a a' \in f^{-1}(\mathfrak{p})$, then $f(a) f(a') = f(aa') \in \mathfrak{p}$.
+Therefore, we have either $f(a) \in \mathfrak{p}$ or $f(a')\in \mathfrak{p}$, i.e. either $a\in f^{-1}(\mathfrak{p})$ or $a' \in f^{-1}(\mathfrak{p})$.
+\par
+$f(\mathfrak{q})$ is a prime ideal of $B$ if $\mathfrak{q}$ is a prime ideal of $A$: $f(\mathfrak{q})$ is an ideal since $f$ is surjective.
+If $bb'\in f(\mathfrak{q})$ for some $b,b'\in B$, then there are $a,a'\in A$ with $f(a) = b$ and $f(a') = b'$ such that $f(aa')\in f(\mathfrak{q})$.
+Since $\mathfrak{q} \supseteq \ker f$, $aa' \in \mathfrak{q}$.
+Therefore, either $b\in \mathfrak{q}$ or $b'\in \mathfrak{q}$.
+
+\plabel{(b)}%
+Let $k$ be a field.
+$\imath: k[X] \rightarrow k[X,Y]$ is the inclusion.
+Then $\langle X\rangle$ and $\langle X,Y \rangle$ are both prime ideals in $k[X,Y]$ with the same contraction $\langle X \rangle$ in $k[X]$.
+
+\plabel{3 (a)}%
+Closed under addition: Let $r_1,r_2\in I+J$ be given by $r_1 = i_1 + j_1$, $r_2 = i_2+j_2$, where $i_n \in I$ and $j_n\in J$ for $n=1,2$.
+Then $r_1 + r_2 = (i_1+i_2) + (j_1+j_2) \in I+J$.
+\par
+Closed under scalar multiplication: Let $r\in I+J$ be given by $r=i+j$ where $i\in I$ and $j\in J$.
+Then for all $a\in A$, $ar = ai_1 + aj_2 \in I+J$.
+\par
+$K$ contains $I+J$: If there is $k = i+j\in I+J$ not in $K$, then $K$ is not closed under addition
+
+\plabel{(b)}%
+Close under addition: Finite sum of elements of the form $\sum x_i y_i$ again has the same form.
+\par
+Close under scalar multiplication: $a\sum x_i y_i = \sum (ax_i) y_i$.
+
+\plabel{(c)}%
+$\mathfrak{m} = \langle f \rangle$ where $f(x) = x$.
+$\mathfrak{m} \subset \langle f \rangle$:
+If $g(0)=0$ and $g$ is analytical at $0$ then $g$ is divisible by $f$.
+$\mathfrak{m} \supset \langle f \rangle$: Clear.
+\par
+It's clear that $\mathfrak{m}^2 \subset \langle x^2 \rangle \subsetneq \mathfrak{m}$.
+
+\plabel{(d)}%
+It suffices to prove $\mathfrak{n} \subset \mathfrak{n}^2$.
+By writing $h\in \mathfrak{n}$ as $h = f - g$ where $f = \max(h,0)$ and $g = -\min(0,h)$ we find $h = \sqrt{f}\sqrt{f} - \sqrt{g}\sqrt{g}\in \mathfrak{n}^2$.
+
+\plabel{4}%
+If $\mathfrak{a}$ is not a maximal ideal then there is a nonunit $p$ such that $\mathfrak{a} \subsetneq \langle p \rangle$.
+Therefore, $a = pq$ for some $q\in A$.
+Since $a$ is prime and $p\notin \mathfrak{a}$, $q\in \mathfrak{a}$.
+Therefore, $a = p q' a$ for some $q'\in A$.
+Since $A$ is a domain, $pq' = 1$.
+Therefore $p$ is unit.
+
+\plabel{5}%
+The identity is clear if one of $x$ or $y$ is $0$.
+If both are nonzero, then without loss of generality we assume $v(x) < v(y)$.
+Therefore, $x,y\in \langle \pi^{v(x)} \rangle$ and $x\notin \langle \pi^{v(x)+1} \rangle$ while $y\in\langle \pi^{v(x)+1} \rangle$ where $\pi$ is a uniformizer.
+Thus $x+y\in \langle \pi^{v(x)} \rangle$ and $x+y\notin \langle \pi^{v(x)+1} \rangle$, i.e. $v(x+y) = v(x)$.
+
+\end{document}

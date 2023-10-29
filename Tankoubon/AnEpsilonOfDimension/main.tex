@@ -1,0 +1,30 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{An $\epsilon$ of Dimension\\
+\large On Renormalization Group}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+We know how to evaluate $G^{(n)}$ for a given renormalization scale $M$ and condition $\lambda$:
+\begin{align*}
+    G^{(2)}(p;\lambda,M) &= \frac{i}{p^2} + \frac{i}{p^2}\qty(A \log \frac{\Lambda^2}{-p^2} + \text{finite}) + \frac{i}{p^2}(ip^2\delta_Z)\frac{i}{p^2} + \cdots,\\
+    G^{(n)}(p_1,\cdots,p_n;\lambda,M) &= \qty(\prod_i \frac{i}{p_i^2}) \times\\
+    &\phantom{{}={}}\qty[-ig - iB\log \frac{\Lambda^2}{-p^2} - i\delta_g + (-ig)\sum_i\qty(A_i \log \frac{\Lambda^2}{-p_i^2} - \delta_{Z_i})] \\
+    &\phantom{{}={}} + \text{finite}.
+\end{align*}
+%We also know from the Callan-Symanzik equation how $\lambda$ and $Z$ should flow as $M$ changes.
+%Then, could we know how $G^{(n)}$ flow as $M$ changes?
+%That is, given the value of $G^{(n)}(\lambda,M)$ at some $\lambda$ and $M$, could we obtain the value of $G^{(n)}(\lambda',M')$, without refering to $M'$, i.e. we know the new value of $\lambda$ but we don't know at which $M'$ does $\lambda$ attain this value?
+
+\par
+$\gamma(\lambda_*)$ is called the anomalous dimension of the scalar field (see p.427), or $\gamma(\lambda)$ even if the fixed point doesn't exist.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

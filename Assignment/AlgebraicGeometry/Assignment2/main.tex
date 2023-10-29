@@ -1,0 +1,101 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 2}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{4.1}%
+$\Leftarrow$:
+Assume $U = X \cup Y$ is a union of proper closed subsets $X$ and $Y$.
+Then $\overline{U} = \overline{X} \cup \overline{Y}$ and both are proper subsets since $\overline{X} \cap U = X\cap U \neq U$, $\overline{Y} \cap U = Y \cap U \neq U$.
+\par
+$\Rightarrow$:
+Assume $\overline{U} = A \cup B$ is a union of proper closed subsets $A$ and $B$.
+Then $U$ is not contained $A$ nor $B$ since otherwise $A$ or $B$ would be a smaller closed set containing $U$ than $\overline{U}$.
+Then
+\[ U = (A\cap U) \cup (B\cap U) \]
+is a union of proper subsets.
+
+\plabel{4.3}%
+Clearly $k[X] \cong k[x,y]$.
+But $(x,y) \subsetneq k[x,y]$ defines empty set in $X$.
+
+\plabel{4.9}%
+$f^{-1}$ could be defined by
+\[ (y_0:y_1:y_2) \mapsto \qty(1:\frac{y_0}{y_1}:\frac{y_0}{y_2}) \text{ or } \qty(\frac{y_1}{y_0}:1:\frac{y_1}{y_2}) \text{ or } \qty(\frac{y_2}{y_0}:\frac{y_2}{y_1}:1). \]
+$f$ is not regular on
+\[ V = \qty{(1:0:0), (0:1:0), (0:0:1)}. \]
+$f^{-1}$ is not regular on
+\[ V = \qty{(1:0:0), (0:1:0), (0:0:1)}. \]
+The open subsets of $\mathbb{P}^2\setminus V$ are mapped isomorphically by $f$.
+
+\prule
+
+\plabel{5.1}%
+If $\varphi(\mathbb{P}^n \times \mathbb{P}^m)$ is contained in a linear space then there are coefficients
+\[ \Set*{a_{ij}\in k}{0\le i\le n, 0\le j \le m} \]
+such that for all $v\in \mathbb{P}^n$ and $u\in \mathbb{P}^m$,
+\[ \sum_{ij} a_{ij} v_i u_j = 0. \]
+This can happen only if $a_{ij} \equiv 0$ for all $i$ and $j$.
+
+\plabel{5.8}%
+Lines through origin in $\mathbb{A}^r$ corresponds to points in $\mathbb{P}^{r-1}_\infty$.
+Projection along the line $L$ is $\pi_L: \overline{X} \rightarrow \mathbb{P}^{r-1}$ in Theorem 1.15.
+\par
+First we prove $S \subset \overline{X} \cap \mathbb{P}^{r-1}_\infty$.
+If $L\in \mathbb{P}^{r-1}_\infty$ is not in $\overline{X}$, then from theorem 1.15 we know $\pi_L$ is finite.
+\par
+Then we prove $\overline{X} \cap \mathbb{P}^{r-1}_\infty \subset S$.
+\textit{%
+I am not sure how should I do this part.
+Let $X = V(y-x^2) \subset \mathbb{A}^2$.
+Then $\overline{X} \cap \mathbb{P}^1_\infty$ is a single point and corresponds to the line $x=0$.
+Projection parallel to this line is $\pi(x,y) = x$.
+Since $k[x,y]/(y-x^2) \cong k[x]$, the map is finite.
+}
+\par
+For $X = V(xy = 1)$, we find $S = \qty{0,\infty} \in \mathbb{P}^1_\infty$, i.e. the line $x=0$ and the line $y=0$.
+
+\plabel{5.9}%
+Let $U,V\subset \mathbb{P}^n$ be isomorphic to affine closed sets.
+Then $U\times V \subset \mathbb{P}^n \times \mathbb{P}^n \hookrightarrow \mathbb{P}^N$ is also isomorphic to an affine closed subset under some $\varphi\colon U\times V\to \mathbb{A}^m$, where $\hookrightarrow$ is the Segre embedding.
+\par
+Let $\Delta \subset \mathbb{P}^n \times \mathbb{P}^n \hookrightarrow \mathbb{P}^N$ be the diagonal.
+Then $\varphi(\Delta)$ is a closed set since it's an image of a projective variety, and $\varphi(\Delta) \cap \varphi(U\times V)$ is a closed set in $\mathbb{A}^{m}$.
+Therefore the preimage $\Delta \cap (U\times V)$ is an affine variety.
+\par
+Now $U\cap V$ is isomorphic to $\Delta \cap (U\times V)$ by the map $x\mapsto (x,x)$.
+Therefore, $U\cap V$ is also an affine set.
+
+\plabel{5.11}%
+Let $D(g)$ be a principal affine open set in $Y$.
+Then $f^{-1}(D(g)) = D(f^*(g))$ is also a principal affine open set in $X$.
+
+
+\end{document}

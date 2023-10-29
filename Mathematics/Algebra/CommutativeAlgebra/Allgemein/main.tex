@@ -456,6 +456,24 @@ $\operatorname{Ann}(m)$ and $\operatorname{Ann}(M)$ are ideals.
     may fail unless $I$ is finitely generated.
 \end{counterexample}
 
+\begin{counterexample}{Pairwise Disjoint $\nRightarrow$ Direct Sum}{pairwise_disjoint_nrightarrow_direct_sum}
+    The vector spaces $\langle e_1 \rangle$, $\langle e_2 \rangle$, and $\langle e_1+e_2 \rangle$ are pairwise disjoint.
+    However, $\langle e_1 \rangle + \langle e_2 \rangle + \langle e_1+e_2 \rangle$ is not a direct sum.
+\end{counterexample}
+
+\begin{counterexample}{$0\rightarrow A \rightarrow A\oplus B \rightarrow B \rightarrow 0$ $\nRightarrow$ Split}{direct_sum_not_split}
+    It's true that
+    \[ 0 \longrightarrow A \xlongrightarrow{\imath} A\oplus B \xlongrightarrow{\pi} B \longrightarrow 0 \]
+    is split if $\imath$ and $\pi$ are the inclusion and projection, respectively.
+    However, this is not true otherwise.
+    The sequence
+    \[ 0 \longrightarrow C_2 \xlongrightarrow{\imath \oplus 0} C_4 \oplus M \xlongrightarrow{\pi \oplus \operatorname{id}} C_2 \oplus M \longrightarrow 0 \]
+    doesn't split for $\imath(a) = 2b$ and $\pi(b) = a$ where $a$ and $b$ are generators, and $M$ is any $\mathbb{Z}$-module.
+    Now let
+    \[ M = \bigoplus_{i=1}^\infty (C_2 \oplus C_4). \]
+    Then $C_2 \oplus M \cong M \cong C_4 \oplus M$.
+\end{counterexample}
+
 \section*{Miscellany}
 
 The following chain of inclusion holds.
@@ -525,6 +543,74 @@ The following chain of inclusion holds.
 \begin{itemize}
     \item $A$ is local $\Leftrightarrow$ nonunits of $A$ consists an ideal.
 \end{itemize}
+
+\subsection*{Application of UMP}
+
+\begin{example}{How Do We Use UMP?}{how_do_we_use_ump}
+    We may use UMP to prove, given $N\subset L\subset M$,
+    \[ (M/N)/(L/N) = M/L. \]
+    We use the following diagram.
+    \begin{center}
+        \begin{tikzcd}
+            M \arrow[r] \arrow[rrd] & M/N \arrow[r] \arrow[rd] & (M/N)/(L/N) \arrow[d] \\
+            & & X
+        \end{tikzcd}
+    \end{center}
+    We prove that $(M/N)/(L/N)$ satisfy the following universal property (which is exactly that of $M/L$):
+    \begin{itemize}
+        \item there exists a map $M \rightarrow (M/N)/(L/N)$ such that $L \rightarrow 0$, and
+        \item for any $M\rightarrow X$ such that $L\rightarrow 0$, there exists a unique map $(M/N)/(L/N) \rightarrow X$ such that the diagram commutes.
+    \end{itemize}
+    The first one is easy: $L \rightarrow L/N$ under $M\rightarrow M/N$, and $L/N \rightarrow 0$ under $M/N \rightarrow (M/N)/(L/N)$.
+    \par
+    The second one is also easy.
+    If $L\rightarrow 0$ under $M\rightarrow X$, then $N\rightarrow 0$ under $M\rightarrow X$, and therefore there exists a unique map $M/N\rightarrow X$ such that left triangle commutes.
+    $M/N\rightarrow X$ sends $L/N$ to $0$ since $L\rightarrow L/N$ under $M\rightarrow M/N$.
+    Therefore, there exists a unique $(M/N)/(L/N)\rightarrow X$ such that the right triangle commutes.
+    \par
+    It remains to prove that there exists a unique $(M/N)/(L/N)\rightarrow X$ such that the whole triangle commutes.
+    The existence is already shown.
+    If the map is not unique, then two different such maps composes to two different $M/N \rightarrow X$ (since the same $M/N\rightarrow X$ corresponds to identical maps $(M/N)/(L/N) \rightarrow X$), and therefore composes to two different $M\rightarrow X$ (once again).
+\end{example}
+
+\begin{example}{$(X_0,X_1,\cdots)$ is not Finitely Generated}{x_0_x_1_is_not_finitely_generated}
+    Let $R$ be a commutative ring.
+    Then $I=(X_0,X_1,\cdots)\subset R[X_0,X_1,\cdots]$ is not finitely generated.
+    Otherwise let $I=(f_0,\cdots,f_n)$.
+    There is a maximal $\ell-1$ in the variables of $f_0,\cdots,f_n$.
+    Let $Q=R[X_0,\cdots,X_{\ell-1},X_{\ell+1},\cdots]$.
+    Then $Q[X_n] = R[X_0,X_1,\cdots]$.
+    Then we prove
+    \[ X_\ell \notin (f_0,\cdots,f_n) Q[X_n] \]
+    where $(f_0,\cdots,f_n) \subset Q$.
+    This is done by the following lemma.
+\end{example}
+
+\begin{lemma}{$I\neq(1)\Rightarrow X\notin IR[X]$}{i_neq_1_rightarrow_x_notin_irx}
+    Let $R$ be a commutative ring, and $I$ be an ideal of $R$.
+    If $I\neq (1)$ then $X\notin IR[X]$.
+\end{lemma}
+\begin{proof}
+    To prove $X\notin IR[X]$, we prove that the image of $X$ under $R[X] \twoheadrightarrow R[X]/IR[X]$ is nonzero.
+    This is true since there is an isomorphism
+    \[ R[X]/IR[X] = (R/I)[X]. \]
+    The image of $X$ in $(R/I)[X]$ is $X$ unless $I=(1)$.
+\end{proof}
+
+\subsection*{Application of Some Homological Algebra}
+
+\begin{example}{$(M/N)/(L/N) = M/L$ with the Nine Lemma}{m_n_l_n_m_l_with_the_nine_lemma}
+    We may apply the nine lemma to the following diagram.
+    \begin{center}
+        \begin{tikzcd}
+              & 0 \arrow[d] & 0 \arrow[d] & 0 \arrow[d] & \\
+            0 \arrow[r] & N \arrow[d] \arrow[r] & N \arrow[d] \arrow[r] & 0 \arrow[d] \arrow[r] & 0 \\
+            0 \arrow[r] & L \arrow[d] \arrow[r] & M \arrow[d] \arrow[r] & M/L \arrow[d] \arrow[r] & 0 \\
+            0 \arrow[r] & L/N \arrow[d] \arrow[r] & M/N \arrow[d] \arrow[r] & Q \arrow[d] \arrow[r] & 0 \\
+              & 0 & 0 & 0
+        \end{tikzcd}
+    \end{center}
+\end{example}
 
 % \bibliographystyle{plain}
 % \bibliography{main}

@@ -1,0 +1,184 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Yukawa}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Yukawa Theory}
+
+The bare Lagrangian is given by
+\[ \mathcal{L} = \frac{1}{2}(\partial_\mu \phi_0)^2 + \overline{\psi}_0(i\slashed{\partial} - m_{f0}) \psi_0 - \frac{1}{2} m^2_0 \phi^2_0 - \frac{1}{4!} \lambda \phi^4_0 - g_0 \overline{\psi}_0 \phi_0 \psi_0. \]
+Counting the surface degree of divergence:
+\begin{align*}
+    D &= dL - P_\psi - 2 P_\phi, \\
+    L &= P_\psi + P_\phi - (V-1), \\
+    V &= 2P_\phi + N_\phi = \frac{1}{2}(2P_\psi + N_\psi).
+\end{align*}
+Therefore,
+\[ D = d + \qty(\frac{d-4}{2})V - \qty(\frac{d-2}{2})N_\phi - \qty(\frac{d-1}{2})N_\psi. \]
+In $d=4$ we find $D = 4-N_\phi - 3/2 N_\psi$.
+\begin{itemize}
+    \item For $N_\phi = 2$ and $N_\psi = 0$ we find the laundry diagram with $D=2$, with behavior $\Lambda^2 + p^2 \ln \Lambda (g^2 + \cdots)$.
+    \item For $N_\psi = 2$ and $N_\phi = 0$ we find the Fermion self-energy with $D = 1$, with behavior $\cancelto{0}{\Lambda \tr \gamma} + \log \Lambda$.
+    \item For $N_\psi = 2$ and $N_\phi = 1$ we find the vertex correction with $D=0$ with behavior $\log \Lambda$.
+    \item For $N_\phi = 4$ and $N_\psi = 0$ we find the square diagram with $D = 0$, with behavior $\log \Lambda$.
+    \item For $N_\phi = 1$ and $N_\psi = 0$ we find the tadpole with $D=3$, cancelled by the counter term.
+\end{itemize}
+Introducing the counter terms
+\begin{align*}
+    \phi_0 &= Z_\phi^{1/2} \phi, \\
+    \psi_0 &= Z_\psi^{1/2} \psi, \\
+    \delta_{m^2} &= Z_\phi m_0^2 - m^2, \\
+    \delta_{m_f} &= Z_\psi m_{f_0} - m_f, \\
+    \delta_\phi &= Z_\phi - 1, \\
+    \delta_\psi &= Z_\psi - 1, \\
+    \delta_\lambda &= Z^2_\phi \lambda_0 - \lambda.
+\end{align*}
+The renormalized Lagangian becomes
+\begin{align*}
+    \mathcal{L} &= \frac{1}{2}(\partial_\mu \phi)^2 - \frac{1}{2} m^2 \phi^2 + \overline{\psi}(i\slashed{\partial} - m_f) \psi - g\phi\overline{\psi}\psi - \frac{\lambda}{4!} \phi^4 \\
+    &{\phantom{{}={}}} + \frac{1}{2} \delta_\phi(\partial_\mu \phi)^2 - \frac{1}{2} \delta_{m^2} \phi^2 + \overline{\psi}(i\slashed{\partial} \delta_\psi - \delta_{m_f}) \psi - \delta_g \overline{\psi} \psi\phi - \frac{\delta_\lambda}{4!}\phi^4.
+\end{align*}
+
+\subsection{Scalar Mass}
+
+The laundry diagram contributes a mass correction to the scalar particle, i.e.
+\[ \frac{i}{p^2 - m^2 - \mathcal{M}^2(p^2)}. \]
+The correction is given by
+\[ -i\mathcal{M}^2(p^2) = -(ig)^2 \int \frac{\dd[d]{k}}{(2\pi)^d} \tr \frac{i(\slashed{k} + m_f)i(\slashed{p} + \slashed{k} + m_f)}{(k^2 - m_f)((p+k)^2 - m_f^2)}. \]
+With the contribution from the counter term,
+\begin{align*}
+    -i\mathcal{M}^2(p) &= \frac{4ig^2(d-1)}{(4\pi)^{d/2}} \Gamma\qty(1-\frac{d}{2}) \int_0^1 \dd{x} \Delta^{d/2 - 1} + i(p^2 \delta_\phi - \delta_{m^2}),
+\end{align*}
+where $\Delta = m_f^2 - x(1-x) p^2$.
+Under the renormalization conditions
+\begin{itemize}
+    \item $\mathcal{M}^2(p^2) = 0$ at $p^2 = m^2$, and
+    \item $\partial_{p^2} \mathcal{M}^2(p^2) = 0$ at $p^2 = m^2$,
+\end{itemize}
+we find (for $\epsilon = 2 - d/2$) by first using the $\partial_{p^2}$ condition to fix $\delta_\phi$
+\begin{align*}
+    \delta_\phi &= -\frac{4g^2(d-1)}{(4\pi)^{d/2}} \Gamma\qty(2-\frac{d}{2}) \int_0^1 \dd{x} \frac{x(1-x)}{(m_f^2 - x(1-x)m^2)^{2-d/2}} \\
+    &= -\frac{3g^2}{4\pi^2}\qty(\frac{2}{\epsilon} - \gamma + \ln(4\pi) - \frac{2}{3})\frac{1}{6} - \int_0^1 \dd{x} x(1-x) \ln(m^2_f - x(1-x) m^2)
+\end{align*}
+and by using $\mathcal{M}^2$ condition
+\begin{align*}
+    \delta_{m^2} &= m^2 \delta_\phi + \frac{4g^2(d-1)}{(2\pi)^{d/2}} \int_0^1 \dd{x} \frac{\Gamma(1-d/2)}{(m_f - x(1-x)m^2)^{1-d/2}} \delta_{m^2},
+\end{align*}
+i.e.
+\[ \delta_{m^2} = -\frac{4g^2 m_f^2}{(4\pi)^2} 3\qty(\frac{1}{\epsilon} - \frac{\gamma}{2} + \cdots). \]
+
+If we normalize at $p^2 = 0$ then we get
+\[ \delta_Z = -\frac{3g^2}{4\pi^2\cdot 6} \qty(\frac{2}{\epsilon} - \gamma + \ln(4\pi) - \frac{2}{3} - \ln m_f^2). \]
+
+\subsection{Fermion Mass}
+
+To the lowest order
+\begin{align*}
+    g^2 \int \frac{\dd[d]{k}}{(2\pi)^d} \frac{i(\slashed{k} + m_f)}{k^2 - m_f^2 + i\epsilon} \frac{i}{(p+k)^2 - m^2 + i\epsilon}
+\end{align*}
+and therefore
+\begin{align*}
+    \Sigma &= \frac{i}{\epsilon} \qty(\frac{g^2 \slashed{p}}{16\pi^2} - \frac{g^2 m_f}{8\pi^2}) + i\slashed{p} \delta_2 - i\delta_{m_f} + \text{finite}.
+\end{align*}
+Then we find
+\begin{align*}
+    \delta_Z &= -\frac{g^2}{16\epsilon}, \\
+    \delta_{m_f} &= \frac{g^2 m_f}{\epsilon}.
+\end{align*}
+Therefore, if we begin with $m_f=0$ then quantum corrections keeps it massless.
+$m_f = 0$ is protected by discrete chiral symmetry.
+Let's set $m_f = 0$ in the model.
+\[ \mathcal{L} = i\overline{\psi}\slashed{\partial} \psi - g\phi\overline{\psi}\psi - \frac{m^2 \phi^2}{2} - \lambda \frac{\phi^4}{24}. \]
+In the chiral representation,
+\[ \gamma^0 = \begin{pmatrix}
+    0 & \mathbbm{1} \\
+    \mathbbm{1} & 0
+\end{pmatrix},\quad \gamma^i = \begin{pmatrix}
+    0 & \sigma^i \\
+    -\sigma^i & 0
+\end{pmatrix},\quad \gamma^5 = \begin{pmatrix}
+    -\mathbbm{1} & \\ & \mathbbm{1}
+\end{pmatrix},\quad \psi = \begin{pmatrix}
+    \psi_L \\ \psi_R
+\end{pmatrix}. \]
+The Lagrangian is given by
+\begin{align*}
+    \mathcal{L} &= i\psi^\dagger_L \overline{\sigma}^\mu \partial_\mu \psi_L + i \psi^\dagger_R \sigma^\mu \partial_\mu \psi_R.
+\end{align*}
+With the $\mathbb{Z}_2$ symmetry $\psi_L \rightarrow -\psi_L$, $\psi_R \rightarrow \psi_R$, and $\phi \rightarrow -\phi$, $m_f = 0$ is protected.
+Moreover, the symmetry could be written as a continuous one if $\phi$ is a complex scalar field, by $\psi_L \rightarrow e^{-i\beta}\psi_L$, $\psi_R \rightarrow e^{i\beta} \psi_R$, $\phi \rightarrow e^{-2i\alpha}\phi$.
+
+\section{QED}
+
+The Lagrangian is given by
+\begin{align*}
+    \mathcal{L} &= -\frac{1}{4} F_{\mu\nu} F^{\mu\nu} + i\overline{\psi} \gamma^\mu \partial_\mu \psi - m\overline{\psi}\psi - e\overline{\psi}\gamma^\mu \psi A_\mu.
+\end{align*}
+
+With $m=0$ we have a $\operatorname{U}(1)$ chiral symmetry.
+However, this symmetry is broken by the ABJ anomaly.
+
+\begin{itemize}
+    \item Feynman gauge:
+    \[ \langle A_\mu(k) A_\nu(-k) \rangle = -i \frac{\eta_{\mu\nu} - (1-\xi)k_\mu k_\nu / k^2}{k^2 + i\epsilon}. \]
+    \item Landau gauge:
+    \[ \langle A_\mu(k) A_\nu(-k) \rangle = -i\frac{g_{\mu\nu}}{k^2 + i\epsilon}. \]
+\end{itemize}
+
+The dimensions are given by $[\psi] = 3/2$ and $[A_\mu] = 1$.
+
+\subsection{Counter Terms}
+
+Introducing the counter terms we find
+\begin{align*}
+    \mathcal{L} &= -\frac{1}{4} F_{\mu\nu}^2 + \overline{\psi}(i\slashed{\partial} - m)\psi - e\overline{\psi}\gamma^\mu \psi A_\mu \\
+    &{\phantom{{}={}}} -\frac{1}{4}\delta_3 F^2_{\mu\nu} + \overline{\psi}(i\delta_2 \slashed{\partial} - \delta_m) \psi - e\delta_1 \overline{\psi} \gamma^\mu \psi A_\mu.
+\end{align*}
+where
+\begin{align*}
+    \psi_0 &= Z^{1/2}_{2} \psi, \\
+    A_\mu^0 &= Z^{1/2}_3 A_\mu, \\
+    eZ_1 &= Z_2 Z^{1/2}Z_3,\\
+    \delta_3 &= Z_3 - 1,\\
+    \delta_2 &= Z_2 - 1,\\
+    \delta_1 &= Z_1 - 1,\\
+    \delta_m &= Z_2 m_0 - m.
+\end{align*}
+
+\subsection{Gordon Identity}
+
+The Gordon identity is given by
+\begin{align*}
+    \overline{u}(p') \gamma^\mu u(p) &= \overline{u}(p')\qty[\frac{p^\mu + p'^\mu}{2m} + \frac{i\sigma^{\mu\nu}q_\nu}{2m}] u(p).
+\end{align*}
+
+The one-loop correction is given by
+\begin{align*}
+    &{\phantom{{}={}}} \int \frac{\dd[d]{k}}{(2\pi)^d} (-i) \frac{\eta_{\nu\rho}}{(k-p)^2 - \mu^2 + i\epsilon} \\
+    &{\phantom{{}={}\int \frac{\dd[d]{k}}{(2\pi)^d}}}\overline{u}(p')(-ie\gamma^\nu) \frac{i(\slashed{k}'+m)}{k'^2 - m^2 + i\epsilon} \gamma^\mu \frac{i(\slashed{k}+m)}{k^2 - m^2 + i\epsilon}(-ie\gamma^\rho) u(p).
+\end{align*}
+The counter term $\delta_1(-ie\gamma^\mu)$ cancels the divergence.
+\par
+The correction is given by
+\[ \Gamma^\mu(p,p') = \gamma^\mu F_1(q^2) + \frac{i\sigma^{\mu\nu} q_\nu}{2m} F_2(q^2). \]
+
+\section{Wess-Zumino Model}
+
+The Lagrangian is given by
+\begin{align*}
+    \mathcal{L} &= \frac{1}{2}(\partial_\mu \phi_1)^2 + \frac{1}{2}(\partial_\mu \phi_2)^2 - \frac{1}{2} m^2 (\phi^2_1 + \phi^2_2) \\
+    &{\phantom{{}={}}} + \overline{\psi}(i\slashed{\partial} - m_f) \psi + \frac{g^2}{16}(\phi_1^2 + \phi_2^2)^2 + \frac{g}{\sqrt{2}}(\phi_1 \overline{\psi} \psi + \phi_2 \overline{\psi} \gamma_5 \psi).
+\end{align*}
+Let $\phi = \phi_1 + i\phi_2$.
+Under parity $\psi_L \leftrightarrow \psi_R$, $\psi \leftrightarrow \overline{\psi}$.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

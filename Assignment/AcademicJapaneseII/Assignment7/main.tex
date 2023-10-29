@@ -1,0 +1,66 @@
+\documentclass{ctexart}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 7}
+\author{Ze (Zack) Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{$\blacktriangleright$}%
+淸興るに及び、\\
+As the Qing dynasty rose,\\
+明の性理學の反動として、\\
+as a reaction against Neo-Confucianism of Ming,\\
+學問に復古的の傾向を帶び來たり、\\
+in academics there shows a revivalist trend, and\\
+乾隆以來は純粹なる漢學といふ一の學派が出來た譯であるが、\\
+that's why since the Qianlong period a school called pure Han study emerged, and\\
+乾隆より嘉慶に至り尤も盛なりしは、\\
+from Qianlong to Jiaqing the most flourishing period was when\\
+賈逵\textperiodcentered 許愼\textperiodcentered 馬融\textperiodcentered 鄭玄といふ如き東漢の古文學者を祖述し、\\
+they succeed the Old School Text scholars of the Eastern Han dynasty like Jia Kui, Xu Shen, Ma Rong and Zheng Xuan, and\\
+其學說を闡明にするを目的としたるものにて、\\
+they are the ones who had taken as their aim to clarify their theories, and\\
+嚴宻に言へば之れを東漢學と稱すべきものなり。\\
+in precise terms this is what one must refer to as Eastern Han study.
+
+\vspace{1em}
+\plabel{$\blacktriangleright$}%
+それが道光以後になれば公羊學が起り、\\
+After the Daoguang period the study of Gong Yang Zhuan emerged, and\\
+經學は西漢博士の傳へたるもの尤も信ずべく、\\
+among the study of Confucian classics (people) certainly believe the most those the scholars of the West Han Scholars had passed down, and\\
+東漢の學は西漢の學の如く師承明ならず、\\
+as for the study of Eastern Han, the lineage is not as clear as the study of Western Han, and\\
+殊に鄭玄の如きは種々の學派を取入れたるものにて、\\
+in particular people like Zheng Xuan are the ones that had incorporated various schools, and\\
+家法もなければ師法もなく、\\
+if there is no family code then there is also no master's teachings, and\\
+全く經學を毀したるものと、罵倒するものさへ出で來れり。\\
+even the derogatory remarks like ``the one who had ruined the study of Confucian classics in total'' started to appear.
+
+\end{document}

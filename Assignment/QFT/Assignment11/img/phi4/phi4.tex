@@ -1,0 +1,13 @@
+\documentclass{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\begin{document}
+    \feynmandiagram [inline=(v.base), small, horizontal=i to l] {
+        i[particle=$i$] -- v[dot];
+        j[particle=$j$] -- v;
+        k[particle=$k$] -- v;
+        l[particle=$l$] -- v;
+    };
+\end{document}

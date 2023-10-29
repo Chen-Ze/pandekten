@@ -1,0 +1,19 @@
+\documentclass{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\feynmandiagram [inline=(v1.base), small, horizontal=c1 to v1] {
+    c1[particle=$\sigma$] --[scalar] v1[dot];
+    v1 --[fermion] v2[dot];
+    v2 --[fermion] v3[dot];
+    v3 --[fermion] v1;
+    v2 --[boson] c2[particle=$\gamma$];
+    v3 --[boson] c3[particle=$\gamma$];
+};
+\end{document}

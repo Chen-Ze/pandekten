@@ -1,0 +1,42 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] --[cyan!50!black] c1;
+        c2 --[cyan!50!black] v;
+        c3 --[cyan!50!black] v;
+    }; \ &= -6i\lambda v, &
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] --[cyan!50!black] c1;
+        c2[particle=$i$] -- v;
+        c3[particle=$j$] -- v;
+    }; \ &= -2i\delta^{ij}\lambda v, \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        c3 --[cyan!50!black] v[dot];
+        v --[cyan!50!black] c0;
+        v --[cyan!50!black] c1;
+        c2 --[cyan!50!black] v;
+    }; \ &= -6i\lambda, &
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] --[cyan!50!black] c0;
+        c3[particle=$j$] -- v;
+        v --[cyan!50!black] c1;
+        c2[particle=$i$] -- v;
+    }; \ &= -2i\lambda\delta^{ij}, \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        c3[particle=$j$] -- v[dot];
+        v -- c0[particle=$k$];
+        v -- c1[particle=$l$];
+        c2[particle=$i$] -- v;
+    }; \ &\mathrlap{= -2i\lambda \qty[\delta^{ij} \delta^{kl} + \delta^{ik}\delta^{jl} + \delta^{il}\delta^{jk}].}
+\end{align*}
+\end{document}

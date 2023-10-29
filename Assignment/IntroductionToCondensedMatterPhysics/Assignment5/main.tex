@@ -1,0 +1,264 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 5}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (1)}%
+\begingroup\minusbaseline
+\[ k_{\mathrm{F}} = \qty(2\pi n_{\mathrm{e}})^{1/2},\quad E_{\mathrm{F}} = \frac{\hbar^2 \pi n_{\mathrm{e}}}{m}. \]
+\endgroup
+
+\plabel{(2)}%
+Let $\mathcal{F}$ denote Fourier transform and $*$ denote convolution.
+Then
+\begin{align*}
+    \mathcal{V}_\alpha(\vb{p}) &= -\frac{e}{4\pi \epsilon_0} \mathcal{F}_{\vb{r}}\qty[\rho_\alpha(\vb{r}') *_{\vb{r}'} \frac{1}{\abs{\vb{r} - \vb{r}'}}](\vb{p}) \\
+    &= -\frac{e}{4\pi \epsilon_0} \mathcal{F}[\rho_\alpha](\vb{p}) \mathcal{F}_{\vb{r}}\qty[\frac{1}{\abs{\vb{r}}}](\vb{p}) = -\frac{e}{2\epsilon_0 \abs{\vb{p}}} \rho_\alpha(\vb{p}).
+\end{align*}
+
+\plabel{(3)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \rho_{\mathrm{s}}(\vb{r}) &\approx \frac{me}{\hbar^2 \pi} V(\vb{r}).
+\end{align*}
+\endgroup
+
+\plabel{(4)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \mathcal{V}_{\mathrm{s}}(\vb{p}) &= -\frac{me^2}{2\pi \hbar^2 \epsilon_0 \abs{\vb{p}}} \mathcal{V}(\vb{p}), \\
+    \epsilon_{\mathrm{r}}(\vb{p}) &= 1 + \frac{q_{\mathrm{TF}}}{\abs{\vb{p}}}, \\
+    q_{\mathrm{TF}} &= \frac{me^2}{2\pi \hbar^2 \epsilon_0}.
+\end{align*}
+\endgroup
+
+\plabel{(5)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \mathcal{V}(\vb{p}) &= -\frac{e}{2\epsilon_0\qty(\abs{\vb{p}} + q_{\mathrm{TF}})} \rho_0(\vb{p}).
+\end{align*}
+\endgroup
+For $\rho_0(\vb{p}) = 1$,
+\begin{align*}
+    V(\vb{r}) = -\frac{e}{2\epsilon_0} \int \frac{\dd[2]{\vb{p}}}{(2\pi)^2} \frac{e^{i\vb{p}\cdot \vb{r}}}{\abs{\vb{p}} + q_{\mathrm{TF}}}.
+\end{align*}
+
+\prule
+
+\plabel{2 (1.a)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \mathcal{V}_\alpha(\vb{p},\omega) &= -\frac{e}{2\epsilon_0 p}\rho_\alpha(\vb{p},\omega).
+\end{align*}
+\endgroup
+
+\plabel{(1.b)}%
+\begingroup\minusbaseline
+\begin{align*}
+    P^{(1)}(\vb{p},\omega) &= \frac{n_{\mathrm{e}} p^2}{m \omega^2}.
+\end{align*}
+\endgroup
+
+\plabel{(1.c)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \epsilon_{\mathrm{r}}(\vb{p},\omega) &\approx 1 - \frac{e^2}{2\epsilon_0 p} P^{(1)}(\vb{p},\omega) = 1 - \frac{n_{\mathrm{e}} e^2}{2\epsilon_0 m}\frac{p}{\omega^2}.
+\end{align*}
+\endgroup
+Therefore,
+\begin{align*}
+    \omega_{\mathrm{pl}}(p) = \qty(\frac{n_{\mathrm{e}} e^2}{2\epsilon_0 m} p)^{1/2}.
+\end{align*}
+
+\plabel{(2.a)}%
+The electric field is given by
+\begin{align*}
+    E(x,t) &= -\frac{e}{2\pi\epsilon_0} \int \dd{x'} \frac{\delta n_{\mathrm{e}}(x',t)}{x - x'} \\
+    &= \frac{e}{2\pi\epsilon_0} (ipn_{\mathrm{e}}u_0) e^{-i\omega t} \int \dd{x'} \frac{e^{ipx'}}{x-x'} \\
+    &= \frac{n_{\mathrm{e}}e u_0}{2\epsilon_0} \abs{p} \cdot e^{ipx - i\omega t}.
+\end{align*}
+
+\plabel{(2.b)}%
+The EoM is given by
+\[ m \ddot{u} = -\frac{n_{\mathrm{e}}e^2 u_0}{2\epsilon_0} \abs{p} \cdot e^{ipx - i\omega t}, \]
+which yields
+\[ \omega_{\mathrm{pl}}(p) = \qty(\frac{n_{\mathrm{e}} e^2}{2\epsilon_0 m} \abs{p})^{1/2}, \]
+identical to the result in question (1).
+
+\prule
+
+\plabel{3 (1)}%
+\begingroup\minusbaseline%
+\begin{align*}
+    H_I \ket{\text{singlet}} &= \frac{U}{\sqrt{2}} (n_{1,\uparrow}n_{1,\downarrow}+n_{2,\uparrow}n_{2,\downarrow})(c^\dagger_{1,\uparrow} c^\dagger_{2,\downarrow} - c^\dagger_{1,\downarrow} c^\dagger_{2,\uparrow})\ket{0} = 0, \\
+    H_I \ket{\text{triplet}} &= U (n_{1,\uparrow}n_{1,\downarrow}+n_{2,\uparrow}n_{2,\downarrow})(c^\dagger_{1,\uparrow} c^\dagger_{2,\uparrow})\ket{0} = 0.
+\end{align*}
+\endgroup
+Therefore, $E_1^{(0)} = E_2^{(0)} = 0$.
+The perturbation to the first order is also zero, i.e. $E_1^{(1)} = E_2^{(1)} = 0$.
+
+\plabel{(2)}%
+\begingroup\minusbaseline
+\begin{align*}
+    H_I \ket{1} = E_1^{(0)} \ket{1} = U\ket{1}, \\
+    H_I \ket{2} = E_1^{(0)} \ket{2} = U\ket{2}.
+\end{align*}
+\endgroup
+
+\plabel{(3)}%
+\begingroup\minusbaseline
+\begin{align*}
+    E^{(2)}_{\text{singlet}} &= \frac{\abs{\bra{1} H_0 \ket{\text{singlet}}}^2}{-U} + \frac{\abs{\bra{2} H_0 \ket{\text{singlet}}}^2}{-U} = -\frac{4t^2}{U}, \\
+    E^{(2)}_{\text{triplet}} &= \frac{\abs{\bra{1} H_0 \ket{\text{triplet}}}^2}{-U} + \frac{\abs{\bra{2} H_0 \ket{\text{triplet}}}^2}{-U} = 0.
+\end{align*}
+\endgroup
+
+\plabel{(4)}%
+Since
+\[ H = E_0 + J \vb{s}_1\cdot \vb{s}_2 = \begin{cases}
+    E_0 - 3J/4, &\text{singlet}, \\
+    E_0 + J/4, &\text{triplet},
+\end{cases} \]
+we find
+\[ E_0 = -\frac{t^2}{U},\quad J = \frac{4t^2}{U}. \]
+
+\plabel{(5)}%
+\begingroup\minusbaseline
+\[ H = \begin{pmatrix}
+    E_0+J/4 & 0 & 0 & 0 \\
+    0 & E_0-J/4 & J/2 & 0 \\
+    0 & J/2 & E_0-J/4 & 0 \\
+    0 & 0 & 0 & E_0+J/4
+\end{pmatrix}. \]
+\endgroup
+
+\prule
+
+\plabel{4 (1.a)}%
+\begingroup\minusbaseline
+\begin{align*}
+    H &= -J_1 S^2 N + S \sum_{j=1}^N \qty(2J_1 a^\dagger_j a_j - J_2 a_j a^\dagger_{j+1} - J_2 a^\dagger_j a_{j+1}) + \bigO(S^0).
+\end{align*}
+\endgroup
+
+\plabel{(1.b)}%
+\begingroup\minusbaseline
+\begin{align*}
+    H &= -J_1 S^2 N + S \sum_{k} (2J_1 - 2 J_2 \cos k) a^\dagger_{k}a_k.
+\end{align*}
+\endgroup
+The dispersion is given by
+\[ \hbar\omega_k = 2S(J_1 - J_2 \cos k). \]
+The dispersion is gapped.
+
+\plabel{(2.a)}%
+\begingroup\minusbaseline
+\begin{align*}
+    H &= -J_1 S^2 N \\
+    &\phantom{{}={}} + S \sum_{j=1}^N \qty(2J_1 a^\dagger_j a_j - \frac{J_1-J_2}{2} (a_j a_{j+1} + a^\dagger_j a^\dagger_{j+1}) - \frac{J_1+J_2}{2}(a_j a^\dagger_{j+1} + a^\dagger_j a_{j+1})) \\
+    &\phantom{{}={}} + \bigO(S^0).
+\end{align*}
+\endgroup
+
+\plabel{(2.b)}%
+\begingroup\minusbaseline
+\begin{align*}
+    H &= -J_1 S^2 N \\
+    &\phantom{{}={}} + S \sum_{k} \qty[(2J_1 - (J_1 + J_2) \cos k) a^\dagger_{k}a_k - \frac{J_1 - J_2}{2}(e^{-ik}a_{k}a_{-k} + e^{ik}a^\dagger_k a^\dagger_{-k})] \\
+    &= - NJS(S+1) \\
+    &\phantom{{}={}} + S\sum_k \begin{pmatrix}
+        a^\dagger_k & a_{-k}
+    \end{pmatrix} \begin{pmatrix}
+        \mathcal{J}_1(k) & \mathcal{J}_2(k) \\
+        \mathcal{J}_2(k) & \mathcal{J}_1(k)
+    \end{pmatrix} \begin{pmatrix}
+        a_k \\ a^\dagger_{-k}
+    \end{pmatrix}
+\end{align*}
+\endgroup
+where
+\begin{align*}
+    \mathcal{J}_1(k) &= J_1 - \frac{J_1+J_2}{2}\cos k, \\
+    \mathcal{J}_2(k) &= - \frac{J_1 - J_2}{2} \cos k.
+\end{align*}
+With the Bogoliubov transformation
+\begin{align*}
+    \begin{pmatrix}
+        a_k \\ a^\dagger_{-k}
+    \end{pmatrix} &= \begin{pmatrix}
+        \cosh \theta_k & -\sinh \theta_k \\
+        -\sinh \theta_k & \cosh \theta_k
+    \end{pmatrix} \begin{pmatrix}
+        b_k \\ b^\dagger_{-k}
+    \end{pmatrix}
+\end{align*}
+we diagonalize
+\[ \begin{pmatrix}
+    \cosh \theta_k & -\sinh \theta_k \\
+    -\sinh \theta_k & \cosh \theta_k
+\end{pmatrix} \begin{pmatrix}
+    \mathcal{J}_1(k) & \mathcal{J}_2(k) \\
+    \mathcal{J}_2(k) & \mathcal{J}_1(k)
+\end{pmatrix} \begin{pmatrix}
+    \cosh \theta_k & -\sinh \theta_k \\
+    -\sinh \theta_k & \cosh \theta_k
+\end{pmatrix} \]
+with
+\[ \tanh(2\theta_k) = \frac{(J_1 - J_2)\cos k}{-2J_1 + (J_1 + J_2) \cos k} \]
+and find
+\begin{align*}
+    H &= -NJS(S+1) + S\sum_k \begin{pmatrix}
+        b^\dagger_k & b_{-k}
+    \end{pmatrix} \begin{pmatrix}
+        \mathcal{J}_1(k) & \mathcal{J}_2(k) \\
+        \mathcal{J}_2(k) & \mathcal{J}_1(k)
+    \end{pmatrix} \begin{pmatrix}
+        b_k \\ b^\dagger_{-k}
+    \end{pmatrix} \\
+    &= -NJS(S+1) + S\sum_k \begin{pmatrix}
+        b^\dagger_k & b_{-k}
+    \end{pmatrix} \begin{pmatrix}
+        \mathcal{J}(k) & \\
+        & \mathcal{J}(k)
+    \end{pmatrix} \begin{pmatrix}
+        b_k \\ b^\dagger_{-k}
+    \end{pmatrix} \\
+    &= -NJS(S+1) + \sum_k 2\mathcal{J}(k)S \qty(b^\dagger_k b_k + \frac{1}{2})
+\end{align*}
+where
+\[ \mathcal{J}(k) = \sqrt{(J_1 - J_1\cos k)(J_1 - J_2 \cos k)}. \]
+The dispersion is given by
+\[ \hbar\omega_k = 2S\sqrt{(J_1 - J_1\cos k)(J_1 - J_2 \cos k)}. \]
+It's gapless.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

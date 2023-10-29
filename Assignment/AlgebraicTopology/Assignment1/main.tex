@@ -1,0 +1,126 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 1}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{0.6(a)}%
+The deformation retract of $X$ onto any point on $\qty[0,1] \times \qty{0}$ is given by composing $f_t(x,y) = (x, y\times(1-t))$ and a deformation retraction from $\qty[0,1] \times \qty{0}$ to a point thereof.
+\par
+$X$ is not deformation retractable to any other points:
+Let $p$ be any point not on $\qty[0,1] \times \qty{0}$.
+Each neighbourhood small enough of $p$ is not pathwise connected.
+Therefore, for each neighbourhood small enough $U$ of $p$, there can be no neighbourhood $V\subset U$ of $p$ such that $V\hookrightarrow U$ is nullhomotopic.
+With Execrise 0.5 we find that there can be no deformation retraction of $X$ onto $p$.
+
+\plabel{(b)}%
+$Y$ has no deformation retract onto any point: This is because every neighbourhood small enough of every point is not pathwise connected.
+\par
+$Y$ is contractible because there is a deformation retraction in the weak sense onto $Z$ (see the next problem), which is nullhomotopic.
+
+\plabel{(c)}%
+Assume that each straight segment of $Z$ has length $1$.
+The deformation retraction in the weak sense onto $Z$ is given by $f_t(a)$ defined as follows.
+\begin{itemize}
+    \item For $a = (x,y)\in Z$, $f_t(a)\in Z$ has $x$-coordinate given by $x \rightarrow x + t/\sqrt{2}$.
+    \item For $a = (x,y)\notin Z$, let $L$ be the path in $Y$ connecting $a$ to $Z$, then
+    \begin{itemize}
+        \item for $0\le t \le l$ where $l$ is the length of $L$, $f_t(a)\in L$ has $x$-coordinate given by $x \rightarrow x + t/\sqrt{2}$; and
+        \item for $l\le t \le 1$, $f_t(a)\in Z$ has $x$-coordinate given by $x \rightarrow x + t/\sqrt{2}$.
+    \end{itemize}
+\end{itemize}
+This is not a deformation retraction because the restriction onto $Z$ is not the identity map.
+
+\plabel{10}%
+If every map $X\rightarrow Y$ or $Y\rightarrow X$ is nullhomotopic then the identity map $X\rightarrow X$ is nullhomotopic and therefore $X$ is contractible.
+\par
+If $X$ is contractible with $\phi: [0,1] \times X\rightarrow X$ being the contraction, then every map $f:X\rightarrow Y$ is nullhomotopic with $\psi: [0,1] \times X \rightarrow Y$ given by $\psi = f \circ \phi$.
+Every map $f:Y \rightarrow X$ is nullhomotopic with $\psi: [0,1] \times Y \rightarrow X$ given by $\psi = \phi \circ f$.
+
+\plabel{17(a)}%
+Let the domain circle be parametrized by $\alpha$ and the codomain circle be parametrized by $\beta$.
+There should be two $0$-cells correponding to $\alpha=0$ on the first circle and $\beta = f(0)$ on the second circle, and two $1$-cells for the two circles, and another $1$-cell, denoted by $e_1$, connecting the two $0$-cells.
+\par
+The $2$-cell is attached as follows.
+Let the boundary of the $2$-cell be parametrized by $\theta$.
+\begin{itemize}
+    \item Then $\theta\in [0,\pi/2)$ is attached to $\alpha = 4\theta$ on the first circle.
+    \item $\theta\in [\pi/2, \pi]$ is attached to $e_1$.
+    \item $\theta \in [\pi, 3\pi/2)$ is attached to $\beta = f(4(\theta - \pi))$ on the second circle.
+    \item $\theta \in [3\pi/2,2\pi)$ is attached to $e_1$.
+\end{itemize}
+
+\plabel{(b)}%
+M\"obius strip and cylinder are both CW complexes.
+The M\"obius strip is deformation retractable to its central $S^1$.
+The cylinder is deformation retractable to (one of) its boundary $S^1$.
+Now the CW complex given by gluing them along the $S^1$ above is clearly deformation contractible to both.
+
+\prule
+
+\plabel{1.1.3}%
+If $\pi_1$ is abelian, then for any $h$ and $h'$ that share the same endpoint,
+\[ \beta_h(f) = [h] \cdot [f] \cdot [\overline{h}] = [f] = [h'] \cdot [f] \cdot [\overline{h'}] = \beta_{h'}(f) \]
+since $1 = [h] \cdot [\overline{h}] = [h'] \cdot [\overline{h'}]$.
+\par
+If $\beta_h(f)$ depends on the endpoints only, then from
+\[ \beta_h(f) = [h] \cdot [f] \cdot [\overline{h}] = [h'] \cdot [f] \cdot [\overline{h'}] = \beta_{h'}(f) \]
+we find that for any loop $g$ based at $x_0$,
+\[ [g] \cdot [f] \cdot [\overline{g}] = [f], \]
+and therefore $\pi_1$ is abelian.
+
+\plabel{17}%
+Let the two $S^1$ be parametrized such that $\Set*{2\pi n}{n\in\mathbb{Z}}$ be the intersection point.
+For each $m\in \mathbb{Z}$, let $f_m$ be the retraction given by
+\begin{itemize}
+    \item identity map $\theta \rightarrow \theta$ on the first circle;
+    \item map of winding number $m$ given by $\theta \rightarrow m\theta$ from the second circle to the first circle.
+\end{itemize}
+
+\prule
+
+\plabel{1.2.7}%
+The CW complex $X$ has one $0$-cell, one $1$-cell, and one $2$-cell (see Example 0.8 of \textit{Hatcher}).
+$\pi_1(X) = \pi_1(S^2\vee S^1) = \pi_1(S^2) * \pi_1(S^1) = \mathbb{Z}$.
+
+\plabel{8}%
+$\pi_1((S^1 \vee S^1) \times S^1) = (\pi_1(S^1) * \pi_1(S^1)) \times \pi_1(S^1) = (\mathbb{Z} * \mathbb{Z}) \times \mathbb{Z}$.
+
+\plabel{22(a)}%
+Although the attachment of each $R_i$ has non-connected $R_i\cap T$, it can be seen that $R_i\cup T$ is homotopy equivalent to attaching a cylinder to $T$ along a line segment (non-loop) of the cylinder.
+Therefore, before the attachment of squares, the fundamental group is given by $\pi'_1 = \mathbb{Z} * \cdots * \mathbb{Z}$, one $\mathbb{Z}$ for each rectangular strip.
+\par
+Since the fundamental group of each square is trivial, attaching the squares induces relations on $\pi'_1 = \mathbb{Z} * \cdots * \mathbb{Z}$.
+It's easy to see that such relations are given by $x_i x_j x_i^{-1} x_k^{-1} = 1$ for each square.
+
+\plabel{(b)}%
+After abelianization the relations can be rewritten as $x_i x_j = x_i x_k$, i.e. $x_j = x_k$ if $R_j$ and $R_k$ is joined by a square.
+By the connectivity of the knot, the number of independent generators is $1$, and therefore the abelianization is $\mathbb{Z}$.
+
+\end{document}

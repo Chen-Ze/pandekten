@@ -13,6 +13,9 @@
 % Vertically centering images
 \RequirePackage[export]{adjustbox}
 
+% Zero par indent, and manage par skip
+\RequirePackage{parskip}
+
 % Allows defining color
 \RequirePackage{xcolor}
 
@@ -44,8 +47,12 @@
 
 % Plotting
 \RequirePackage{tikz}
-\usetikzlibrary{cd}
 \usetikzlibrary{calc}
+% quantikz breaks tikz-cd, see https://tex.stackexchange.com/questions/618330/quantikz-breaks-spacing-in-tikz-matrices-tikz-cd
+%\usetikzlibrary{quantikz}
+\usetikzlibrary{cd}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{tikzmark}
 \RequirePackage{pgfplots}
 
 % Symbols like Cat
@@ -81,39 +88,45 @@
 \RequirePackage{amsthm}
 
 % Beautiful boxes
-\RequirePackage[many]{tcolorbox}
+\RequirePackage[most]{tcolorbox}
 
 \newtcbtheorem[number within=section]{definition}{Definition}%
-{breakable,colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{def}
+{breakable,colback=green!5,colframe=green!35!black,fonttitle=\bfseries,parbox=false}{def}
 \crefname{tcb@cnt@definition}{definition}{definitions}
+
 \newtcbtheorem[number within=section]{example}{Example}%
 {breakable,colback=yellow!10!white,
-colframe=yellow!10!orange,fonttitle=\bfseries}{ex}
+colframe=yellow!10!orange,fonttitle=\bfseries,parbox=false}{ex}
 \crefname{tcb@cnt@example}{example}{examples}
+
 \newtcbtheorem[number within=section]{counterexample}{Counterexample}%
 {breakable,colback=yellow!10!white,
-colframe=yellow!10!red,fonttitle=\bfseries}{ce}
+colframe=yellow!10!red,fonttitle=\bfseries,parbox=false}{ce}
 \crefname{tcb@cnt@counterexample}{counterexample}{counterexamples}
+
 \newtcbtheorem[number within=section]{theorem}{Theorem}%
 {breakable,colback=blue!10!white,
-colframe=blue!30!black,fonttitle=\bfseries}{thm}
+colframe=blue!30!black,fonttitle=\bfseries,parbox=false}{thm}
 \crefname{tcb@cnt@theorem}{theorem}{theorems}
+
 \newtcbtheorem[number within=section]{proposition}{Proposition}%
 {breakable,colback=blue!10!white,
-colframe=blue!60!black,fonttitle=\bfseries}{pro}
+colframe=blue!60!black,fonttitle=\bfseries,parbox=false}{pro}
 \crefname{tcb@cnt@proposition}{proposition}{propositions}%
+
 \newtcbtheorem[number within=section]{lemma}{Lemma}%
 {breakable,colback=blue!10!white,
-colframe=blue!50!black,fonttitle=\bfseries}{lem}
+colframe=blue!50!black,fonttitle=\bfseries,parbox=false}{lem}
 \crefname{tcb@cnt@lemma}{lemma}{lemmas}%
+
 \newtcbtheorem[number within=section]{corollary}{Corollary}%
 {breakable,colback=blue!10!white,
-colframe=blue!40!black,fonttitle=\bfseries}{col}
+colframe=blue!40!black,fonttitle=\bfseries,parbox=false}{col}
 \crefname{tcb@cnt@corollary}{corollary}{corollaries}%
 
 \newtcolorbox{warning}{colback=red!5!white,
 colframe=red!75!black,fonttitle=\bfseries,
-title={Warning},sharp corners}
+title={Warning},sharp corners,parbox=false}
 
 \newtcbox{\badge}[1][red]{
   on line, 
@@ -192,6 +205,9 @@ title={Warning},sharp corners}
   \RequirePackage{substitutefont}
   \substitutefont{T3}{\rmdefault}{cmr}
 \fi
+
+% Typing Ruby
+\RequirePackage{ruby}
 
 % Operators
 

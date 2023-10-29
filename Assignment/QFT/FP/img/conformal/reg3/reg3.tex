@@ -1,0 +1,49 @@
+\documentclass{standalone}
+
+% Plotting
+\usepackage{tikz}
+\usetikzlibrary{calc}
+% quantikz breaks tikz-cd, see https://tex.stackexchange.com/questions/618330/quantikz-breaks-spacing-in-tikz-matrices-tikz-cd
+%\usetikzlibrary{quantikz}
+\usetikzlibrary{cd}
+\usepackage{pgfplots}
+
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    trig format plots=rad,
+    axis equal,
+    hide axis,
+    xmin=-2,
+    xmax=2,
+    ymin=-2,
+    ymax=2
+]
+\foreach \i in {1,4,...,49} {
+    \addplot[draw=black] table {plot\i.txt};
+}
+\foreach \i in {1,4,...,49} {
+    \addplot[draw=black] table {p-plot\i.txt};
+}
+
+\node at (axis cs: 0,0) [circle,fill,inner sep=1.5pt]{};
+
+\node[] at (axis cs: -1,-1) (x1) {$x_1\rightarrow 0$};
+\draw[-latex,lightgray] (x1) -- (axis cs: 0,0);
+
+\node[] at (axis cs: -1,1) (x2) {$x_2\rightarrow \infty$};
+\draw[-latex,lightgray] (x2) -- (axis cs: 100,0);
+
+\draw[thick,blue] (axis cs:0,0) -- (axis cs: 2,{-2*sqrt(3)});
+\draw[thick,red] (axis cs:0,0) -- (axis cs: 2,{2*sqrt(3)});
+
+\end{axis}
+
+\end{tikzpicture}
+\end{document}

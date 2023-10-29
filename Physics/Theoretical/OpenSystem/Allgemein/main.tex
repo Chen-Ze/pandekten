@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Basics}
+
+\begin{definition}{Right Eigenstate, Left Eigenstate}{right_left_eigenstate}
+    Let $\mathcal{H}$ be a Hilbert space.
+    Let $H$ be a non-Hermitian Hamiltonian on $\mathcal{H}$.
+    A right eigenstate $\ket{u_n}$ is a vector in $\mathcal{H}$ such that
+    \[ H\ket{u_n} = E_n\ket{u_n}. \]
+    A left eigenstate $\ket{u_n^*}$ is a vector in $\mathcal{H}$ such that
+    \[ H^\dagger\ket{u^*_n} = E^*_n\ket{u^*_n}. \]
+\end{definition}
+
+\begin{theorem}{Biorthonormality and Completeness of Eigenvectors}{biorthonormality_and_completeness_of_eigenvectors}
+    Let $\mathcal{H}$ be a Hilbert space.
+    Let $H$ be a non-Hermitian Hamiltonian on $\mathcal{H}$.
+    Let $\Set*{\ket{u_n}}{n\in \Lambda}$ and $\Set*{\ket{u^*_n}}{n\in\Lambda}$ be the right (left) eigenstates of $H$ where $\Lambda$ is a set of indices.
+    \begin{itemize}
+        \item Biorthonormality: for all $n,m\in\Lambda$,
+        \[ \bra{u_m}\ket{u^*_n} = \bra{u^*_m}\ket{u_n} = \delta_{mn}. \]
+        \item Completeness:
+        \[ \sum_n \ket{u^*_n} \bra{u_n} = \sum_n \ket{u_n} \bra{u^*_n} = 1. \]
+    \end{itemize}
+\end{theorem}
+
+\begin{definition}{Operator-State Mapping}{operator_state_mapping}
+    Let $\mathcal{H}$ be a Hilbert space.
+    For $\rho\in\operatorname{Aut}(\mathcal{H})$ defined by
+    \[ \rho = \sum_{ij} \rho_{ij} \ket{i}\bra{j}, \]
+    $\ket{\rho}\in \mathcal{H}\otimes \mathcal{H}$ is defined by
+    \[ \ket{\rho} = \sum_{ij} \rho_{ij} \ket{i}\ket{j}. \]
+\end{definition}
+
+Let the maximally entangled state be defined by
+\[ \ket{I} = \sum_{i}\ket{i}\ket{i}. \]
+Then
+\[ \ket{\rho} = \rho \otimes \mathbbm{1} \ket{I}. \]
+
+\subsection{Lindbladian}
+
+\begin{definition}{Lindblad Master Equation}{lindblad_master_equation}
+    Let $I\subset \mathbb{R}$ and $\mathcal{H}$ be a Hilbert space.
+    Then $\rho: I\rightarrow \operatorname{Aut}(\mathcal{H})$ solves the Lindblad master equation for
+    \begin{itemize}
+        \item Hamiltonian $H$, and
+        \item dissipators $L: \mathbb{N}\rightarrow \operatorname{End}(\mathcal{H})$
+    \end{itemize}
+    if
+    \[ \dv{\rho}{t} = \mathcal{L}(\rho) \]
+    where
+    \[ \mathcal{L}(\rho) = -i [H,\rho] + \sum_m \qty[L_m \rho L^\dagger_m - \frac{1}{2} \qty{L^\dagger_m L_m,\rho}]. \]
+\end{definition}
+
+\begin{theorem}{Lindblad Hamiltonian}{lindblad_hamiltonian}
+    That $\rho$ solves the Lindblad master equation for Hamiltonian $H$ and dissipators $L$ is equivalent to
+    \[ i\pdv{t} \ket{\rho} = i\mathcal{L}\ket{\rho} \]
+    where
+    \begin{align*}
+        \mathcal{L} &= -i(H\otimes \mathbbm{1} - \mathbbm{1}\otimes H^*) \\
+        &\phantom{{}={}} + \sum_m \qty[L_m\otimes L^*_m - \frac{1}{2}(L^\dagger_m L_m \otimes \mathbbm{1}) - \frac{1}{2}(\mathbbm{1} \otimes L^T_m L^*_m)].
+    \end{align*}
+\end{theorem}
+
+The Hermiticity of the density operator $\rho$ leads to the constraint defined by the antiunitary modular conjugation symmetry
+\[ \mathcal{J} \mathcal{L} \mathcal{J}^{-1} = \mathcal{L}. \]
+For bosonic systems, $\mathcal{J}$ is the $\mathrm{T}$ symmetry or $\operatorname{PH}^\dagger$ symmetry, defined by (for $z\in \mathbb{C}$)
+\[ \mathcal{J}(A\otimes B) = B\otimes A, \quad \mathcal{J} z \mathcal{J}^{-1} = z^*. \]
+As a consequence, the eigenvalues of $\mathcal{L}$ form complex-conjugate pairs and a number of real eigenvalues can appear.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

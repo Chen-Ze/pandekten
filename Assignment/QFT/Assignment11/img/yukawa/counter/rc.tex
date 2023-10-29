@@ -1,0 +1,94 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\usepackage{slashed}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \dv{}{\slashed{p}}\eval{\qty(\feynmandiagram [inline=(v.base), small, layered layout, horizontal=i to v] {
+        i --[fermion] v[blob, label=1PI];
+        v --[fermion] o;
+    };)}_{\slashed{p} = m_\psi} \ &= 0, &
+    \eval{\feynmandiagram [inline=(v.base), small, horizontal=i to v] {
+        i --[scalar] v[blob];
+        v --[fermion] c2;
+        c1 --[fermion] v;
+    };}_{\text{critical}} \ &= -ig, \\
+    \dv{}{\slashed{p}}\eval{\qty(\feynmandiagram [inline=(v.base), small, layered layout, horizontal=i to v] {
+        i --[scalar] v[blob, label=1PI];
+        v --[scalar] o;
+    };)}_{p^2 = m_\sigma^2} \ &= 0, &
+    \feynmandiagram [inline=(v.base), small, layered layout, horizontal=v to o] {
+        v[blob, label=1PI] --[scalar] o;
+    };\ &= 0, \\
+    \eval{\Im\qty(\feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        c3 --[scalar] v[blob];
+        v --[scalar] c0;
+        v --[scalar] c1;
+        c2 --[scalar] v;
+    };)}_{s=4m^2,s=t=0} \ &= 0.
+\end{align*}
+\end{document}
+
+\begin{align*}
+    \feynmandiagram [inline=(v.base), small, layered layout, horizontal=v to o] {
+        v[crossed dot] --[scalar] o;
+    }; && 
+    \feynmandiagram [inline=(v.base), small, layered layout, horizontal=i to v] {
+        i --[fermion] v[crossed dot];
+        v --[fermion] o;
+    }; && \\
+    \feynmandiagram [inline=(v.base), small, layered layout, horizontal=i to v] {
+        i --[scalar] v[crossed dot];
+        v --[scalar] o;
+    }; && 
+    \feynmandiagram [inline=(v.base), small, layered layout, horizontal=i to v] {
+        i --[boson] v[crossed dot];
+        v --[boson] o;
+    }; && \\
+    \feynmandiagram [inline=(v.base), small, horizontal=i to v] {
+        i --[scalar] v[crossed dot];
+        v --[fermion] c2;
+        c1 --[fermion] v;
+    }; &&
+    \feynmandiagram [inline=(v.base), small, horizontal=i to v] {
+        i --[boson] v[crossed dot];
+        v --[fermion] c2;
+        c1 --[fermion] v;
+    }; \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[crossed dot] --[scalar] c1;
+        c2 --[scalar] v;
+        c3 --[scalar] v;
+    }; &&
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[crossed dot] --[scalar] c1;
+        c2[] --[boson]v;
+        c3[] --[boson]v;
+    }; \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        c3 --[scalar] v[crossed dot];
+        v --[scalar] c0;
+        v --[scalar] c1;
+        c2 --[scalar] v;
+    }; &&
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[crossed dot] --[scalar] c0;
+        c3[] --[boson]v;
+        v --[scalar] c1;
+        c2[] --[boson]v;
+    }; \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        c3[] --[boson]v[crossed dot];
+        v --[boson]c0[];
+        v --[boson]c1[];
+        c2[] --[boson]v;
+    }; &&
+\end{align*}

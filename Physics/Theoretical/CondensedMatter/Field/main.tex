@@ -76,7 +76,7 @@ We may introduce a bosonic field to reduce a quartic interaction to a Yukawa one
     \begin{align*}
         \mathcal{L}(\vb{r},t) &= \sum_\alpha \overline{\Psi}_\alpha(\vb{r},t) (i\partial_t + \mu) \Psi_\alpha(\vb{r},t) \\
         &\phantom{{}={}} + t \sum_\alpha \sum_{\langle \vb{r},\vb{r}' \rangle} \qty(\overline{\Psi}_\alpha(\vb{r},t) \Psi_\alpha(\vb{r}',t)+\overline{\Psi}_\alpha(\vb{r}',t) \Psi_\alpha(\vb{r},t)) \\
-        &\phantom{{}={}} +\frac{U}{6} \sum_{\alpha,\beta} \qty(\overline{\Psi}_\alpha(\vb{r},t) \vb*{\sigma}_{\alpha\beta}\Psi(\vb{r},t))^2.
+        &\phantom{{}={}} +\frac{U}{6} \sum_{\alpha,\beta} \qty(\overline{\Psi}_\alpha(\vb{r},t) \vb*{\sigma}_{\alpha\beta}\Psi_\beta(\vb{r},t))^2.
     \end{align*}
     Applying the Hubbard-Stratonovich transformation we get
     \begin{align*}
@@ -148,6 +148,100 @@ We can replace on each site
     \tilde{\sigma}^z &= ib^z c.
 \end{align*}
 With such replacement, any spin Hamiltonian $H\qty{\sigma^\alpha_j}$ could be replaced by a fermionic one $\tilde{H}\qty{b^\alpha_j, c_j}$.
+
+\section{Note on Gauge Theory}
+
+\subsection{Particle-Vortex System}
+
+The Lagrangian of a particle in a magnetic field is given by
+\[ \mathcal{L} = \frac{1}{2}m\vb{v}^2 + \frac{e}{c}\vb{v}\cdot \vb{A}. \]
+The Hamiltonian is
+\[ H = \frac{1}{2} m \vb{v}^2, \]
+with no gauge field present.
+What tells this system apart from a free particle is the momentum
+\[ \vb{p} = m\vb{v} + \frac{e}{c} \vb{A}. \]
+Let $\vb{A}$ be given by that of a monopole
+\[ \vb{A} = \frac{\Phi}{2\pi} \qty(\frac{-y}{x^2 + y^2} \dd{x} + \frac{x}{x^2 + y^2}\dd{y}). \]
+The canonical momentum is given by
+\[ J_{\mathrm{c}} = \star(\vb{r} \wedge \vb{p}) = J + \frac{e\Phi}{2\pi c} \]
+where
+\[ J = \star(\vb{r}\wedge m\vb{v}). \]
+$J_{\mathrm{c}} = -i\hbar \partial_\varphi$ as in the free particle case.
+Therefore, the eigenvalues of $J_{\mathrm{c}}$ are quantized to integer.
+\[ J = \hbar\qty(m - \frac{e\Phi}{hc}),\quad m\in\mathbb{Z}. \]
+The second part is the spin of the cyon, i.e.
+\[ s = \frac{-e\Phi}{hc}. \]
+Moving the particle around acquires a phase factor
+\[ \exp\qty(-i \frac{e}{\hbar c} \int_\Gamma \dd{\vb{r}}\cdot \vb{A}). \]
+More generally the parallel transport is done by
+\[ \mathcal{P} \exp(-\int_\Gamma \mathcal{A}). \]
+Move the cyon around acquires a phase $e^{i\nu\theta}$ where
+\[ \nu = -\frac{2e\Phi}{hc}. \]
+
+\subsection{Chern-Simons Action}
+The Chern-Simons action in $\mathbb{R}^3$ is given by
+\[ S = \int \tr\qty(A \wedge \dd{A} + \frac{2}{3}A\wedge A \wedge A). \]
+The Chern-Simons form is invariant under gauge transformation (those connected to the identity).
+Such term may be added into the Young-Mills action.
+For $\operatorname{U}(1)$ gauge theory,
+\[ S = \int \tr\qty(A\wedge \dd{A}) = \int \tr\qty(A\wedge F). \]
+With
+\begin{align*}
+    S &= S_{\mathrm{matter}} + S_{\mathrm{int}} + S_{\mathrm{CS}}, \\
+    S_{\mathrm{matter}} &= \int \dd{t} \qty(\sum_{I=1}^N \frac{1}{2} m\vb{v}_I^2), \\
+    S_{\mathrm{int}} &= -\frac{1}{c^2} \int \dd[3]{x} j^\alpha(x) A_\alpha(x), \\
+    S_{\mathrm{CS}} &= \frac{\kappa}{2c} \int A \wedge \dd{A},
+\end{align*}
+we find that
+\begin{align*}
+    E^i &= \frac{1}{\kappa c} \epsilon^{ij} j^j, \\
+    B &= -\frac{1}{\kappa} \rho,
+\end{align*}
+and that every charge curries a magnetic flux.
+
+\paragraph*{Gauge Fixing}%
+The Weyl gauge $A_0 = 0$ does not fix the gauge completely.
+One could impose further $\partial_i A^i = 0$.
+\par
+Now we find
+\[ H = \sum_{I=1}^N \frac{1}{2m}\qty(\vb{p}_I - \frac{e}{c}\vb{A}_I(\vb{r}_1,\cdots,\vb{r}_N))^2, \]
+and
+\[ A^i_I(\vb{r}_1,\cdots,\vb{r}_N) = -\frac{e}{2\pi \kappa} \pdv{}{r^i_I} \sum_{J\neq I} \varphi_{IJ}, \]
+where $\varphi_{IJ}$ is the winding angle of particle $J$ with respect to particle $I$.
+Now the Lagrangian has the anyon form
+\[ \mathcal{L} = \sum_{I=1}^N \qty(\frac{1}{2}m\vb{v}_I^2) - \frac{e^2}{2\pi c\kappa}\qty(\sum_{I<J} \dv{}{t}\varphi_{IJ}), \]
+and the particles has the anyon statistics
+\[ \nu = \frac{\kappa \Phi^2}{2\pi\hbar c}. \]
+
+\paragraph*{Charge}
+The following two definitions of charge coincides.
+\begin{itemize}
+    \item The noether charge of gauge transformation, i.e. $q = j_0$ where
+    \[ \delta\mathcal{L} = \int \dd[d-1]{x} j^\alpha \partial_\alpha \Lambda. \]
+    \item The charge of parallel transport, as in
+    \[ \exp\qty(-iq \int_\Gamma A). \]
+\end{itemize}
+
+\paragraph*{Berry Phase}
+A frequently used expression for Berry phase (abelian $G$-bundle) is
+\[ \gamma = -iq \oint_\Gamma A. \]
+If $\Gamma$ may fail to be contained in a single chart, then the gauge transformation
+(Note that chart is different from local trivialization.
+$\Gamma$ may well be contained in a single trivialization.)
+\[ A \rightarrow A + g^{-1} \dd{g} \]
+may not have the form
+\[ A \rightarrow A + \dd{\Lambda}. \]
+Therefore, $\gamma$ may be changed by a nonzero constant.
+In the abelian case,
+\[ \gamma = -iq \oint_\Gamma \sigma^* \omega = -iq \oint_{\sigma(\Gamma)} \omega \]
+and may well depend on the section $\sigma$.
+
+\section{Miscellaneous}
+
+\paragraph*{Global Symmetry and Irreducible Representation}%
+If $G$ is the group of global symmetry and $\rho:G\rightarrow \operatorname{Aut}(H)$, then the symmetry breaking groud states may not span irreducible subspaces of $\rho$.
+For example, the Ising model has $\mathbb{Z}_2$ global symmetry but the symmetry breaking groud states are $\ket{1\cdots 1}$ and $\ket{0\cdots 0}$, while the irreducible subspaces (one-dimensional) are spanned by
+\[ \frac{1}{\sqrt{2}}(\ket{1\cdots 1} \pm \ket{0\cdots 0}). \]
 
 % \bibliographystyle{plain}
 % \bibliography{main}

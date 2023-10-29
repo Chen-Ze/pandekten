@@ -1,0 +1,164 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Midterm}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a)}%
+It acts transitively on the fibers.
+
+\plabel{(b)}%
+The followings is a normal covering.
+\begin{center}
+    \begin{tikzpicture}[decoration={
+        markings,
+        mark=at position 0.5 with {\arrow{latex}}}
+        ]
+        \draw[postaction={decorate}] (-30:1) to(90:1);
+        \draw[postaction={decorate}] (90:1) to(210:1);
+        \draw[postaction={decorate}] (210:1) to(330:1);
+        \draw[postaction={decorate}] (-30:1) to[bend right] (90:1);
+        \draw[postaction={decorate}] (90:1) to[bend right] (210:1);
+        \draw[postaction={decorate}] (210:1) to[bend right] (330:1);
+
+        \draw (30:1) node {$a$};
+        \draw (150:1) node {$a$};
+        \draw (270:1) node {$a$};
+        \draw (30:.25) node {$b$};
+        \draw (150:.25) node {$b$};
+        \draw (270:.25) node {$b$};
+    \end{tikzpicture}
+\end{center}
+
+\plabel{(c)}%
+The following is not normal.
+\begin{center}
+    \begin{tikzpicture}[decoration={
+        markings,
+        mark=at position 0.5 with {\arrow{latex}}}
+        ]
+        \draw[postaction={decorate}] (-30:1.5) to (90:1.5);
+        \draw[postaction={decorate}] (90:1.5) to (210:1.5);
+        \draw[postaction={decorate}] (210:1.5) to (-30:1.5);
+        \draw[postaction={decorate}] (90:1.5) arc (-90:270:0.75);
+        \draw (30:1) node {$a$};
+        \draw (150:1) node {$a$};
+        \draw (270:1) node {$a$};
+        \draw (-90:0) node {$b$};
+        \draw (90:2.5) node {$b$};
+        \draw (-90:1.5) node {$b$};
+        \draw[postaction={decorate}] (210:1.5) to[bend left] (-30:1.5);
+        \draw[postaction={decorate}] (-30:1.5) to[bend left] (210:1.5);
+    \end{tikzpicture}
+\end{center}
+
+\plabel{(d)}%
+Isomorphic to automorphism groups of $3$-fold covering spaces of $S^1 \vee S^1$.
+
+\plabel{(e)}%
+$a^3, b^3, ab^{-1}$.
+
+\plabel{(f)}%
+$a^3,b,aba^{-1}b^{-1}$.
+
+\prule
+
+\plabel{2 (a)}%
+Since $f$ has no fixed point, it is homotopic to $x \mapsto -x$, which is a composition of $(n+1)$ reflections, and therefore has degree $(-1)^{n+1}$.
+
+\plabel{(b)}%
+If for all $x$, $f(x)$ is neither $x$ nor $-x$, then the line joining $x$ and $f(x)$ is not perpendicular to the tangent plane at $x$.
+Projecting this line onto the tangent plane yields an tangent vector field nonzero everywhere, which is impossible on $S^{2n}$.
+
+\plabel{(c)}%
+$g:\mathbb{R}P^{2m} \rightarrow \mathbb{R}P^{2m}$ induces a map from $g\circ \pi: S^{2m} \mapsto \mathbb{R}P^{2m}$, which can be lifted to a map $f:S^{2m} \rightarrow S^{2m}$.
+Since there is some $x\in S^{2n}$ such that $f(x) = \pm x$, we find $g(\pi(x)) = \pi(x)$.
+
+\prule
+
+\plabel{3 (a)}%
+\begingroup\minusbaseline
+\[ H_n(S^1 \vee S^2) = H_n(S^1) \oplus H_n(S^2) = \begin{cases}
+    0, & n>2,\\
+    \mathbb{Z},& n=2, \\
+    \mathbb{Z},& n=1, \\
+    \mathbb{Z}\oplus \mathbb{Z}, & n=0.
+\end{cases} \]
+\endgroup
+
+\plabel{(b)}%
+Since $\mathbb{Z}$ is a free module over $\mathbb{Z}$,
+\begin{align*}
+    H_0(S^1 \times {S}^1) &= H_0(S^1) \otimes H_0(S^1) = \mathbb{Z}, \\
+    H_1(S^1 \times {S}^1) &= H_0(S^1) \otimes H_1(S^1) \oplus  H_1(S^1) \otimes H_0(S^1) = \mathbb{Z} \oplus \mathbb{Z}, \\
+    H_2(S^1 \times {S}^1) &= H_1(S^1) \otimes H_1(S^1) = \mathbb{Z}, \\
+    H_n(S^1 \times {S}^1) &= 0,\quad \text{if } n>2.
+\end{align*}
+
+\plabel{(c)}%
+\begingroup\minusbaseline
+\[ H_n(S^1 \vee S^1) = H_n(S^1) \oplus H_n(S^1) = \begin{cases}
+    0, & n>1,\\
+    \mathbb{Z}\oplus \mathbb{Z},& n=1, \\
+    \mathbb{Z}\oplus \mathbb{Z}, & n=0.
+\end{cases} \]
+\endgroup
+
+\plabel{(d)}%
+Since $\mathbb{Z}$ is a free module over $\mathbb{Z}$,
+\begin{align*}
+    H_0(S^1 \times (S^1 \vee S^1)) &= H_0(S^1) \otimes H_0(S^1 \vee S^1) = \mathbb{Z} \oplus \mathbb{Z}, \\
+    H_1(S^1 \times (S^1 \vee S^1)) &= H_0(S^1) \otimes H_1(S^1\vee S^1) \oplus  H_1(S^1) \otimes H_0(S^1\vee S^1) \\
+    &= \mathbb{Z} \oplus \mathbb{Z} \oplus \mathbb{Z} \oplus \mathbb{Z}, \\
+    H_2(S^1 \times (S^1 \vee S^1)) &= H_1(S^1) \otimes H_1(S^1\vee S^1) = \mathbb{Z} \oplus \mathbb{Z}, \\
+    H_n(S^1 \times (S^1 \vee S^1)) &= 0,\quad \text{if } n>2.
+\end{align*}
+
+\prule
+
+\plabel{4 (a)}%
+It has a $0$-cell $e^0$, two $2$-cells $e^2_A$ and $e^2_B$, and a $4$-cell $e^4$.
+
+\plabel{(b)}%
+Since it has no cells of adjacent dimensions,
+\[ H_n(S^2\times S^2) = \begin{cases}
+    \mathbb{Z}, & n=0,4, \\
+    \mathbb{Z} \oplus \mathbb{Z}, & n=2, \\
+    0, \text{otherwise}.
+\end{cases} \]
+
+\plabel{(c)}%
+For $n\neq 3,4$, we have
+\[ H_n = H_n(S^2\times S^2) \oplus H_n(S^2\times S^2). \]
+For $n=3,4$,
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

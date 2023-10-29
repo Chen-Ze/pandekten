@@ -1,0 +1,89 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Disorder}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Disorder in Hermitian Systems}
+
+\paragraph*{Averaged Action}
+After averaging with respect to $V$, the replica action is given by
+\begin{align*}
+    S[\psi,\overline{\psi}] &= \int \dd{\tau} \dd[d]{r} \overline{\psi}\qty(\partial_\tau - E_F - \frac{\grad^2}{2m}) \psi \\
+    &{\phantom{{}={}}} + \frac{1}{4\pi \nu \tau} \int \dd{\tau} \dd{\tau'}\dd[d]{r} (\overline{\psi}\psi)(\tau)(\overline{\psi}\psi)(\tau')
+\end{align*}
+where
+\begin{itemize}
+    \item $\tau$ on the denominator is the scattering time,
+    \item $\nu$ is the density of states, and
+    \item $\psi = \qty{\psi^a}$ carries a replica index $a = 1,\cdots,R$.
+\end{itemize}
+
+\paragraph*{Symmetrized Action and Enlarged Field}
+The symmetrized action is given by
+\begin{align}
+    S[\Psi] &= \frac{1}{2} \int \dd{\tau} \dd[d]{r} \overline{\Psi} \qty(\partial_\tau - E_F - \frac{\grad^2}{2m}) \Psi \\
+    \label{eq:action_enlarged}
+    &{\phantom{{}={}}} + \frac{1}{16\pi\nu\tau} \int \dd{\tau}\dd{\tau'} \dd[d]{r} (\overline{\Psi}\Psi)(\tau) (\overline{\Psi}\Psi)(\tau')
+\end{align}
+where
+\begin{itemize}
+    \item the enlarged field is given by
+    \[ \Psi(\tau) = \begin{pmatrix}
+        \psi(\tau) \\ \overline{\psi}^\intercal(-\tau)
+    \end{pmatrix},\quad \overline{\psi}(\tau) = \begin{pmatrix}
+        \overline{\psi}(\tau), -\psi^\intercal(-\tau)
+    \end{pmatrix}, \]
+    \item the components of which are not independent of each other {\color{red}why the following?}
+    \begin{equation*}
+        \label{eq:psi_bar_relation}
+        \overline{\psi}(\tau) = -\psi^\intercal(-\tau)(i\sigma_2^{\mathrm{TR}}),
+    \end{equation*}
+    where the superscript $\mathrm{TR}$ denotes the time-reversal space.
+\end{itemize}
+
+\paragraph*{Hubbard-Stratonovich Transformation}
+Keeping only the Cooper and exchange contribution, we find
+\[ Z = \int \mathcal{D}{Q} \exp[-\frac{\pi \nu}{8\tau} \int \dd[d]{r} \tr Q^2 + \frac{1}{2} \tr \ln \hat{G}^{-1}[Q]] \]
+where
+\begin{itemize}
+    \item $\hat{G}^{-1}[Q]$ for each $Q$ is an operator acting on $\Psi$ given by
+    \[ -\hat{G}^{-1}[Q] = \qty(\partial_\tau - E_F - \frac{\grad^2}{2m} -\frac{i}{2\tau}Q), \]
+    \item where $Q = \qty{Q^{\alpha\beta}}(r;\tau,\tau')$ has indices $\alpha = (a,\sigma)$ where $a$ is the replica index and $\sigma = 1,2$ labels the time-reversal space.
+\end{itemize}
+
+\paragraph*{Stationary Point}
+Solving for the stationary point of $S[Q]$ under the ansatz that $Q=\Lambda$ is diagonal in time-reversal space (i.e. in $\sigma$), replica space (i.e. in $a$), in Matsubara space, and uniform spatially, we find
+\[ \pi \nu \Lambda = \frac{i}{L^d} \sum_{\vb{p}} \frac{1}{i\omega_n - \xi_{\vb{p}} + (i/(2\tau))\Lambda}. \]
+Therefore, the stationary points of $Q$ satisfy the constraint $Q^2 = \mathbbm{1}$.
+
+\paragraph*{Symmetry of the Original Problem}
+By demanding that under the transformation
+\[ \Psi \rightarrow T\Psi,\quad \overline{\Psi}\rightarrow \overline{\Psi}\overline{T} \]
+both
+\begin{itemize}
+    \item the relation \eqref{eq:psi_bar_relation}, and
+    \item the action \eqref{eq:action_enlarged}
+\end{itemize}
+should be invariant, we find
+\[ T \in \operatorname{Sp}(2\cdot R\cdot (2M)) \]
+where $[-2\pi MT, 2\pi MT]$ is the range of $2M$ Matsubara frequencies overwhich the lack of commutativity of the symmetry group and the frequency operator can be safely ignored.
+
+\paragraph*{Symmetry of the Stationary Point}
+The subgroup of $\operatorname{Sp}(4RM)$ under which $\Lambda = T\Lambda T^{-1}$ is given by $\operatorname{Sp}(2RM) \times \operatorname{Sp}(2RM)$ where the coset space, i.e. the Goldstone mode, is given by the quotient space
+\[ \operatorname{Sp}(4RM)/\qty(\operatorname{Sp}(2RM) \times \operatorname{Sp}(2RM)). \]
+
+\paragraph*{Goldstone Mode Action}
+The action of $Q$ with flucuations taken into account is given by
+\[ S[Q] = \frac{\pi\nu}{2} \int \dd[d]{r} \tr[\frac{D}{4} (\grad Q)^2 - \hat{\omega}Q]. \]
+
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

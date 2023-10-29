@@ -1,0 +1,119 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Central Extension}
+\author{Ch\=an Taku}
+
+\externaldocument[Group-]{../Allgemein/main}
+\externaldocument[Alg-]{../../Allgemein/main}
+
+\begin{document}
+
+\maketitle
+
+\section{Central Extension of Group}
+
+\begin{definition}{Central Extension of Group}{central_extension_of_group}
+    An group extension (\cref{Group-def:group_extension})
+    \[ 1 \rightarrow A \xrightarrow{\imath} E \xrightarrow{\pi} G \rightarrow 1 \]
+    is central if $\imath(A)$ is in the center of $E$.
+\end{definition}
+
+\begin{example}{Universal Covering of $\operatorname{SO}(1,3)$}{universal_covering_of_so_1_3}
+    The following is a central extension:
+    \[ 1 \rightarrow \mathbb{Z}/2\mathbb{Z} \rightarrow \operatorname{SL}(2,\mathbb{C}) \xrightarrow{\pi} \operatorname{SO}(1,3) \rightarrow 1 \]
+    where $\pi$ is the 2-to-1 covering.
+\end{example}
+
+\begin{example}{Central Extension of Projective Linear Group}{central_extension_of_projective_linear_group}
+    Let $K^\times$ denote the multiplicative group of $K$ and $V$ a vector space over $K$.
+    Then the following is a central extension:
+    \[ 1\rightarrow K^\times \rightarrow \operatorname{GL}(V) \rightarrow \operatorname{PGL}(V) \rightarrow 1. \]
+\end{example}
+
+\begin{lemma}{Unitary as Central Extension of Projective}{unitary_as_central_extension_of_projective}
+    \begin{itemize}
+        \item Let $H$ be a Hilbert space over $\mathbb{C}$.
+        \item $\gamma: H\rightarrow H/\mathbb{C}^\times$ is the projection.
+        \item $\hat{\gamma}$ denotes the induced projective transformation (\cref{Alg-def:induced_projective_transformation}).
+    \end{itemize}
+    Then the following is a central extension:
+    \[ 1 \rightarrow \operatorname{U}(1) \xrightarrow{\imath} \operatorname{U}(H) \xrightarrow{\hat{\gamma}} \operatorname{U}(H/\mathbb{C}^\times) \rightarrow 1, \]
+    where $\imath$ is the inclusion, and
+    \[ \operatorname{U}(H/\mathbb{C}^\times) = \hat{\gamma}(\operatorname{U}(H)). \]
+\end{lemma}
+
+\begin{definition}{Equivalence of Central Extension}{equivalence_of_central_extension}
+    Two central extensions of $G$ by $A$
+    \[ 1 \rightarrow A \xrightarrow{\imath} E \xrightarrow{\pi} G \rightarrow 1 \]
+    and
+    \[ 1 \rightarrow A \xrightarrow{\imath'} E' \xrightarrow{\pi'} G \rightarrow 1 \]
+    are equivalent if there exists an isomorphism $\psi:E\rightarrow E'$ such that the following diagram commutes.
+    \begin{center}
+        \begin{tikzcd}
+            1 \arrow[r] & A \arrow[r,"\imath"] \arrow[d,"\operatorname{id}"] & E \arrow[r,"\pi"] \arrow[d,"\psi"] & G \arrow[r] \arrow[d,"\operatorname{id}"] & 1 \\
+            %
+            1 \arrow[r] & A \arrow[r,"\imath'"] & E' \arrow[r,"\pi'"] & G \arrow[r] & 1
+        \end{tikzcd}
+    \end{center}
+\end{definition}
+
+\begin{lemma}{Central Extension Splits iff Trivial}{central_extension_splits_iff_trivial}
+    A central extension splits if and only if it is equivalent to a trivial central extension.
+\end{lemma}
+
+\begin{example}{Nontrivial Central Extensions}{nontrivial_central_extensions}
+    If $n>1$ and $H$ is an infinite dimensional Hilbert space, then
+    \[ 1 \rightarrow \operatorname{U}(1) \rightarrow \operatorname{U}(n) \xrightarrow{\hat{\gamma}} \operatorname{U}(\mathbb{C}^n/\mathbb{C}^\times)\rightarrow 1 \]
+    and
+    \[ 1 \rightarrow \operatorname{U}(1) \rightarrow \operatorname{U}(H) \xrightarrow{\hat{\gamma}} \operatorname{U}(H/\mathbb{C}^\times)\rightarrow 1 \]
+    are not equivalent to the trivial extension.
+\end{example}
+
+\begin{example}{Central Extension and Cohomology}{central_extension_and_cohomology}
+    \paragraph*{Cocycle and Cohomology}
+    Let $G$ be a group and $A$ be an abelian group.
+    A map $\omega: G\times G \rightarrow A$ having the properties
+    \begin{align*}
+        \omega(1,1) &= 1, \\
+        \omega(x,y)\omega(xy,z) &= \omega(x,yz)\omega(y,z)
+    \end{align*}
+    is called a 2-cocycle.
+    The central extension associated with a 2-cocycle $\omega$ is given by
+    \[ 1 \longrightarrow A \xlongrightarrow{\imath} A \times_\omega G \xlongrightarrow{\operatorname{proj}_2} G \longrightarrow 1 \]
+    where $\imath(a) = (a,1)$ and $A \times_\omega G$ is $A\times G$ endowed with the multiplication
+    \[ (a,x)(b,y) = (\omega(x,y)ab, xy). \]
+    The second cohomology group is defined by
+    \[ H^2(G,A) = \Set*{\omega:G\times G \rightarrow A}{\omega \text{ is a 2-cocycle}}/\sim, \]
+    where $\omega \sim \omega'$ if and only if there is a $\lambda:G\rightarrow A$ with
+    \[ \lambda(xy) = \omega(x,y)\omega'(x,y)^{-1}\lambda(x)\lambda(y). \]
+    $H^2(G,A)$ is an abelian group with the multiplication induced by the pointwise multiplication of the maps $\omega:G\times G \rightarrow A$.
+    \paragraph*{For a Central Extension to Split}
+    Let $\omega:G\times G\rightarrow A$ be a 2-cocycle.
+    Then $A \times_\omega G$ splits if and only if there is a map $\lambda:G\rightarrow A$ with
+    \[ \lambda(xy) = \omega(x,y)\lambda(x)\lambda(y). \]
+    \paragraph*{Finding the Cocycle of a Central Extension}
+    The first row in
+    \begin{center}
+        \begin{tikzcd}
+            1 \arrow[r] & \operatorname{U}(1) \arrow[r,"\imath"] \arrow[d,"\operatorname{id}"] & E \arrow[r,"\pi"] \arrow[d,"S"] & G \arrow[r] \arrow[d,"T"] & 1 \\
+            %
+            1 \arrow[r] & \operatorname{U}(1) \arrow[r] & \operatorname{U}(H) \arrow[r,"\hat{\gamma}"] & \operatorname{U}(H/\mathbb{C}^\times) \arrow[r] & 1
+        \end{tikzcd}
+    \end{center}
+    has the form $E = A \times_\omega G$ (since $E$ is the pullback).
+    To find $\omega$, we select for each $g\in G$ a $U_g\in \operatorname{U}(H)$ such that $\hat{\gamma}(U_g) = Tg$.
+    Then we define $\tau:G\rightarrow G$ by $\tau_g = (U_g,g)$.
+    Now $\tau$ satisfies $\tau(1) = 1$ and $\pi\circ \tau = \operatorname{id}_G$.
+    $\omega:G\times G \rightarrow \operatorname{U}(1)$ is defined by
+    \[ \omega(g,h) = \tau_g \tau_h \tau^{-1}_{gh} = (U_g U_h U^{-1}_{gh}, 1_G). \]
+    $g\mapsto U_g$ is not continuous in general, but for some important cases it can be chosen to yield a continous homomorphism.
+    \par
+    $H^2(G,A)$ is in one-to-one correspondence with the equivalence classes of central extensions of $G$ by $A$.
+\end{example}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

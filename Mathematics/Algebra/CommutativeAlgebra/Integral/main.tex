@@ -1,0 +1,129 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Integral Dependence}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+This note accounts for
+\begin{itemize}
+    \item part of L. Pan's lecture on Week 3,
+    \item chapter 4 of UCA, \textit{M. Reid}, and
+    \item lecture 33 and 34 of the video course by R. Borcherds.
+\end{itemize}
+
+\section{Integral Dependence}
+
+\begin{counterexample}{Finitely Generated Module vs. Algebra}{finitely_generated_module_vs_algebra}
+    A ring $A$ as a finitely generated module over $B$ is finitely generated algebra over $B$.
+    However, $B[X]$ is a finitely generated algebra, but not a finitely generated module.
+\end{counterexample}
+
+\begin{theorem}{Endomorphism of Finitely Generated Modules are Integral}{endomorphisms_of_finitely_generated_modules_are_integral}
+    \begin{itemize}
+        \item $A$ is a commutative ring.
+        \item $M$ is a finitely generated $A$-module by $n$ elements.
+        \item $\varphi:M\rightarrow M$ is a homomorphism.
+        \item $I\subset A$ is an ideal such that $\varphi(M) \subset IM$.
+    \end{itemize}
+    Then $\varphi$ satisfies a relation of the form
+    \[ \varphi^n + a_1 \varphi^{n-1} + \cdots + a_{n-1} \varphi + a_n = 0 \]
+    as an endomorphism of $M$,
+    where $a_i \in I^i$ for $i=1,2,\cdots,n$.
+\end{theorem}
+
+\begin{definition}{Finite Algebra}{finite_algebra}
+    Let $A$ be a commutative ring, and $B$ be an algebra over $A$.
+    $B$ is a finite $A$-algebra if it is finitely generated as an $A$-module.
+\end{definition}
+
+\begin{definition}{Integral Element, Integral Extension}{integral_element}
+    Let $A$ be a commutative ring, and $B$ be an algebra over $A$, with ring map $\varphi:A\rightarrow B$.
+    An element $y\in B$ is integral over $A$ if there exists a monic polynomial $f(Y)\in \varphi(A)[Y]$ such that $f(y) = 0$.
+    The algebra $B$ is integral over $A$ if every $b\in B$ is integral over $A$.
+\end{definition}
+
+\begin{proposition}{Integral Element}{integral_element}
+    Let $\varphi:A\rightarrow B$ be an $A$-algebra where $A$ and $B$ are commutative rings, and $y\in B$.
+    Then the following three statements are equivalent.
+    \begin{itemize}
+        \item $y$ is integral over $A$.
+        \item The subring $\varphi(A)[y]\subset B$ is finitely over $A$.
+        \item There exists an $A$-subalgebra $C\subset B$ such that $\varphi(A)[y]\subset C$ and $C$ is finite over $A$.
+    \end{itemize}
+\end{proposition}
+
+\begin{theorem}{Integral vs. Finite}{integral_vs_finite}
+    Let $R$ be a commutative ring and $S$ be an $R$-algebra.
+    The following statements are equivalent.
+    \begin{itemize}
+        \item $R$ is finitely generated as an $S$-module.
+        \item $R$ is integral and finitely generated as an $S$-algebra.
+    \end{itemize}
+\end{theorem}
+
+\begin{proposition}{Tower Laws}{tower_laws}
+    Let $B$ be an $A$-algebra, where $A$ and $B$ are commutative rings.
+    \begin{itemize}
+        \item If $A\subset B\subset C$ are extension rings such that $C$ is a finite $B$-algebra and $B$ is a finite $A$-algebra, then $C$ is finite over $A$.
+        \item If $y_1,\cdots,y_m\in B$ are integral over $A$ then $A[y_1,\cdots,y_m]$ is finite over $A$.
+        In particular, every $f\in A[y_1,\cdots,y_m]$ is integral over $A$.
+        \item If $A\subset B\subset C$ with $C$ integral over $B$ and $B$ integral over $A$ then $C$ is integral over $A$.
+        \item The subset $\tilde{A} = \Set*{y\in B}{y \text{ is integral over }A}$ is a subring of $B$.
+        Moreover, if $y\in B$ is integral over $\tilde{A}$ then $y\in \tilde{A}$.
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}{Integral Closure \defextends{Commutative Ring}}{integral_closure}
+    Let $A$ and $B$ be commutative rings, where $A\subset B$.
+    \[ \tilde{A} = \Set*{y\in B}{y \text{ is integral over }A} \]
+    is the integral closure of $A$ in $B$.
+\end{definition}
+
+\begin{definition}{Normal Domain, Normalization}{normal_domain}
+    Let $A$ be an integral domain.
+    The normalization of $A$ is the integral closure of $A$ in $\operatorname{Frac}(A)$.
+    $A$ is normal if it is integrally closed in $\operatorname{Frac}(A)$.
+\end{definition}
+
+\begin{theorem}{Noether Normalization,\\ Finitely Generated Algebra is Finite Module over Polynormial}{noether_normalization}
+    Input:
+    \begin{itemize}
+        \item $k$ is a field.
+        \item $A$ is a finitely generated $k$-algebra.
+    \end{itemize}
+    There exist elements $z_1,\cdots,z_m\in A$ such that
+    \begin{itemize}
+        \item $z_1,\cdots,z_m$ are algebraically independent over $k$, and
+        \item $A$ is a finite algebra over $k[z_1,\cdots,z_m]$.
+    \end{itemize}
+\end{theorem}
+
+With this theorem we know that $A$ is integral over some polynomial ring, i.e. $A$ is contained in the normalization of a polynormal ring.
+
+\begin{proposition}{Algebraic Extension of Field is a Field}{algebraic_closure_of_a_field_is_a_field}
+    Let $A\subset B$ be an integral extension of integral domains.
+    Then that $A$ is a field is equivalent to that $B$ is a field.
+\end{proposition}
+
+\begin{theorem}{Weak Nullstellensatz}{weak_nullstellensatz}
+    Input:
+    \begin{itemize}
+        \item $k$ is a field.
+        \item $K$ is a $k$-algebra which
+        \begin{itemize}
+            \item is finitely generated as a $k$-algebra, and
+            \item is a field.
+        \end{itemize}
+    \end{itemize}
+    Then $K$ is algebraic over $k$ and $k\subset K$ is a finite field extension, i.e. $[K:k]<\infty$.
+\end{theorem}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

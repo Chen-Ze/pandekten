@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 1}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1.1}%
+Initialization:$\begin{cases}
+    \qty{1,2,3,6,7}, & \vb{\mu} = (4,3), \\
+    \qty{4}, & \vb{\mu} = (0,4), \\
+    \qty{5}, & \vb{\mu} = (8,0).
+\end{cases}$.
+\par
+Step 1: $\begin{cases}
+    \qty{1,2,3,6,7}, & \vb{\mu} = (4,4), \\
+    \qty{4}, & \vb{\mu} = (0,4), \\
+    \qty{5}, & \vb{\mu} = (8,0).
+\end{cases}$
+\par
+It converges after 1 step.
+
+\prule
+
+\plabel{1.2}%
+See the document attached at the end.
+
+\prule
+
+\plabel{1.3 (I)}%
+Design freedom: $9 \times 3 = 27$.
+Number of parameters: $4\times 1 + 4 + 5\times 4 + 5 = 33$.
+$f(x)$ is a polynomial of order $27$ since it's a composition of $3$ cubic polynomials.
+The formula for intrinsic degree is $\binom{n+d}{n}$ where $n$ is the dimension of the vector space and $d$ is the degree of polynomial.
+
+\plabel{(II)}%
+It's a polynomial of order $2^3 = 8$.
+The design freedom is $2^3 = 8$.
+
+\prule
+
+\plabel{1.4}%
+The iteration is given by
+\[ \vb{w}' = \vb{w} - 2\gamma \vb{F}^\intercal (\vb{F}\vb{w} - y). \]
+Fixed points exist at the solutions of $\vb{F}^\intercal(\vb{F}\vb{w} - y) = 0$, i.e. stationary points of the target function, which is the minimal since the function is convex.
+It remains to show that the iteration is a contraction mapping on the complement of the null space of $\vb{F}^\intercal \vb{F}$, i.e. it converges.
+Note that
+\[ \norm{\vb{w}' - \vb{v}'} = \norm{(\mathbbm{1} - 2\gamma\vb{F}^\intercal \vb{F}) (\vb{w} - \vb{v})}. \]
+For all $0 < \gamma < 1/\sigma_1$ where $\sigma_1$ is the minimal nonzero eigenvalue of $\vb{F}^\intercal \vb{F}$, the iteration is a contraction mapping.
+Therefore, the iteration converges for $\gamma$ small enough.
+
+\includepdf[pages=-,pagecommand={}]{2023SpHW1.pdf}
+
+\end{document}

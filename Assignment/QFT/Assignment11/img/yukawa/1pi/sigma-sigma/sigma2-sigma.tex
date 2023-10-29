@@ -1,0 +1,14 @@
+\documentclass{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\feynmandiagram [inline=(v.base), small, horizontal=c1 to c2, layered layout] {
+    c1 --[scalar] v[dot] --[scalar, out=135, in=45, loop, min distance=5em] v --[scalar] c2;
+};
+\end{document}

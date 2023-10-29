@@ -1,0 +1,89 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Continuous Symmetry}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Rotor}
+
+Each site has a $N$-component vector with $\vb{n}\cdot \vb{n} = 1$, i.e. $\vb{n} \in S^{n-1}$.
+The energy is given by
+\[ \mathcal{E} = -J \sum_{\langle ij \rangle} \vb{n}_i \cdot \vb{n}_j. \]
+
+\begin{itemize}
+    \item $d=2$:
+    \begin{itemize}
+        \item $N=1$: 2nd order phase transition, Ising.
+        \item $N=2$: BKT.
+        \item $N=3$: no 2nd order phase transition.
+    \end{itemize}
+    \item $2<d<4$:
+    \begin{itemize}
+        \item All $N$ have 2nd order phase transition.
+    \end{itemize}
+\end{itemize}
+Near the phase transition the action is given by
+\[ S_E = \int \dd[d]{x} \qty[\frac{1}{2}(\partial_\mu \phi^a)^2 + \frac{1}{2}m^2 \phi^a \phi^a + \frac{\lambda}{4}(\phi^a\phi^a)^2]. \]
+\begin{itemize}
+    \item $T>T_c$, $m^2 > 0$.
+    \item $T<T_c$, $m^2 < 0$.
+\end{itemize}
+At $T<T_c$, we have $m^2 < 0$ and $\operatorname{O}(N)$ is broken to $\operatorname{O}(N-1)$.
+Let
+\[ \phi = (\pi^1,\cdots,\pi^{N-1},v+\sigma). \]
+A non-linear parameterization is given by
+\[ \phi = e^{\sum_k J_k \alpha_k/v} (0,\cdots,0,v+\sigma), \]
+where
+\[ t_1 = \frac{1}{\sqrt{2}} \begin{pmatrix}
+    & & & 1 \\
+    \\
+    \\
+    -1 & & &
+\end{pmatrix}, \cdots. \]
+The new Lagranigan is given by
+\[ \mathcal{L} = \frac{1}{2}(\partial_\mu \sigma)^2 + \frac{1}{2}(\partial_\mu \alpha^k)^2 \qty(1+\frac{\sigma}{v})^2 + \frac{\mu^2}{2}(v+\sigma)^2 - \frac{\lambda}{4}(v+\sigma)^4. \]
+
+\section{Effective Action}
+
+$Z[J] = e^{-iE[J]}$ where
+\[ E[J] = -i \log Z[J] \]
+is analogous to the free energy.
+$E[J]$ is the sum of all connected Feynman diagrams.
+\[ \fdv{J(x)} E = \phi_{\mathrm{cl}}(x) = \bra{0}\phi(x)\ket{0}_{J}. \]
+Effective action:
+\[ \Gamma[\phi_{\mathrm{cl}}] = -E[J] - \int \dd[4]{y} J(y) \phi_{\mathrm{cl}}(y). \]
+Then
+\[ \fdv{\Gamma}{\phi_{\mathrm{cl}}(x)} = -J(x). \]
+Setting $J\rightarrow 0$, $\phi_{\mathrm{cl}}$ becomes independent of $x$.
+\[ \Gamma(\phi_{\mathrm{cl}}) = -V_3 T V_{\mathrm{eff}}(\phi_{\mathrm{cl}}). \]
+The quantum ground state is found by
+\[ \pdv{\Gamma}{\phi_{\mathrm{cl}}} = 0. \]
+It's easier to derive Callan-Effective equation from $\Gamma$.
+
+\section{Euclidean Grassmann}
+
+The action is given by
+\[ Z_E = \int \mathcal{D}\psi \mathcal{D}\overline{\psi} \exp[-\int \dd[d]{x} \overline{\psi}(\gamma^\mu \partial_\mu + m) \psi] \]
+where
+\[ \qty{\gamma^\mu,\gamma^\nu} = 2\delta^{\mu\nu}\mathbbm{1}. \]
+Therefore, $\qty(\gamma^\mu)^\dagger = \gamma^\mu$.
+Let
+\[ D = \slashed{\partial} + m. \]
+Then
+\[ D^\dagger D = -\partial^2 + m^2. \]
+Therefore,
+\begin{align*}
+    S_{\mathrm{eff}} &= S_{\mathrm{cl}} - \frac{1}{2}\tr\mathbbm{1} \cdot \ln \det(-\partial^2 + m^2) \\
+    &= S_{\mathrm{cl}} + \frac{1}{2}(N_S - N_f \tr \mathbbm{1}) \ln \det(-\partial^2 + m^2).
+\end{align*}
+If $N_S = N_f \cdot 2^{\lfloor d/2 \rfloor}$, then $S_{\mathrm{eff}} = S_{\mathrm{cl}}$.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

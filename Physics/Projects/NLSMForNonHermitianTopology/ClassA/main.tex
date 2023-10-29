@@ -1,0 +1,175 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{pandekten}
+\usepackage[letterpaper]{geometry}
+
+\title{Class A}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+% \maketitle
+
+\section*{Class A, 3D}
+
+\subsection*{Replica Action}
+
+Given the Hamiltonian (in 3D)
+\[ H = \vb*{\sigma} \cdot \vb{p} + i \gamma, \]
+and disorder
+\[ V: \mathbb{R}^3 \rightarrow \mathbb{C}^{2\times 2}, \]
+we find (each of $\overline{\psi},\psi,\overline{\chi},\chi$ has two components; $\overline{\psi}$ and $\overline{\chi}$ are row vectors; $\psi$ and $\chi$ are column vectors; $a,b$ are replica indices and are summed over from $1$ to $n$)
+\begin{align*}
+    Z_n &= \int DV \int D{\overline{\psi}}D{{\psi}}D{\overline{\chi}}D{{\chi}} \\
+    &\phantom{{}={}} \exp[\int \dd[3]{x}\qty(-\tr(V^\dagger V) + \overline{\psi}_a(H + gV - z)\psi_a + \overline{\chi}_a(H^\dagger + gV^\dagger - \overline{z})\chi_a)].
+\end{align*}
+The integral in $V$ is evaluated to be
+\begin{align*}
+    &\phantom{{}={}} \int DV \exp[\int \dd[3]{x} (-\tr(V^\dagger V) + g\tr(V \psi_a \overline{\psi}_a) + g\tr(V^\dagger \chi_a \overline{\chi}_a))] \\
+    &= \text{const.} \times \exp[g^2 \int \dd[3]{x} \tr(\psi_a \overline{\psi}_a \chi_b \overline{\chi}_b)] \\
+    &= \text{const.} \times \exp[-g^2 \int \dd[3]{x} \overline{\chi}_b \psi_a \overline{\psi}_a \chi_b ] \\
+    &= \text{const.} \times \exp[-g^2 \int \dd[3]{x} \tr(\overline{W}W) ] \\
+    &= \text{const.} \times \int DQ \exp[\int \dd[3]{x} \qty(-\tr(Q^\dagger Q) + g \tr(Q\overline{W}) - g\tr(Q^\dagger W)) ] \\
+    &= \text{const.} \times \int DQ \exp[\int \dd[3]{x} \qty(-\tr(Q^\dagger Q) + g \overline{\chi}_a Q_{ab} \psi_b - g\overline{\psi}_a Q^\dagger_{ab}\chi_b) ].
+\end{align*}
+where
+\[ \overline{W}_{ba} = \overline{\chi}_b \psi_a;\quad W_{ab} = \overline{\psi}_a \chi_b; \]
+and $Q: \mathbb{R}^3 \rightarrow \mathbb{C}^{n\times n}$.
+\par
+Plugging in and ignoring the constant factor we find
+\begin{align*}
+    Z_n &= \int DQ e^{-\int \dd[3]{x} \tr(Q^\dagger Q)} \int D{\overline{\psi}}D{{\psi}}D{\overline{\chi}}D{{\chi}} \\
+    &\phantom{{}={}} \exp[\int \dd[3]{x} \begin{pmatrix}
+        \overline{\psi}_a & \overline{\chi}_a
+    \end{pmatrix} \begin{pmatrix}
+        (H - z)\delta_{ab} & -g Q^\dagger_{ab} \\
+        g Q_{ab} & (H^\dagger - \overline{z})\delta_{ab}
+    \end{pmatrix} \begin{pmatrix}
+        \psi_b \\ \chi_b
+    \end{pmatrix}].
+\end{align*}
+By redefining $g$ we have $Q\in \operatorname{U}(n)$ at the saddle point.
+Then we make a change of variables
+\[ \chi'_a = Q^\dagger_{ab} \chi_b;\quad \overline{\chi}'_b = \overline{\chi}_a Q_{ab}. \]
+The effective action is
+\begin{align*}
+    Z_n^{\text{saddle}} &= \int_{Q\in \operatorname{U}(n)} DQ \int D{\overline{\psi}}D{{\psi}}D{\overline{\chi}'}D{{\chi}'} \\
+    &\phantom{{}={}} \exp[\int \dd[3]{x} \begin{pmatrix}
+        \overline{\psi}_a & \overline{\chi}'_a
+    \end{pmatrix} \begin{pmatrix}
+        (H - z)\delta_{ab} & -g \\
+        g & Q^\dagger_{ac}(H^\dagger - \overline{z})Q_{cb}
+    \end{pmatrix} \begin{pmatrix}
+        \psi_b \\ \chi'_b
+    \end{pmatrix}] \\
+    &= \int_{Q\in \operatorname{U}(n)} DQ \int D{\overline{\psi}}D{{\psi}}D{\overline{\chi}'}D{{\chi}'} \\
+    &\phantom{{}={}} \exp[\int \dd[3]{x} \begin{pmatrix}
+        \overline{\psi}_a & \overline{\chi}'_a
+    \end{pmatrix} \begin{pmatrix}
+        g & (H - z)\delta_{ab} \\
+        Q^\dagger_{ac}(- H^\dagger + \overline{z})Q_{cb} & g
+    \end{pmatrix} \begin{pmatrix}
+        -\chi'_b \\ \psi_b 
+    \end{pmatrix}].
+\end{align*}
+Let
+\[ \overline{\Psi}_a = \begin{pmatrix}
+    \overline{\psi}_a & \overline{\chi}'_a
+\end{pmatrix};\quad \Psi_b = \begin{pmatrix}
+    -\chi'_b \\ \psi_b 
+\end{pmatrix}. \]
+Then the effective action is given by
+\[ S = \int \dd[3]{x} \mathcal{L}, \quad Z_n^{\text{saddle}} = \int_{Q\in \operatorname{U}(n)} DQ \int D{\overline{\psi}}D{{\psi}}D{\overline{\chi}'}D{{\chi}'} e^S. \]
+where
+\[ \mathcal{L} = \overline{\Psi}_a \begin{pmatrix}
+    g & \sigma_i k^i + i\gamma - z \\
+    -\sigma_i k^i + i\gamma + \overline{z} & g
+\end{pmatrix} \Psi_a - i\overline{\Psi} \qty(\frac{1}{2} Q^\dagger \partial_k Q) \cdot (\gamma^k - \gamma^0 \gamma^k) \Psi. \]
+Now we set $A_k = -B_k = (1/2) Q^\dagger \partial_k Q$.
+Then
+\[ \mathcal{L} = \overline{\Psi}_a \begin{pmatrix}
+    g & \sigma_i k^i + i\gamma - z \\
+    -\sigma_i k^i + i\gamma + \overline{z} & g
+\end{pmatrix} \Psi_a - i\overline{\Psi} \gamma^k A_k \Psi - i\overline{\Psi} \gamma^0 \gamma^k B_k \Psi. \]
+The effective action can be expanded using
+\[ S = \Tr \log (H - V) = Tr\log H - \sum_{n=1}^\infty \frac{1}{n} \Tr(G V)^n \]
+where
+\[ V = i\overline{\Psi} \gamma^k A_k \Psi + i\overline{\Psi} \gamma^0 \gamma^k B_k \Psi. \]
+
+\subsection*{Loop Integrals}
+
+In the following we set $M^2 = m^2 + m_5^2$, $M>0$, $m = g$ and $im_5 = i\gamma - i \Im z$ and $x = \Re z$.
+Let
+\[ G(k) = \begin{pmatrix}
+    m & \sigma_i k^i + im_5 - x \\
+    -\sigma_i k^i + im_5 + x & m
+\end{pmatrix}^{-1}. \]
+The loop diagrams are evaluated.
+
+\begin{itemize}
+    \item One insertion.
+    \begin{align*}
+        \tr[\int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^i] &= 0, \\
+        \tr[\int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^0 \gamma^i] &= 0.
+    \end{align*}
+    \item Two insertions (discarding $\bigO(p^2)$).
+    \begin{align*}
+        \tr[\frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^i G(k+p)\gamma^j] &= -\frac{\Lambda\delta^{ij}}{3\pi^2}, \\
+        \tr[\frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^0\gamma^i G(k+p)\gamma^j] \\
+        + \tr[\frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^i G(k+p)\gamma^0\gamma^j] &= -\frac{m_5 \epsilon^{ijk} p^k}{2\pi M}, \\
+        \tr[\frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^0\gamma^i G(k+p)\gamma^0\gamma^j] &= \qty(-\frac{\Lambda}{3\pi^2} + \frac{m^2}{2\pi M} + \frac{m^2 x^2}{6\pi M^3})\delta^{ij} \\
+        &\phantom{{}={}} - \frac{i m^2 x \epsilon^{ijk}p_k}{6\pi M^3}.
+    \end{align*}
+   % \item Two insertions.
+   % \begin{align*}
+   %     \frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} \frac{(-m + \slashed{k} + i\gamma^5 m_5) \gamma^i (-m + (\slashed{k}+\slashed{p}) + i\gamma^5 m_5) \gamma^j}{(-k^2 - M^2)(-(k+p)^2 - M^2)} &= \frac{\Lambda \delta^{ij}}{3\pi^2}, \\
+   %     \frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} \frac{(-m + \slashed{k} + i\gamma^5 m_5) \gamma^0 \gamma^i (-m + (\slashed{k}+\slashed{p}) + i\gamma^5 m_5) \gamma^j}{(-k^2 - M^2)(-(k+p)^2 - M^2)} &= -\frac{m_5 \epsilon^{ijk}}{4\pi M} p^k,\\
+   %     \frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} \frac{(-m + \slashed{k} + i\gamma^5 m_5) \gamma^i (-m + (\slashed{k}+\slashed{p}) + i\gamma^5 m_5) \gamma^0 \gamma^j}{(-k^2 - M^2)(-(k+p)^2 - M^2)} &= -\frac{m_5 \epsilon^{ijk}}{4\pi M} p^k,\\
+   %     \frac{1}{2} \int \frac{\dd[3]{k}}{(2\pi)^3} \frac{(-m + \slashed{k} + i\gamma^5 m_5) \gamma^0 \gamma^i (-m + (\slashed{k}+\slashed{p}) + i\gamma^5 m_5) \gamma^0 \gamma^j}{(-k^2 - M^2)(-(k+p)^2 - M^2)} &= \frac{\Lambda \delta^{ij}}{3\pi^2} - \frac{m^2}{2\pi M} \delta^{ij}.
+   % \end{align*}
+    \item Three insertions (discarding $\bigO(p)+\bigO(q)$).
+    \begin{align*}
+        \tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k) \gamma^i G(k+p)\gamma^j G(k+q) \gamma^k] &= 0, \\
+        \tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^0 \gamma^i G(k+p)\gamma^j G(k+q) \gamma^k] & \\
+        +\tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^i G(k+p)\gamma^0 \gamma^j G(k+q) \gamma^k] & \\
+        +\tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^i G(k+p)\gamma^j G(k+q) \gamma^0 \gamma^k] &= -\frac{m_5 \epsilon^{ijk}}{2\pi M}, \\
+        \tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^i G(k+p)\gamma^0 \gamma^j G(k+q) \gamma^0 \gamma^k] & \\
+        +\tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^0 \gamma^i G(k+p)\gamma^j G(k+q) \gamma^0 \gamma^k] & \\
+        +\tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^0 \gamma^i G(k+p)\gamma^0 \gamma^j G(k+q) \gamma^k] &= -\frac{i m x \epsilon^{ijk}}{3\pi M^3}, \\
+        \tr[\frac{1}{3} \int \frac{\dd[3]{k}}{(2\pi)^3} G(k)\gamma^0 \gamma^i G(k+p)\gamma^0 \gamma^j G(k+q)\gamma^0 \gamma^k] &= -\frac{m_5^3 \epsilon^{ijk}}{6\pi M^3}.
+    \end{align*}
+\end{itemize}
+
+\subsection*{Effective Action}
+
+%Set $m = g$ and $im_5 = i\gamma - z$ and assume that $z$ is purely imaginary.
+%We have
+%\[ \begin{pmatrix}
+%    m & \sigma_i p^i + im_5 \\
+%    -\sigma_i p^i + im_5 & m
+%\end{pmatrix}^{-1} = \frac{\gamma^k p_k + im_5 \gamma^5 - m}{-p^2 - m_5^2 - m^2}. \]
+
+%The model is given by
+%\[ \mathcal{L} = \overline{\psi} \qty[\qty(\gamma^k p_k + m + im_5 \gamma^5) + \qty(\gamma^k - \gamma^0 \gamma^k) \qty(\frac{1}{2}U \partial_k U^\dagger)]\psi. \]
+
+%Then the loop integrals above allows us to obtain the terms similar to those in equation (C9) of the paper \textit{Disorder-induced \ldots}.
+
+Using the loop integrals, we find
+\begin{align*}
+    S^{(2)} &= \int \dd[3]{x} \qty(-\frac{\Lambda}{3\pi^2} \tr(A_j A_j + B_j B_j) + \frac{im_5 \epsilon^{ijk}}{2\pi M} \tr(A_i \partial_k B_j)) \\
+    &\phantom{{}={}} + \int \dd[3]{x} \qty(\qty(\frac{m^2}{2\pi M} + \frac{m^2 x^2}{6\pi M^3})\tr(B_j B_j) - \frac{m^2 x}{6\pi M^3}\epsilon^{ijk} \tr(B_i \partial_k B_j)); \\
+    S^{(3)} &= \int \dd[3]{x} \qty(-\frac{i m_5 \epsilon^{ijk}}{2\pi M} \tr(A_i A_j B_k) + \frac{m x \epsilon^{ijk}}{3\pi M^3}\tr(A_i B_j B_k)) \\
+    &\phantom{{}={}} + \int \dd[3]{x} \qty(-\frac{i m_5^3 \epsilon^{ijk}}{6\pi M^3}\tr(B_i B_j B_k)).
+\end{align*}
+
+These combine to
+\begin{align*}
+    S &= -\frac{\Lambda}{3\pi^2} \int \dd[3]{x} \tr(A_j A_j + B_j B_j) \\
+        &\phantom{{}={}} + \int \dd[3]{x} \qty(\frac{m^2}{2\pi M} + \frac{m^2 x^2}{6\pi M^3})\tr(B_j B_j) \\
+        &\phantom{{}={}} + \qty(\frac{3m_5}{4M} - \frac{m_5^3}{4M^3}) 2\pi i \cdot  \frac{1}{24\pi^2} \epsilon^{ijk}  \int \dd[3]{x} \tr(U^\dagger \partial_i U U^\dagger \partial_j U U^\dagger \partial_k U). % + \int \dd[3]{x} \qty(-\frac{i m_5 \epsilon^{ijk}}{2\pi M} \tr(A_i A_j B_k) - \frac{i m_5^3 \epsilon^{ijk}}{6\pi M^3}\tr(B_i B_j B_k) + \frac{im_5 \epsilon^{ijk}}{\pi M} \tr(B_i B_j B_k)).
+\end{align*}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

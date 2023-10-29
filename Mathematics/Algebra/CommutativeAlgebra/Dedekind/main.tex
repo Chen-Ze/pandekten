@@ -1,0 +1,469 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Dedekind Domain}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+This note accounts for
+\begin{itemize}
+    \item L. Pan's lecture on Week 4.
+    \item L. Pan's lecture on Week 5.
+\end{itemize}
+
+\section{Dedekind Domain}
+
+\begin{definition}{Dedekind Domain}{dedekind_domain}
+    $A$ is a Dedekind domain if it satisfies all of the following conditions.
+    \begin{itemize}
+        \item $A$ is a Noetherian integral domain.
+        \item $A$ is integrally closed.
+        \item Nonzero prime ideals of $A$ are maximal, i.e. $A$ has dimension $0$ or $1$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Krull Dimension}{krull_dimension}
+    Let $A$ be a commutative ring.
+    $\dim A$ is the maximal integer $l$ of ascending chains
+    \[ p_0 \subsetneq p_1 \subsetneq \cdots \subsetneq p_l \]
+    for $p_n \in \operatorname{Spec} A$.
+\end{definition}
+
+\begin{example}{Dimensions}{dimensions}
+    $\dim A = 0$ is equivalent to that prime ideals are maximal.
+    $\dim A = 1$ and $A$ is a domain implies that nonzero prime ideals are maximal.
+    $\dim \mathbb{C}[X_1,\cdots,X_n] = n$.
+    $\dim \mathbb{Z} = 1$.
+\end{example}
+
+\begin{lemma}{Dedekind has DVR Localization}{dedekind_has_dvr_localization}
+    $A$ is a Noetherian integral domain.
+    Then $A$ is Dedekind is equivalent to that $A_p$ is a DVR for all $p\in \operatorname{A}$.
+\end{lemma}
+
+\begin{example}{Dedekind Domains}{dedekind_domains}
+    PID, $\mathbb{Z}$, $k[T]$ are all Dedekind domains.
+    $\mathbb{Z}[\sqrt{-5}]$ is a Dedekind domain but not PID.
+\end{example}
+
+\subsection{Invertible Modules}
+
+\begin{definition}{Fraction Ideal}{fraction_ideal}
+    If $A$ is a integral domain, and $K = \operatorname{Frac}(A)$.
+    $M\subset K$ is a fraction ideal if $M$ is a finitely generated $A$-submodule of $K$.
+\end{definition}
+
+\begin{example}{Fraction Ideal}{fraction_ideal}
+    For any $x_1,\cdots,x_n\in K$, $Ax_1 + \cdots + Ax_n$ is a fraction ideal.
+\end{example}
+
+In the following we define $M'$ by
+\[ M' = \Set*{y\in K}{xy\in A,\forall x\in M}. \]
+$M'$ is a fraction ideal.
+$M\cdot M' = \sum x_i y_i$ where $x_i\in M$ and $y_i\in M'$ is again a fraction ideal.
+
+\begin{definition}{Invertible Ideal}{invertible_ideal}
+    $M$ is invertible if $M\cdot M' = A$.
+\end{definition}
+
+\begin{example}{Invertible Ideals}{invertible_ideals}
+    $xA$ is invertible.
+\end{example}
+
+In a DVR all the fraction ideal is given by the form $\pi^n A$ for $n\in \mathbb{Z}$.
+Therefore, in a DVR, any nonzero fraction ideal is invertible.
+
+\begin{proposition}{Fraction Ideal of Dedekind is Invertible}{fraction_ideal_of_dedekind_is_invertible}
+    If $A$ is a Dedekind domain.
+    $Q\neq 0$ is a fraction ideal.
+    Then $Q$ is invertible.
+\end{proposition}
+
+\begin{lemma}{Localization Commutes with Dual}{localization_commutes_with_dual}
+    If $p$ is a prime ideal of $A$, and if $A$ is Noetherian, then
+    \[ (Q')_p = (Q_p)'. \]
+\end{lemma}
+
+\begin{lemma}{Localization Determines Fraction Ideal}{localization_determines_fraction_ideal}
+    If $M$ is a fraction ideal, and $M_p = A_p$ for all prime ideal $p$, then $M=A$.
+\end{lemma}
+
+Non-zero fraction ideals of a Dedekind domain $A$ form an abelian group.
+
+\begin{proposition}{Closed Sets are Finite in Dedekind Spectrum}{closed_sets_are_finite_in_dedekind_spectrum}
+    If $x\neq 0\in A$ where $A$ is a Dedekind domain, then only finitely many prime ideals contain $x$.
+\end{proposition}
+
+\begin{corollary}{Local Evaluation of Dedekind is Almost Zero}{local_evaluation_of_dedekind_is_almost_zero}
+    $K = \operatorname{Frac}(A)$, where $A$ is a Dedekind domain.
+    Given $p\in \operatorname{Spec} A$ which is nonzero.
+    $A_p$ is a DVR.
+    Let $v_p: K^\times \rightarrow \mathbb{Z}$ be the evaluation map at $p$.
+    For almost all $p$ (all but finitely many), $v_p(x) = 0$ for each $K^\times$.
+\end{corollary}
+
+\begin{corollary}{Local Evaluation of Dedekind is Almost Zero}{local_evaluation_of_dedekind_is_almost_zero}
+    $v_p(Q) = 0$ for almost all prime ideals $p\neq 0$ of $A$.
+\end{corollary}
+
+\begin{proposition}{Unique Factorization}{unique_factorization}
+    Any nonzero fraction ideal of $A$, a Dedekind domain, can be written uniquely as
+    \[ \prod_{p\in \operatorname{Spec} A} p^{n_p}, \]
+    where $n_p = 0$ for almost all $p$.
+\end{proposition}
+
+Let $J$ denote the group of all non-zero fraction ideals, and $P$ is the subgroup of $J$ of principal fraction ideals.
+$A$ is a PID is equivalent to $P=J$.
+$C = J/P$ is the ideal class group of $A$.
+$C$ measures the failure of $A$ being a PID.
+\par
+The ideal $J$ has the form of a direct sum of abelian groups
+\[ J = \bigoplus_{p\neq 0 \in \operatorname{Spec} A} \mathbb{Z}. \]
+\par
+Class groups are isomorphism classes of non-zero fractional ideals.
+
+\begin{proposition}{Fractional Ideals are Isomorphic by Scaling}{fractional_ideals_are_isomorphic_by_scaling}
+    Input:
+    \begin{itemize}
+        \item $R$ is a Dedekind domain.
+        \item $A$ and $B$ are two fractional ideals.
+    \end{itemize}
+    Then the following two statements are equivalent.
+    \begin{itemize}
+        \item $A\cong B$ as an $R$-module.
+        \item $A = xB$, for some $x\in \operatorname{Frac}(R)^\times$.
+    \end{itemize}
+\end{proposition}
+
+\begin{example}{Class Group}{class_group}
+    For $A = \mathbb{Z}[\sqrt{-5}]$, $C = \mathbb{Z}/2\mathbb{Z}$.
+\end{example}
+
+\begin{example}{Number Field}{number_field}
+    Let $\mathbb{Q}\subset K$ be a finite algebraic extension.
+    $\mathcal{O}_K$ is the integral closure of $\mathbb{Z}$ in $K$.
+    We claim that $C_K$, the class group of $K$, has $\abs{C_K} < \infty$.
+    $\abs{C_K}$ is called the class number of $K$.
+\end{example}
+
+\subsection{Classification of Modules}
+
+\begin{theorem}{Finitely Generated Modules over a Dedekind Domain}{finitely_generated_modules_over_a_dedekind_domain}
+    If $M$ is a finitely generated $A$-modules over a Dedekind domain $A$, then
+    \[ M = Q_1 \oplus \cdots \oplus Q_m \oplus (A/P_1^{r_1}) \oplus \cdots \oplus (A/P_n^{r_n}), \]
+    where $Q_i$ are fractional ideals of $A$ and $p_i$ are prime ideals of $A$.
+\end{theorem}
+
+\section{Extension}
+
+In the following we frequently encounter the following objects.
+\begin{center}
+    \begin{tikzcd}
+          & L \text{ (finite and separable)} \\
+        B \text{ (integral closure)} \arrow[ur] & \\
+          & K = \operatorname{Frac}(A) \arrow[uu] \\
+        A \text{ (Dedekind)} \arrow[uu] \arrow[ur] &
+    \end{tikzcd}
+\end{center}
+
+\begin{theorem}{Integral Closure in Finite Separable over\\ $\operatorname{Frac}(\text{Dedekind})$ \\is Finitely Generated over Dedekind}{integral_closure_in_separable_separable_over_frac_dedekind_is_finitely_generated_over_dedekind}
+    Input:
+    \begin{itemize}
+        \item $A$ is a Dedekind domain.
+        \item $K = \operatorname{Frac}(A)$.
+        \item $L/K$ is a finite field extension and is separable.
+        \item $B$ is the integral closure of $A$ in $L$.
+    \end{itemize}
+    Then $B$ is a finitely generated $A$-module.
+    In particular, $B$ is Noetherian.
+\end{theorem}
+
+\begin{theorem}{Integral Closure in Finite Separable over\\ $\operatorname{Frac}(\text{Dedekind})$ \\is Dedekind}{integral_closure_in_separable_separable_over_frac_dedekind_is_dedekind}
+    Input:
+    \begin{itemize}
+        \item $A$ is a Dedekind domain.
+        \item $K = \operatorname{Frac}(A)$.
+        \item $L/K$ is a finite field extension and is separable.
+        \item $B$ is the integral closure of $A$ in $L$.
+    \end{itemize}
+    Then $B$ is a Dedekind domain.
+\end{theorem}
+
+\begin{definition}{Trace Map}{trace_map}
+    If $L/K$ is a finite field extension.
+    For all $x\in L$, define a linear transformation
+    \[ \varphi_x: L\rightarrow L \]
+    on vector spaces over $K$ by $\varphi_x(a) = ax$.
+    Then
+    \[ \tr_{L/K}(x) = \tr(\varphi_x) \in K. \]
+\end{definition}
+
+\begin{example}{Trace Map}{trace_map}
+    \begin{itemize}
+        \item $\tr_{L/K}({1}) = [L:K]$.
+        \item $\tr_{\mathbb{C}/\mathbb{R}}(a+bi) = 2a$.
+        \item If $L = K(\alpha)$ is a finite extension and $f(T)$ is a monic irreducible polynomial of $\alpha$ over $K$.
+        Then $\tr_{L/K} = -a_{n-1}$, i.e. the sum of all roots of $f(T)$.
+        \item If $L = \mathbb{F}_p(X^{1/p})$ then the irreducible polynomial of $X^{1/p}$ is $T^p - X^i$ for any $i$.
+        $\tr (X^{i/p}) = 0$ and $\tr(1) = 0$.
+        Therefore, $\tr = 0$.
+    \end{itemize}
+\end{example}
+
+If $L/K$ is Galois then
+\[ \tr_{L/K}(\alpha) = \sum_{\sigma\in\operatorname{Gal}(L/K)} \sigma(\alpha). \]
+
+\begin{proposition}{Trace Criterion}{trace_criterion}
+    Let $L/K$ be a finite field extension.
+    The following statements are equivalent.
+    \begin{itemize}
+        \item A finite extension $L/K$ is separable.
+        \item $\tr_{L/K}\neq 0$.
+        \item $\tr: L\times L \rightarrow K$ as a bilinear form is non-degenerate.
+    \end{itemize}
+\end{proposition}
+
+\begin{corollary}{Tower Law of Separability}{tower_law_of_separability}
+    If $E/L$ is a separable field extension and $L/K$ is a separable field extension, then $E/K$ is separable.
+\end{corollary}
+
+\begin{corollary}{Extension Factors through Separable}{extension_factors_through_separable}
+    If $L/K$ is a separable field extension, then $L_{\mathrm{S}}$ is a subfield of $L$ such that
+    \begin{itemize}
+        \item $L_{\mathrm{S}}/K$ is separable, and
+        \item $L/L_{\mathrm{S}}$ is purely inseparable, i.e. all $x\in L \setminus L_{\mathrm{S}}$ are inseparable over $L_{\mathrm{S}}$,
+    \end{itemize}
+    where $L/L_{\mathrm{S}}$ is defined by
+    \[ L_{\mathrm{S}} = \Set*{x\in L}{x\text{ is separable over } K}. \]
+\end{corollary}
+For each $\alpha\in L\setminus L_{\mathrm{S}}$, there is $k$ such that $\alpha^{p^k}\in L_{\mathrm{S}}$.
+There is a Chain of extension
+\[ L_{\mathrm{S}} \hookrightarrow L_1 \hookrightarrow \cdots \hookrightarrow L_{m-1} \hookrightarrow L, \]
+where each extension has degree $p$ and has the form
+\[ L_{i+1} = L_i(\beta^{1/p}) \]
+for some $\beta \in L_i$.
+
+
+{TODO: \color{red} Artin: Factorization, Gauss's lemma, Quadratic field, Galois Theory}
+\par
+
+\subsection{Finite Extension}
+
+Let $K = \operatorname{Frac} A$ where $A\neq K$ is a Dedekind domain.
+Let $L/K$ be a finite extension.
+If $L/K$ is separable, and $B$ is the integral closure of $A$ in $L$, then
+\begin{itemize}
+    \item $B$ is a f.g. $A$-module, and
+    \item $B$ is Dedekind.
+\end{itemize}
+
+\par
+
+If $P\in \operatorname{Spec} A$ and $P\neq 0$, then
+\[ PB = \prod_{\substack{p\cap A = P \\ p\in \operatorname{Spec}(B)}} p^{e_p}. \]
+$e_p$ is the ramification index of $p$ in $L/K$.
+$f_p$ is the residue index of $p$ in $L/K$, i.e. $f_p = [k(p):k(P)]$, where $k(p) = B/p$, and $k(P) = A/P$.
+For $p\cap A = P$ we call $p\mid P$.
+
+\begin{proposition}{Degree of Extension}{degree_of_extension}
+    If $P\in \operatorname{Spec} A$ and $p\neq 0$,
+    \[ [L:K] = \sum_{p\mid P} e_p f_p. \]
+    If $[L:K]$ is separable, then $e_p=1$ for all but a finite number of $p\in\operatorname{Spec} B$.
+\end{proposition}
+
+\begin{proof}
+    Note that
+    \[ B/PB \cong \prod_{p\mid P} B/p^{e_p} \]
+    and that
+    \[ \dim_{k(P)} B/PB = [L:K] \]
+    while
+    \[ \dim_{k(P)} B/p^{e_p} = e_p f_p. \qedhere \]
+\end{proof}
+
+\begin{definition}{Total Ramification}{total_ramification}
+    Let $P\in \operatorname{Spec} A$.
+    $P$ is totally ramified in $L/K$ if there is only one $p\operatorname{Spec} B$ above $P$.
+    In such case, $f_p = 1$, and
+    \[ e_p = [L:K]. \]
+\end{definition}
+
+\begin{definition}{Unramification}{unramification}
+    $P$ is unramified in $L/K$ if
+    \begin{itemize}
+        \item $e_p = 1$ for all $p\mid P$, and
+        \item $k(p)/k(P)$ is separable for all $p\mid P$.
+    \end{itemize}
+\end{definition}
+
+\begin{example}{Ramification of $\mathbb{Z}[i]$}{ramification_of_z_i}
+    For $A = \mathbb{Z}$, $K = \mathbb{Q}$, $L = \mathbb{Q}[i]$, and $B = \mathbb{Z}[i]$, we find
+    \[ (2) = (1+i)^2 \]
+    and therefore $2$ is totally ramified.
+    $p\neq 2$ is unramified.
+    In fact,
+    \[ \mathbb{Z}[i]/(p) = \mathbb{F}_p[x]/(x^2+1). \]
+    If $p$ is odd, then $x^2+1$ is not a square in $\mathbb{F}_p[x]$.
+    \begin{itemize}
+        \item If $x^2+1$ is reducible, then there are two distinct prime ideals of $\mathbb{Z}_i$ containing $(p)$.
+        Therefore, $e_p = f_p = 1$.
+        Such case occurs if $p = 4n+1$.
+        \item If $x^2+1$ is irreducible, then $\mathbb{F}_p[x]/(x^2+1)$ is a field.
+        $(p)$ is a prime ideal of $\mathbb{Z}_i$.
+        Therefore, $e_p = 1$.
+        Such case occurs if $p = 4n+3$.
+    \end{itemize}
+\end{example}
+
+\subsection{Simple Extension}
+
+In the local case, let $(A,M)$ be a local ring, $K = \operatorname{Frac}(A)$, and $k = A/M$.
+We start with a monic $f(x)\in A[x]$ and let
+\[ B_f = A[X]/(f). \]
+This is a free $A$-module of rank $n$.
+Now
+\[ B_f/MB_f = A[x]/(M,f) = k[x]/(\overline{f}) \]
+where
+\[ \overline{f} = \prod_{i=1}^g \varphi_i^{e_i} \]
+and $\varphi_i$ are irreducible.
+Therefore,
+\[ B_f/MB_f = k[x]/(\overline{f}) = \prod_{i=1}^g k[x]/(\varphi_i)^{e_i} \]
+For each $\varphi_i$, we have a polynomial $\tilde{\varphi}_i \in A[x]$ such that $\tilde{\varphi} - \varphi_i \in M$.
+
+\begin{proposition}{Maximal Ideals of Quotient}{maximal_ideals_of_quotient}
+    \[ (\tilde{\varphi}_i,m) \]
+    for all $i$ are the maximal ideals of $B_f$.
+\end{proposition}
+
+\paragraph*{Unramified Case}
+Assume that $\tilde{f}$ is irreducible, then $k[X]/(\overline{f})$ is a field.
+
+\begin{proposition}{Unramified Case}{unramified_case}
+    $B_f$ is a DVR with maximal ideal generated by $\pi$.
+\end{proposition}
+
+\begin{corollary}{Unramified Case over DVR}{unramified_case_over_dvr}
+    If $A$ is DVR and $\overline{f}$ is irreducible, then $f$ is irreducible in $K[x]$, $B_f$ is the integral closure of $A$ in $L=K[X]/(f)$, and
+    \[ e_{\pi B_f} = 1, f_{\pi B_f} = \deg f. \]
+    In particular, $L/K$ is unramified at $\pi$.
+\end{corollary}
+
+\paragraph*{Totally Ramified Case}
+Let $A$ be a DVR and $M = (\pi)$.
+\begin{theorem}{Eisenstein}{eisenstein}
+    Let
+    \[ f(x) = x^n + a_{n-1}x^{n-1} + \cdots + a_0 \]
+    where $a_i\in A$.
+    $f$ is irreducible in $K[X]$ if $\pi\mid a_i$ for all $i$ but $\pi^2 \nmid a_0$.
+\end{theorem}
+
+\begin{proposition}{Totally Ramified Case}{totally_ramified_case}
+    $B_f$ is a DVR with maximal ideal generated by the image $\alpha$ of $x$ in $B_f$.
+\end{proposition}
+
+The evaluations
+\begin{align*}
+    B_p \subset L && v_p:L^\times \rightarrow \mathbb{Z},\\
+    A_P \subset K && v_P:K^\times \rightarrow \mathbb{Z}
+\end{align*}
+differs by
+\begin{align*}
+    \pi B_p &= PB_p = p^{e_p} B_p \Rightarrow v_p(\pi) = e_p,\\
+    PA_P &= (\pi) \Rightarrow v_p(\pi) = 1.
+\end{align*}
+
+\begin{proposition}{Restriction of Valuation}{restriction_of_valuation}
+    \[ \eval{v_p}_{K^\times} = e_p v_p. \]
+\end{proposition}
+
+\subsection{Galois Extension}
+
+If $L/K$ is Galois, then
+\[ \sigma: B \xrightarrow{\sim} B \]
+is an isomorphism.
+\[ p\in \operatorname{Spec} B \Rightarrow \sigma(P) \in \operatorname{Spec} B. \]
+Therefore, the Galois group acts on $\operatorname{Spec} B$.
+Since $P\in \operatorname{Spec} A$ is preserved, it acts on primes ideals above $P$, i.e.
+\[ \sigma(p) \cap A = P \]
+if $p\cap A = P$.
+
+\begin{proposition}{Galois Group Acts Transitively on Prime Ideals above}{galois_group_acts_transitively_on_prime_ideals_above}
+    $\operatorname{Gal}(L/K)$ acts transitively on $\Set*{p}{P}$.
+\end{proposition}
+
+\begin{corollary}{Ramification and Residue Index Depends Only on Intersection}{ramification_and_residue_index_depends_only_on_intersection}
+    Let $L/K$ be a Galois extension.
+    If there are $p,p'$ above $P$ then
+    \[ e_p = e_{p'},\quad f_p = f_{p'}. \]
+\end{corollary}
+
+In such case, we denote
+\[ e_P = e_p,\quad f_P = f_p, \]
+for $p$ above $P$.
+We also denote by $g_P$ the number of ideals above $P$.
+Therefore,
+\[ [L:K] = e_P f_P g_P. \]
+
+\begin{definition}{Local Galois Group}{local_galois_group}
+    The decomposition group of $p$ in $L/K$ is a subgroup of $\operatorname{Gal}(L/K)$ defined by
+    \[ D_p(L/K) = \Set*{\sigma\in\operatorname{Gal}(L/K)}{\sigma(p) = p}. \]
+\end{definition}
+
+Therefore,
+\[ \abs{G(L/K)} = g_p \abs{D_p(L/K)}, \]
+and
+\[ \abs{D_p(L/K)} = e_p f_p. \]
+If $p$ and $p'$ are both above $P$ then $D_p$ and $D_{p'}$ are conjugate.
+\par
+If $\sigma\in\operatorname{Gal}(L/K)$ and
+\[ \overline{L} = k(p), \quad \overline{K} = k(P), \]
+then $\sigma$ induces
+\[ \epsilon: D_p \rightarrow \operatorname{Aut}(\overline{L}/\overline{K}). \]
+
+\begin{definition}{Inertia Subgroup}{inertia_subgroup}
+    The inertia subgroup is defined by
+    \[ I_p(L/K) = \ker \epsilon \]
+    which is a normal subgroup of $D_p$.
+\end{definition}
+
+\begin{proposition}{Residue is Normal Extension}{residue_is_normal_extension}
+    $\overline{L}/\overline{K}$ is normal, i.e. $\overline{L}/\overline{K}$ is a splitting field.
+\end{proposition}
+
+\begin{proposition}{Induces Map is Surjective}{induces_map_is_surjective}
+    $\epsilon$ is surjective.
+\end{proposition}
+
+\paragraph*{Fact}
+For
+\[ \overline{L}/\overline{L}^{\mathrm{S}}/\overline{K} \]
+we have
+\[ \operatorname{Aut}(\overline{L}/\overline{K}) = \operatorname{Aut}(\overline{L}^{\mathrm{S}}/K) = \operatorname{Gal}(\overline{L}^{\mathrm{S}}/K). \]
+
+\begin{corollary}{Residue Degree for Separable}{residue_degree_for_separable}
+    If $\overline{L}/\overline{K}$ is separable, then
+    \[ \operatorname{Gal}(\overline{L}/\overline{K}) = \operatorname{Aut}(\overline{L}/\overline{K}), \]
+    and
+    \[ f_P = \abs{\operatorname{Gal}(\overline{L}/\overline{K})}, \]
+    and $I_P = e_P$.
+\end{corollary}
+
+If $\overline{K}$ is finite (thus $\overline{L}/\overline{K}$ is separable), then
+\[ \overline{K} \cong \mathbb{F}_q,\quad q = p^n,\quad p = \operatorname{char} \overline{K}, \]
+then any Galois extension $E/\mathbb{F}_q$ has cylic $\operatorname{Gal}(E/\mathbb{F}_q)$ generated by the Frobenius
+\[ x \mapsto x^q. \]
+If $e_P = 1$ i.e. $P$ is unramified in $L/K$, then
+\[ \operatorname{Gal}(L/K) \supset D_P \cong \operatorname{Gal}(\overline{L}/\overline{K}) = \langle s_q \rangle, \]
+where $s_q(a) - a^q \in \operatorname{p}$.
+
+\par
+
+Galois extension of $\mathbb{Q}(\xi_n)$.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

@@ -1,0 +1,25 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+
+\usepackage{amsmath}
+\usepackage{slashed}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{alignat*}{3}
+    \wick{\c1 \sigma(x) \c1 \sigma(y)} &= \quad
+    \feynmandiagram [inline=(c2.base), horizontal=c1 to c2] {
+        c1 --[scalar, edge label'=$p$] c2[particle=\vphantom{Mg}],
+    }; \ &&= \frac{i}{p^2 - 2\mu^2 + i\epsilon}, \\
+    \wick{\c1 \pi(x) \c1 \pi(y)} &= \quad
+    \feynmandiagram [inline=(c2.base), horizontal=c1 to c2] {
+        c1 --[boson, edge label'=$p$] c2[particle=\vphantom{Mg}],
+    }; \ &&= \frac{i}{p^2 + i\epsilon}, \\
+    \wick{\c1 \psi(x) \c1 {\overline{\psi}}(y)} &= \quad
+    \feynmandiagram [inline=(c2.base), horizontal=c1 to c2] {
+        c1 --[fermion, edge label'=$p$] c2[particle=\vphantom{Mg}],
+    }; \ &&= \frac{i(\slashed{p}+g\mu/\sqrt{\lambda})}{p^2 - g^2\mu^2/{\lambda} + i\epsilon}.
+\end{alignat*}
+\end{document}

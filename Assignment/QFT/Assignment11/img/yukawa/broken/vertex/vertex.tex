@@ -1,0 +1,52 @@
+\documentclass[preview]{standalone}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{simpler-wick}
+\usepackage{physics}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\abovedisplayskip=0pt
+\begin{align*}
+    \feynmandiagram [inline=(v.base), small, horizontal=i to v] {
+        i --[scalar] v[dot];
+        v --[fermion] c2;
+        c1 --[fermion] v;
+    }; \ &= -ig, &
+    \feynmandiagram [inline=(v.base), small, horizontal=i to v] {
+        i --[boson] v[dot];
+        v --[fermion] c2;
+        c1 --[fermion] v;
+    }; \ &= -ig(i\gamma^5), \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] --[scalar] c1;
+        c2 --[scalar] v;
+        c3 --[scalar] v;
+    }; \ &= -6i\lambda v, &
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] --[scalar] c1;
+        c2[] --[boson]v;
+        c3[] --[boson]v;
+    }; \ &= -2i\lambda v, \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        c3 --[scalar] v[dot];
+        v --[scalar] c0;
+        v --[scalar] c1;
+        c2 --[scalar] v;
+    }; \ &= -6i\lambda, &
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        v[dot] --[scalar] c0;
+        c3[] --[boson]v;
+        v --[scalar] c1;
+        c2[] --[boson]v;
+    }; \ &= -2i\lambda, \\
+    \feynmandiagram [inline=(v.base), small, horizontal=c2 to c3] {
+        c3[] --[boson]v[dot];
+        v --[boson]c0[];
+        v --[boson]c1[];
+        c2[] --[boson]v;
+    }; \ &\mathrlap{= -6i\lambda.}
+\end{align*}
+\end{document}

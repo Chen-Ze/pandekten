@@ -1,0 +1,159 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Homotopy}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\section{Vergleichen: Field Theory and Covering}
+
+In the following, $f: P \rightarrow X$ is a universal cover of $X$.
+All field extensions are algebraic unless otherwise stated.
+
+\subsection{Covering Spaces}
+
+\begin{definition}{Orbit Space}{orbit_space}
+    Input:
+    \begin{itemize}
+        \item $G$ a group.
+        \item $Y$ a topological space.
+        \item $G$ acts on $Y$.
+    \end{itemize}
+    $G\backslash Y$ is a topological space, where
+    \begin{itemize}
+        \item $Y$ as a set is given by the set of orbits the action, and
+        \item the topology on $Y$ is the finest topology such that the natural map $Y\rightarrow G\backslash Y$ is continuous.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Properly Discontinuous Action}{properly_discontinuous_action}
+    Input:
+    \begin{itemize}
+        \item $G$ is a topological group.
+        \item $Y$ is a topological space.
+        \item $G$ acts on $Y$ continuously.
+    \end{itemize}
+    The action is properly discontinuous if for all $y\in Y$, there is an open set $V$ containing $y$ such that for all $g_1,g_2\in G$, $g_1 V \cap g_2 V = \varnothing$.
+\end{definition}
+
+\begin{theorem}{Covering by Properly Discontinuous Action}{covering_by_properly_discontinuous_action}
+    Input:
+    \begin{itemize}
+        \item $G$ is a topological group.
+        \item $Y$ is a connected topological space.
+        \item $G$ acts properly discontinuously on $Y$.
+    \end{itemize}
+    The natural map $\rho:Y\rightarrow G\backslash Y$ makes $Y$ a cover of $G\backslash Y$.
+\end{theorem}
+
+\begin{theorem}{Covering Automorphism is Free}{covering_automorphism_is_free}
+    A automorphism of a covering $Y\rightarrow X$ is either trivial or has no fixed points.
+\end{theorem}
+
+\begin{theorem}{Covering Automorphism is Properly Discontinuous}{covering_automorphism_is_properly_discontinuous}
+    If $Y\rightarrow X$ is connected, then the action of $\operatorname{Aut}(Y/X)$ on $Y$ is properly discontinuous.
+\end{theorem}
+
+\subsection{Universal Cover}
+
+\begin{theorem}{Path Lift}{path_lift}
+    Let $\rho:(Y,y) \rightarrow (X,x)$ be a cover.
+    For any path $f:[0,1]\rightarrow X$ with $f(0) = 1$, there exists a unique lift $f':[0,1]\rightarrow Y$ such that $f'(0) = y$ and $\rho\circ f' = f$.
+\end{theorem}
+
+\begin{theorem}{Monodromy Action on Finite Separable Extensions}{monodromy_action_on_finite_separable_extensions}
+    {\color{red}TODO}
+\end{theorem}
+
+\begin{definition}{Monodromy Action}{monodromy_action}
+    Input:
+    \begin{itemize}
+        \item $\rho:Y\rightarrow X$ is a covering.
+        \item $x\in X$.
+    \end{itemize}
+    The monodromy action is an action of $\pi(X,x)$ on $\rho^{-1}(x)$ defined by
+    \[ \phi \cdot y = f'(1) \]
+    where $f$ is any loop in the equivalence class of $\phi$ such that $f'(0) = y$.
+\end{definition}
+
+\begin{theorem}{Galois Group and Fundamental Group}{galois_group_and_fundamental_group}
+    Given a space $(X,x)$,
+    \[ \operatorname{Gal}(\tilde{X}_x/X)^\mathrm{op} \cong \pi(X,x). \]
+\end{theorem}
+
+Let $X$ be a space and $x\in X$ be a point.
+$\operatorname{Fib}_x$ is a functor
+\begin{itemize}
+    \item from the category of covers of $X$,
+    \item to the category of sets equipped with a left $\pi_1(X,x)$ action
+\end{itemize}
+defined by sending
+\begin{itemize}
+    \item a cover $p:Y\rightarrow X$,
+    \item to the fiber $p^{-1}(x)$.
+\end{itemize}
+
+\begin{theorem}{Equivalence of Covering Spaces with Sets}{equivalence_of_covering_spaces_with_sets}
+    Let $X$ be a connected and locally simply connect topological space, and $x\in X$ a base point.
+    The functor $\operatorname{Fib}_x$ induces an equivalence of the category of covers of $X$ with the category of left $\pi_1(X,x)$-sets.
+\end{theorem}
+
+\begin{theorem}{Equivalence of Covering Spaces with Sheaves}{equivalence_of_covering_spaces_with_sheaves}
+    Let $X$ be a topoogical space.
+    The following two categories are equivalent:
+    \begin{itemize}
+        \item the category of covers of $X$, and
+        \item locally constant sheaves on $X$.
+    \end{itemize}
+\end{theorem}
+
+\begin{longtable}{>{\raggedright\arraybackslash}m{.45\linewidth}>{\raggedright\arraybackslash}m{.45\linewidth}}
+\toprule
+Field & Covering \\
+\midrule
+& $\pi_1(X) \leftrightarrow f^{-1}(x)$ \\
+Extension homomorphism & Covering morphism \\
+\midrule
+{Galois extension: $\operatorname{Aut}(E/F)$ fixes exactly $F$} & \\
+Separable \\
+Minimal polynomials split \\
+Separable closure $\Leftrightarrow$ maximal Galois extension \\
+Absolute Galois group $\operatorname{Gal}(K/k)$ \\
+\midrule
+Galois group $\operatorname{Aut}(E/F)$ permutes roots of polynormals over the base field & Covering automorphism group $\operatorname{Aut}(Y/X)$ permutes the fibers of the cover  \\
+Galois extension: $\operatorname{Gal}(E/F)$ acts transitively on the set of roots of any irreducible polynomial & Galois covering: every fiber is permuted transitively by the group \\
+\midrule
+Galois correspondence: $\operatorname{Gal}(L/F)$ & Galois correspondence: $\operatorname{Gal}(Y/X)$ \\
+$E/F \leftrightarrow \operatorname{Gal}(L/E)$ & $Z/X \leftrightarrow \operatorname{Gal}(Y/Z)$ \\
+$L^H \leftrightarrow H$ & $(H\backslash Y\rightarrow X) \leftrightarrow H$ \\
+$L/E$ is Galois & $Y/Z$ is Galois if $Y\xrightarrow{\exists f} Z$ \\
+$E/F$ is Galois if $H \trianglelefteq G$ & $Z/X$ is Galois if $H \trianglelefteq G$ \\
+$\operatorname{Gal}(E/F) \cong G/H$ & $\operatorname{Gal}(Z/X) \cong G/H$ \\
+\midrule
+Absolute Galois group & Fundamental group \\
+Separable closure (is Galois) & Universal cover (is Galois) \\
+& Covering of $X$ with automorphism group $H$ $\leftrightarrow$ subgroup $H$ of $\pi_1$ \\
+& Galois covering of $X$ $\leftrightarrow$ normal subgroup of $\pi_1$ \\
+\midrule
+Every finite group is a Galois group & Every group is a fundamental group \\
+Galois action: $\operatorname{Gal}$ acting on $\operatorname{Hom}_F(E,\overline{F})$ & Monodromy action: $\pi_1$ acting on $p^{-1}(x)$ \\
+$E \mapsto \operatorname{Hom}_F(E,\overline{F})$ & $Y\mapsto \operatorname{Hom}_X(\tilde{X}_x,Y) \cong \operatorname{Fib}_x(Y)$ \\
+\bottomrule
+\end{longtable}
+
+\begin{example}{Homotopic Spaces Have Different Universal Covers}{homotopic_spaces_with_different_covers}
+    The universal cover of $S^1$ is $\mathbb{R}$ while the universal cover of $\mathbb{C}\backslash\qty{0}$ is $\mathbb{C}$ given by $z\mapsto e^z$.
+\end{example}
+
+\section{Application to Complex Analysis}
+
+Little Picard theorem and unsolvability of quintic equations.
+
+\end{document}

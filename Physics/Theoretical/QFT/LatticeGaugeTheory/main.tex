@@ -1,0 +1,140 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Lattice Gauge Theory}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Abelian Gauge}
+
+The action for $\operatorname{U}(1)$ gauge group is given by
+\[ S = \sum_{\Box} \frac{1}{2e^2}\qty(1-\frac{\rho + \rho^*}{2}), \]
+where
+\[ \rho = U_{ij}U_{jk}U_{kl}U_{li} \]
+and $U_{ij} = e^{i\phi_{kl}}$.
+The gauge transformation is given by
+\[ U_{ij} \rightarrow e^{i\alpha_i} U_{ij} e^{-i\alpha_j}. \]
+
+\par
+The action for $\mathbb{Z}_2$ is given by
+\[ S = -J \sum_{\vb{x},\alpha,\beta} \sigma\sigma\sigma\sigma \]
+where $\sigma = \pm 1$ on each bond and the summation goes through every plaquette.
+The $\mathbb{Z}_2$ symmetry is given by
+\[ \sigma_{ij} \rightarrow \eta_i \sigma_{ij} \eta_j. \]
+The gauge transformation gives a $2^V$-fold degeneracy.
+
+\par
+In 2D, we can choose gauge such that $\sigma_{\vb{x},1} = 1$ everywhere, i.e. the horizontal bonds are $1$ but vertical bonds are not determined.
+Therefore,
+\[ S = -J \sum_{\vb{x}} \sigma_{\vb{x},2} \sigma_{\vb{x}+1,2}. \]
+Therefore, this becomes decoupled Ising chains.
+
+\par
+In 3D, we find the equivalence
+\[ Z = \sum_{\qty{\mu}} \exp{-\sum \mu_i \mu_j}, \]
+i.e. the 3D Ising model.
+
+\par
+For $D>4$, the $\mathbb{Z}_2$ gauge theory only has first-order phase transition.
+
+\par
+The action of QED is given by
+\begin{align*}
+    \mathcal{L} &= -\frac{1}{4}FF + i\overline{\Psi}(\partial_\mu + ie A_\mu)\Psi - m\overline{\Psi}\Psi, \\
+    F_{\mu\nu} &= \partial_\mu A_\nu - \partial_\nu A_\mu, \\
+    \psi(x) &= e^{i\alpha(x)}\psi,\\
+    A_\mu &\rightarrow A_\mu - \frac{1}{e}\partial_\mu \alpha.
+\end{align*}
+
+The covariant derivative is given by
+\[ n^\mu D_\mu \psi = \lim_{\epsilon\rightarrow 0} \frac{1}{\epsilon}\qty(\psi(\vb{x} + \epsilon\vb{n}) - U(\vb{x}+\epsilon \vb{n},\vb{x})\psi(\vb{x})). \]
+To the first order,
+\[ U(\vb{x} + \epsilon \vb{n},\vb{x}) = 1 - ie\epsilon n^\mu A_\mu(\vb{x} + \epsilon \vb{n}/2). \]
+Therefore,
+\[ D_\mu \psi = \partial_\mu \psi + ie A_\mu(\vb{x}). \]
+
+\par
+In Euclidean space,
+\[ \mathcal{L} = \frac{1}{4}(F_{ij})^2. \]
+To the first order of $\epsilon$, this coincides with $UUUU$, by
+\[ \frac{\rho_{ij} + \rho^*_{ij}}{2} = \cos(\epsilon^2 e F_{ij}) = 1-\frac{\epsilon^4 e^2}{2}F_{ij}^2, \]
+where $\epsilon^4$ may be absorbed into the cube volume.
+\par
+The action is given by
+\begin{align*}
+    S &= \frac{1}{2e^2} \sum_{\Box} \qty(1-\cos(\phi+\phi+\phi+\phi)), \\
+    Z &= \prod_{\langle ij\rangle} \int_0^{2\pi} \frac{\dd{\phi_{ij}}}{2\pi} e^{-S}.
+\end{align*}
+In $d=3$ there is no massless-photon phase.
+\par
+Now we consider the compact $\operatorname{U}(1)$ LGT.
+\begin{align*}
+    S &= \sum_{\Box} \frac{1}{2e^2}\qty(1-\cos(\phi+\phi+\phi+\phi)), \\
+    Z &= \int \prod_\ell \dd{U_\ell} e^{-S}, \\
+    U_\ell &= e^{i\theta_\ell}, \\
+    \int \dd{U_\ell} &= \int_0^{2\pi} \dd{\theta_\ell}.
+\end{align*}
+To compute the Wilson loop
+\[ W = U_1 \cdots U_N, \]
+we expand
+\[ \langle W \rangle = Z^{-1}\prod \int_{0}^{2\pi} \frac{\dd{\phi_i}}{2\pi} W(C) \exp[-\sum_\Box \frac{\beta}{2}(1-\cos(\phi+\phi+\phi+\phi))] \]
+and apply
+\[ \int_0^{2\pi} \dd{\theta} e^{i\theta} = 0. \]
+Then we find
+\[ \ln\langle W(C) \rangle = \frac{A}{a^2} \ln \beta^{-1}. \]
+
+\section{Non-Abelian Gauge}
+
+The action is given by
+\[ S = \sum_{\Box} \frac{1}{2g_0^2} \tr[\mathbbm{1} - \frac{P+P^\dagger}{2}] \]
+where
+\[ P = U_{ij}U_{jk}U_{kl}U_{li} \]
+and under gauge transformation,
+\[ P \rightarrow V_i P V_i^{-1}. \]
+The matter field coupling is given by
+\[ \phi^\dagger_i U_{ij} \phi_j, \]
+while the gauge transformation is given by
+\[ \phi \rightarrow V\phi. \]
+The partition function is given by
+\[ Z = \int \prod_\ell \dd{U_\ell} e^{-S}. \]
+With the BCH formula
+\[ e^A e^B e^{-A} e^{-B} = e^{[A,B] + \cdots}, \]
+we write
+\[ F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu - i[A_\mu,A_\nu] = [D_\mu,D_\nu] \]
+where
+\[ D_\mu = -iA_\mu. \]
+Then
+\[ P = \mathbbm{1} + ia^2 F_{\mu\nu} - \frac{a^4}{2} F_{\mu\nu}^2 + \bigO(a^6). \]
+Therefore
+\[ S = \frac{1}{2g_0^2} \int \dd[4]{x} \tr F_{\mu\nu}^2. \]
+The Wilson loop now becomes
+\[ W = P \exp[-i\oint A_\mu \dd{x^\mu}]. \]
+
+\section{Phases}
+
+In 4D conformal theory, $V = f(g^2)/R$ and
+\[ \langle W \rangle = e^{-f(g^2)T/R}, \]
+while in the confined case,
+\[ \langle W \rangle = e^{-\sigma R T}. \]
+
+\section{Isospin}
+
+The gauge transformation is given by
+\[ A^a_\mu \frac{\sigma^a}{2} \rightarrow V(x)\qty[A^a_\mu \frac{\sigma^a}{2} + \frac{i}{2}\partial_\mu] V^\dagger(x). \]
+The coupling term is given by
+\[ g\overline{\Psi} \gamma^\mu A_\mu \Psi = g A^a_\mu \overline{\Psi} \gamma^\mu \frac{\sigma^a}{2} \Psi. \]
+For non-abelian gauge, the curvature tensor is given by
+\[ F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu - ig[A_\mu,A_\nu]. \]
+The Lagrangian is given by
+\[ \mathcal{L} = -\frac{1}{4} \sum_a (F^a_{\mu\nu})(F^{\mu\nu a}). \]
+For the $\operatorname{SU}(2)$ case,
+\[ \mathcal{L} = -\frac{1}{2}\tr F_{\mu\nu} F^{\mu\nu}. \]
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

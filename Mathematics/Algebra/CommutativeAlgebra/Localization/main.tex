@@ -1,0 +1,225 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Localization}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\begin{flushright}
+    \textit{Localization kills ideals.}
+\end{flushright}
+
+This note accounts for
+\begin{itemize}
+    \item part of L. Pan's lecture on Week 3,
+    \item chapter 6 of UCA, \textit{M. Reid}, and
+    \item lecture 16 and 17 of the video course by R. Borcherds.
+\end{itemize}
+
+\section{Local Ring}
+
+\begin{definition}{Local Ring \defextends{Commutative Ring}}{local_ring}
+    A local ring $A$ is a commutative ring that satisfies one of the following equivalent conditions:
+    \begin{itemize}
+        \item $A$ has a unique maximal ideal $M$.
+        \item Nonunits of $A$ form an ideal.
+        \item There is an ideal $M\subset A$ such that $1+x$ is a unit for all $x\in M$.
+    \end{itemize}
+\end{definition}
+
+\section{Localization}
+
+\subsection{Localization of Ring}
+
+\begin{definition}{Localization \badge{UMP}}{localization}
+    Input:
+    \begin{itemize}
+        \item $A$ is a commutative ring.
+        \item $S$ is a submonoid (i.e. multiplicative subset) of $A$.
+        \item $M$ is a module over $A$.
+    \end{itemize}
+    \paragraph*{Ring of Fractions}
+    $S^{-1}A$ is a ring defined by
+    \[ S^{-1} A = (A\times S)/\sim \]
+    where $\sim$ is an equivalence relation defined by that $(a,s) \sim (b,t)$ if there exists $u\in S$ such that $u(at - bs) = 0$.
+    \paragraph*{Module of Fractions}
+    $S^{-1}M$ is a $S^{-1}A$-module defined by
+    \[ S^{-1}M = (M\times S) / \sim \]
+    where $\sim$ is an equivalence relation defined by that $(m,s)\sim (n,t)$ if there exists $u\in S$ such that $u(tm - sn) = 0$.
+    \paragraph*{Module of Fractions as a Functor}
+    $S^{-1}:A\text{-}\mathbf{Mod} \rightarrow S^{-1}A\text{-}\mathbf{Mod}$ is defined by $M\mapsto S^{-1}M$ and $\varphi\mapsto \varphi'$ where $\varphi: M\rightarrow N$ as morphism of $A$-modules and $\varphi':S^{-1}M\rightarrow S^{-1}N$ as morphism of $S^{-1}A$-modules by
+    \[ \varphi'(m/s) = \varphi(m)/s. \]
+    \paragraph*{Localization}
+    If $P$ is a Prime ideal of $A$, then $A_P = S^{-1}A$ where $S = A \setminus P$ is called the localization of $A$ at $P$.
+    Moreover, $M_P = S^{-1}M$ is a module over $A_P$ and is called the localization of $M$ at $P$.
+\end{definition}
+
+\begin{proposition}{UMP of Localization}{ump_of_localization}
+    Input:
+    \begin{itemize}
+        \item $A$ is a commutative ring.
+        \item $S$ is a submonoid (i.e. multiplicative subset) of $A$.
+        \item $M$ is a module over $A$.
+    \end{itemize}
+    \paragraph*{UMP of Ring of Fraction}
+    For each $\varphi:A\rightarrow B$ where $B$ is another commutative ring such that $\varphi(S)$ is a subset of units of $B$, there exists a unique morphism $\tilde{f}:S^{-1}A \rightarrow B$ such that the following diagram commutes.
+    \begin{center}
+        \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
+            A \arrow[r, "\ell"] \arrow[rd, "\forall \varphi"'{name=q2}] & S^{-1}A \arrow[d, "\exists! \tilde{f}"{name=q3}]  \\
+            & |[alias=q1]| \forall B
+        \end{tikzcd}
+    \end{center}
+    \paragraph*{UMP of Module of Fraction}
+    For each $\varphi:M\rightarrow {_A N}$ of $A$-modules where $N$ is an $S^{-1}M$-module and ${_A N}$ is $N$ viewed as an $A$-module where scalar multiplication is given by restriction of scalars, there exists a unique morphism of $S^{-1}A$ modules $\tilde{f}:S^{-1}M \rightarrow N$ such that the following diagram commutes.
+    \begin{center}
+        \begin{tikzcd}[execute at end picture={\draw[dashed,-latex,lightgray] (q1) -- (q2) -- (q3);}]
+            M \arrow[r, "\ell"] \arrow[rd, "\forall \varphi"'{name=q2}] & S^{-1}M \arrow[d, "\exists! \tilde{f}"{name=q3}]  \\
+            & |[alias=q1]| \forall N
+        \end{tikzcd}
+    \end{center}
+\end{proposition}
+
+\begin{example}{Localization Kills Zero Divisor}{localization_kills_zero_divisor}
+    For $A = k[X,Y]/(XY)$ and $S = \qty{1,X,X^2,\cdots}$, $S^{-1}A = k[X,X^{-1}]$.
+    Note that without the $u\in S$ in $u(at - bs)$ we get only $(Y,1) \sim (0,X)$ and $(0,X)\sim (0,1)$ but not $(Y,1) \sim (0,1)$, i.e. the relation is not transitive without the factor $u$ in the definition.
+\end{example}
+
+\begin{proposition}{Properties of Localization}{properties_of_localization}
+    Input:
+    \begin{itemize}
+        \item $A$ is a commutative ring.
+        \item $S$ is a submonoid (i.e. multiplicative subset) of $A$.
+        \item $\ell:A\rightarrow S^{-1}A$ is the localization of $A$ by $S$.
+    \end{itemize}
+    Then the following statements hold.
+    \begin{itemize}
+        \item $\ker \varphi = \Set*{a\in A}{\exists s\in S \text{ such that } sa = 0}$.
+        \item $S^{-1}A = 0 \Longleftrightarrow 0\in S \Longleftrightarrow S\cap \operatorname{rad}(R) \neq \varnothing$.
+        \item If $f \in A$, and $S = \qty{1,f,f^2,\cdots}$, then
+        \[ S^{-1}A = A[X]/(Xf - 1). \]
+    \end{itemize}
+\end{proposition}
+
+\begin{proposition}{Ideals under Localization}{ideals_under_localization}
+    Input:
+    \begin{itemize}
+        \item $A$ is a commutative ring.
+        \item $S$ is a submonoid (i.e. multiplicative subset) of $A$.
+        \item $\ell:A\rightarrow S^{-1}A$ is the localization of $A$ by $S$.
+    \end{itemize}
+    Then the following statements hold.
+    \begin{itemize}
+        \item For any ideal $J$ of $S^{-1}A$, $\ell(\ell^{-1}(J))\cdot S^{-1}A = J$.
+        \item For any ideal $I$ of $A$, $\ell^{-1}(\ell(I)\cdot S^{-1}A)$ is an ideal of $A$ defined by
+        \[ \Set*{a\in A}{as \in I \text{ for some } s\in S}. \]
+        \item If $P$ is a prime ideal of $A$ and $P\cap S = \varnothing$ then $\ell(P)\cdot S^{-1}A$ is a prime ideal of $S^{-1}A$.
+        \item For an ideal $I$ of $A$, $\ell^{-1}(\ell(I)\cdot S^{-1}A) = I$ if and only if for all $s\in S$, $as\in I$ implies $a\in I$.
+        \item There is a one-to-one correspondence
+        \[ \Set*{\text{ideals } I \text{ of } A }{ \ell^{-1}(\ell(I)\cdot S^{-1}A) = I} \leftrightarrow \qty{\text{ideals of } S^{-1}A}. \]
+        \item $\ell^{-1}(\ell(I)\cdot S^{-1}A) = A \Longleftrightarrow \ell(I)\cdot S^{-1}A = S^{-1}A \Longleftrightarrow I\cap S \neq \varnothing$.
+        \item If $P$ is a prime ideal of $A$ such that $P\cap S = \varnothing$ then $\ell^{-1}(\ell(P)\cdot S^{-1}A) = P$.
+        Therefore, $\ell^{-1}: \operatorname{Spec} S^{-1}A \hookrightarrow \operatorname{Spec} A$ identifies
+        \[ \operatorname{Spec} S^{-1}A \leftrightarrow \Set*{P\in \operatorname{Spec} A}{P\cap S = \varnothing}. \]
+    \end{itemize}
+\end{proposition}
+
+\begin{theorem}{Noether Ring under Localization}{noether_ring_under_localization}
+    Input:
+    \begin{itemize}
+        \item $A$ is a commutative Noether ring.
+        \item $S$ is a submonoid (i.e. multiplicative subset) of $A$.
+    \end{itemize}
+    Then $S^{-1}A$ is a Noether ring.
+\end{theorem}
+
+\begin{theorem}{Localization is Local}{localization_is_local}
+    Input:
+    \begin{itemize}
+        \item $A$ is a commutative Noether ring.
+        \item $P$ is a prime ideal of $A$.
+    \end{itemize}
+    Then $A_P$ is a local ring.
+\end{theorem}
+
+\begin{example}{Localizations}{localizations}
+    Let $p$ be a prime number then
+    \[ \mathbb{Z}_{(p)} = \Set*{a/b\in\mathbb{Q}}{a,b\in\mathbb{Z},p\nmid b}. \]
+    Let $k$ be a field.
+    \[ k[X]_{(X-a)} = \Set*{f/g\in k[X]}{(X-a)\nmid g}. \]
+
+\end{example}
+
+\subsection{Localization of Module}
+
+\begin{proposition}{Modules of Fractions}{modules_of_fractions}
+    Input:
+    \begin{itemize}
+        \item $A$ is a commutative ring.
+        \item $S$ is a submoid (i.e. multiplicative subset) of $A$.
+    \end{itemize}
+    Then the following two kinds of objects are naturally identified.
+    \begin{itemize}
+        \item Modules over $S^{-1}A$.
+        \item $A$-modules $M$ having the property that the multiplication map $\mu_s:M\rightarrow M$ is bijective for all $s\in S$.
+    \end{itemize}
+\end{proposition}
+
+\begin{theorem}{Module of Fraction as Tensor Product}{module_of_fraction_as_tensor_product}
+    \begin{itemize}
+        \item $A$ is a commutative ring.
+        \item $S$ is a submonoid (i.e. multiplicative subset) of $A$.
+        \item $M$ is a module over $A$.
+    \end{itemize}
+    Then
+    \[ S^{-1}M = S^{-1}A \otimes_A M. \]
+\end{theorem}
+
+\begin{theorem}{Exactness of Module of Fraction}{exactness_of_module_of_fraction}
+    \begin{itemize}
+        \item $A$ is a commutative ring.
+        \item $S$ is a submoid (i.e. multiplicative subset) of $A$.
+        \item $L\xlongrightarrow{\alpha} M \xlongrightarrow{\beta} N$ is an exact sequence of $A$-modules.
+    \end{itemize}
+    Then
+    \[ S^{-1}L\xlongrightarrow{S^{-1}\alpha} M \xlongrightarrow{S^{-1}\beta} S^{-1}N \]
+    is an exact sequence.
+\end{theorem}
+
+\begin{corollary}{Module of Fraction of Submodule and Quotient}{module_of_fraction_of_submodule_and_quotient}
+    \begin{itemize}
+        \item $A$ is a commutative ring.
+        \item $S$ is a submonoid (i.e. multiplicative subset) of $A$.
+        \item $M$, $L$, $L'$, and $N$ are a modules over $A$.
+    \end{itemize}
+    Then the following statements hold.
+    \begin{itemize}
+        \item If $L\subset M$ and $N = M/L$ then
+        \[ S^{-1}L \subset S^{-1}M \]
+        and
+        \[ S^{-1}N = S^{-1}M/S^{-1}L. \]
+        \item If $L,L'\subset M$ are submodules then
+        \[ S^{-1}(L\cap L') = S^{-1}L \cap S^{-1}L' \cap S^{-1}M. \]
+    \end{itemize}
+\end{corollary}
+
+\begin{theorem}{Localization Commutes with Quotient}{localization_commute_with_quotient}
+    \begin{itemize}
+        \item $A$ is a commutative ring.
+        \item $S$ is a submonoid (i.e. multiplicative subset) of $A$.
+        \item $I$ is an ideal of $A$.
+        \item $\pi: A \rightarrow A/I$ is the canonical projection.
+    \end{itemize}
+    Then
+    \[ (\pi(S))^{-1}(A/I) = S^{-1}A / (I\cdot S^{-1}A). \]
+    In particular, if $P$ is a prime ideal of $A$, then
+    \[ A_P / PA_P = \operatorname{Frac}(A/P). \]
+\end{theorem}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

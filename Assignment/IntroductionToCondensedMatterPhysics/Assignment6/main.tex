@@ -1,0 +1,136 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 6}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (1.a)}%
+From
+\[ -k^2 \tilde{B}(\vb{k}) = \tilde{P}(\vb{k}) + \frac{1}{\lambda^{2}_{\mathrm{L}}} \tilde{B}(\vb{k}) \]
+we find
+\[ \tilde{B}(\vb{k}) = -\frac{\tilde{P}(\vb{k})}{k^2 + \lambda^{-2}_{\mathrm{L}}}. \]
+
+\plabel{(1.b)}%
+For $P(\vb{r}) = \delta(x)$ the equation above becomes
+\[ \tilde{B}(\vb{k}) = -(2\pi)^2 \cdot \frac{\delta(k_y)\delta(k_z)}{k^2 + \lambda^{-2}_{\mathrm{L}}}. \]
+Therefore,
+\[ B(x) = -\frac{1}{2\pi} \int \dd{k_x} \frac{e^{ik_x x}}{k_x^2 + \lambda^{-2}_{\mathrm{L}}} = -\frac{\lambda_{\mathrm{L}}}{2} e^{- \abs{x} / \lambda_{\mathrm{L}}}. \]
+
+\plabel{(2.a)}%
+\begingroup\minusbaseline
+\begin{align*}
+  -k^2 \tilde{B}(k_x,k_y,k_z) &= w \overline{P}(k_x,k_y,0) + \frac{w}{\lambda^2_{\mathrm{L}}}\overline{B}(k_x,k_y,0).
+\end{align*}
+\endgroup
+
+\plabel{(2.b)}%
+\begingroup\minusbaseline
+\[ \overline{B}(k_x,k_y,0) = \frac{1}{2\pi} \int \tilde{B}(k_x,k_y,k_z) \dd{k_z} = -\frac{1}{2k_\perp}(w\overline{P}(k_x,k_y,0) + \frac{w}{\lambda^2_{\mathrm{L}}\overline{B}(k_x,k_y,0)}). \]
+\endgroup
+Therefore,
+\[ \overline{B}(k_x,k_y,0) = -\frac{\lambda^2_{\mathrm{L}}\overline{P}(k_x,k_y,0)}{1 + k_\perp (2\lambda^2_{\mathrm{L}}/w)}. \]
+
+\plabel{(2.c)}%
+For $P(x,y,0) = \delta(x)$ the equation above becomes
+\[ \overline{B}(k_x,k_y,0) = -\frac{\lambda^2_{\mathrm{L}} (2\pi)\delta(k_y)}{1 + k_\perp(2\lambda^2_{\mathrm{L}}/w)}. \]
+Therefore,
+\begin{align*}
+  B(x,y,0) &= -\frac{1}{2\pi} \int \dd{k_x} \frac{\lambda^2_{\mathrm{L}} e^{ik_x x}}{1+\abs{k_x} (2\lambda^2_{\mathrm{L}}/w)} \\
+  &= -\frac{w}{4\pi} \exp( -i\frac{w x}{2\lambda^2_{\mathrm{L}}} ) E_1\qty( -i\frac{w x}{2\lambda^2_{\mathrm{L}}} ) -\frac{w}{4\pi} \exp( i\frac{w x}{2\lambda^2_{\mathrm{L}}} ) E_1\qty( i\frac{w x}{2\lambda^2_{\mathrm{L}}} ).
+\end{align*}
+
+\prule
+
+\plabel{2 (1)}%
+\begingroup\minusbaseline
+\begin{align*}
+  f(\Delta) &= \frac{\Delta^2}{V} + \frac{D(E_{\mathrm{F}})}{2} \int_{-\hbar\omega_{\mathrm{D}}}^{\hbar\omega_{\mathrm{D}}} \dd{\epsilon_{\vb{k}}} \qty(\epsilon_{\vb{k}} - \xi_{\vb{k}}) \\
+  &= \frac{\Delta^2}{V} - \frac{D(E_{\mathrm{F}})}{2} \qty(\hbar\omega_{\mathrm{D}}\sqrt{(\hbar\omega_{\mathrm{D}})^2 + \Delta^2} + \Delta^2 \operatorname{arctanh}\qty(\frac{\hbar\omega_{\mathrm{D}}}{\sqrt{(\hbar\omega_{\mathrm{D}})^2 + \Delta^2}})).
+\end{align*}
+\endgroup
+
+\plabel{(2)}%
+\begingroup\minusbaseline
+\[ f(\Delta) \approx -\qty[\frac{1}{2}D(E_{\mathrm{F}})(\hbar\omega_{\mathrm{D}})^2+{\Delta^2}\qty(-\frac{1}{V}+ \frac{1}{4}D(E_{\mathrm{F}})(1+\ln 4) + \frac{1}{2} D(E_{\mathrm{F}}) \ln(\frac{\hbar\omega_{\mathrm{D}}}{\Delta}) )]. \]
+\endgroup
+
+\plabel{(3)}%
+Solving for
+\[ f'(\Delta) = \frac{\Delta}{V}\qty(2 - D(E_{\mathrm{F}}) V \operatorname{arctanh} \qty(\frac{\hbar \omega_{\mathrm{D}}}{\sqrt{(\hbar\omega_{\mathrm{D}})^2 + \Delta^2}})) = 0 \]
+we find
+\[ \Delta = \frac{\hbar\omega_{\mathrm{D}}}{\sinh(\dfrac{2}{D(E_{\mathrm{F}}) V})} \approx 2 \hbar\omega_{\mathrm{D}} \exp(-\frac{2}{D(E_{\mathrm{F}}) V}). \]
+
+\prule
+
+\plabel{3 (1)}%
+\begingroup\minusbaseline%
+\[ \mathcal{H}_{\mathrm{BdG}} = \begin{pmatrix}
+  \epsilon_{\vb{k}} - \mu_{\mathrm{B}} B & & & \Delta \\
+  & \epsilon_{\vb{k}} + \mu_{\mathrm{B}} B & -\Delta & \\
+  & -\Delta^* & -\epsilon_{-\vb{k}} + \mu_{\mathrm{B}} B & \\
+  \Delta^* & & & -\epsilon_{-\vb{k}} - \mu_{\mathrm{B}} B
+\end{pmatrix}. \]
+\endgroup
+
+\plabel{(2)}%
+\begingroup\minusbaseline%
+\begin{align*}
+  {U_{\vb{k}}} &= \frac{1}{\sqrt{\abs{\Delta}^2 + (\epsilon_{\vb{k}} + \xi_{\vb{k}})^2}} \begin{pmatrix}
+    0 & \epsilon_{\vb{k}} + \xi_{\vb{k}} & -\Delta & 0 \\
+    \epsilon_{\vb{k}} + \xi_{\vb{k}} & 0 & 0 & \Delta \\
+    -\Delta^* & 0 & 0 & \epsilon_{\vb{k}} + \xi_{\vb{k}} \\
+    0 & \Delta^* & \epsilon_{\vb{k}} + \xi_{\vb{k}} & 0
+  \end{pmatrix}, \\
+  \xi_{1,\vb{k}} &= \mu_{\mathrm{B}}B+\xi_{\vb{k}}, \\
+  \xi_{2,\vb{k}} &= -\mu_{\mathrm{B}}B+\xi_{\vb{k}}.
+\end{align*}
+\endgroup
+
+\plabel{(3)}%
+\begingroup\minusbaseline%
+\[ \langle c_{-\vb{k},\downarrow} c_{\vb{k},\uparrow} \rangle = \frac{\Delta \cdot (\epsilon_{\vb{k}} + \xi_{\vb{k}})}{\abs{\Delta}^2 + (\epsilon_{\vb{k}} + \xi_{\vb{k}})^2} \cdot \qty[\Theta(-\xi_{2,\vb{k}}) - \Theta(\xi_{1,\vb{k}})]. \]
+\endgroup
+
+\plabel{(4)}%
+\begingroup\minusbaseline
+\[ \Delta = -V \int_{\abs{\epsilon_{\vb{k}}} < \hbar\omega_{\mathrm{D}}} \frac{\dd[3]{\vb{k}}}{(2\pi)^3} \frac{\Delta \cdot (\epsilon_{\vb{k}} + \xi_{\vb{k}})}{\abs{\Delta}^2 + (\epsilon_{\vb{k}} + \xi_{\vb{k}})^2} \cdot \qty[\Theta(-\xi_{2,\vb{k}}) - \Theta(\xi_{1,\vb{k}})]. \]
+\endgroup
+
+\plabel{(5)}%
+For $\Delta = 0$,
+\begin{align*}
+  1 &= -\frac{D(E_{\mathrm{F}}) V}{2} \int_{-\hbar\omega_{\mathrm{D}}}^{\hbar\omega_{\mathrm{D}}} \dd{\epsilon_{\vb{k}}} \frac{1}{2\abs{\epsilon_{\vb{k}}}} \cdot \qty[\Theta(\mu_{\mathrm{B}}B - \abs{\epsilon_{\vb{k}}}) - \Theta(\mu_{\mathrm{B}}B + \abs{\epsilon_{\vb{k}}})].
+\end{align*}
+Therefore,
+\[ B_{\mathrm{c}} = \frac{\hbar \omega_{\mathrm{D}}}{\mu_{\mathrm{B}}} \exp(-\frac{2}{D(E_{\mathrm{F}})V}). \]
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

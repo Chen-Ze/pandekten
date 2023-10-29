@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Allgemein}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Homotopy}
+
+\begin{definition}{Homotopic Equivalent Spaces}{homotopic_equivalent_spaces}
+    $(X,x_0)$ is homotopic equivalent to $(Y,y_0)$ if there is a pointed continuous map $f:(X,x_0) \rightarrow (Y,y_0)$ and $g:(Y,y_0) \rightarrow (X,x_0)$, such that both $f\circ g$ and $g\circ f$ are both homotopic to the identity maps.
+\end{definition}
+
+\begin{proposition}{Homotopic Equivalent Spaces Have Identical $\pi_1$}{homotopic_equivalent_spaces_have_identical_pi_1}
+    If $(X,x_0)$ is homotopic equivalent to $(Y,y_0)$ then $\pi_1(X,x_0) \cong \pi_1(Y,y_0)$.
+\end{proposition}
+
+\begin{theorem}{Seifert-Van-Kampen Theorem}{seifert-van-kampen-theorem}
+    Input:
+    \begin{itemize}
+        \item $U$ and $V$ are topological spaces.
+        \item $x_0\in U\cap V$.
+        \item $U$, $V$, and $U\cap V$ are pathwise connected.
+    \end{itemize}
+    Then $\pi_1(U\cup V,x_0)$ may be obtained with $\pi_1(U,x_0)$ and $\pi_1(V,x_0)$ as the free product with amalgamation
+    \[ \pi_1(U\cup V) = \pi_1(U) *_{\pi_1(U_1\cap U_2)} \pi_1(V). \]
+\end{theorem}
+
+\begin{corollary}{Simply Connected Glue}{simply_connected_glue}
+    Input:
+    \begin{itemize}
+        \item $U$ and $V$ are topological spaces.
+        \item $x_0\in U\cap V$.
+        \item $U\cap V$ is simply connected.
+    \end{itemize}
+    Then
+    \[ \pi_1(U\cup V, x_0) = \pi_1(U,x_0) * \pi_1(V,x_0), \]
+    where $*$ denotes the free product.
+\end{corollary}
+
+\section{Poincar\'e Duality}
+
+\begin{theorem}{Orientable Manifold has Disconnected Orientation Cover}{orientable_manifold_has_disconnected_orientation_cover}
+    If $M$ is a connected $n$-manifold, then $M$ is orientable if and only if $\tilde{M}$ is not connected, where $\tilde{M}$ is the orientation cover of $M$.
+\end{theorem}
+
+\begin{theorem}{Properties of Compact Connected}{properties_of_compact_connected}
+    If $M$ is a compact connected $n$-manifold, then all of the following hold.
+    \begin{itemize}
+        \item $H_i(M) = 0$ for all $i>n$.
+        \item If $M$ is orientable then
+        \[ H_n(M) \rightarrow H_n(M,M-p) \cong \mathbb{Z} \]
+        is an isomorphism for all $p\in M$.
+        \item If $M$ is not orientable, then $H_n(M)=0$.
+    \end{itemize}
+\end{theorem}
+
+A generator for $H_n(M;\mathbb{Z})$ is called a fundamental class.
+\begin{corollary}{Existence Fundamental Class}{existence_of_fundamental_class}
+    A fundamental class for a connected manifold $M$ exists if and only if $M$ is compact and orientable.
+\end{corollary}
+
+\begin{lemma}{Section of Orientation to Homology Class}{section_of_orientation_to_homology_class}
+    Let $M$ be an $n$-manifold, and $A\subset M$ be a compact set.
+    \begin{itemize}
+        \item $H_i(M,M-A) = 0$ for all $i>n$.
+        \item If $p\mapsto \alpha_p$ is a section of
+        \[ M_{\mathbb{Z}} \rightarrow M, \]
+        then there exists a unique $\alpha\in H_n(M,M-A)$ such that $\alpha$ in $H_n(M,M-p)$ coincides with $\alpha_p$.
+    \end{itemize}
+\end{lemma}
+
+\begin{theorem}{Poincar\'e Duality}{poincare_duality}
+    If $M$ is a connected orientable manifold, then
+    \[ H^k(M) \cong H_{n-k}(M). \]
+\end{theorem}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

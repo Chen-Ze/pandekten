@@ -1,0 +1,153 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Symmetry}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Collection of Symmetries}
+
+\begin{table}[ht]
+    \centering
+    \label{table:nonhermitian_symmetries}
+    \caption{Nonhermitian Symmetries}
+    \begin{tabular}{ccc}
+        \toprule
+        Symmetry & Definition & Constraint \\
+        \midrule
+        $\text{TRS}$ & $\mathcal{T}_+ H^*(\vb{k}) \mathcal{T}^{-1}_+ = H(-\vb{k})$ & $\mathcal{T}_+ \mathcal{T}^*_+ = \pm 1$, $\mathcal{T}_+ \in \operatorname{U}(N)$ \\
+        $\text{PHS}$ & $\mathcal{C}_- H^\intercal(\vb{k}) \mathcal{C}^{-1}_- = -H(-\vb{k})$ & $\mathcal{C}_- \mathcal{C}^*_- = \pm 1$, $\mathcal{C}_- \in \operatorname{U}(N)$ \\
+        $\text{CS}$ & $\Gamma H^\dagger(\vb{k})\Gamma^{-1} = -H(\vb{k})$ & $\Gamma^2 = 1$, $\Gamma\in\operatorname{U}(N)$ \\
+        $\text{TRS}^\dagger$ & $\mathcal{C}_+ H^\intercal(\vb{k}) \mathcal{C}^{-1}_+ = H(-\vb{k})$ & $\mathcal{C}_+ \mathcal{C}^*_+ = \pm 1$, $\mathcal{C}_+ \in \operatorname{U}(N)$ \\
+        $\text{PHS}^\dagger$ & $\mathcal{T}_- H^*(\vb{k}) \mathcal{T}^{-1}_- = -H(-\vb{k})$ & $\mathcal{T}_- \mathcal{T}^*_- = \pm 1$, $\mathcal{T}_- \in \operatorname{U}(N)$ \\
+        $\text{SLS}$ & $\mathcal{S}H(\vb{k})\mathcal{S}^{-1} = -H(\vb{k})$ & $\mathcal{S}^2 = 1$, $\mathcal{S}\in\operatorname{U}(N)$ \\
+        $\text{pH}$ & $\eta H^\dagger(\vb{k}) \eta^{-1} = H(\vb{k})$ & $\eta^2 = 1$, $\eta\in\operatorname{U}(N)$ \\
+        \bottomrule
+    \end{tabular}
+
+\end{table}
+
+{\color{red}Question:
+There could be 32 symmetries.
+Why do we exclude e.g. \[ S H^*(\vb{k}) S^{-1} = H(\vb{k}) \] subjected to $S^2 = 1$?}
+
+\section{Energy Gaps}
+
+\begin{definition}{Point Gap}{point_gap}
+    Let $\mathcal{H}$ be a Hilbert space, and $\mathrm{BZ}$ be a Brillouin zone.
+    A non-Hermitian Hamiltonian $H: \mathrm{BZ} \rightarrow \operatorname{End}(\mathcal{H})$ has a point gap if
+    \begin{itemize}
+        \item it's invertible, i.e. $\det H(\vb{k}) \neq 0$ for all $\vb{k}\in\mathrm{BZ}$, and
+        \item all the eigenenergies are nonzero (for all $\vb{k}$).
+    \end{itemize}
+\end{definition}
+
+Under this definition, a gapless system possesses a zero energy state for some $\vb{k}$.
+
+\begin{definition}{Real Line Gap, Imaginary Line Gap}{line_gap}
+    Let $\mathcal{H}$ be a Hilbert space, and $\mathrm{BZ}$ be a Brillouin zone.
+    A non-Hermitian Hamiltonian $H: \mathrm{BZ} \rightarrow \operatorname{End}(\mathcal{H})$ has a real (imaginary) line gap if
+    \begin{itemize}
+        \item it's invertible, i.e. $\det H(\vb{k}) \neq 0$ for all $\vb{k}\in\mathrm{BZ}$, and
+        \item all the eigenenergies have nonzero (for all $\vb{k}$) real (imaginary) part.
+    \end{itemize}
+\end{definition}
+
+Under this definition, a gapless system includes an eigenenergy with real part or imaginary part zero.
+
+\section{Topological Classification}
+
+\begin{definition}{Topologically Equivalent Hamiltonian}{topologically_equivalent_hamiltonian}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{H}$ is a Hilbert space.
+        \item $\mathrm{BZ}$ is a Brillouin zone.
+        \item $H_0: \mathrm{BZ} \rightarrow \operatorname{End}(\mathcal{H})$ and $H_1: \mathrm{BZ} \rightarrow \operatorname{End}(\mathcal{H})$ are non-Hermitian Hamiltonians.
+        \item $G$ is a set of symmetries on $\mathcal{H}$.
+        \item The gap refers to one of these: the point gap, the real line gap, or the imaginary line gap.
+    \end{itemize}
+    Then $H_0$ and $H_1$ are topologically equivalent if there is a homotopy
+    \[ H: [0,1] \times \mathrm{BZ} \rightarrow \operatorname{End}(\mathcal{H}) \]
+    such that
+    \begin{itemize}
+        \item $H(0) = H_0$ and $H(1) = H_1$,
+        \item for each $\lambda\in[0,1]$, $H(\lambda)$ possesses the symmetries specified by $G$, and $H(\lambda)$ has the gap.
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}{Unitary Flattening for Point Gaps}{unitary_flattening_for_point_gaps}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{H}$ is a Hilbert space.
+        \item $\mathrm{BZ}$ is a Brillouin zone.
+        \item $H: \mathrm{BZ} \rightarrow \operatorname{End}(\mathcal{H})$ is a non-Hermitian Hamiltonian that has a point gap.
+        \item $G$ is a set of symmetries on $\mathcal{H}$.
+    \end{itemize}
+    Then $H$ is topological equivalent to a unitary Hamiltonian while keeping the point gap and symmetries $G$.
+\end{theorem}
+
+\begin{theorem}{Hermitian Flattening for Line Gaps}{hermitian_flattening_for_line_gaps}
+    Input:
+    \begin{itemize}
+        \item $\mathcal{H}$ is a Hilbert space.
+        \item $\mathrm{BZ}$ is a Brillouin zone.
+        \item $H: \mathrm{BZ} \rightarrow \operatorname{End}(\mathcal{H})$ is a non-Hermitian Hamiltonian that has a real (imaginary) line gap.
+        \item $G$ is a set of symmetries on $\mathcal{H}$.
+    \end{itemize}
+    Then $H$ is topological equivalent to a Hermitian (anti-Hermitian) Hamiltonian while keeping the real (imaginary) line gap and symmetries $G$.
+\end{theorem}
+
+\begin{example}{Topological Invariant for Point Gap}{topological_invariant_for_point_gap}
+    If $H(\vb{k})$ is a non-Hermitian system with a point gap and no symmetry, then the extended Hamiltonian $\tilde{H}(\vb{k})$ respects CS, and the topological invariant is given by the winding number (in dimension $2n+1$)
+    \[ W_{2n+1} = \frac{n!}{(2\pi i)^{n+1}(2n+1)!} \int_{\mathrm{BZ}} \tr(H^{-1} \dd{H})^{2n+1}. \]
+    In particular, in one-dimension systems,
+    \[ W_1 = \oint_{\mathrm{BZ}} \frac{\dd{k}}{2\pi i} \qty(\dv{k} \log \det H). \]
+\end{example}
+
+\subsection{Dirac Hamiltonian}
+
+The massive Dirac model is defined by
+\[ H(\vb{k}) = \sum_{i=1}^d k_i \Gamma_i + m\Gamma_0, \]
+where $\Gamma_i$ is defined as follows.
+\begin{itemize}
+    \item In the case of line gap, $\Gamma_i$ satisfies the Clifford algebra $\qty{\Gamma_i,\Gamma_j} = 2\delta_{ij}$ and $\Gamma_0$ anti-commutes with $\Gamma_i$.
+    \item In the case of point gap,
+    \[ \Gamma_i \Gamma_j^\dagger + \Gamma_j \Gamma_i^\dagger = 2\delta_{ij}, \]
+    such that the Hermitianized $\tilde{\Gamma}_i$ obeys the Clifford algebra, where
+    \[ \tilde{\Gamma}_i = \begin{pmatrix}
+        0 & \Gamma_i \\
+        \Gamma_i^\dagger & 0
+    \end{pmatrix}. \]
+\end{itemize}
+
+\begin{example}{One-Dimensional Dirac Hamiltonian}{one_dimensional_dirac_hamiltonian}
+    In the one-dimensional class A case, a non-Hermitian Dirac Hamiltonian may be written as
+    \[ H(k) = k+im, \]
+    where $m\in \mathbb{R}$.
+    The winding number is obtained by
+    \[ W = \int_{-\infty}^\infty \frac{\dd{k}}{2\pi i} \dv{k} \log(k+im) = \frac{\operatorname{sign}(m)}{2}. \]
+\end{example}
+
+\begin{example}{Line Gap}{line_gap}
+    For (one-dimensional model)
+    \[ H(k) = h_0(k) \sigma_0 + \vb{h}(\vb{k}) \cdot \vb*{\sigma} \]
+    to be invariant under $\text{CS}$ defined by $\Gamma = \sigma_z$, we demand
+    \[ H(k) = ih_0(k) \sigma_0 + h_x(k) \sigma_x + h_y(k) \sigma_y + ih_z(k) \sigma_z \]
+    where each of the $h_i(k)$ is real.
+    The spectrum is defined by
+    \[ E(k) = ih_0(k) \pm \sqrt{h_x^2(k) + h_y^2(k) - h_z^2(k)} \]
+    and supports a real (imaginary) gap for $h_x^2(k) + h_y^2(k) > h_z^2(k)$ ($h_x^2(k) + h_y^2(k) < h_z^2(k)$).
+    \begin{itemize}
+        \item The parameter space of real gap has $\pi_1 = \mathbb{Z}$ and therefore one-dimensional models are classified by the winding number.
+        \item The parameter space of imaginary gap has $\pi_1 = \qty{0}$ and therefore one-dimensional models are trivial.
+    \end{itemize}
+\end{example}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

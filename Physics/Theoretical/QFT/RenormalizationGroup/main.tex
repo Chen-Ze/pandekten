@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Renormalization Group}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Renormalization Conditions}
+
+\text{We are dealing with massless field.}
+Imposing the renormalization condition at scale $M$ we find
+\[ M^2 = 0,\quad p_E^2 = M^2 \]
+and
+\[ \pdv{p^2}M^2 = 0,\quad p_E^2 = M^2. \]
+Let $\phi_0$ be the bare field and $\phi = Z^{-1/2}\phi_0$ be the renormalized field.
+Since the field is massless, near $p_E^2 = M^2$ we have
+\[ \langle \phi_0(p) \phi_0(-p) \rangle = \frac{iZ}{p^2}. \]
+Then
+\[ G^{(n)}(x_1,\cdots,x_n) = \langle \phi(x_1) \cdots \phi(x_n) \rangle = Z^{-n/2}\langle \phi_0(x_1) \cdots \phi_0(x_n) \rangle. \]
+We denote
+\[ G_0^{(n)}(x_1,\cdots,x_n) = \langle \phi_0(x_1) \cdots \phi_0(x_n) \rangle. \]
+$G^{(n)}$ depends on $\Lambda$ and $\lambda_0$, and should be unaware of the renormalization scale $M$.
+Therefore,
+\begin{align*}
+    M \dv{M} \qty(Z^{n/2} G^{(n)}) &= 0.\\
+    M \pdv{M} G^{(n)} + M \pdv{\lambda}{M} \pdv{\lambda} G^{(n)} + \frac{n}{2} M \pdv{Z}{M} Z^{-1} G^{(n)} &= 0,
+\end{align*}
+where the partial derivatives are all taken at $\lambda_0,\Lambda$.
+Denote
+\begin{align*}
+    \beta(\lambda) &= M \pdv{\lambda}{M},\\
+    \gamma(\lambda) &= \frac{1}{2} M \pdv{\log Z}{M}.
+\end{align*}
+We find the Callan-Symanzik equation
+\[ \qty(M \pdv{M} + \beta(\lambda) \pdv{\lambda} + n\gamma(\lambda)) G^{(n)} = 0. \]
+
+Writing in terms of 1PI functions,
+\begin{align*}
+    \Gamma^{(2)} &= \frac{1}{G^{(2)}(p)} = \frac{Z}{G^{(2)}_0(p)} = Z \Gamma^{(2)}_0(p), \\
+    \Gamma^{(3)}(p_1,p_2,p_3) &= -\frac{G^{(3)}(p_1,p_2,p_3)}{G^{(2)}(p_1)G^{(2)}(p_2)G^{(2)}(p_3)} = Z^{3/2} \Gamma^{(3)}_0(p_1,p_2,p_3), \\
+    \Gamma^{(n)} &= Z^{n/2} \Gamma_0^{(n)}.
+\end{align*}
+Therefore,
+\[ \qty(M \pdv{M} + \beta(\lambda)\pdv{\lambda} - n\gamma(\lambda)) \Gamma^{(n)}(p_1,\cdots,p_n) = 0. \]
+\begin{example}{$\phi^4$ Sunset $\delta$}{phi_4_sunset_delta}
+    To the lowest order,
+    \[ \Gamma^{(2)}(p) = p^2 + \frac{\lambda^2}{12(4\pi)^2} p^2 \ln \qty(\frac{\Lambda^2}{p^2}) + p^2 \delta_Z = p^2 + \frac{\lambda^2}{12(4\pi)^2}p^2 \ln \frac{M^2}{p^2}. \]
+    Therefore,
+    \[ \delta_Z = \frac{\lambda^2}{12(4\pi)^2} \ln \frac{M^2}{\Lambda^2}. \]
+    To the lowest order,
+    \[ \qty(M\pdv{M} - 2\gamma(\lambda))\Gamma^{(2)} = 0. \]
+\end{example}
+
+\subsection{\texorpdfstring{$\phi^4$}{phi4} RG}
+
+Imposing $\Gamma^{(4)} = \lambda$ at $p^2 = -M^2$ we find
+\[ \Gamma^{(4)} = \lambda - \frac{\lambda^2}{2(4\pi)^2}\qty[\ln \frac{M^2}{s} + \ln \frac{M^2}{t} + \ln \frac{M^2}{u}]. \]
+The Callan-Symanzik equation
+\[ \qty(M \pdv{M} + \beta \pdv{\lambda} - n\gamma)\Gamma^{(n)} = 0 \]
+yields
+\[ \beta(\lambda) - 4\gamma(\lambda)\lambda = -M \pdv{M}\delta_\lambda = \frac{3\lambda^2}{(4\pi)^2} + \bigO(\lambda^3), \]
+and
+\[ \gamma = \frac{1}{2} M \pdv{M} \delta_Z = \frac{\lambda^2}{12(4\pi)^2} \]
+from the two-loop sunset diagram.
+
+\subsection{Yukawa RG}
+
+The Callan-Symanzik equation reads
+\[ \qty(M\pdv{M} + \beta_g \pdv{g} + \beta_\lambda \pdv{\lambda} - n\gamma_\psi - m\gamma_\phi) \Gamma^{(n,m)} = 0. \]
+From $\Gamma^{(2,1)}$ and $\Gamma^{(4,0)}$ we read $\beta_g$ and $\beta_\lambda$.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

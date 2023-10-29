@@ -1,0 +1,78 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 5}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{3.3.3}%
+Let $f:M\rightarrow N$ be the covering map.
+Let $x\in U\subset M$ where $U$ is an open ball.
+Then we have the isomorphisms
+\[ H_n(M,M-x) \cong H_n(B,B-x) \cong H_n(f(B), f(B) - f(x)) \cong H_n(N,N-f(x)) \]
+and therefore a $\mu_x\in H_n(M,M-x)$ for each $x$.
+
+\plabel{7}%
+Let $U$ be an open ball in $M$.
+Then $\pi: M \rightarrow M/(M-U) \cong S^n$ has degree one since the bottom row of the following is an isomorphism ($x\in U$).
+\begin{center}
+    \begin{tikzcd}
+        H_n(M) \arrow[r,"\pi_*"] \arrow[d,"\cong"'] & H_n(S^n) \arrow[d,"\cong"] \\
+        H_n(M,M-x) \arrow[r,"\pi_*"] & H_n(S^n, S^n-\qty{*})
+    \end{tikzcd}
+\end{center}
+
+\plabel{8}%
+With excision we find the following commutative diagram.
+\begin{center}
+    \begin{tikzcd}
+        H_n(M) \arrow[r] \arrow[d] & H_n(M,M-\qty{x_1,\cdots,x_m}) \arrow[r] \arrow[d] & \bigoplus_i H_n(B_i,B_i - x) \\
+        H_n(N) \arrow[r] & H_n(N,N-x) \arrow[r] & H_n(B,B-x)
+    \end{tikzcd}
+\end{center}
+Going clockwise we find $[M] \mapsto \sum_i \varepsilon_i \mu_x$, while going counterclockwise we find $[M] \mapsto \operatorname{deg}(f)\mu_x$, and therefore $\operatorname{deg}(f) = \sum_i \varepsilon_i$.
+
+\plabel{9}%
+Let $f:M\rightarrow N$ be the map.
+Let $x\in B\subset N$ where $B$ is a open ball.
+Let $\Set*{x_i\in B_i}{i=1,\cdots,p}$ be the preimage of $x\in B$.
+Then from problem 3.3.3 there is an orientation of $M$ that induces $\mu_{x_i}$ for each $i$ which all maps to the same orientation of $N$ under $f_*$.
+Therefore, using problem 3.3.8, $\operatorname{deg}(f) = \pm \sum_{i=1}^p 1 = \pm p$.
+
+\plabel{10}%
+$f$ factors into $M\xlongrightarrow{\tilde{f}}\tilde{N}\xlongrightarrow{\tilde{p}}N$.
+If $\tilde{N}$ is finite-sheeted, then since $f$ has degree $1$, $p$ also has degree $1$ and is therefore a homeomorphism.
+Thus $\Im f_* = \pi_1 N$.
+If $\tilde{N}$ is infinite-sheeted, then $H_n(\tilde{N}) = 0$ and therefore $f$ has degree $0$.
+
+\plabel{11}%
+If $g<h$, then $H_1(M_g) \cong \mathbb{Z}^g$ cannot be mapped surjectively to $H_1(M_h) \cong \mathbb{Z}^h$ and therefore there is not map of degree 1 by problem 3.3.10.
+\par
+If $g>h$, then by collapsing a subset of $M_g$ one gets an map of degree $1$ from $M_g$ to $M_h$.
+
+\end{document}

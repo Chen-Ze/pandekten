@@ -1,0 +1,57 @@
+\begin{mmaCell}{Input}
+  $PrePrint=TraditionalForm
+\end{mmaCell}
+
+\begin{mmaCell}{Output}
+  TraditionalForm
+\end{mmaCell}
+
+\begin{mmaCell}{Input}
+  \mmaSub{t}{1}=\mmaFrac{1}{2}(\{\{0,1,0\},\{1,0,0\},\{0,0,0\}\});\mmaSub{t}{2}=\mmaFrac{1}{2}\{\{0, -\mmaDef{i}, 0\}, \{\mmaDef{i}, 0, 0\}, \{0,
+0, 0\}\};\mmaSub{t}{3}=\mmaFrac{1}{2}\{\{1, 0, 0\}, \{0, -1, 0\}, \{0, 0, 0\}\};\mmaSub{t}{4}=\mmaFrac{1}{2}\{\{0, 0, 1\}, \{0, 0, 0\}, \{1, 0, 0\}\};\mmaSub{t}{5}=\mmaFrac{1}{2}\{\{0,
+0, -\mmaDef{i}\}, \{0, 0, 0\}, \{\mmaDef{i}, 0, 0\}\};\mmaSub{t}{6}=\mmaFrac{1}{2}\{\{0, 0, 0\}, \{0, 0, 1\}, \{0, 1, 0\}\};\mmaSub{t}{7}=\mmaFrac{1}{2}\{\{0,
+0, 0\}, \{0, 0, -\mmaDef{i}\}, \{0, \mmaDef{i}, 0\}\};\mmaSub{t}{8}=\mmaFrac{1}{2\mmaSqrt{3}}\{\{1, 0, 0\}, \{0, 1, 0\}, \{0, 0, -2\}\};
+\end{mmaCell}
+
+\begin{mmaCell}[moredefined={cr},morefunctionlocal={i, j}]{Input}
+  cr=Tr[Table[Tr[\mmaSub{t}{i}.\mmaSub{t}{j}],\{i,1,8\},\{j,1,8\}]]/8
+\end{mmaCell}
+
+\begin{mmaCell}{Output}
+  \mmaFrac{1}{2}
+\end{mmaCell}
+
+\begin{mmaCell}[morefunctionlocal={i, j},moredefined={cr}]{Input}
+  Table[Tr[\mmaSub{t}{i}.\mmaSub{t}{j}],\{i,1,8\},\{j,1,8\}]==cr IdentityMatrix[8]
+\end{mmaCell}
+
+\begin{mmaCell}{Output}
+  True
+\end{mmaCell}
+
+\begin{mmaCell}[morefunctionlocal={i, j, k},moredefined={cr},morepattern={\#, i_, j_, k_, x_, x}]{Input}
+  Select[Flatten[Table[\{i,j,k,-\mmaFrac{\mmaDef{i}}{cr}Tr[(\mmaSub{t}{i}.\mmaSub{t}{j}-\mmaSub{t}{j}.\mmaSub{t}{i}).\mmaSub{t}{k}]\},\{i,1,8\},\{j,1,8\},\{k,1,8\}],2],#[[4]]!=0&]/.\{\{i_,j_,k_,x_\}:>\mmaSub{f}{\mmaPat{i},\mmaPat{j},\mmaPat{k}}==x\}
+\end{mmaCell}
+
+\begin{mmaCell}{Output}
+  \{\mmaSub{f}{1,2,3}=1,\mmaSub{f}{1,3,2}=-1,\mmaSub{f}{1,4,7}=\mmaFrac{1}{2},\mmaSub{f}{1,5,6}=-\mmaFrac{1}{2},\mmaSub{f}{1,6,5}=\mmaFrac{1}{2},\mmaSub{f}{1,7,4}=-\mmaFrac{1}{2},\mmaSub{f}{2,1,3}=-1,\mmaSub{f}{2,3,1}=1,\mmaSub{f}{2,4,6}=\mmaFrac{1}{2},\mmaSub{f}{2,5,7}=\mmaFrac{1}{2},\mmaSub{f}{2,6,4}=-\mmaFrac{1}{2},\mmaSub{f}{2,7,5}=-\mmaFrac{1}{2},\mmaSub{f}{3,1,2}=1,\mmaSub{f}{3,2,1}=-1,\mmaSub{f}{3,4,5}=\mmaFrac{1}{2},\mmaSub{f}{3,5,4}=-\mmaFrac{1}{2},\mmaSub{f}{3,6,7}=-\mmaFrac{1}{2},\mmaSub{f}{3,7,6}=\mmaFrac{1}{2},\mmaSub{f}{4,1,7}=-\mmaFrac{1}{2},\mmaSub{f}{4,2,6}=-\mmaFrac{1}{2},\mmaSub{f}{4,3,5}=-\mmaFrac{1}{2},\mmaSub{f}{4,5,3}=\mmaFrac{1}{2},\mmaSub{f}{4,5,8}=\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{4,6,2}=\mmaFrac{1}{2},\mmaSub{f}{4,7,1}=\mmaFrac{1}{2},\mmaSub{f}{4,8,5}=-\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{5,1,6}=\mmaFrac{1}{2},\mmaSub{f}{5,2,7}=-\mmaFrac{1}{2},\mmaSub{f}{5,3,4}=\mmaFrac{1}{2},\mmaSub{f}{5,4,3}=-\mmaFrac{1}{2},\mmaSub{f}{5,4,8}=-\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{5,6,1}=-\mmaFrac{1}{2},\mmaSub{f}{5,7,2}=\mmaFrac{1}{2},\mmaSub{f}{5,8,4}=\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{6,1,5}=-\mmaFrac{1}{2},\mmaSub{f}{6,2,4}=\mmaFrac{1}{2},\mmaSub{f}{6,3,7}=\mmaFrac{1}{2},\mmaSub{f}{6,4,2}=-\mmaFrac{1}{2},\mmaSub{f}{6,5,1}=\mmaFrac{1}{2},\mmaSub{f}{6,7,3}=-\mmaFrac{1}{2},\mmaSub{f}{6,7,8}=\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{6,8,7}=-\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{7,1,4}=\mmaFrac{1}{2},\mmaSub{f}{7,2,5}=\mmaFrac{1}{2},\mmaSub{f}{7,3,6}=-\mmaFrac{1}{2},\mmaSub{f}{7,4,1}=-\mmaFrac{1}{2},\mmaSub{f}{7,5,2}=-\mmaFrac{1}{2},\mmaSub{f}{7,6,3}=\mmaFrac{1}{2},\mmaSub{f}{7,6,8}=-\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{7,8,6}=\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{8,4,5}=\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{8,5,4}=-\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{8,6,7}=\mmaFrac{\mmaSqrt{3}}{2},\mmaSub{f}{8,7,6}=-\mmaFrac{\mmaSqrt{3}}{2}\}
+\end{mmaCell}
+
+\begin{mmaCell}[moredefined={c2r},morefunctionlocal={i}]{Input}
+  c2r=Sum[\mmaSub{t}{i}.\mmaSub{t}{i},\{i,1,8\}]
+\end{mmaCell}
+
+\begin{mmaCell}{Output}
+  (\mmaFrac{4}{3}	0	0
+  0	\mmaFrac{4}{3}	0
+  0	0	\mmaFrac{4}{3})
+\end{mmaCell}
+
+\begin{mmaCell}[moredefined={c2r, cr}]{Input}
+  3c2r==8 cr IdentityMatrix[3]
+\end{mmaCell}
+
+\begin{mmaCell}{Output}
+  True
+\end{mmaCell}
+

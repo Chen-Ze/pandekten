@@ -1,0 +1,173 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 9}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{1 (a)}%
+Since softmax is invariant under a uniform shift of its arguments, i.e. $\operatorname{s}_{\max}(x - c\vb{1}) = \operatorname{s}_{\max}(x)$, it's clear that $g(x) = \operatorname{s}_{\max}(x)$ with $c = \max_i(x(i))$.
+
+\plabel{(b)}%
+If there are large values in $\qty{x_i}$, $\exp{x_i}$ may result in \texttt{inf} and softmax may be \texttt{inf / inf = nan}.
+By substracting the max value, $\qty{\exp(x_i)}$ are regularized and the maximal value is $1$, which could give the correct value.
+
+\prule
+
+\plabel{2 (a)}%
+\begingroup\minusbaseline
+\begin{align*}
+    D_x(t)[u] &= D_P(t)[D_x(x y^\intercal)[u]] \\
+    &= D_P(t)[u y^\intercal] \\
+    &= \langle \grad_P(t), u y^\intercal \rangle \\
+    &= \langle (\grad_P t) y, u \rangle, \\
+    \grad_x t &= (\grad_P t) y. \\
+    D_y(t)[u] &= D_P(t)[D_y(x y^\intercal)[u]] \\
+    &= D_P(t)[x u^\intercal] \\
+    &= \langle \grad_P(t), x u^\intercal \rangle \\
+    &= \langle (\grad_P t)^\intercal x, u \rangle, \\
+    \grad_y t &= (\grad_P t)^\intercal x.
+\end{align*}
+\endgroup
+
+\plabel{(b)}%
+\begingroup\minusbaseline
+\begin{align*}
+    D_A (t)[H] &= D_C(t)[D_A(AB)[H]] \\
+    &= D_C(t)[HB] \\
+    &= \langle \grad_C t, HB \rangle \\
+    &= \langle (\grad_C t) B^\intercal, H \rangle, \\
+    \grad_A t &= (\grad_C t) B^\intercal. \\
+    D_B (t)[H] &= D_C(t)[D_B(AB)[H]] \\
+    &= D_C(t)[AH] \\
+    &= \langle \grad_C t, A H \rangle \\
+    &= \langle A^\intercal \grad_C t, H \rangle, \\
+    \grad_B t &= A^\intercal \grad_C t.
+\end{align*}
+\endgroup
+
+\prule
+
+\plabel{3 (a)}%
+The convolution is given by
+\[ Y_{ij} = \langle X_{IJ}, F \rangle \]
+where $X_{IJ}$ is the subblock of $X$ corresponding to $(i,j)$.
+Convolution is linear since the inner product is linear.
+
+\plabel{(b)}%
+Since
+\[ D_F(Y_{ij})[H] = \langle X_{IJ}, H \rangle \]
+we find
+\[ D_F(Y)[H] = X * H. \]
+
+\plabel{(c)}%
+\begingroup\minusbaseline
+\begin{align*}
+    D_F(t)[H] &= D_Y(t)[D_F(Y)[H]] \\
+    &= \langle \grad_Y t, X * H \rangle.
+\end{align*}
+\endgroup
+
+\plabel{(d)}%
+$\grad_Y t$ has the same shape as $Y$, i.e. $(m-2k)\times (m-2k)$.
+$\grad_F t$ has the same shape as $F$, i.e. $(2k+1)\times (2k+1)$.
+
+\plabel{(e)}%
+\begingroup\minusbaseline
+\[ \langle \grad_F t, H \rangle = \langle \grad_Y t, X * H \rangle. \]
+\endgroup
+
+\plabel{(f)}%
+Let $e_{ij}$ denote the matrix of size $(2k+1)\times (2k+1)$ defined by
+\[ (e_{ij})_{kl} = \delta_{ik} \delta_{jl}. \]
+Now
+\[ (\grad_F t)_{ij} = \langle \grad_F t, e_{ij} \rangle = \langle \grad_Y t, X * e_{ij} \rangle. \]
+
+\plabel{(g)}%
+The $(2k+1)^2$ inner products are given above.
+\[ (X * e_{ij})_{pq} = X_{i+p,j+q}, \]
+where $0\le i,j \le 2k$.
+Therefore, $X * e_{ij}$ is $X$ shifted by $(i,j)$ and clipped to have the same size as $Y$.
+
+\prule
+
+\plabel{4 (a)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \lim_{\beta\rightarrow\infty} s_\beta(x) &= \lim_{\beta\rightarrow\infty} \frac{\sum_{k=1}^c \exp(\beta (x_k - \max_i x_i)) \vb{e}_k}{\sum_{k=1}^c \exp(\beta(x_k - \max_i x_i))} \\
+    &= \frac{\lim_{\beta\rightarrow\infty}\sum_{k=1}^c \exp(\beta (x_k - \max_i x_i)) \vb{e}_k}{\lim_{\beta\rightarrow\infty}\sum_{k=1}^c \exp(\beta(x_k - \max_i x_i))} \\
+    &= \frac{\sum_{k\in\mathcal{M}} \vb{e}_k}{\sum_{k\in\mathcal{M}} 1} \\
+    &= \frac{1}{N}\sum_{k\in\mathcal{M}} \vb{e}_k.
+\end{align*}
+\endgroup
+
+\plabel{(b)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \lim_{\beta\rightarrow\infty} f_\beta(x) &= \lim_{\beta\rightarrow\infty} s_\beta(x)^\intercal x \\
+    &= \frac{1}{N}\sum_{k\in\mathcal{M}} \vb{e}_k^\intercal x \\
+    &= \frac{1}{N}\sum_{k\in\mathcal{M}} \max_i x_i \\
+    &= \max_i x_i.
+\end{align*}
+\endgroup
+
+\plabel{(c)}%
+\begingroup\minusbaseline
+\begin{align*}
+    \grad_i f_\beta(x) &= s_\beta(x)_i + x^\intercal \grad_i \operatorname{s}_{\max}(\beta x) \\
+    &= \operatorname{s}_{\max}(\beta x)_i + \beta x^\intercal \grad_{\beta x_i} \operatorname{s}_{\max}(\beta x) \\
+    &= \operatorname{s}_{\max}(\beta x)_i + \beta x^\intercal \qty(\frac{e^{\beta x_i}\vb{e}_i}{\sum_{k=1}^c e^{\beta x_k}} - \frac{e^{\beta x_i}}{\sum_{k=1}^c e^{\beta x_k}} \operatorname{s}_{\max}(\beta x)) \\
+    &= \operatorname{s}_{\max}(\beta x)_i + \beta x_i \operatorname{s}_{\max}(\beta x)_i - \beta f_\beta(x) \operatorname{s}_{\max}(\beta x)_i, \\
+    \grad f_\beta(x) &= \operatorname{s}_{\max}(\beta x) + \beta x \otimes \operatorname{s}_{\max}(\beta x) - \beta f_\beta(x) \operatorname{s}_{\max}(\beta x).
+\end{align*}
+\endgroup
+
+\plabel{(d)}%
+It suffices to prove
+\[ \lim_{\beta\rightarrow\infty} \qty(\beta x_i - \beta f_\beta(x))\operatorname{s}_{\max}(\beta x)_i = 0, \]
+or
+\[ \lim_{\beta\rightarrow\infty} \beta \qty(\frac{e^{\beta x_i} x_i}{\sum_{k=1}^c e^{\beta x_k}} - \frac{e^{\beta x_i}}{\sum_{k=1}^c e^{\beta x_k}} \frac{\sum_{k=1}^c e^{\beta x_k} x_k}{\sum_{k=1}^c e^{\beta x_k}} ) = 0, \]
+which can be rewritten as
+\[ \lim_{\beta\rightarrow\infty} \beta \qty(\frac{e^{\beta x_i}}{\sum_{k=1}^c e^{\beta x_k}} \frac{\sum_{k=1}^c e^{\beta x_k} x_i}{\sum_{k=1}^c e^{\beta x_k}} - \frac{e^{\beta x_i}}{\sum_{k=1}^c e^{\beta x_k}} \frac{\sum_{k=1}^c e^{\beta x_k} x_k}{\sum_{k=1}^c e^{\beta x_k}} ) = 0, \]
+or
+\[ \lim_{\beta\rightarrow\infty} \beta e^{\beta(x_i - \max_k x_k)} \sum_{k=1}^c e^{\beta (x_k - \max_j x_j)} (x_i - x_k) = 0 \]
+since the limit of the denominator exists after replacing $e^{\beta x_k}$ by $e^{\beta x_k - \beta \max_j x_j}$.
+
+\begin{itemize}
+    \item If $x_i < \max_j x_j$, then $\beta e^{\beta(x_i - \max_k x_k)} \rightarrow 0$ and $\sum_{k=1}^c e^{\beta (x_k - \max_j x_j)} (x_i - x_k)$ is bounded and therefore the limit is $0$.
+    \item If $x_i = \max_j x_j$, then
+    \begin{align*}
+        &\phantom{{}={}} \lim_{\beta\rightarrow\infty} \beta e^{\beta(x_i - \max_k x_k)} \sum_{k=1}^c e^{\beta (x_k - \max_j x_j)} (x_i - x_k) \\
+        &= \lim_{\beta\rightarrow\infty} \beta \sum_{\Set*{k}{x_k\neq \max_j x_j}} e^{\beta(x_k - \max_j x_j)} (x_i - x_k) = 0.
+    \end{align*}
+\end{itemize}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

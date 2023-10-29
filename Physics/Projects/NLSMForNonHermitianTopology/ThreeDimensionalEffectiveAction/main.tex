@@ -1,0 +1,74 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Three Dimensional Effective Action (Question)}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+Let $r$ denote the number of replica.
+We are now going to evaluate the following determinant
+\[ e^{S_{\mathrm{eff}}[U]} = \det\begin{pmatrix}
+    (\sigma^i p_i + im - z) \otimes \mathbbm{1}_{r\times r} & g\mathbbm{1}_{2\times 2} \otimes U \\
+    -g\mathbbm{1}_{2\times 2} \otimes U^\dagger & (\sigma^i p_i - im - \overline{z}) \otimes \mathbbm{1}_{r\times r}
+\end{pmatrix} \]
+where $U: \mathbb{R}^3 \rightarrow \operatorname{U}(r)$.
+Since $U$ is unitary,
+\begin{align*}
+    &e^{S_{\mathrm{eff}}[U]} \\ %= \det\Bigg[\begin{pmatrix}
+        %\mathbbm{1}_{2\times 2} \otimes U^\dagger & \\
+        %& \mathbbm{1}_{2\times 2} \otimes \mathbbm{1}_{r\times r}
+    %\end{pmatrix} \\
+    %&\quad \begin{pmatrix}
+    %    (\sigma^i p_i + im - z) \otimes \mathbbm{1}_{r\times r} & \mathbbm{1}_{2\times 2} \otimes U \\
+    %    -\mathbbm{1}_{2\times 2} \otimes U^\dagger & (\sigma^i p_i - im - \overline{z}) \otimes \mathbbm{1}_{r\times r}
+    %\end{pmatrix} \begin{pmatrix}
+    %    \mathbbm{1}_{2\times 2} \otimes U & \\
+    %    & \mathbbm{1}_{2\times 2} \otimes \mathbbm{1}_{r\times r}
+    %\end{pmatrix}\Bigg] \\
+    &= \det[\begin{pmatrix}
+        (\sigma^i p_i + im - z) \otimes \mathbbm{1}_{r\times r} & g\mathbbm{1}_{2\times 2} \otimes \mathbbm{1}_{r\times r} \\
+        -g\mathbbm{1}_{2\times 2} \otimes \mathbbm{1}_{r\times r} & (\sigma^i p_i - im - \overline{z}) \otimes \mathbbm{1}_{r\times r}
+    \end{pmatrix} + \begin{pmatrix}
+        -i \sigma^i \otimes U^\dagger \partial_i U& \\
+        & 0
+    \end{pmatrix}] \\
+    &= \det[G(p)^{-1} \otimes \mathbbm{1}_{r\times r} + \begin{pmatrix}
+        -i \sigma^i \otimes A_i& \\
+        & 0
+    \end{pmatrix}]
+\end{align*}
+where $A_i = U^\dagger \partial_i U$.
+Then we have to evaluate
+\begin{align*}
+    &\Pi^{ij}(q)\\ &= \int \frac{\dd[3]{p}}{(2\pi)^3} \tr_{\mathbb{C}^4}\qty[G(p) \begin{pmatrix}
+        \sigma^i & \\ & 0
+    \end{pmatrix} G(p+q) \begin{pmatrix}
+        \sigma^j & \\ & 0
+    \end{pmatrix}], \\
+    &\Pi^{ijk}(q,k)\\ &= \int \frac{\dd[3]{p}}{(2\pi)^3} \tr_{\mathbb{C}^4}\qty[G(p) \begin{pmatrix}
+        \sigma^i & \\ & 0
+    \end{pmatrix} G(p+q) \begin{pmatrix}
+        \sigma^j & \\ & 0
+    \end{pmatrix} G(p+q+k) \begin{pmatrix}
+        \sigma^k & \\ & 0
+    \end{pmatrix}].
+\end{align*}
+where
+\[ G(p) = \begin{pmatrix}
+    (\sigma^i p_i + im - z) & g\mathbbm{1}_{2\times 2} \\
+    -g\mathbbm{1}_{2\times 2} & (\sigma^i p_i - im - \overline{z})
+\end{pmatrix}^{-1}. \]
+Although the forms of $\Pi^{ij}$ and $\Pi^{ijk}$ look similar to their QED counterparts like
+\[ \int \frac{\dd[d]{p}}{(2\pi)^d} \tr[\frac{1}{\slashed{p} - m}\gamma^\mu \frac{1}{\slashed{p}+\slashed{q}-m}\gamma^\nu], \]
+that the vertex is given by $\begin{pmatrix}
+    \sigma^i & \\ & 0
+\end{pmatrix}$ and that $G(p)^{-1}$ doesn't admit a simple form in our case makes the evaluation of $\Pi^{ij}$ and $\Pi^{ijk}$ very difficult.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}
