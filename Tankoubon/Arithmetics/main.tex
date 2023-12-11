@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+
+\title{Arithmetics}
+\author{Ch\=an Taku}
+
+\begin{document}
+
+\maketitle
+
+\section{Hensel's Lemma}
+
+\paragraph*{Statement of the Question}
+Let's say we have an equation $f=0$ for $f\in k[x]$.
+We have a solution $a$ such that $f(a) = 0$.
+\par
+Now we add an perturbation to $f$, i.e. consider the equation $f + tg = 0$ where $g\in k[x]$.
+Could we solve $x$ as a formal power seires in $t$?
+Let $R = \widehat{k[t]} = k\llbracket t \rrbracket$.
+Then $h = f+tg\in R[x]$.
+The maximal ideal $M$ of $R$ is $(t)$.
+\paragraph*{Checking the Condition of Hensel's Lemma}
+Now we apply Hensel's lemma.
+The condition of Hensel's lemma requires that
+\[ h(a) \in h'(a)^2 M. \]
+What's $h(a)$? $h(a) = f(a) + t g(a) = t g(a) \in M$.
+What's $h'(a)^2 M$? $h'(a)$ is $f'(a) + t g'(a)$.
+If $f'(a) \neq 0$ then $h'(a)$ is a unit and therefore $h'(a)^2 M = M$.
+That is, the condition is satisfied if $\boxed{f'(a) \neq 0}$.
+\paragraph*{Consequence from Hensel's Lemma}
+Applying Hensel's lemma we find that there exists $b\in R$ such that
+\begin{itemize}
+    \item $h(b) = 0$, and
+    \item $b - a \in f'(a) M$.
+\end{itemize}
+The first statement tells us that $b\in k\llbracket t \rrbracket$ solves $f+tg=0$, i.e. $b$ is a formal power series solution.
+The second statement tells us, since $f'(a)M = M$ given $f'(a)\neq 0$, that $b-a = t\times (\cdots)$, i.e. the zeroth order approximation is $a$.
+\paragraph*{Counterexample}
+If $f'(a) = 0$ then there may not be a formal power series solution.
+For example, $x^2 + t = 0$ requires $x = \sqrt{t}$ and this does not admit a formal power series expansion.
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

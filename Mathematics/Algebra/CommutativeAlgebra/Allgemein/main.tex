@@ -605,12 +605,78 @@ The following chain of inclusion holds.
         \begin{tikzcd}
               & 0 \arrow[d] & 0 \arrow[d] & 0 \arrow[d] & \\
             0 \arrow[r] & N \arrow[d] \arrow[r] & N \arrow[d] \arrow[r] & 0 \arrow[d] \arrow[r] & 0 \\
-            0 \arrow[r] & L \arrow[d] \arrow[r] & M \arrow[d] \arrow[r] & M/L \arrow[d] \arrow[r] & 0 \\
-            0 \arrow[r] & L/N \arrow[d] \arrow[r] & M/N \arrow[d] \arrow[r] & Q \arrow[d] \arrow[r] & 0 \\
+            0 \arrow[r] & L \arrow[d] \arrow[r] & M \arrow[d] \arrow[r] & M/L \arrow[d, "f"] \arrow[r] & 0 \\
+            0 \arrow[r] & L/N \arrow[d] \arrow[r, "g"] & M/N \arrow[d] \arrow[r] & Q \arrow[d] \arrow[r] & 0 \\
               & 0 & 0 & 0
         \end{tikzcd}
     \end{center}
+    With the nine lemma we can prove
+    \[ M/L \cong (M/N)/(L/N). \]
+    The arrows above are all defined in the obvious way except for $f$ and $g$.
+    It's clear that the first two columns and all of the three rows are exact.
+    ({\color{red}Not clear for the third row. See below.})
+    To apply the nine lemma, we have to show that the diagram commutes.
+    \begin{itemize}
+        \item The upper-left square commutes: the arrows are trivial inclusions.
+        \item The upper-right commutes: just to prove that if $x\in M$ is in $N$, then $x$ is zero in $M/L$, which is clear since $N\subset L$.
+        \item The lower-left commutes: we exploit the freedom to define $g$ and defined it in such a way that the square commutes, i.e. for $[\ell] \in L/N$, take one preimage $\ell\in L$ and go along the $L\to M\to M/N$ path to get the image.
+        This map is well-defined (we need this to see the square actually commutes: for now it only commutes for those elements $\ell\in L$ being representative elements we just chose), i.e. independent of the representative element $\ell$, since if we take $\ell'$ such that $\delta = \ell' - \ell\in N$, we can lift $\delta$ to the $N$ before $L$ and go along $N\to N\to M \to M/N$ and get $0$.
+        {\color{red}We have to apply the five lemma to show $g$ is injective.}
+        \item The lower-right commutes: we exploit the freedom to define $f$ in such a way that the square commutes.
+        We lift $[m] \in M/L$ to a preimage $m\in M$.
+        Then go along the $M\to M/N\to Q$ path to get the image.
+        This map is well-defined (again we need this to show that the square actually commutes) by the same argument as above.
+    \end{itemize}
 \end{example}
+In hindsight, we don't actually require the diagram to commute in every square.
+We can leave some arrows undefined, and demand commutativity for only one square, and exactness for all but one line.
+Then we can use the following propositions to complete the squares by defining the undefined arrows in such a way that the square commutes.
+
+\begin{proposition}{Completing Square}{completing_square}
+    \paragraph*{Completion to the right}%
+    Given the following commutative diagram with exact rows,
+    \begin{center}
+        \begin{center}
+            \begin{tikzcd}
+                N' \arrow[d, "f"] \arrow[r] & N \arrow[d, "g"] \arrow[r] & N'' \arrow[r] & 0 \\
+                M' \arrow[r] & M  \arrow[r] & M'' \arrow[r] & 0
+            \end{tikzcd}
+        \end{center}
+    \end{center}
+    there exists a unique $h\colon N''\to M''$ such that the following augmented diagram commutes.
+    \begin{center}
+        \begin{center}
+            \begin{tikzcd}
+                N' \arrow[d, "f"] \arrow[r] & N \arrow[d, "g"] \arrow[r] & N'' \arrow[d, "h"]\arrow[r] & 0 \\
+                M' \arrow[r] & M  \arrow[r] & M'' \arrow[r] & 0
+            \end{tikzcd}
+        \end{center}
+    \end{center}
+    Moreover, $h$ is an isomorphism if $f$ and $g$ are isomorphisms.
+    \paragraph*{Completion to the left}%
+    Given the following commutative diagram with exact rows,
+    \begin{center}
+        \begin{center}
+            \begin{tikzcd}
+                0 \arrow[r] & N' \arrow[r] & N \arrow[d, "g"] \arrow[r] & N'' \arrow[d, "h"] \\
+                0 \arrow[r] & M' \arrow[r] & M  \arrow[r] & M''
+            \end{tikzcd}
+        \end{center}
+    \end{center}
+    there exists a unique $f\colon N'\to M'$ such that the following augmented diagram commutes.
+    \begin{center}
+        \begin{center}
+            \begin{tikzcd}
+                0 \arrow[r] & N' \arrow[d, "f"] \arrow[r] & N \arrow[d, "g"] \arrow[r] & N'' \arrow[d, "h"] \\
+                0 \arrow[r] & M' \arrow[r] & M  \arrow[r] & M'' 
+            \end{tikzcd}
+        \end{center}
+    \end{center}
+    Moreover, $f$ is an isomorphism if $f$ and $g$ are isomorphisms.
+\end{proposition}
+\begin{proof}
+    This is just proposition 2.70 and 2.71 of \textit{An Introduction to Homological Algebra} by J. Rotman.
+\end{proof}
 
 % \bibliographystyle{plain}
 % \bibliography{main}

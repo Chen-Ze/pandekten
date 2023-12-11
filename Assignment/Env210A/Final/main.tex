@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+%\usepackage{mhchem}
+\geometry{b5paper}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
+            \node[shape=circle,draw,inner sep=.5pt] (char) {#1};}}
+
+\title{Final}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\paragraph*{Climate Change}
+The average depth of ocean is \SI{3682}{\meter}.
+The thermal expansion coefficient of water is \SI{0.00021}{\per\degreeCelsius}, that is, for every \SI{1}{\degreeCelsius} increment of temperature, the volume of water increases by \num{0.00021} times its original volume.
+Based on these values (i.e. taking into account thermal expansion only), calculate the sea level rise $L'$ if the temperature increases by \SI{1}{\degreeCelsius}.
+\par
+Thermal expansion accounts for approximately 40\% of sea level rise.
+Therefore, if you multiply the value you obtained by \num{2.5}, you could estimate the sea level rise $L = 2.5L'$ for \SI{1}{\degreeCelsius} after taking into account ice melting.
+What's your value of $L$ (to the first significant digit)?
+\par
+(Key: C)
+\begin{enumerate}[label=\Alph*.]
+   \item \SI{0.02}{\meter}.
+   \item \SI{0.2}{\meter}.
+   \item \SI{2}{\meter}.
+   \item \SI{20}{\meter}.
+\end{enumerate}
+
+\paragraph*{Carbon Cycle}
+Based on the graph in the lecture slide (Bjerrum plot) of the concentration of \ce{CO2}/\ce{HCO3-}/\ce{CO3^{2}-}, and the reversible reactions
+\begin{gather*}
+    \ce{CO2_{(aq)} <=> H2CO3 <=> H^+ + HCO3- <=> 2H^+ + CO3^{2}-}, \\
+    \ce{Ca^{2}+ + CO3^{2}- <=> CaCO3},
+\end{gather*}
+determine the following.
+\begin{itemize}
+    \item Will the ocean become more acidic or basic if we put more \ce{CO2} in the atmosphere?
+    \item Will the concentration of \ce{CO3^{2}-} increase or decrease?
+    Does this have positive or negative effect for the creatures that produces shells out of \ce{CaCO3}?
+\end{itemize}
+\par
+(Key: D)
+\begin{enumerate}[label=\Alph*.]
+    \item Basic; Positive.
+    \item Basic; Negative.
+    \item Acidic; Positive.
+    \item Acidic; Negative.
+\end{enumerate}
+
+\paragraph*{Food}
+Do you remember that if the temperature of the earth increases, chemical reactions may go faster but enzymes are less active, and therefore the food production attains maximal at certain temperature and plunges beyond that?
+Moreover, higher temperature may increase the production loss due to insect pests, etc.
+\par
+Now you have a chance to make three wishes.
+Select three from the following list to save the humans.
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+    \item Moving the earth further from the sun.
+    \item Moving all crops to higher latitude.
+    \item Free birth control access for everyone.
+    \item Increasing the surface area of the earth.
+\end{enumerate}
+\par
+(Key: B)
+\begin{enumerate}[label=\Alph*.]
+   \item \circled{2}\circled{3}\circled{4}
+   \item \circled{1}\circled{3}\circled{4}
+   \item \circled{1}\circled{2}\circled{4}
+   \item \circled{1}\circled{2}\circled{3}
+\end{enumerate}
+
+\paragraph*{Biodiversity}
+Let $S\ge 2$ (an integer) denote the number of species and $p_i$ denote the proportion of the $i$-th species, for $i=1,\cdots,S$.
+Let's take the following definition for Simpson's index
+\[ D_{\text{Simpson}} = 1 - \sum_{i=1}^S p_i^2 \]
+and Shannon's index
+\[ D_{\text{Shannon}} = -\sum_{i=1}^S p_i \ln p_i. \]
+Given that $0\le p_i \le 1$ for all $i=1,\cdots,S$ and that $p_1+\cdots+p_S = 1$, it's clear that $D_{\text{simpson}} \ge 0$ and $D_{\text{shannon}} \ge 0$ (note that we define $p\ln p = 0$ for $p=0$).
+\par
+Following your \textit{intuition}, for what values of $p_1,\cdots,p_S$ do these two indices attain their minimal value $0$, and for what values do these two indices attain their maximal value?
+Don't be scared.
+You probably don't need a calculator for this question.
+Simpson and Shannon are very clever and their definition should not lead to counterintuitive results.
+\par
+(Key: A)
+\begin{center}
+    \begin{tabular}{cll}
+        \toprule
+        & $p_1=\cdots=p_S=1/S$ & $p_i=1$ for a single $i$ and the rest are $0$ \\
+        \midrule
+        A. & $D_{\text{Simpson}}$ and $D_{\text{Shannon}}$ maximal & $D_{\text{Simpson}}$ and $D_{\text{Shannon}}$ minimal \\
+        B. & $D_{\text{Simpson}}$ maximal and $D_{\text{Shannon}}$ minimal & $D_{\text{Simpson}}$ minimal and $D_{\text{Shannon}}$ maximal \\
+        C. & $D_{\text{Simpson}}$ minimal and $D_{\text{Shannon}}$ maximal & $D_{\text{Simpson}}$ maximal and $D_{\text{Shannon}}$ minimal \\
+        D. & $D_{\text{Simpson}}$ and $D_{\text{Shannon}}$ minimal & $D_{\text{Simpson}}$ and $D_{\text{Shannon}}$ maximal \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+%\begin{enumerate}[label=\Alph*.]
+%    
+%\end{enumerate}
+
+% \bibliographystyle{plain}
+% \bibliography{main}
+
+\end{document}

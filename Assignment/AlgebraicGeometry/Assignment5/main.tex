@@ -1,0 +1,220 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 5}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{5.5}%
+This is to prove the following:
+\begin{quote}
+    \textit{A Noetherian local ring $(\mathcal{O},M)$ is an integrally closed domain if $\widehat{\mathcal{O}}$ is an integrally closed domain.}
+\end{quote}
+\paragraph{$\mathcal{O}$ is a domain}%
+Since $\mathcal{O}$ is Noetherian, $\mathcal{O}$ is a subring of $\widehat{\mathcal{O}}$.
+Since $\widehat{\mathcal{O}}$ is a domain, $\mathcal{O}$ is also a domain.
+\paragraph{$\mathcal{O}$ is normal}%
+Now we have the following inclusions.
+\begin{center}
+    \begin{tikzcd}
+        & \operatorname{Frac}(\mathcal{O}) \arrow[rd] & \\[-2em]
+        \mathcal{O} \arrow[ur] \arrow[rd]& & \operatorname{Frac}(\widehat{\mathcal{O}}) \\[-2em]
+        & \widehat{\mathcal{O}} \arrow[ur]
+    \end{tikzcd}
+\end{center}
+From the assumption, $\widehat{\mathcal{O}}$ is integrally closed in $\operatorname{Frac}(\widehat{\mathcal{O}})$.
+If a monic polynomial has root $f/g\in \operatorname{Frac}(\mathcal{O})$, then also $f/g\in \widehat{\mathcal{O}}$.
+It remains to show that $f/g\in  \mathcal{O}$.
+\par
+Now let $f/g\in \operatorname{Frac}(\mathcal{O}) \cap \widehat{\mathcal{O}}$.
+We have the following SES
+\[ 0 \rightarrow \ker(\pi \circ f\cdot) \xlongrightarrow{\imath} \mathcal{O} \xrightarrow{\pi \circ f\cdot} \mathcal{O}/g\mathcal{O} \rightarrow 0. \]
+Since $\widehat{\mathcal{O}}$ is flat over $\mathcal{O}$, we have the SES
+\[ 0 \rightarrow \widehat{\mathcal{O}}\otimes \ker(\pi \circ f\cdot) \xlongrightarrow{\operatorname{id} \otimes \imath} \widehat{\mathcal{O}} \xrightarrow{f\cdot} \widehat{\mathcal{O}}/g\widehat{\mathcal{O}} \rightarrow 0. \]
+$\xlongrightarrow{f\cdot}$ is zero map because $f\in g\widehat{\mathcal{O}}$.
+Since $\widehat{\mathcal{O}}$ is faithfully flat, we have the SES
+\[ 0 \rightarrow \ker(\pi \circ f\cdot) \xlongrightarrow{\imath} \mathcal{O} \xrightarrow{\pi \circ f\cdot} 0. \]
+That is, $f\mathcal{O} \subset g \mathcal{O}$, i.e. $f/g\in \mathcal{O}$.
+% https://math.stackexchange.com/questions/4668690/are-varieties-normal-if-and-only-if-they-are-analytically-normal
+% https://stacks.math.columbia.edu/tag/033G
+
+\plabel{5.6}%
+To prove that $k[x_1,\cdots,x_n]/(x_1^2+\cdots+x_n^2)$ is normal for $n\ge 3$, we apply the Serre's conditions $R_1+S_2$.
+It's clear that $R_1$ holds since the only singular point is the origin.
+$S_2$ holds automatically for hypersurfaces for in $\mathbb{A}^n$.
+
+% https://mathoverflow.net/questions/60097/checking-whether-a-variety-is-normal
+
+\prule
+
+\plabel{6.5}%
+It suffices to prove that for each $f$, $y + y^p = f(x)$ has exactly $p$ distinct solutions.
+This is true since $k$ is algebraically closed (therefore there are $k$ roots, counting multiplicity) and $\pdv{y}\qty(y+y^p) = 1\neq 0$ for every $y$ (since $\operatorname{char}(k) = p$) (therefore $y$ has no multiple roots).
+
+\prule
+
+\plabel{1.1}%
+Note that $V(xy-zt)\subset \mathbb{P}^3$ is just $\mathbb{P}^1\times \mathbb{P}^1$:
+let the coordinate of the first $\mathbb{P}^1$ be $(u_0:u_1)$ and of the second be $(v_0:v_1)$ then the map $\mathbb{P}^1\times \mathbb{P}^1 \cong V(xy-zt)\subset \mathbb{P}^3$ is given by
+\[ (x,z,t,y) = (u_0v_0:u_0v_1:u_1v_0:u_1v_1). \]
+Then $x/y = (u_0/u_1) \cdot (v_0/v_1)$.
+Therefore
+\[ \operatorname{div}(x/y) = (\qty{0}\times \mathbb{P}^1 + \mathbb{P}^1\times \qty{0}) - (\qty{\infty}\times \mathbb{P}^1 + \mathbb{P}^1\times \qty{\infty}). \]
+
+\plabel{1.10}%
+Let $\pi\colon X\times \mathbb{A}^1 \to X$ be the projection.
+\paragraph*{$\pi$ is injective}%
+We have to prove that if $\pi^*(D) = \operatorname{div}(f)$ for some $D\in \operatorname{Div}(X)$ and $f\in k(X)(t)$, then $D = \operatorname{div}(g)$ for some $g\in k(X)$.
+We claim that $f\in k(X)$. Then since $f\in k(X)$, we find $D = (f)$.
+\par
+If $f\notin k(X)$, we could write $f = u/v$ for $u,v\in k(X)[t]$ relatively prime.
+Then the support of $f$ projected onto $X$ contains some principal open set.
+This leads to contradiction since the support of $D$ has codimension $1$.
+\paragraph*{$\pi$ is surjective}%
+(This is just execrise 1.8.)
+To prove $\pi$ is surjective, we need to prove that any divisor $D\in \operatorname{Div}(X)$ differs from an element of $\pi^*(\operatorname{Div}(X))$ by an principal divisor.
+\par
+We use exercise 1.9.
+From exercise 1.9 we know that $D$ is a principal divisor on $U\times \mathbb{A}^1$ for some principal open set $U\subset X$.
+Therefore, $D$ differs from a principal divisor by some $\pi^*(D')$ where $D'\in \operatorname{Div}(X)$ has support equal to the complement of some principal openset.
+\par
+To prove exercise 1.9, we note that every ideal in $k(X)[T]$ is principal, then we can collect the denominator, i.e. set $w$ to be the product of denominator, and set the principal openset to be $X\setminus V(w)$.
+
+\plabel{1.11}%
+Denote by $v_p(D)$ the coefficient of $D$ at point $p$.
+\paragraph*{Moving support away from $(0,0)$}%
+Let $D$ be a divisor.
+Then
+\[ D' = D - \operatorname{div}(x^{v_{(0,0)}(D) }) \]
+has support disjoint from $(0,0)$.
+\par
+(In the following we only used that $v_{(0,0)}\colon P(X) \to \mathbb{Z}$ is surjective, i.e. there is a function $g$ such that $v_{(0,0)}(g) = 1$.)
+
+\paragraph*{Pulling back to $\mathbb{P}^1$}%
+Let
+\begin{itemize}
+    \item $\operatorname{Div}(X)$ denote the locally principal divisors of $X$,
+    \item $P(X)$ denote the principal divisors,
+    \item $\operatorname{Div}'(X) = \ker v_{(0,0)} \subset \operatorname{Div}(X)$, and
+    \item $P'(X) = \ker v_{(0,0)} \subset P(X)$.
+\end{itemize}
+Then we have the following matrix where the rows are exact and the first two nonzero columns are exact.
+\begin{center}
+    \begin{tikzcd}
+        & 0 \ar[d] & 0 \ar[d] & 0 \ar[d] & \\
+        0 \ar[r] & P'(X)\ar[r]\ar[d] & \operatorname{Div}'(X)\ar[r]\ar[d] &  \operatorname{Div}'(X)/P'(X)\ar[r]\ar[d] & 0 \\
+        0 \ar[r] & P(X)\ar[r]\ar[d,"v_{(0,0)}"] & \operatorname{Div}(X)\ar[r]\ar[d,"v_{(0,0)}"] & \operatorname{Div}(X)/P(X) \ar[r]\ar[d] & 0 \\
+        0 \ar[r] & \mathbb{Z} \ar[r]\ar[d] & \mathbb{Z} \ar[r]\ar[d] & 0  \ar[r]\ar[d]  & 0 \\
+        & 0 & 0 & 0
+    \end{tikzcd}
+\end{center}
+By the nine lemma, the last column is also exact (note that without $v_{(0,0)}$ being surjective on $P(X)$ the last row will be $n\mathbb{Z} \rightarrow \mathbb{Z} \rightarrow \mathbb{Z}/n\mathbb{Z}$ and then we won't have the following isomorphism).
+Therefore,
+\begin{equation}
+    \label{eq:restrict}
+    \operatorname{Div}'(X)/P'(X) \cong \operatorname{Div}(X)/P(X).
+\end{equation}
+We may assume that under the normalization $\varphi\colon\mathbb{P}^1 \to X$, $\varphi^{-1}((0,0)) = \qty{0,\infty}$.
+Then we let
+\begin{itemize}
+    \item $\operatorname{Div}(\mathbb{P}^1)$ denote the locally principal divisors of $\operatorname{\mathbb{P}^1}$,
+    \item $P(\mathbb{P}^1)$ denote the principal divisors,
+    \item $\operatorname{Div}'(\mathbb{P}^1) = \ker v_{0} \cap \ker v_{\infty} \subset \operatorname{Div}(\mathbb{P}^1)$, i.e. those with support disjoint from $\qty{0,\infty}$, and
+    \item $P'(\mathbb{P}^1) = \ker v_{0} \cap \ker v_{\infty} \subset P(\mathbb{P}^1)$, i.e. those with support disjoint from $\qty{0,\infty}$.
+    \item $P''(\mathbb{P}^1) \subset P'(\mathbb{P}^1)$ denote the principal divisors from function $f$ where $f(0) = f(\infty)$.
+\end{itemize}
+Then $\operatorname{Div}'(X) \cong \operatorname{Div}'(\mathbb{P}^1)$ and $P'(X) \cong P''(\mathbb{P}^1)$, i.e.
+\begin{equation}
+    \label{eq:pull_back}
+    \operatorname{Div}'(\mathbb{P}^1)/P''(\mathbb{P}^1) \cong \operatorname{Div}'(X)/P'(X).
+\end{equation}
+
+\paragraph*{Evaluting the quotient group for $\mathbb{P}^1$}
+We have the following matrix where the rows are exact and the first two nonzero columns are exact.
+\begin{center}
+    \begin{tikzcd}
+        & 0 \ar[d] & 0 \ar[d] & 0 \ar[d] & \\
+        0 \ar[r] & P''(\mathbb{P}^1)\ar[r]\ar[d] & P'(\mathbb{P}^1)\ar[r]\ar[d] &  P'(\mathbb{P}^1)/P''(\mathbb{P}^1) \ar[r]\ar[d] & 0 \\
+        0 \ar[r] & P''(\mathbb{P}^1)\ar[r]\ar[d] & \operatorname{Div}'(\mathbb{P}^1)\ar[r]\ar[d] & \operatorname{Div}'(\mathbb{P}^1)/P''(\mathbb{P}^1) \ar[r]\ar[d] & 0 \\
+        0 \ar[r] & 0 \ar[r]\ar[d] & \operatorname{Div}'(\mathbb{P}^1)/P'(\mathbb{P}^1) \ar[r]\ar[d] & \operatorname{Div}'(\mathbb{P}^1)/P'(\mathbb{P}^1) \ar[r]\ar[d]  & 0 \\
+        & 0 & 0 & 0
+    \end{tikzcd}
+\end{center}
+
+Note that
+\begin{equation*}
+    \operatorname{Div}'(\mathbb{P}^1)/P'(\mathbb{P}^1) \cong \mathbb{Z}
+\end{equation*}
+since $P'(\mathbb{P}^1) = \ker(\operatorname{deg})$ where $\operatorname{deg}\colon\operatorname{Div}'(\mathbb{P}^1)\to\mathbb{Z}$ is the sum of all coefficients and is surjective.
+By the nine lemma, the last column is exact.
+Since $\mathbb{Z}$ is a projective $\mathbb{Z}$-module, the last column splits.
+Therefore
+\begin{equation}
+    \label{eq:factorize} \operatorname{Div}'(\mathbb{P}^1)/P''(\mathbb{P}^1) \cong \mathbb{Z} \oplus (P'(\mathbb{P}^1)/P''(\mathbb{P}^1)).
+\end{equation}
+It remains to evaluate the second component $P'(\mathbb{P}^1)/P''(\mathbb{P}^1)$.
+
+\paragraph*{Evaluating the second component}
+$P'(\mathbb{P}^1)$ is given by
+\[ P'(\mathbb{P}^1) = \Set*{\operatorname{div}(f)}{f = \frac{a_0 + a_1 x + \cdots + a_n x^n}{b_0 + b_1 x + \cdots + b_n x^n}, a_0 b_0 a_n b_n \neq 0}. \]
+$P''(\mathbb{P}^1)$ is given by
+\[ P''(\mathbb{P}^1) = \Set*{\operatorname{div}(f)}{f = \frac{a_0 + a_1 x + \cdots + a_n x^n}{b_0 + b_1 x + \cdots + b_n x^n}, a_0 b_0 a_n b_n \neq 0, \frac{a_0}{a_n} = \frac{b_0}{b_n}}. \]
+That is to say, in $P''(\mathbb{P}^1)$, the product of the roots of $a_0 + a_1 x + \cdots + a_n x^n$ is equal to the product of the roots of $b_0 + b_1 x + \cdots + b_n x^n$, i.e.
+\[ P''(\mathbb{P}^1) = \ker \operatorname{prod} \subset P'(\mathbb{P}^1), \]
+where $\operatorname{prod}\colon P'(\mathbb{P}^1) \to k^\times$ (from an additive group to a multiplicative group) is defined by
+\[ \operatorname{prod}(n_1 x_1 + \cdots + n_r x_r) = x_1^{n_1} \cdots \cdots \cdot x_r^{n_r}. \]
+This map is surjective.
+Therefore
+\begin{equation}
+    \label{eq:second_factor}
+    P'(\mathbb{P}^1)/P''(\mathbb{P}^1) \cong k^\times.
+\end{equation}
+
+\paragraph*{Conclusion}%
+Combining \eqref{eq:restrict}, \eqref{eq:pull_back}, \eqref{eq:factorize}, and \eqref{eq:second_factor}, we find
+\[ \operatorname{Div}(X)/P(X) = \mathbb{Z} \oplus k^\times. \]
+
+\plabel{1.17}%
+Note that $\operatorname{Cl}(\mathbb{P}^n) = \mathbb{Z}$.
+Let $F$ be a form on $\mathbb{P}^n$.
+Then the image of $\operatorname{div}(F)$ in $\operatorname{Cl}(\mathbb{P}^n) = \mathbb{Z}$ is given by the degree of $F$.
+The hyperplanes are thus the effective divisors in the class $1\in \operatorname{Cl}(\mathbb{P}^n) = \mathbb{Z}$.
+\par
+By the result of section 1.4, chapter 3, we can assume that the automorphism $\varphi$ has the form 
+\[ \varphi(x_0:\cdots:x_n) = (y_0:\cdots:y_n) = (\varphi_0(x):\cdots:\varphi_n(x)). \]
+where each $\varphi_i$ is a homogeneous polynomial and they do not share a common factor.
+\par
+If $\varphi$ is an automorphism of $\mathbb{P}^n$ then it induces an automorphism of $\operatorname{Cl}(\mathbb{P}^n) = \mathbb{Z}$, i.e. $\varphi_{\operatorname{Cl}}^*\colon\operatorname{Cl}(\mathbb{P}^n)\to\operatorname{Cl}(\mathbb{P}^n)$ is either $n\mapsto n$ or $n\mapsto -n$.
+Since $\varphi_i$ are polynomials, a form of positive degree should be pulled back to another form of positive degree.
+Therefore $\varphi_{\operatorname{Cl}}^* = \operatorname{id}$.
+\par
+Then we know that $\varphi_i$ should all have degree $1$, i.e. they are all linear forms.
+
+% https://math.stackexchange.com/questions/3388707/how-to-prove-that-automorphisms-of-mathbb-pn-arise-from-linear-maps-in-mat
+
+\end{document}

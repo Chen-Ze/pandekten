@@ -18,6 +18,7 @@
 \author{Ch\=an Taku}
 
 \newtheorem{myex}{Example}
+\newtheorem{myrm}{Remark}
 
 \begin{document}
 
@@ -196,10 +197,11 @@ We find the following correspondence.
     Field Theory & Statistics \\
     \midrule
     Removing vacuum bubble & Normalizing by $1/Z$ \\
-    Diagrams (without bubble) & Moment $\langle \phi_1\cdots \phi_n\rangle $ \\ Connected diagramms & Joint cumulant \\
+    Diagrams (without bubble) & Moment $\langle \phi_1\cdots \phi_n\rangle $ \\ Connected diagrams & Joint cumulant \\
     1PI diagrams & ? \\
     Tree level contribution & ? \\
     Classical solutions of motion & Stationary points of PDF \\
+    Amputated diagrams & Devided by $\langle \phi\phi \rangle \cdots \langle \phi\phi \rangle$ \\
 \end{longtable}
 
 \paragraph*{The attempt}
@@ -354,6 +356,7 @@ We have to note the following when actually doing calculation.
     We intentionally drop this term.
     \item The Gaussian part is evaluated at renormalized parameters, while the $0$-loop part is evaluated at bare parameters, i.e. this is equation (11.63) of Peskin
     \[ \Gamma[\phi_{\textnormal{cl}}] = \int \dd[d]{x} \mathcal{L}_1[\phi_{\textnormal{cl}}] + \int \dd[4]{x} \delta\mathcal{L}[\phi_{\textnormal{cl}}] + \frac{i}{2} \log \det[-\frac{\delta^2\mathcal{L}_1}{\delta\phi\delta\phi}] - i\cdot (\text{bubbles}). \]
+    \item The counterterms should be added such that $\Gamma$ (or the effective potential) is finite, although the bare Lagrangian is divergent.
 \end{itemize}
 
 \subsubsection{Examples}
@@ -402,6 +405,64 @@ We have to note the following when actually doing calculation.
     And what does it mean by \textit{Goldstone bosons remains massless under renormalization}?
     Does it mean that the goldstone modes are still massless in the effective action?
 \end{itemize}
+
+\section{Renormalization Group}
+
+\subsection{Calculations}
+
+The following is a brief summary of pp. 5 ff. of Peskin.
+\par
+In the following, $\log(\Lambda^2/M^2)$ should be interpreted as (see equation (12.34) of Peskin)
+\[ \log(\Lambda^2/M^2) = \frac{1}{2-d/2} - \log(M^2). \]
+
+\paragraph{Calculating $\gamma$ Function}
+To the lowest order,
+\begin{equation}
+    \label{eq:gamma_lowest_delta}
+    \gamma = \frac{1}{2} M\pdv{M} \delta_Z.
+\end{equation}
+In particular, given
+\[ \delta_Z = A \log \frac{\Lambda^2}{M^2} + \text{finite}, \]
+we have
+\begin{equation}
+    \label{eq:gamma_lowest}
+    \boxed{\gamma = \frac{1}{2} M\pdv{M} \delta_Z = -A.}
+\end{equation}
+This applies to both fermions and bosons, no matter if they have a nonzero $\delta_Z$ starting from one-loop or higher---just plug in the lowest order of nonzero $\delta_Z$.
+
+\paragraph{Calculating $\beta$ Function}
+To the lowest order,
+\begin{equation}
+    \label{eq:beta_lowest_delta}
+    \beta(g) = M\pdv{M}\qty(-\delta_g + \frac{1}{2}g\sum_i \delta_{Z_i}),
+\end{equation}
+where the summation is done for propagators connected to this vertex.
+In particular, given
+\begin{align*}
+    \delta_g &= -B \log \frac{\Lambda^2}{M^2} + \text{finite}, \\
+    \delta_{Z_i} &= A_i \log \frac{\Lambda^2}{M^2} + \text{finite}, 
+\end{align*}
+we have
+\begin{equation}
+    \label{eq:beta_lowest}
+    \boxed{\beta(g) = M\pdv{M}\qty(-\delta_g + \frac{1}{2}g\sum_i \delta_{Z_i}) = -2B - g\sum_i A_i.}
+\end{equation}
+This applies scalars as well as vertices involving fermions.
+
+\begin{myrm}
+    Since the finite parts of $\delta$'s are independent of $M$, they don't contribute to $\beta$ and $\gamma$.
+    Therefore, to the leading order the exact form of renormalization condition is not important.
+    That is to say, we need only the divergent part of $\delta$, and therefore only the divergent part of the loop diagrams.
+\end{myrm}
+
+\begin{myrm}
+    \Cref{eq:gamma_lowest} applies to QED, i.e. we have
+    \[ \gamma_2 = \frac{1}{2}M\pdv{M}\delta_2,\quad \gamma_3 = \frac{1}{2}M\pdv{M}\delta_3. \]
+    \Cref{eq:beta_lowest} applies to QED as well.
+    However, since $\delta_1$ in QED is defined by $\mathcal{L} = -(e+e\delta_1) \overline{\psi}A_\mu \gamma^\mu \psi$, we should put $\delta_g = e\delta_1$ and find
+    \[ \beta(e) = M\pdv{M}\qty(-e\delta_1 + e\delta_2 + \frac{e}{2}\delta_3). \]
+    Note that there are two fermion lines and therefore we have $e\cdot 2\times (1/2)\delta_2$.
+\end{myrm}
 
 % \bibliographystyle{plain}
 % \bibliography{main}

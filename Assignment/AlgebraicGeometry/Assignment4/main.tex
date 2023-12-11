@@ -1,0 +1,174 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 4}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{2.1}%
+From the proof of Lemma 2.4 on page 140 we know the following.
+\begin{quote}
+    \textit{%
+    Given any system $u_1,\cdots,u_n$ of algebraically independent functions on $X$, the set of points at which $u_1,\cdots,u_n$ are lcoal parameters is open and nonempty.}
+\end{quote}
+Therefore, if the given functions $u_1,\cdots,u_n$ are algebraically independent then the set points where they fail to be local parameters is closed.
+\par
+If $u_1,\cdots,u_n$ are algebraically dependent, then now we prove that $u_1,\cdots,u_n$ are nowhere local parameters.
+At a nonsingular point $x\in X$, the Krull dimension of $\mathcal{O}_x$ is $n$.
+Since $u_1,\cdots,u_n$ are algebraically dependent, for some $m>0$ we may find less than $n$ elements to generate $M_x^m$, where $M_x$ is the maximal ideal of $\mathcal{O}_x$.
+Therefore the Krull dimension is less than $n$, leading to contradiction.
+
+\plabel{2.4}%
+$k\llparenthesis  T \rrparenthesis  $ is a field since given $f = \sum_{i=-n}^\infty a_i T^i$ and $g = \sum_{i=-m}^\infty b_i T^i$,
+\[ \frac{f}{g} = \frac{T^{-n} f_0}{T^{-m} g_0} = T^{m-n} \cdot \frac{f_0}{g_0} \]
+where $f_0,g_0\in k\llbracket T\rrbracket$ and have nonzero constant term, i.e. $f_0$ and $g_0$ are units, and therefore the division can be carried out such that $f_0/g_0\in k\llbracket T\rrbracket$.
+\par
+To prove that $k\llparenthesis  T \rrparenthesis  = \operatorname{Frac}(k\llbracket T\rrbracket)$, it suffices to prove that there is an injection 
+\[ k\llparenthesis  T \rrparenthesis \hookrightarrow \operatorname{Frac}(k\llbracket T\rrbracket). \]
+This can be given by (for $f$ and $f_0$ defined above)
+\[ f \mapsto \frac{f_0}{T^n}. \]
+
+\prule
+
+\plabel{3.2}%
+Since $Y_1,\cdots,Y_n\subset X$ intersect transversally at $x\in X$ (where $n$ is the dimension of $X$) we know that each $Y_i$ is nonsingular at $x$ (and therefore has a local equation $u_i \in M_x$ where $M_x\subset k[X]$ denotes the maximal ideal at $x$), and that
+\begin{equation}
+    \label{eq:ker_eq}
+    \bigcap_{i=1}^n \Theta_{Y_i,x} = \qty{0}
+\end{equation}
+as a subspace of $\Theta_{X,x}$.
+\par
+To show that $u_1,\cdots,u_n$ generates $M_x/M_x^2$ (we use the same letter to denote the linear form in $M_x/M_x^2$), it suffices to show that they are linearly independent.
+If there are $a_1,\cdots,a_n\in k$ such that
+\begin{equation}
+    \label{eq:im_eq}
+    a_1 u_1 + \cdots + a_n u_n = 0 \in M_x/M_x^2,
+\end{equation}
+then the map $(u_1,\cdots,u_n): (M_x/M_x^2)^* \rightarrow k^n$ satisfies
+\[ \dim \bigcap_{i=1}^n \ker u_i = \dim \ker(u_1,\cdots,u_n) = \dim \operatorname{coker}(u_1,\cdots,u_n) \ge 1 \]
+since $\im (u_1,\cdots,u_n)$ lies in the subspace of $k^n$ determined by \eqref{eq:im_eq}.
+However, we know from \eqref{eq:ker_eq} that $\dim \bigcap_{i=1}^n \ker u_i = 0$.
+
+\plabel{3.5}%
+Let $R=k[x,y,z]$, $M = (x,y,z)\subset R$, $I = (x, y-z)$, $J = (x^2 + (y-z)(y+z))$.
+We have to prove that $(I/J)_M (R/J)_M$ (subscript denotes localization) is not a principal ideal in $(R/J)_M$.
+\[ (x, y-z)_M (R/J)_M \subsetneq (x^2,y-z)_M (R/J)_M = (y-z)_M (R/J)_M \subsetneq (R/J)_M. \]
+Since $L = V(I)$ is a irreducible $1$-dimensional variety in $R/J$, we know $(x,y-z)_M(R/J)_M$ is a prime ideal and is contained in the principal ideal $(y-z)_M(R/J)_M$.
+If it is principal, then there is $f\subset \mathcal{O}_M$ (and is not a unit) such that
+\[ (x, y-z)_M (R/J)_M = (f\cdot (y-z))_M (R/J)_M. \]
+However, this implies $I_M(R/J)_M$ is not a prime ideal, which is a contradiction.
+
+\plabel{3.15}%
+I discussed this question with Lucas.
+\par
+Let $R = k[x_1,\cdots,x_N]$ and $J = (F_1,\cdots,F_m)$.
+Our goal is to show that $J$ is a radical ideal, i.e. $R/J$ is reduced.
+It suffices to show that $(R/J)_M$ is a regular ring for every maximal ideal $M$ of $R$, since locally regular implies reduced.
+\par
+Since the tangent plane defined by $(F_i)_{i=1,\cdots,m}$ is $n$-dimensional we find that $M/M^2$ is a $n$-dimensional vector space over $k = (R/J)_M/(M(R/J)_M)$.
+\par
+Now we prove that $(R/J)_M$ has Krull dimension $n$.
+This is because
+\[ \dim_{\text{Krull}} (R/J)_M \le \dim_{k\text{-Vect}} M/M^2 = n, \]
+and
+\[ \dim_{\text{Krull}} (R/J)_M \ge \dim_{\text{Krull}} (R/\sqrt{J})_M = n. \]
+Therefore, $(R/J)_M$ is regular for every $M$ maximal.
+
+\prule
+
+\plabel{4.1}%
+Let $(u_1,\cdots,u_n)$ and $(v_1,\cdots,v_n)$ be two different sets of local parameters (with unique solution $u_1 = \cdots = u_n = 0$ and $v_1 = \cdots = v_n = 0$ being $\xi$) of an $n$-dimensional $X$ at $\xi$, which are related by
+\[ v_k = \sum_{j=1}^n h_{kj} u_j, \quad h_{kj} \in \mathcal{O}_\xi. \]
+For a subvariety $Y\subset X$ that passes through $\xi$, let
+\[ h\colon \xi\times \mathbb{P}^{n-1} \to \xi\times\mathbb{P}^{n-1} \]
+be defined by
+\[ h(t_1:\cdots:t_n) = (s_1:\cdots:s_n), \quad s_k = \sum_{j=1}^n h_{kj}(\xi) t_j. \]
+Denote by $\sigma_u\colon X\times \mathbb{P}^{n-1} \to X$ and $\sigma_v\colon  X\times \mathbb{P}^{n-1} \to X$ the blowup using local parameter $u$ and $v$.
+Then it follows from equation (2.29) of page 117 (and that $\varphi$ and $\psi$ defined transform one local parameter to another) that 
+\[ h\qty((\xi\times \mathbb{P}^{n-1}) \cap \overline{\sigma_u^{-1}(Y\setminus \xi)}) = (\xi\times \mathbb{P}^{n-1}) \cap \overline{\sigma_v^{-1}(Y\setminus \xi)}. \]
+\par
+In particular, if $X$ is $2$-dimensional, and $Y_1$ is defined by $u_1 = 0$ using local parameter $(u_1,u_2)$, and $Y_2$ is defined by $v_1 = 0$ using $(v_1,v_2)$, then 
+\begin{align*}
+    (\xi\times \mathbb{P}^{n-1}) \cap \overline{\sigma_u^{-1}(Y_1\setminus \xi)} &= (0:1), \\
+    (\xi\times \mathbb{P}^{n-1}) \cap \overline{\sigma_v^{-1}(Y_2\setminus \xi)} &= (0:1).
+\end{align*}
+Using the transformation formula by $h$,
+\[ (\xi\times \mathbb{P}^{n-1}) \cap \overline{\sigma_v^{-1}(Y_1\setminus \xi)} = (h_{12}(\xi): h_{22}(\xi)). \]
+For this to equal $(\xi\times \mathbb{P}^{n-1}) \cap \overline{\sigma_v^{-1}(Y_2\setminus \xi)} = (0:1)$, we require $h_{12}(\xi) = 0$, i.e. $v_1 = h_{11} u_1$ for some $h_{11}(\xi) \neq 0$, and therefore $Y_1$ and $Y_2$ are tangent $\xi$.
+\par
+If $Y_1$ and $Y_2$ are tangent at $\xi$ then the same argument works in the reversed direction and therefore 
+\begin{gather*}
+    (\xi\times \mathbb{P}^{n-1}) \cap \overline{\sigma_v^{-1}(Y_1\setminus \xi)} = (\xi\times \mathbb{P}^{n-1}) \cap \overline{\sigma_v^{-1}(Y_2\setminus \xi)} \\
+    \Longleftrightarrow \text{$Y_1$ and $Y_2$ are tangent at $\xi$}.
+\end{gather*}
+
+\plabel{4.4}%
+Denote the coordinates in $\mathbb{P}^4$ by $(y_0:y_1:y_2:y_3:y_4)$.
+Then the image of $\varphi\colon\mathbb{P}^2\to\mathbb{P}^4$ given by
+\[ \varphi(x_0:x_1:x_2) = (y_0:y_1:y_2:y_3:y_4) = (x_0x_1:x_0x_2:x_1^2:x_1x_2:x_2^2) \]
+lies in
+\[ \overline{\varphi}(\mathbb{P}^2) = V(y_3^2 - y_2 y_4, y_1y_3 - y_0 y_4, y_0 y_3 - y_1 y_2). \] % V(y_3^2 - y_2 y_4, y_1^2 y_2 - y_0^2 y_4). \]
+On the other hand, given $(y_0:y_1:y_2:y_3:y_4)\in \overline{\varphi}(\mathbb{P}^2)$, we define
+\[ \varphi^{-1}(y_0:y_1:y_2:y_3:y_4) = (y_0 y_1: y_0 y_3: y_1 y_3) = (x_0^2 x_1 x_2: x_0 x_1^2 x_2: x_0 x_1 x_2^2). \]
+Clearly $\varphi$ and $\varphi^{-1}$ are both defined on a nonempty open set.
+Therefore, $\varphi\colon \mathbb{P}^2 \to \overline{\varphi}(\mathbb{P}^2)$ is a birational map.
+\par
+The blow up is given by $\sigma\colon\Pi\to \mathbb{P}^2$ where
+\[ \Pi = \Set*{(x_0:x_1:x_2)\times (t_1:t_2) \in \mathbb{P}^2 \times \mathbb{P}^1}{x_1 t_2 = x_2 t_1}. \]
+We define the map $\psi\colon \overline{\varphi}(\mathbb{P}^2) \to \Pi$ by
+\[ \psi(y_0:y_1:y_2:y_3:y_4) = (y_0 y_1: y_0 y_3: y_1 y_3) \times (y_0:y_1). \]
+Clearly this satisfies the defining equation of $\Pi$.
+Moreover, $\varphi^{-1}\colon \overline{\varphi}(\mathbb{P}^2) \to X$ factors through the projection $\sigma\colon \Pi \to \mathbb{P}^2$ by
+\[ \varphi^{-1} = \sigma \circ \psi. \]
+
+\paragraph*{Preimage of $\xi$}
+If $\varphi^{-1}(y) = \xi = (1:0:0)$ then $y_0 y_1\neq 0$ but $y_0 y_3 = y_1 y_3 = 0$.
+This requires $y_3 = 0$.
+Consequently $y_2 y_4 = 0$ (from $y_3^2 - y_2 y_4 = 0$).
+Then $y_2 = y_4 = 0$ since $y_1^2 y_2 - y_0^2 y_4 = 0$ and $y_1 y_2 \neq 0$.
+Therefore the preimage of $\xi$ is given by
+\[ \Set*{(y_0:y_1:0:0:0) \in \overline{\varphi}(\mathbb{P}^2)}{(y_0:y_1)\in \mathbb{P}^1} \cong \mathbb{P}^1. \]
+This gives under $\psi$ the correct preimage of $\sigma$.
+To show that $\psi$ coincides with $\sigma$ on a open set, we study the preimage of points in $\mathbb{P}^2$.
+
+\paragraph*{Preimage of $\mathbb{P}^2 \setminus \xi$}
+If $\varphi^{-1}(y) = (x_0:x_1:x_2) \neq (1:0:0)$ then either $y_0 y_3 \neq 0$ or $y_1 y_3 \neq 0$.
+This requires $y_3 \neq 0$, and in addition either $y_0\neq 0$ or $y_1 \neq 0$.
+\begin{itemize}
+    \item 
+    If $x_0 \neq 0$, then $y_0 \neq 0$ and $y_1 \neq 0$.
+    Let $(x_0:x_1:x_2) = (1:x_1:x_2)$.
+    This fixes $y_0$, $y_1$, and $y_3$ (up to a sign that doesn't matter).
+    From $y_1 y_3 = y_0 y_4$ and $y_0 y_3 = y_1 y_2$ we obtain $y_2$ and $y_4$.
+    From these we obtain a unique $(y_0:y_1:y_2:y_3:y_4)$.
+    \item
+    If $x_0 = 0$, then $y_0 y_1 = 0$, it looks like the preimage of points other than $(0:1:0)$ or $(0:0:1)$ may not exist.
+    In this case the map does not coincide with the blowup.
+\end{itemize}
+
+\end{document}
