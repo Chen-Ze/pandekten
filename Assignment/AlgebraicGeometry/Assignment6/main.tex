@@ -1,0 +1,133 @@
+\documentclass{article}
+
+\usepackage{pandekten}
+\usepackage{dashrule}
+
+\makeatletter
+\newcommand*{\shifttext}[1]{%
+  \settowidth{\@tempdima}{#1}%
+  \hspace{-\@tempdima}#1%
+}
+\newcommand{\plabel}[1]{%
+\shifttext{\textbf{#1}\quad}%
+}
+\newcommand{\prule}{%
+\begin{center}%
+\hdashrule[0.5ex]{.99\linewidth}{1pt}{1pt 2.5pt}%
+\end{center}%
+}
+
+\makeatother
+
+\newcommand{\minusbaseline}{\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}}%
+
+\setlength{\parindent}{0pt}
+
+\title{Assignment 6}
+\author{Ze Chen}
+
+\begin{document}
+
+\maketitle
+
+\plabel{5.7}%
+At the zeros of $Q$, $\omega$ is not regular.
+Regularity at $\infty$ depends on whether $t^{-2-m+n} (t^m P(1/t))/(t^n Q(1/t))$ is regular at $t=0$.
+If $n<2+m$ then $\omega$ is not regular at $\infty$.
+
+\plabel{5.8}%
+Set $n = \dim X$.
+\par
+Let $U$ be an open set in theorem 3.17.
+Since $(\text{tangent fiber space of $X$})$ is birational to $(\text{tangent fiber space of $U$})$, it suffices to prove the hint that $(\text{tangent fiber space of $U$}) \cong U\times \mathbb{A}^n$.
+\par
+The map in one direction is constructed in the hint.
+The map on the other direction may be given by the dual map $\Theta^* \to \Theta$.
+
+\plabel{5.12}%
+Denote $\varphi \in \operatorname{Hom}_A(\Omega_{A/k},B)$ and $D \in \operatorname{Der}_{k}(A,B)$.
+Then $\varphi$ and $D$ has an one-to-one correspondence given by $\varphi(\dd{a}) = D(a)$ for every $a\in A$.
+\paragraph*{For each $\varphi$ we have $D$}
+We should prove that $D = \varphi \circ \dd$ is a differential.
+$D(k) = 0$ since $\dd{k} = 0$.
+Moreover,
+\[ D(fg) = \varphi(\dd{fg}) = \varphi(f\dd{g} + g\dd{f}) = f\varphi(\dd{g}) + g\varphi(\dd{f}) = fDg+gDf. \]
+\paragraph*{For each $D$ we have $\varphi$}
+We defined $\varphi$ on the generators.
+The definition is compatible with the relations of generators, i.e.
+\begin{align*}
+    \varphi(\dd{k}) &= D(k) = 0, \\
+    \varphi(\dd(f+g)) &= \varphi(\dd{f}+\dd{g}) = \varphi(\dd{f}) + \varphi(\dd{g}) = D(f) + D(g), \\
+    \varphi(\dd{a_1 a_2}) &= \varphi(a_1 \dd{a_2} + a_2 \dd{a_1}) \\ &= a_1 \varphi(\dd{a_2}) + a_2 \varphi(\dd{a_1}) = a_1 D a_2 + a_2 D a_1 = D(a_1 a_2).
+\end{align*}
+Therefore the definition of $\varphi$ on generators gives rise to a morphism $\varphi \in \operatorname{Hom}_A(\Omega_{A/k},B)$.
+
+\prule
+\plabel{7.2}%
+I have to assume that $f$ is a separable morphism, i.e. $k(X)$ is a separable extension of $k(Y)$.
+\par
+Now let $t$ be a local parameter at $y\in Y$, and $u$ be a local parameter at $x\in X$.
+Then there is some unique $g\in \mathcal{O}_{x}$ such that $f^*(\dd{t}) = g\cdot \dd{u}$.
+
+\paragraph*{Independence of local parameter}
+We prove that $v_x(g)$ is independent of the local parameter $t$.
+This is true since $v_x(g) = \operatorname{length}(\mathcal{O}_x/f^*(\mathcal{O}_y))$ (see Proposition 2.2(b), Hartshorne).
+\paragraph*{$e_x > 0$ if and only if ramification}
+$v_x(g) = 0$ (i.e. $g$ is invertible in $\mathcal{O}_x$) if and only if $f^*{(\dd{t})}$ generates $\Omega_x$ (i.e. the differentials at $x$), if and only if $f^*(t)$ is a local parameter, if and only if $x$ is not a ramification point.
+
+\plabel{7.4}%
+%\vspace{-2.15\baselineskip}
+%\paragraph*{First we prove 7.3}
+%Let $f^*(t) = h u^n$ where $u$ a uniformizer, $h$ is some unit in $\mathcal{O}_x$, and $n=v_x(f^*(t))$.
+%Since $f^*\dd = \dd{f^*}$,
+%\begin{align*}
+%    e_x &= v_x(f^*(\dd{t})) = v_x(\dd{f^*(t)}) = v_x(\dd{(u\pi^n)}) = n - 1.
+%\end{align*}
+%It follows from the bottom of page 164 that $n = l_i$ for $x=x_i$.
+%\paragraph*{Prove 7.4}
+Take a canonical divisor $K_Y$ of $Y$.
+By exercise 7.2 we know
+\[ K_X \sim f^*(K_Y) + \sum_{x_i} e_i x_i. \]
+Therefore
+\[ 2g_X - 2 = \deg (K_X) = \deg(f^*)\cdot \deg(K_Y) + \sum_{x_i} (e_i) = \deg(f^*)(2g_Y-2) + \sum_{x_i} e_i. \]
+
+\plabel{7.13}%
+The nested spaces are
+\[ \mathcal{M}_{k} \subset \mathcal{M}_{k-1} \subset \cdots \subset \mathcal{M}_1 \subset \mathcal{L}. \]
+\paragraph*{$\varphi^{k+1}(\mathcal{L})$ is finite dimensional}%
+This is a consequence of that $\varphi(A+B) = \varphi(A)+\varphi(B)$ for subspaces $A$ and $B$, and that $\varphi(C)$ is finite-dimensional if $C$ is finite dimensional.
+
+\paragraph*{$\varphi^{k+1}(\mathcal{L})$ is invariant under $\varphi$}
+This is because $\varphi(\mathcal{L})\subset \mathcal{L}$, and
+\[ \varphi \circ \varphi^{k+1}(\mathcal{L}) = \varphi^{k+1}\circ \varphi(\mathcal{L}) \subset \varphi^{k+1}(\mathcal{L}). \]
+
+\paragraph*{$\Tr^V(\varphi)$ is independent of $V$ for any finite-dimensional $\varphi$-invariant $V\supset \varphi^{k+1}(\mathcal{L})$}
+Write $V = \varphi^{k+1}(\mathcal{L}) \oplus (\text{something})$.
+Then $\varphi\colon V\to V$ has the matrix form (since $\varphi^k(\mathcal{L})$ is $\varphi$-invariant)
+\[ \varphi = \begin{pmatrix}
+    A & B \\ & C
+\end{pmatrix},\quad \varphi^{k+1} = \begin{pmatrix}
+    A^{k+1} & \cdots \\ & C^{k+1}
+\end{pmatrix}. \]
+Therefore $C^{k+1} = 0$, and thus $\Tr(C) = 0$.
+Therefore
+\[ \Tr(\varphi) = \Tr(A) + \Tr(C) = \Tr(A) = \Tr^{\varphi^{k+1}(\mathcal{L})}(A), \]
+which is independent of $V$.
+
+\paragraph*{Linearity of $\Tr$ and commutator property}
+Let
+\[ V = f^{k+1}(\mathcal{L}),\quad \text{where } f(W) = \varphi(W) + \psi(W). \]
+Then $V$ is finite-dimensional, and is invariant under $\varphi$, $\psi$, and $\varphi + \psi$.
+Therefore we can define $\Tr = \Tr^V$ for these operators.
+Then the linearity and commutator property follow from the finite-dimensional case.
+
+\prule
+
+\plabel{1.4}%
+The degree of a surface $S$ in $v_m(\mathbb{P}^2)\subset \mathbb{P}^M$ equal to the number $n$ of intersections of $S$ with 2 hyperplanes $H_1$ and $H_2$ in general position.
+\par
+$n$ is equal to the number $n'$ of intersection points of $v_m^{-1}(H_1) \cap v_m^{-1}(H_2)$ in $\mathbb{P}^2$ since $v_m$ is an isomorphism.
+\par
+Since $v_m^{-1}(H_1)$ and $v_m^{-1}(H_2)$ are hypersurfaces of degree $m$ in general position in $\mathbb{P}^2$, $n = n' = m^2$.
+
+\end{document}
